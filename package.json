@@ -1,0 +1,27 @@
+{
+  "name": "esi-isigny",
+  "version": "1.0.0",
+  "description": "Étoile Sportive d'Isigny — site officiel + 10 agents IA d'auto-update",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev --listen 8765",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel",
+    "agent:run": "node --experimental-strip-types --no-warnings",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "@supabase/supabase-js": "^2.45.4",
+    "resend": "^4.0.0",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "typescript": "^5.6.0",
+    "vercel": "^37.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    { "path": "/api/agents/01-fff-results-sync",   "schedule": "0 2 * * 1" },
+    { "path": "/api/agents/02-fff-fixtures-sync",  "schedule": "30 2 * * 1" },
+    { "path": "/api/agents/03-classements-sync",   "schedule": "0 3 * * 1" },
+    { "path": "/api/agents/04-match-report-writer","schedule": "0 4 * * 1" },
+    { "path": "/api/agents/05-convoc-reminder",    "schedule": "0 18 * * *" },
+    { "path": "/api/agents/06-social-poster",      "schedule": "0 9 * * 1" },
+    { "path": "/api/agents/07-seo-optimizer",      "schedule": "0 23 * * 0" },
+    { "path": "/api/agents/09-stats-aggregator",   "schedule": "0 5 * * 1" },
+    { "path": "/api/agents/10-chatbot-trainer",    "schedule": "0 22 * * 0" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(self)" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ]
+}

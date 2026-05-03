@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /agents/
+Disallow: /.backups/
+Disallow: /handoff/
+
+# Crawl-delay (sec) — be gentle with our small server
+Crawl-delay: 1
+
+Sitemap: https://esi-isigny.fr/sitemap.xml
