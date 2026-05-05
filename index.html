@@ -2368,20 +2368,21 @@ button.team-card { font-family: inherit; }
 .divider-marquee:hover .divider-marquee-track { animation-play-state: paused; }
 .divider-marquee-logo {
   flex-shrink: 0;
-  width: 120px;
-  height: 56px;
+  width: 110px !important;
+  height: 40px !important;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0.92;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
 }
 .divider-marquee-logo:hover { opacity: 1; transform: scale(1.06); }
 .divider-marquee-logo img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
   object-fit: contain;
   display: block;
 }
@@ -2396,7 +2397,7 @@ button.team-card { font-family: inherit; }
   .divider-marquee { padding: 20px 0; }
   .divider-marquee-label { display: none; }
   .divider-marquee-track { gap: 40px; padding-left: 24px; animation-duration: 40s; }
-  .divider-marquee-logo { width: 90px; height: 44px; }
+  .divider-marquee-logo { width: 80px !important; height: 32px !important; }
 }
 
 /* ===== FOOTER (3 colonnes légères) ===== */
