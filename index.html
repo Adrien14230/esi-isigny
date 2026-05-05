@@ -1766,6 +1766,57 @@ footer { background: var(--dark); padding: 64px 48px 32px; }
   filter: drop-shadow(0 8px 16px rgba(13,31,60,0.10));
 }
 .boutique-card:hover .boutique-card-photo { transform: scale(1.06); }
+
+/* ESI logo badge over product photo */
+.boutique-card-esi-badge {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--white);
+  padding: 5px;
+  z-index: 4;
+  box-shadow: 0 4px 16px rgba(13,31,60,0.18), 0 0 0 1px rgba(13,31,60,0.08);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.boutique-card-esi-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.boutique-card:hover .boutique-card-esi-badge {
+  transform: scale(1.08) rotate(-4deg);
+}
+.boutique-card-personalized {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 4;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: var(--electric);
+  color: var(--white);
+  padding: 5px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 8px rgba(30,95,190,0.3);
+}
+.boutique-card-personalized::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--win);
+  box-shadow: 0 0 8px var(--win);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
 .boutique-card-tag {
   position: absolute;
   top: 14px; left: 14px;
@@ -4457,6 +4508,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag"><span data-lang="fr">Maillot</span><span data-lang="en">Jersey</span></span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/maillot-power-mc.jpg" alt="Maillot Power MC ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Manches courtes · Officiel</span><span data-lang="en">Short sleeves · Official</span></span>
@@ -4480,6 +4533,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag"><span data-lang="fr">Veste</span><span data-lang="en">Jacket</span></span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/veste-capuche-power.jpg" alt="Veste à capuche Power ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Veste à capuche · Power</span><span data-lang="en">Hooded jacket</span></span>
@@ -4503,6 +4558,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag">Polo</span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/polo-power.jpg" alt="Polo Power ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Polo cérémonie</span><span data-lang="en">Polo</span></span>
@@ -4526,6 +4583,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag"><span data-lang="fr">Pantalon</span><span data-lang="en">Pants</span></span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/pantalon-power.jpg" alt="Pantalon polyester Power ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Polyester · Survêtement</span><span data-lang="en">Polyester · Tracksuit</span></span>
@@ -4549,6 +4608,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag">Ziptop</span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/ziptop-power.jpg" alt="Ziptop Power ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Veste zippée</span><span data-lang="en">Zip-up</span></span>
@@ -4572,6 +4633,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag">Sweat</span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/sweat-power.jpg" alt="Sweat Power ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Pull col rond</span><span data-lang="en">Crew sweater</span></span>
@@ -4595,6 +4658,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag"><span data-lang="fr">Pluie</span><span data-lang="en">Rain</span></span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/veste-pluie-power.jpg" alt="Veste de pluie Power ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Imperméable</span><span data-lang="en">Waterproof</span></span>
@@ -4618,6 +4683,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag"><span data-lang="fr">Doudoune</span><span data-lang="en">Padded</span></span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/veste-matelassee.jpg" alt="Veste matelassée ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Hiver</span><span data-lang="en">Winter</span></span>
@@ -4641,6 +4708,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag">T-shirt</span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/tshirt-classico.jpg" alt="T-shirt Classico ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Coton · Classico</span><span data-lang="en">Cotton · Classico</span></span>
@@ -4664,6 +4733,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag">Hoodie</span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/veste-capuche-classico.jpg" alt="Veste à capuche Classico ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Hoodie casual</span><span data-lang="en">Casual hoodie</span></span>
@@ -4687,6 +4758,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag"><span data-lang="fr">Débardeur</span><span data-lang="en">Tank</span></span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/debardeur-classico.jpg" alt="Débardeur Classico ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Été · Sans manches</span><span data-lang="en">Summer · Sleeveless</span></span>
@@ -4710,6 +4783,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag">Tank Top</span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/tanktop-challenge.jpg" alt="Tank top Challenge ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Entraînement</span><span data-lang="en">Training</span></span>
@@ -4733,6 +4808,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag"><span data-lang="fr">Pantalon</span><span data-lang="en">Pants</span></span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/pantalon-challenge.jpg" alt="Pantalon Challenge ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Polyester · Challenge</span><span data-lang="en">Polyester · Challenge</span></span>
@@ -4756,6 +4833,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="boutique-card-tag"><span data-lang="fr">Sac</span><span data-lang="en">Bag</span></span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/sac-a-dos.jpg" alt="Sac à dos ESI" class="boutique-card-photo" loading="lazy">
+        <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Accessoire · Compartiment chaussures</span><span data-lang="en">Accessory · Shoe compartment</span></span>
