@@ -1764,7 +1764,13 @@ footer { background: var(--dark); padding: 64px 48px 32px; }
   justify-content: center;
   padding: 48px 32px;
   position: relative;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.25s;
 }
+a.partner-major-logo:hover { background: var(--offwhite); }
+a.partner-major-logo:hover img { transform: scale(1.04); }
+.partner-major-logo img { transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
 .partner-major-logo-content {
   display: flex;
   flex-direction: column;
@@ -4878,18 +4884,17 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   <h3 class="partner-tier-title"><span data-lang="fr">Sponsor principal · Maillot</span><span data-lang="en">Main sponsor · Jersey</span></h3>
 
   <article class="partner-major reveal">
-    <div class="partner-major-logo">
+    <a href="https://www.maconnerie-rigault.fr/" target="_blank" rel="noopener" class="partner-major-logo" aria-label="Site Rigault — maconnerie-rigault.fr">
       <div class="partner-major-logo-content">
-        <div class="partner-major-logo-mark">R</div>
-        <div class="partner-major-logo-name">RIGAULT</div>
+        <img src="assets/partners/rigault.png" alt="Logo Rigault — Maçonnerie & Taille de pierre" style="max-width:180px;max-height:140px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(13,31,60,0.10));">
         <div class="partner-major-logo-tagline"><span data-lang="fr">Tailleur de pierre · Maçonnerie</span><span data-lang="en">Stonemason · Masonry</span></div>
       </div>
-    </div>
+    </a>
     <div class="partner-major-info">
       <span class="partner-major-tier">⭐ <span data-lang="fr">Sponsor maillot</span><span data-lang="en">Jersey sponsor</span></span>
       <h3 class="partner-major-name"><span data-lang="fr">Rigault — Rénovation à l'ancienne</span><span data-lang="en">Rigault — Heritage renovation</span></h3>
       <p class="partner-major-desc"><span data-lang="fr">Présent sur le maillot officiel de l'ESI depuis plusieurs saisons, Rigault est l'artisan de référence du Bessin pour la rénovation de pierre, la taille et la maçonnerie traditionnelle. Un savoir-faire local au service du sport amateur.</span><span data-lang="en">Featured on the official ESI jersey for several seasons, Rigault is the reference Bessin artisan for stone restoration, masonry and heritage building. Local craftsmanship supporting amateur sport.</span></p>
-      <a href="#contact" class="partner-major-link"><span data-lang="fr">En savoir plus</span><span data-lang="en">Learn more</span></a>
+      <a href="https://www.maconnerie-rigault.fr/" target="_blank" rel="noopener" class="partner-major-link"><span data-lang="fr">Visiter maconnerie-rigault.fr</span><span data-lang="en">Visit maconnerie-rigault.fr</span></a>
     </div>
   </article>
 
