@@ -1,7 +1,7 @@
 // POST /api/upload-photo
 // Receives photos from the parents' upload form on the gallery page.
-// Validates input, stores the originals in Supabase Storage with status=pending,
-// and triggers the image-optimizer agent (08) for thumbnail generation.
+// Photos are published immediately (no moderation step — confiance aux parents).
+// Stores originals in Supabase Storage and writes to gallery_approved.
 
 import { db, logRun } from '../lib/db';
 
@@ -49,32 +49,28 @@ export default async function handler(req: Request) {
     for (const photo of photos) {
       const ext = photo.name.split('.').pop()?.toLowerCase() || 'jpg';
       const id = `${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
-      const path = `pending/${category}/${id}.${ext}`;
+      const path = `approved/${category}/${id}.${ext}`;
 
-      // Upload original to Supabase Storage
+      // Upload to Supabase Storage (directly in approved/, no pending step)
       const { error: upErr } = await db.storage.from('gallery').upload(path, photo, {
         contentType: photo.type,
         upsert: false,
       });
       if (upErr) throw upErr;
 
-      // Insert DB record (status = pending — admin must approve)
-      const { error: dbErr } = await db.from('gallery_pending').insert({
-        id,
-        category,
-        title,
+      // Insert directly in gallery_approved — published immediately
+      const { error: dbErr } = await db.from('gallery_approved').insert({
+        id, category, title,
+        path,
         email,
-        original_path: path,
-        original_filename: photo.name,
-        original_size: photo.size,
-        status: 'pending',
-        created_at: new Date().toISOString(),
+        approved_at: new Date().toISOString(),
+        approved_by: email,  // self-approved
       });
       if (dbErr) throw dbErr;
 
       inserted.push(id);
 
-      // Fire-and-forget: ask agent-08 to generate thumbnail (async, optional)
+      // Trigger thumbnail generation in background (non-blocking)
       fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/agents/08-image-optimizer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

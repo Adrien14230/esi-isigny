@@ -110,18 +110,7 @@ create table gallery_photos (
   caption text, created_at timestamptz
 );
 
--- Photos uploadées par les parents (en attente de modération)
-create table gallery_pending (
-  id text primary key,
-  category text not null,
-  title text, email text not null,
-  original_path text not null,
-  original_filename text, original_size int,
-  status text default 'pending' check (status in ('pending','rejected')),
-  created_at timestamptz default now()
-);
-
--- Photos approuvées (visibles publiquement après validation dirigeant)
+-- Photos uploadées par les parents (publication immédiate, pas de modération)
 create table gallery_approved (
   id text primary key,
   category text not null,
@@ -255,27 +244,20 @@ Les 9 cron jobs sont **déjà configurés dans `vercel.json`**. Vercel les activ
 
 Tu peux vérifier dans **Settings → Cron Jobs** du dashboard Vercel.
 
-## 📷 Flow upload photos (parents → modération → publication)
+## 📷 Flow upload photos (parents — publication directe)
 
 ```
-┌──────────────────┐  upload  ┌────────────────────┐  approve  ┌─────────────────┐
-│ Parent · Galerie ├─────────►│ /api/upload-photo  ├──────────►│ /api/photos/    │
-│ "Partager photo" │          │  → Supabase pending│  par diri-│ moderate        │
-└──────────────────┘          └────────────────────┘  geant    └────────┬────────┘
-                                                                        │
-                                                          email parent  │
-                                                          ✓ publiée  ◄──┤
-                                                                        │
-                                                                        ▼
-                                                              ┌──────────────────┐
-                                                              │ gallery_approved │
-                                                              │ visible publique │
-                                                              └──────────────────┘
+┌──────────────────┐  upload   ┌────────────────────┐  publié    ┌──────────────────┐
+│ Parent · Galerie ├──────────►│ /api/upload-photo  ├───────────►│ gallery_approved │
+│ "Publier photo"  │           │  → Supabase Storage│ immédiat   │ visible publique │
+└──────────────────┘           └────────────────────┘            └──────────────────┘
 ```
 
-**Mode demo (sans backend)** : tout fonctionne en local via **IndexedDB**. Photos persistent dans le navigateur du parent. Le dirigeant les voit dans `Espace dirigeant → Photos en attente` (du même navigateur). Idéal pour tester le flow complet sans déploiement.
+**Pas de modération** : confiance aux parents. Les photos apparaissent immédiatement dans la galerie ("Récemment partagées") + classées par catégorie.
 
-**Mode production (Vercel + Supabase)** : `/api/health` est dispo → le front bascule automatiquement sur l'API. Photos centralisées dans Supabase Storage, modération multi-utilisateurs, email de notification au parent à l'approbation.
+**Mode demo (sans backend)** : tout fonctionne en local via **IndexedDB** dans le navigateur du parent. Idéal pour tester avant déploiement.
+
+**Mode production (Vercel + Supabase)** : `/api/health` est dispo → le front bascule automatiquement sur l'API. Photos centralisées dans Supabase Storage, visibles par tous les visiteurs.
 
 ## ✅ Checklist finale
 

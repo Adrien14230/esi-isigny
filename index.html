@@ -5382,13 +5382,13 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <div class="upload-grid">
       <div class="upload-intro">
         <h3><span data-lang="fr">Vos photos<br>nous intéressent</span><span data-lang="en">We want<br>your photos</span></h3>
-        <p><span data-lang="fr">Parents, joueurs, supporters : partagez vos plus belles prises de match. Chaque envoi est <strong>rangé automatiquement par catégorie</strong> et publié après <strong>validation par un dirigeant</strong> — pas de bazar dans la galerie.</span>
-        <span data-lang="en">Parents, players, supporters: share your best match shots. Each submission is <strong>auto-sorted by team</strong> and published after <strong>review by a club manager</strong> — no mess in the gallery.</span></p>
+        <p><span data-lang="fr">Parents, joueurs, supporters : partagez vos plus belles prises de match. Chaque envoi est <strong>rangé automatiquement par catégorie</strong> — la galerie reste organisée.</span>
+        <span data-lang="en">Parents, players, supporters: share your best match shots. Each submission is <strong>auto-sorted by team</strong> — the gallery stays tidy.</span></p>
         <ul>
+          <li><span data-lang="fr">Publication immédiate dès l'envoi</span><span data-lang="en">Published instantly</span></li>
           <li><span data-lang="fr">Catégorie obligatoire à la sélection</span><span data-lang="en">Mandatory team selection</span></li>
-          <li><span data-lang="fr">Modération sous 24h en moyenne</span><span data-lang="en">Reviewed within 24h</span></li>
           <li><span data-lang="fr">Photos optimisées et redimensionnées automatiquement</span><span data-lang="en">Photos auto-optimized and resized</span></li>
-          <li><span data-lang="fr">Visages flous des mineurs sans accord parental</span><span data-lang="en">Minors' faces blurred without parental consent</span></li>
+          <li><span data-lang="fr">Consentement requis pour les photos de mineurs</span><span data-lang="en">Consent required for minors</span></li>
         </ul>
       </div>
 
@@ -5437,13 +5437,13 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         </label>
 
         <button type="submit" class="upload-submit" id="upSubmit">
-          <span data-lang="fr">Envoyer pour modération</span><span data-lang="en">Submit for review</span>
+          <span data-lang="fr">Publier mes photos</span><span data-lang="en">Publish my photos</span>
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
 
         <div class="upload-success" id="upSuccess">
-          ✓ <span data-lang="fr"><strong>Photos envoyées !</strong> Un dirigeant va valider sous 24h. Tu recevras un email de confirmation à la publication.</span>
-          <span data-lang="en"><strong>Photos sent!</strong> A club manager will review within 24h. You'll get an email when published.</span>
+          🎉 <span data-lang="fr"><strong>Merci !</strong> Tes photos sont en ligne dans la galerie. Allez ESI !</span>
+          <span data-lang="en"><strong>Thanks!</strong> Your photos are now live in the gallery. Allez ESI!</span>
         </div>
         <div class="upload-error" id="upError">
           ⚠ <span data-lang="fr">Vérifie que tu as bien sélectionné une catégorie, ton email, au moins une photo, et coché la case d'autorisation.</span>
@@ -6623,7 +6623,6 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <!-- Tabs : Convocation / Agents IA -->
     <div class="login-tabs" role="tablist" style="border-top:1px solid var(--lightgrey);">
       <button class="login-tab active" data-dirigeant-tab="convoc" role="tab"><span data-lang="fr">Convocation</span><span data-lang="en">Call-up</span></button>
-      <button class="login-tab" data-dirigeant-tab="moderation" role="tab"><span data-lang="fr">Photos en attente <span id="pendingBadge" style="display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 6px;border-radius:999px;background:var(--loss);color:#fff;font-size:10px;font-weight:800;margin-left:4px;display:none;">0</span></span><span data-lang="en">Pending</span></button>
       <button class="login-tab" data-dirigeant-tab="agents" role="tab"><span data-lang="fr">Agents IA · 10</span><span data-lang="en">AI Agents · 10</span></button>
       <button class="login-tab" data-dirigeant-tab="upload" role="tab"><span data-lang="fr">Upload direct</span><span data-lang="en">Direct upload</span></button>
     </div>
@@ -6678,34 +6677,6 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <button type="submit" class="login-submit"><span data-lang="fr">Publier la convocation</span><span data-lang="en">Publish call-up</span></button>
         <p class="login-helper" style="text-align:center;font-size:11px;">⚠️ <span data-lang="fr">Démo — backend requis pour stocker les convocations.</span><span data-lang="en">Demo — backend required to persist call-ups.</span></p>
       </form>
-    </div>
-
-    <!-- Panel : Modération photos en attente -->
-    <div class="modal-body" data-dirigeant-panel="moderation" hidden>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
-        <div>
-          <div style="font-family:var(--font-display);font-weight:800;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--draw);">
-            <span data-lang="fr">Photos déposées par les parents</span><span data-lang="en">Parent submissions</span>
-          </div>
-          <div id="modCount" style="font-family:var(--font-display);font-weight:900;font-size:24px;color:var(--navy);letter-spacing:-0.02em;">0 en attente</div>
-        </div>
-        <div style="display:flex;gap:8px;">
-          <button type="button" id="modRefresh" style="padding:8px 14px;font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;background:var(--offwhite);border:1px solid var(--lightgrey);border-radius:8px;cursor:pointer;color:var(--navy);">↻ Actualiser</button>
-        </div>
-      </div>
-
-      <div id="modList" style="display:flex;flex-direction:column;gap:12px;"></div>
-
-      <div id="modEmpty" style="text-align:center;padding:48px 24px;color:var(--draw);">
-        <div style="font-size:48px;margin-bottom:12px;opacity:0.4;">📭</div>
-        <div style="font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;">
-          <span data-lang="fr">Aucune photo en attente</span><span data-lang="en">No pending photos</span>
-        </div>
-        <p style="font-family:var(--font-body);font-size:13px;margin-top:8px;line-height:1.5;max-width:400px;margin-left:auto;margin-right:auto;">
-          <span data-lang="fr">Quand un parent envoie des photos via la galerie, elles apparaissent ici. Tu peux les approuver ou rejeter.</span>
-          <span data-lang="en">When parents submit photos via the gallery, they appear here for approval/rejection.</span>
-        </p>
-      </div>
     </div>
 
     <!-- Panel : Agents IA -->
@@ -6853,64 +6824,8 @@ const observer = new IntersectionObserver((entries) => {
 reveals.forEach(el => observer.observe(el));
 
 // =================================================================
-// MODERATION (espace dirigeant — photos en attente)
+// PHOTOS APPROUVÉES — "Récemment partagées" dans la galerie
 // =================================================================
-async function refreshModerationList() {
-  const list = document.getElementById('modList');
-  const empty = document.getElementById('modEmpty');
-  const count = document.getElementById('modCount');
-  const badge = document.getElementById('pendingBadge');
-  if (!list) return;
-
-  const photos = await PhotosDB.list('pending');
-  const n = photos.length;
-  count.textContent = `${n} en attente`;
-  if (badge) {
-    badge.textContent = n;
-    badge.style.display = n > 0 ? 'inline-flex' : 'none';
-  }
-
-  if (n === 0) {
-    list.innerHTML = '';
-    empty.style.display = 'block';
-    return;
-  }
-  empty.style.display = 'none';
-
-  list.innerHTML = photos.map(p => `
-    <div class="mod-item" data-id="${p.id}" style="display:grid;grid-template-columns:auto 1fr auto;gap:14px;padding:14px;background:var(--offwhite);border:1px solid var(--lightgrey);border-radius:12px;align-items:center;">
-      <img src="${p.dataUrl}" alt="" style="width:80px;height:80px;object-fit:cover;border-radius:8px;">
-      <div style="display:flex;flex-direction:column;gap:4px;min-width:0;">
-        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-          <span style="font-family:var(--font-display);font-weight:800;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;background:var(--electric);color:#fff;padding:3px 8px;border-radius:999px;">${CAT_LABEL[p.category] || p.category}</span>
-          ${p.title ? `<span style="font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--navy);">${p.title}</span>` : ''}
-        </div>
-        <div style="font-family:var(--font-body);font-size:12px;color:var(--draw);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-          ${p.email} · ${(p.size/1024).toFixed(0)} KB · ${new Date(p.createdAt).toLocaleString('fr-FR')}
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:4px;">
-        <button class="mod-approve" data-id="${p.id}" style="padding:6px 12px;font-family:var(--font-display);font-weight:700;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:var(--win);color:#fff;border:0;border-radius:6px;cursor:pointer;">✓ Approuver</button>
-        <button class="mod-reject" data-id="${p.id}" style="padding:6px 12px;font-family:var(--font-display);font-weight:700;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:var(--loss);border:1px solid var(--loss);border-radius:6px;cursor:pointer;">✕ Rejeter</button>
-      </div>
-    </div>
-  `).join('');
-
-  list.querySelectorAll('.mod-approve').forEach(b => b.addEventListener('click', async () => {
-    await PhotosDB.setStatus(b.dataset.id, 'approved');
-    refreshModerationList();
-    if (window.refreshRecentUploads) window.refreshRecentUploads();
-  }));
-  list.querySelectorAll('.mod-reject').forEach(b => b.addEventListener('click', async () => {
-    if (confirm('Rejeter cette photo ?')) {
-      await PhotosDB.remove(b.dataset.id);
-      refreshModerationList();
-    }
-  }));
-}
-window.refreshPendingCount = refreshModerationList;
-
-// Affiche les photos approuvées dans la galerie ("Récemment partagées")
 async function refreshRecentUploads() {
   const block = document.getElementById('recentUploads');
   const grid = document.getElementById('recentUploadsGrid');
@@ -6938,18 +6853,8 @@ async function refreshRecentUploads() {
 window.refreshRecentUploads = refreshRecentUploads;
 window.addEventListener('load', () => setTimeout(refreshRecentUploads, 600));
 
-document.getElementById('modRefresh')?.addEventListener('click', refreshModerationList);
+document.getElementById('modRefresh')?.addEventListener('click', () => {/* removed */});
 
-// Refresh when dirigeant modal opens or moderation tab clicked
-document.addEventListener('click', e => {
-  if (e.target.closest('[data-dirigeant-tab="moderation"]') ||
-      e.target.closest('[data-open-login="dirigeant"]')) {
-    setTimeout(refreshModerationList, 100);
-  }
-});
-
-// Initial load (so the badge displays even before opening modal)
-window.addEventListener('load', () => setTimeout(refreshModerationList, 500));
 
 // =================================================================
 // PHOTO UPLOAD — full flow (IndexedDB demo mode + API production mode)
@@ -7010,7 +6915,7 @@ const PhotosDB = (() => {
         filename: file.name,
         size: file.size,
         dataUrl,
-        status: 'pending',
+        status: 'approved',  // direct publication — confiance aux parents
         createdAt: Date.now(),
       };
       await tx('readwrite', s => s.add(photo));
@@ -7181,14 +7086,14 @@ const CAT_LABEL = {
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(() => success.classList.remove('show'), 8000);
 
-      // Refresh moderation tab counter if open
-      if (window.refreshPendingCount) window.refreshPendingCount();
+      // Refresh "Récemment partagées" gallery row
+      if (window.refreshRecentUploads) window.refreshRecentUploads();
     } catch (err) {
       errorEl.classList.add('show');
       errorEl.textContent = '⚠ Erreur lors de l\'envoi. Réessaie ou écris-nous à 501416@lfnfoot.com';
     } finally {
       submit.disabled = false;
-      submit.innerHTML = '<span data-lang="fr">Envoyer pour modération</span><span data-lang="en">Submit for review</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      submit.innerHTML = '<span data-lang="fr">Publier mes photos</span><span data-lang="en">Publish my photos</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     }
   });
 })();
