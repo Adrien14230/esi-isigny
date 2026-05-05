@@ -2892,6 +2892,300 @@ a.partner-major-logo:hover img { transform: scale(1.04); }
 .album-cta:hover { background: var(--electric); border-color: var(--electric); transform: translateY(-1px); }
 .album-cta svg { width: 14px; height: 14px; }
 
+/* ===== UPLOAD PHOTOS (parents) ===== */
+.upload-section {
+  margin-top: 64px;
+  padding: 40px;
+  background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.upload-section::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(58,127,232,0.25), transparent 70%);
+  pointer-events: none;
+}
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+.upload-intro h3 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(28px, 3.5vw, 40px);
+  text-transform: uppercase;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+.upload-intro p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 18px;
+}
+.upload-intro ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.upload-intro li {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  padding: 8px 0 8px 24px;
+  position: relative;
+}
+.upload-intro li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--win);
+  font-weight: 700;
+}
+
+.upload-form {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+}
+.upload-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.upload-field label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.upload-field label .req { color: var(--loss); }
+.upload-field select,
+.upload-field input[type="text"],
+.upload-field input[type="email"] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 11px 14px;
+  border: 1px solid var(--lightgrey);
+  border-radius: 8px;
+  background: var(--offwhite);
+  color: var(--dark);
+  transition: border-color 0.2s, background 0.2s;
+}
+.upload-field select:focus,
+.upload-field input:focus {
+  outline: none;
+  border-color: var(--electric);
+  background: var(--white);
+}
+
+/* Drop zone */
+.upload-dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 160px;
+  padding: 24px;
+  background: var(--offwhite);
+  border: 2px dashed rgba(30,95,190,0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.upload-dropzone:hover,
+.upload-dropzone.drag {
+  background: rgba(58,127,232,0.06);
+  border-color: var(--electric);
+}
+.upload-dropzone svg {
+  width: 36px; height: 36px;
+  stroke: var(--electric);
+  fill: none;
+  stroke-width: 1.5;
+}
+.upload-dropzone-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+  letter-spacing: 0.04em;
+}
+.upload-dropzone-hint {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--draw);
+}
+.upload-dropzone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+.upload-preview-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--lightgrey);
+}
+.upload-preview-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.upload-preview-remove {
+  position: absolute;
+  top: 4px; right: 4px;
+  width: 22px; height: 22px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.upload-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--dark);
+  line-height: 1.4;
+}
+.upload-consent input { margin-top: 3px; }
+
+.upload-submit {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--electric);
+  color: var(--white);
+  border: 0;
+  padding: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.upload-submit:hover { background: var(--bright); transform: translateY(-1px); }
+.upload-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.upload-submit svg { width: 14px; height: 14px; }
+
+.upload-success,
+.upload-error {
+  margin-top: 8px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.45;
+  display: none;
+}
+.upload-success.show, .upload-error.show { display: block; }
+.upload-success {
+  background: rgba(34,197,94,0.1);
+  color: #15803d;
+  border-left: 3px solid var(--win);
+}
+.upload-error {
+  background: rgba(239,68,68,0.1);
+  color: #b91c1c;
+  border-left: 3px solid var(--loss);
+}
+
+/* Per-category counters */
+.upload-categories {
+  margin-top: 32px;
+  padding: 24px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  position: relative;
+  z-index: 2;
+}
+.upload-categories-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.upload-categories-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255,255,255,0.15), transparent);
+}
+.upload-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+.upload-cat-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+}
+.upload-cat-pill-count {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: rgba(255,255,255,0.15);
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: rgba(255,255,255,0.7);
+}
+
 /* ===== LIGHTBOX ===== */
 .lightbox {
   position: fixed;
@@ -5066,6 +5360,99 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     </article>
 
   </div>
+
+  <!-- ===== UPLOAD PARENTS ===== -->
+  <div class="upload-section reveal">
+    <div class="upload-grid">
+      <div class="upload-intro">
+        <h3><span data-lang="fr">Vos photos<br>nous intéressent</span><span data-lang="en">We want<br>your photos</span></h3>
+        <p><span data-lang="fr">Parents, joueurs, supporters : partagez vos plus belles prises de match. Chaque envoi est <strong>rangé automatiquement par catégorie</strong> et publié après <strong>validation par un dirigeant</strong> — pas de bazar dans la galerie.</span>
+        <span data-lang="en">Parents, players, supporters: share your best match shots. Each submission is <strong>auto-sorted by team</strong> and published after <strong>review by a club manager</strong> — no mess in the gallery.</span></p>
+        <ul>
+          <li><span data-lang="fr">Catégorie obligatoire à la sélection</span><span data-lang="en">Mandatory team selection</span></li>
+          <li><span data-lang="fr">Modération sous 24h en moyenne</span><span data-lang="en">Reviewed within 24h</span></li>
+          <li><span data-lang="fr">Photos optimisées et redimensionnées automatiquement</span><span data-lang="en">Photos auto-optimized and resized</span></li>
+          <li><span data-lang="fr">Visages flous des mineurs sans accord parental</span><span data-lang="en">Minors' faces blurred without parental consent</span></li>
+        </ul>
+      </div>
+
+      <form class="upload-form" id="uploadForm" novalidate>
+        <div class="upload-field">
+          <label for="upCat"><span data-lang="fr">Catégorie</span><span data-lang="en">Team</span> <span class="req">*</span></label>
+          <select id="upCat" required>
+            <option value="">— <span data-lang="fr">Choisis une équipe</span> —</option>
+            <option value="seniors-a">Seniors A</option>
+            <option value="seniors-b">Seniors B</option>
+            <option value="seniors-f">Seniors F</option>
+            <option value="veterans">Vétérans</option>
+            <option value="u15-1">U15 (1)</option>
+            <option value="u15-2">U15 (2) Ent. Carentan</option>
+            <option value="u13">U13</option>
+            <option value="u11">U11 / Foot animation 1</option>
+            <option value="u9">U9 / Foot animation 2</option>
+            <option value="club">Vie du club / général</option>
+          </select>
+        </div>
+
+        <div class="upload-field">
+          <label for="upTitle"><span data-lang="fr">Évènement / titre (optionnel)</span><span data-lang="en">Event / title (optional)</span></label>
+          <input id="upTitle" type="text" maxlength="80" placeholder="ex: Match vs Bayeux 18 mai">
+        </div>
+
+        <div class="upload-field">
+          <label for="upEmail"><span data-lang="fr">Ton email</span><span data-lang="en">Your email</span> <span class="req">*</span></label>
+          <input id="upEmail" type="email" required placeholder="parent@example.com">
+        </div>
+
+        <div class="upload-field">
+          <label><span data-lang="fr">Photos</span><span data-lang="en">Photos</span> <span class="req">*</span></label>
+          <div class="upload-dropzone" id="upDrop">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5l5 5M5 19h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="upload-dropzone-title"><span data-lang="fr">Glisse tes photos ici</span><span data-lang="en">Drop photos here</span></div>
+            <div class="upload-dropzone-hint"><span data-lang="fr">ou clique pour choisir · max 10 photos · JPG/PNG/HEIC</span><span data-lang="en">or click to select · max 10 photos · JPG/PNG/HEIC</span></div>
+            <input type="file" id="upFiles" accept="image/*" multiple>
+          </div>
+          <div class="upload-preview" id="upPreview"></div>
+        </div>
+
+        <label class="upload-consent">
+          <input type="checkbox" id="upConsent" required>
+          <span><span data-lang="fr">J'autorise l'ESI à publier ces photos sur le site et les réseaux du club. Si des mineurs apparaissent, j'ai obtenu leur accord (ou celui de leurs parents).</span><span data-lang="en">I authorize ESI to publish these photos on the website and club social media. If minors appear, I have their consent (or their parents').</span></span>
+        </label>
+
+        <button type="submit" class="upload-submit" id="upSubmit">
+          <span data-lang="fr">Envoyer pour modération</span><span data-lang="en">Submit for review</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="upload-success" id="upSuccess">
+          ✓ <span data-lang="fr"><strong>Photos envoyées !</strong> Un dirigeant va valider sous 24h. Tu recevras un email de confirmation à la publication.</span>
+          <span data-lang="en"><strong>Photos sent!</strong> A club manager will review within 24h. You'll get an email when published.</span>
+        </div>
+        <div class="upload-error" id="upError">
+          ⚠ <span data-lang="fr">Vérifie que tu as bien sélectionné une catégorie, ton email, au moins une photo, et coché la case d'autorisation.</span>
+          <span data-lang="en">Make sure you selected a team, your email, at least one photo, and ticked the consent box.</span>
+        </div>
+      </form>
+    </div>
+
+    <!-- Compteurs par catégorie (compteurs mockés en attente du backend) -->
+    <div class="upload-categories">
+      <div class="upload-categories-title"><span data-lang="fr">Photos déjà publiées par catégorie</span><span data-lang="en">Photos published per team</span></div>
+      <div class="upload-cat-grid">
+        <span class="upload-cat-pill">Seniors A <span class="upload-cat-pill-count">190</span></span>
+        <span class="upload-cat-pill">Seniors B <span class="upload-cat-pill-count">0</span></span>
+        <span class="upload-cat-pill">Seniors F <span class="upload-cat-pill-count">0</span></span>
+        <span class="upload-cat-pill">Vétérans <span class="upload-cat-pill-count">0</span></span>
+        <span class="upload-cat-pill">U15 (1) <span class="upload-cat-pill-count">99</span></span>
+        <span class="upload-cat-pill">U15 (2) <span class="upload-cat-pill-count">0</span></span>
+        <span class="upload-cat-pill">U13 <span class="upload-cat-pill-count">0</span></span>
+        <span class="upload-cat-pill">U11 <span class="upload-cat-pill-count">0</span></span>
+        <span class="upload-cat-pill">U9 <span class="upload-cat-pill-count">0</span></span>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- ===== LIGHTBOX (Album viewer + fullscreen photo) ===== -->
@@ -6419,6 +6806,103 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
+
+// --- Photo upload form (parents) ---
+(function setupUpload() {
+  const form = document.getElementById('uploadForm');
+  if (!form) return;
+
+  const drop = document.getElementById('upDrop');
+  const input = document.getElementById('upFiles');
+  const preview = document.getElementById('upPreview');
+  const success = document.getElementById('upSuccess');
+  const errorEl = document.getElementById('upError');
+  const submit = document.getElementById('upSubmit');
+
+  let files = [];
+  const MAX = 10;
+
+  function renderPreview() {
+    preview.innerHTML = '';
+    files.forEach((file, idx) => {
+      const item = document.createElement('div');
+      item.className = 'upload-preview-item';
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      img.onload = () => URL.revokeObjectURL(img.src);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'upload-preview-remove';
+      btn.innerHTML = '×';
+      btn.setAttribute('aria-label', 'Retirer');
+      btn.addEventListener('click', () => {
+        files.splice(idx, 1);
+        renderPreview();
+      });
+      item.appendChild(img);
+      item.appendChild(btn);
+      preview.appendChild(item);
+    });
+  }
+
+  function addFiles(newFiles) {
+    const arr = Array.from(newFiles).filter(f => f.type.startsWith('image/'));
+    files = [...files, ...arr].slice(0, MAX);
+    renderPreview();
+  }
+
+  // Click to open file picker (input is hidden but covers dropzone)
+  input.addEventListener('change', e => addFiles(e.target.files));
+
+  // Drag & drop
+  ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => {
+    e.preventDefault(); drop.classList.add('drag');
+  }));
+  ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => {
+    e.preventDefault(); drop.classList.remove('drag');
+  }));
+  drop.addEventListener('drop', e => {
+    if (e.dataTransfer?.files) addFiles(e.dataTransfer.files);
+  });
+
+  // Submit
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    success.classList.remove('show');
+    errorEl.classList.remove('show');
+
+    const cat = document.getElementById('upCat').value;
+    const email = document.getElementById('upEmail').value;
+    const consent = document.getElementById('upConsent').checked;
+    if (!cat || !email || files.length === 0 || !consent) {
+      errorEl.classList.add('show');
+      return;
+    }
+
+    submit.disabled = true;
+    submit.innerHTML = '<span>Envoi en cours…</span>';
+
+    // In production: POST FormData to /api/upload-photo (calls agent-08 image-optimizer)
+    // For now: simulate submission with delay
+    try {
+      await new Promise(r => setTimeout(r, 900));
+      // Reset form
+      form.reset();
+      files = [];
+      renderPreview();
+      success.classList.add('show');
+      // Scroll to success message
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => success.classList.remove('show'), 8000);
+    } catch (err) {
+      errorEl.classList.add('show');
+      errorEl.textContent = '⚠ Erreur réseau. Réessaie ou écris-nous à 501416@lfnfoot.com';
+    } finally {
+      submit.disabled = false;
+      submit.innerHTML = '<span data-lang="fr">Envoyer pour modération</span><span data-lang="en">Submit for review</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+  });
+})();
 
 // --- Histoire photo carousel (auto-fade) ---
 (function setupHistoireCarousel() {
