@@ -1597,6 +1597,126 @@ button.team-card { font-family: inherit; }
   margin: 0 4px;
 }
 
+/* ===== BUREAU CARDS (executive committee) ===== */
+.bureau-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.bureau-card {
+  background: linear-gradient(135deg, var(--white) 0%, var(--offwhite) 100%);
+  border: 1px solid var(--lightgrey);
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.bureau-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(26,58,107,0.12);
+  border-color: var(--electric);
+}
+.bureau-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--electric), var(--bright));
+  border-radius: 14px 14px 0 0;
+}
+.bureau-card.president {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--electric) 100%);
+  color: var(--white);
+  border-color: var(--electric);
+}
+.bureau-card.president::before {
+  background: linear-gradient(90deg, #d4a017, #f4c440, #d4a017);
+  height: 4px;
+}
+.bureau-card.president::after {
+  content: '';
+  position: absolute;
+  top: -50%; right: -30%;
+  width: 60%; height: 200%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.1), transparent 70%);
+  pointer-events: none;
+}
+.bureau-card-icon {
+  width: 48px; height: 48px;
+  margin: 0 auto 12px;
+  background: rgba(30,95,190,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.bureau-card.president .bureau-card-icon {
+  background: rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+.bureau-card-icon svg {
+  width: 22px; height: 22px;
+  fill: none;
+  stroke: var(--electric);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.bureau-card-icon svg.filled {
+  fill: var(--electric);
+  stroke: none;
+}
+.bureau-card.president .bureau-card-icon svg { stroke: #f4c440; }
+.bureau-card.president .bureau-card-icon svg.filled { fill: #f4c440; stroke: none; }
+.bureau-role {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--electric);
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 2;
+}
+.bureau-card.president .bureau-role { color: #f4c440; }
+.bureau-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  line-height: 1.15;
+  position: relative;
+  z-index: 2;
+}
+.bureau-card.president .bureau-name { color: var(--white); }
+
+.staff-section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--draw);
+  margin: 36px 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.staff-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--lightgrey), transparent);
+}
+
 /* ===== FOOTER ===== */
 footer { background: var(--dark); padding: 64px 48px 32px; }
 .footer-top {
@@ -4818,6 +4938,53 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <div class="section-eyebrow"><span data-lang="fr">Direction et encadrement</span><span data-lang="en">Management &amp; Coaching Staff</span></div>
     <h2 class="section-title"><span data-lang="fr">Nos<br>dirigeants</span><span data-lang="en">Our<br>Staff</span></h2>
   </div>
+
+  <!-- BUREAU -->
+  <h3 class="staff-section-title"><span data-lang="fr">Bureau du club</span><span data-lang="en">Executive committee</span></h3>
+  <div class="bureau-grid reveal">
+    <article class="bureau-card president">
+      <div class="bureau-card-icon">
+        <svg viewBox="0 0 24 24" class="filled" aria-hidden="true"><path d="M12 2 L14.5 9 L22 9 L16 13.5 L18.5 21 L12 16.5 L5.5 21 L8 13.5 L2 9 L9.5 9 Z"/></svg>
+      </div>
+      <div class="bureau-role"><span data-lang="fr">Président</span><span data-lang="en">President</span></div>
+      <div class="bureau-name">Olivier Duchesne</div>
+    </article>
+
+    <article class="bureau-card">
+      <div class="bureau-card-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.5"/><circle cx="16" cy="9" r="3.5"/><path d="M3 20 c0-4 3-6 6-6 s6 2 6 6"/><path d="M10 20 c0-4 3-6 6-6 s6 2 6 6"/></svg>
+      </div>
+      <div class="bureau-role"><span data-lang="fr">Co-président</span><span data-lang="en">Co-president</span></div>
+      <div class="bureau-name">Johann L'Homme</div>
+    </article>
+
+    <article class="bureau-card">
+      <div class="bureau-card-icon">
+        <svg viewBox="0 0 24 24" class="filled" aria-hidden="true"><path d="M12 3 L14 9 L20 9 L15 13 L17 19 L12 15.5 L7 19 L9 13 L4 9 L10 9 Z"/></svg>
+      </div>
+      <div class="bureau-role"><span data-lang="fr">Vice-président</span><span data-lang="en">Vice-president</span></div>
+      <div class="bureau-name">Thomas Pottier</div>
+    </article>
+
+    <article class="bureau-card">
+      <div class="bureau-card-icon">
+        <svg viewBox="0 0 24 24" class="filled" aria-hidden="true"><path d="M12 3 L14 9 L20 9 L15 13 L17 19 L12 15.5 L7 19 L9 13 L4 9 L10 9 Z"/></svg>
+      </div>
+      <div class="bureau-role"><span data-lang="fr">Vice-président</span><span data-lang="en">Vice-president</span></div>
+      <div class="bureau-name">Adrien Goubert</div>
+    </article>
+
+    <article class="bureau-card">
+      <div class="bureau-card-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3 L19 3 L19 21 L5 21 Z M8 8 L16 8 M8 12 L16 12 M8 16 L13 16"/></svg>
+      </div>
+      <div class="bureau-role"><span data-lang="fr">Secrétaire</span><span data-lang="en">Secretary</span></div>
+      <div class="bureau-name">Julien Letanneur</div>
+    </article>
+  </div>
+
+  <!-- ENCADREMENT SPORTIF -->
+  <h3 class="staff-section-title"><span data-lang="fr">Encadrement sportif</span><span data-lang="en">Coaching staff</span></h3>
   <div class="staff-grid">
     <div class="staff-card reveal">
       <div class="staff-role"><span data-lang="fr">Entraîneur Seniors A</span><span data-lang="en">Seniors A Coach</span></div>
