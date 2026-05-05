@@ -1671,6 +1671,365 @@ footer { background: var(--dark); padding: 64px 48px 32px; }
   color: rgba(255,255,255,0.3);
 }
 
+/* ===== PARTENAIRES ===== */
+#partenaires {
+  padding: var(--section-padding) 48px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+#partenaires::before {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -150px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(58,127,232,0.06), transparent 70%);
+  pointer-events: none;
+}
+
+.partners-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 32px 0 48px;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--offwhite), var(--white));
+  border-radius: 16px;
+  border: 1px solid var(--lightgrey);
+}
+.partner-stat {
+  text-align: center;
+  padding: 8px;
+}
+.partner-stat-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 36px;
+  color: var(--electric);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.partner-stat-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--draw);
+  margin-top: 8px;
+}
+
+.partner-tier-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--draw);
+  margin: 32px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.partner-tier-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--lightgrey), transparent);
+}
+
+/* PARTNER CARD MAJOR (le sponsor principal) */
+.partner-major {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--electric) 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  position: relative;
+}
+.partner-major::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 60%; height: 200%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.08), transparent 70%);
+  pointer-events: none;
+}
+.partner-major-logo {
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+  position: relative;
+}
+.partner-major-logo-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+.partner-major-logo-mark {
+  width: 80px; height: 80px;
+  background: linear-gradient(135deg, var(--navy), var(--electric));
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 38px;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(30,95,190,0.25);
+  position: relative;
+}
+.partner-major-logo-mark::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  border: 2px solid var(--electric);
+  opacity: 0.3;
+}
+.partner-major-logo-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  margin-top: 8px;
+}
+.partner-major-logo-tagline {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--draw);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.partner-major-info {
+  padding: 40px 40px;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+.partner-major-tier {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.15);
+  color: var(--white);
+  padding: 6px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  backdrop-filter: blur(8px);
+}
+.partner-major-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(28px, 3.5vw, 42px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.partner-major-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.85);
+  max-width: 480px;
+}
+.partner-major-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-top: 8px;
+  text-decoration: none;
+  width: fit-content;
+}
+.partner-major-link::after {
+  content: '→';
+  transition: transform 0.2s;
+}
+.partner-major-link:hover::after { transform: translateX(4px); }
+
+/* PARTNER CARDS REGULAR (grid de logos) */
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.partner-card {
+  background: var(--white);
+  border: 1px solid var(--lightgrey);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  transition: all 0.25s;
+  text-decoration: none;
+  color: inherit;
+  min-height: 180px;
+  justify-content: center;
+}
+.partner-card:hover {
+  border-color: var(--electric);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(26,58,107,0.10);
+}
+.partner-card.empty {
+  background: var(--offwhite);
+  border-style: dashed;
+  border-color: rgba(13,31,60,0.15);
+  cursor: default;
+}
+.partner-card.empty:hover {
+  border-color: var(--electric);
+  transform: none;
+  box-shadow: none;
+}
+
+.partner-logo {
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--offwhite), var(--white));
+  border-radius: 12px;
+  border: 1px solid var(--lightgrey);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  text-align: center;
+  line-height: 1;
+  padding: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.partner-logo.dashed {
+  border-style: dashed;
+  background: transparent;
+  color: rgba(13,31,60,0.3);
+  font-size: 32px;
+  font-weight: 300;
+}
+.partner-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.partner-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.partner-card.empty .partner-name { color: var(--draw); font-weight: 700; }
+.partner-cat {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--draw);
+}
+
+/* CTA Devenir partenaire */
+.partners-cta {
+  margin-top: 40px;
+  padding: 36px 48px;
+  background: linear-gradient(135deg, var(--dark), var(--navy));
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  color: var(--white);
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+.partners-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(58,127,232,0.25), transparent 70%);
+}
+.partners-cta-text {
+  flex: 1;
+  min-width: 280px;
+  position: relative;
+  z-index: 2;
+}
+.partners-cta-text h3 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(24px, 3vw, 32px);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.partners-cta-text p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+  max-width: 600px;
+}
+.partners-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  color: var(--navy);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s;
+  position: relative;
+  z-index: 2;
+}
+.partners-cta-btn:hover {
+  background: var(--electric);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(30,95,190,0.4);
+}
+
 /* ===== BOUTIQUE ===== */
 #boutique {
   padding: var(--section-padding) 48px;
@@ -3360,6 +3719,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <a href="#galerie"><span data-lang="fr">Galerie</span><span data-lang="en">Gallery</span></a>
     <a href="#convocations"><span data-lang="fr">Convocations</span><span data-lang="en">Convocations</span></a>
     <a href="#staff"><span data-lang="fr">À propos</span><span data-lang="en">About</span></a>
+    <a href="#partenaires"><span data-lang="fr">Partenaires</span><span data-lang="en">Partners</span></a>
     <a href="#boutique"><span data-lang="fr">Boutique</span><span data-lang="en">Shop</span></a>
   </div>
 
@@ -3386,6 +3746,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   <a href="#resultats" onclick="closeMobileMenu()"><span data-lang="fr">Résultats</span><span data-lang="en">Results</span></a>
   <a href="#galerie" onclick="closeMobileMenu()"><span data-lang="fr">Galerie</span><span data-lang="en">Gallery</span></a>
   <a href="#staff" onclick="closeMobileMenu()"><span data-lang="fr">À propos</span><span data-lang="en">About</span></a>
+  <a href="#partenaires" onclick="closeMobileMenu()"><span data-lang="fr">Partenaires</span><span data-lang="en">Partners</span></a>
   <a href="#boutique" onclick="closeMobileMenu()"><span data-lang="fr">Boutique</span><span data-lang="en">Shop</span></a>
   <a href="#contact" class="btn-join" style="text-align:center;border-radius:6px;" onclick="closeMobileMenu()">
     <span data-lang="fr">Nous rejoindre</span><span data-lang="en">Join us</span>
@@ -4487,6 +4848,124 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   </div>
 </section>
 
+<!-- ===== PARTENAIRES ===== -->
+<section id="partenaires">
+  <div class="section-header reveal">
+    <div class="section-eyebrow"><span data-lang="fr">Ils nous soutiennent</span><span data-lang="en">They support us</span></div>
+    <h2 class="section-title"><span data-lang="fr">Nos<br>partenaires</span><span data-lang="en">Our<br>partners</span></h2>
+  </div>
+
+  <div class="partners-stats reveal">
+    <div class="partner-stat">
+      <div class="partner-stat-num">8</div>
+      <div class="partner-stat-label"><span data-lang="fr">Partenaires actifs</span><span data-lang="en">Active partners</span></div>
+    </div>
+    <div class="partner-stat">
+      <div class="partner-stat-num">100%</div>
+      <div class="partner-stat-label"><span data-lang="fr">Locaux</span><span data-lang="en">Local</span></div>
+    </div>
+    <div class="partner-stat">
+      <div class="partner-stat-num">9</div>
+      <div class="partner-stat-label"><span data-lang="fr">Équipes équipées</span><span data-lang="en">Teams equipped</span></div>
+    </div>
+    <div class="partner-stat">
+      <div class="partner-stat-num">100<span style="font-size:18px;">ans</span></div>
+      <div class="partner-stat-label"><span data-lang="fr">Au cœur du club</span><span data-lang="en">At the heart of the club</span></div>
+    </div>
+  </div>
+
+  <!-- ===== SPONSOR PRINCIPAL ===== -->
+  <h3 class="partner-tier-title"><span data-lang="fr">Sponsor principal · Maillot</span><span data-lang="en">Main sponsor · Jersey</span></h3>
+
+  <article class="partner-major reveal">
+    <div class="partner-major-logo">
+      <div class="partner-major-logo-content">
+        <div class="partner-major-logo-mark">R</div>
+        <div class="partner-major-logo-name">RIGAULT</div>
+        <div class="partner-major-logo-tagline"><span data-lang="fr">Tailleur de pierre · Maçonnerie</span><span data-lang="en">Stonemason · Masonry</span></div>
+      </div>
+    </div>
+    <div class="partner-major-info">
+      <span class="partner-major-tier">⭐ <span data-lang="fr">Sponsor maillot</span><span data-lang="en">Jersey sponsor</span></span>
+      <h3 class="partner-major-name"><span data-lang="fr">Rigault — Rénovation à l'ancienne</span><span data-lang="en">Rigault — Heritage renovation</span></h3>
+      <p class="partner-major-desc"><span data-lang="fr">Présent sur le maillot officiel de l'ESI depuis plusieurs saisons, Rigault est l'artisan de référence du Bessin pour la rénovation de pierre, la taille et la maçonnerie traditionnelle. Un savoir-faire local au service du sport amateur.</span><span data-lang="en">Featured on the official ESI jersey for several seasons, Rigault is the reference Bessin artisan for stone restoration, masonry and heritage building. Local craftsmanship supporting amateur sport.</span></p>
+      <a href="#contact" class="partner-major-link"><span data-lang="fr">En savoir plus</span><span data-lang="en">Learn more</span></a>
+    </div>
+  </article>
+
+  <!-- ===== ÉQUIPEMENTIER ===== -->
+  <h3 class="partner-tier-title"><span data-lang="fr">Équipementier officiel</span><span data-lang="en">Official equipment supplier</span></h3>
+
+  <div class="partners-grid reveal">
+    <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="partner-card">
+      <div class="partner-logo" style="background:#000;color:#fff;font-size:20px;">JAKO</div>
+      <div class="partner-name">JAKO</div>
+      <div class="partner-cat"><span data-lang="fr">Équipementier · Boutique officielle</span><span data-lang="en">Equipment · Official shop</span></div>
+    </a>
+  </div>
+
+  <!-- ===== INSTITUTIONS ===== -->
+  <h3 class="partner-tier-title"><span data-lang="fr">Institutions & collectivités</span><span data-lang="en">Institutions</span></h3>
+
+  <div class="partners-grid reveal">
+    <a href="https://www.isigny-sur-mer.fr/" target="_blank" rel="noopener" class="partner-card">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#1a3a6b,#1e5fbe);color:#fff;font-size:14px;line-height:1.1;">VILLE D'<br>ISIGNY</div>
+      <div class="partner-name"><span data-lang="fr">Mairie d'Isigny-sur-Mer</span><span data-lang="en">Isigny-sur-Mer Town Hall</span></div>
+      <div class="partner-cat"><span data-lang="fr">Stade municipal · Subventions</span><span data-lang="en">Municipal stadium · Funding</span></div>
+    </a>
+
+    <a href="https://district.manche.fff.fr/" target="_blank" rel="noopener" class="partner-card">
+      <div class="partner-logo" style="background:#368e40;color:#fff;font-size:13px;line-height:1.1;">DISTRICT<br>MANCHE</div>
+      <div class="partner-name">District Manche</div>
+      <div class="partner-cat">Affiliation FFF · 501416</div>
+    </a>
+
+    <a href="https://www.fff.fr/" target="_blank" rel="noopener" class="partner-card">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#001489,#ee2436);color:#fff;font-size:18px;">FFF</div>
+      <div class="partner-name">Fédération Française de Football</div>
+      <div class="partner-cat"><span data-lang="fr">Tutelle nationale</span><span data-lang="en">National authority</span></div>
+    </a>
+  </div>
+
+  <!-- ===== PARTENAIRES LOCAUX ===== -->
+  <h3 class="partner-tier-title"><span data-lang="fr">Partenaires locaux & soutiens</span><span data-lang="en">Local supporters</span></h3>
+
+  <div class="partners-grid reveal">
+    <article class="partner-card empty">
+      <div class="partner-logo dashed">+</div>
+      <div class="partner-name"><span data-lang="fr">Votre logo ici</span><span data-lang="en">Your logo here</span></div>
+      <div class="partner-cat"><span data-lang="fr">Slot disponible</span><span data-lang="en">Available slot</span></div>
+    </article>
+    <article class="partner-card empty">
+      <div class="partner-logo dashed">+</div>
+      <div class="partner-name"><span data-lang="fr">Votre logo ici</span><span data-lang="en">Your logo here</span></div>
+      <div class="partner-cat"><span data-lang="fr">Slot disponible</span><span data-lang="en">Available slot</span></div>
+    </article>
+    <article class="partner-card empty">
+      <div class="partner-logo dashed">+</div>
+      <div class="partner-name"><span data-lang="fr">Votre logo ici</span><span data-lang="en">Your logo here</span></div>
+      <div class="partner-cat"><span data-lang="fr">Slot disponible</span><span data-lang="en">Available slot</span></div>
+    </article>
+    <article class="partner-card empty">
+      <div class="partner-logo dashed">+</div>
+      <div class="partner-name"><span data-lang="fr">Votre logo ici</span><span data-lang="en">Your logo here</span></div>
+      <div class="partner-cat"><span data-lang="fr">Slot disponible</span><span data-lang="en">Available slot</span></div>
+    </article>
+  </div>
+
+  <!-- ===== CTA Devenir partenaire ===== -->
+  <div class="partners-cta reveal">
+    <div class="partners-cta-text">
+      <h3><span data-lang="fr">Devenez partenaire de l'ESI</span><span data-lang="en">Become an ESI partner</span></h3>
+      <p><span data-lang="fr">Soutenir l'ESI, c'est associer votre image à un club centenaire (1925–2025), 9 équipes engagées du U7 aux Vétérans, et une communauté de plus de 200 licenciés sur le bassin d'Isigny. Maillots, panneaux stade, programmes match : plusieurs formules disponibles.</span><span data-lang="en">Supporting ESI means associating your brand with a century-old club (1925–2025), 9 teams from U7 to Veterans, and 200+ members on the Isigny basin. Jerseys, stadium boards, match programs: several formats available.</span></p>
+    </div>
+    <a href="mailto:501416@lfnfoot.com?subject=Devenir%20partenaire%20ESI&body=Bonjour%2C%20je%20souhaite%20devenir%20partenaire%20de%20l%27%C3%89toile%20Sportive%20d%27Isigny." class="partners-cta-btn">
+      <span data-lang="fr">Nous contacter</span><span data-lang="en">Contact us</span>
+      <svg viewBox="0 0 16 16" width="14" height="14"><path d="M3 8h10m-3-3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
 <!-- ===== BOUTIQUE JAKO ===== -->
 <section id="boutique">
   <div class="boutique-header reveal">
@@ -4885,6 +5364,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <li><a href="#galerie"><span data-lang="fr">Galerie</span><span data-lang="en">Gallery</span></a></li>
         <li><a href="#staff"><span data-lang="fr">Nos dirigeants</span><span data-lang="en">Our staff</span></a></li>
         <li><a href="#convocations"><span data-lang="fr">Convocations</span><span data-lang="en">Convocations</span></a></li>
+        <li><a href="#partenaires"><span data-lang="fr">Partenaires</span><span data-lang="en">Partners</span></a></li>
         <li><a href="#boutique"><span data-lang="fr">Boutique JAKO</span><span data-lang="en">JAKO Shop</span></a></li>
       </ul>
     </div>
