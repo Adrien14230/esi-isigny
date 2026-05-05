@@ -2412,6 +2412,48 @@ a.partner-major-logo:hover img { transform: scale(1.04); }
   color: var(--draw);
 }
 
+/* Compact local partner card */
+.partner-card.compact {
+  padding: 16px;
+  min-height: 140px;
+  gap: 10px;
+  flex-direction: row;
+  text-align: left;
+  align-items: center;
+  justify-content: flex-start;
+}
+.partner-card.compact .partner-logo {
+  width: 56px;
+  height: 56px;
+  font-size: 16px;
+  flex-shrink: 0;
+  padding: 4px;
+}
+.partner-card.compact .partner-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+.partner-card.compact .partner-name {
+  font-size: 13px;
+  line-height: 1.15;
+}
+.partner-card.compact .partner-desc {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--draw);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.partners-grid.compact {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
 /* CTA Devenir partenaire */
 .partners-cta {
   margin-top: 40px;
@@ -5939,7 +5981,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
   <div class="partners-stats reveal">
     <div class="partner-stat">
-      <div class="partner-stat-num">8</div>
+      <div class="partner-stat-num">22</div>
       <div class="partner-stat-label"><span data-lang="fr">Partenaires actifs</span><span data-lang="en">Active partners</span></div>
     </div>
     <div class="partner-stat">
@@ -6009,29 +6051,154 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   </div>
 
   <!-- ===== PARTENAIRES LOCAUX ===== -->
-  <h3 class="partner-tier-title"><span data-lang="fr">Partenaires locaux & soutiens</span><span data-lang="en">Local supporters</span></h3>
+  <h3 class="partner-tier-title"><span data-lang="fr">Partenaires locaux & soutiens · 18 commerces du Bessin</span><span data-lang="en">Local supporters · 18 Bessin businesses</span></h3>
 
-  <div class="partners-grid reveal">
-    <article class="partner-card empty">
-      <div class="partner-logo dashed">+</div>
-      <div class="partner-name"><span data-lang="fr">Votre logo ici</span><span data-lang="en">Your logo here</span></div>
-      <div class="partner-cat"><span data-lang="fr">Slot disponible</span><span data-lang="en">Available slot</span></div>
+  <div class="partners-grid compact reveal">
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#1a3a6b,#1e5fbe);color:#fff;">GM</div>
+      <div class="partner-info">
+        <div class="partner-name">Garage Marie</div>
+        <p class="partner-desc"><span data-lang="fr">Mécanique · Entretien · Dépannage auto</span><span data-lang="en">Mechanic · Servicing · Auto repair</span></p>
+      </div>
     </article>
-    <article class="partner-card empty">
-      <div class="partner-logo dashed">+</div>
-      <div class="partner-name"><span data-lang="fr">Votre logo ici</span><span data-lang="en">Your logo here</span></div>
-      <div class="partner-cat"><span data-lang="fr">Slot disponible</span><span data-lang="en">Available slot</span></div>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#0d4a6e,#2089b8);color:#fff;">HB</div>
+      <div class="partner-info">
+        <div class="partner-name">Huîtres Boloch</div>
+        <p class="partner-desc"><span data-lang="fr">Ostréiculteur · Huîtres d'Isigny</span><span data-lang="en">Oyster farmer · Isigny oysters</span></p>
+      </div>
     </article>
-    <article class="partner-card empty">
-      <div class="partner-logo dashed">+</div>
-      <div class="partner-name"><span data-lang="fr">Votre logo ici</span><span data-lang="en">Your logo here</span></div>
-      <div class="partner-cat"><span data-lang="fr">Slot disponible</span><span data-lang="en">Available slot</span></div>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#003d7a,#0066b3);color:#fff;">C</div>
+      <div class="partner-info">
+        <div class="partner-name">Carrefour</div>
+        <p class="partner-desc"><span data-lang="fr">Supermarché · Courses du quotidien</span><span data-lang="en">Supermarket · Daily groceries</span></p>
+      </div>
     </article>
-    <article class="partner-card empty">
-      <div class="partner-logo dashed">+</div>
-      <div class="partner-name"><span data-lang="fr">Votre logo ici</span><span data-lang="en">Your logo here</span></div>
-      <div class="partner-cat"><span data-lang="fr">Slot disponible</span><span data-lang="en">Available slot</span></div>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#1a3a6b,#3a7fe8);color:#fff;">LC</div>
+      <div class="partner-info">
+        <div class="partner-name">Le Central</div>
+        <p class="partner-desc"><span data-lang="fr">Bar · Brasserie · Place du village</span><span data-lang="en">Bar · Brasserie · Village square</span></p>
+      </div>
     </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#0a2a4a,#1e5fbe);color:#fff;font-size:14px;">AC</div>
+      <div class="partner-info">
+        <div class="partner-name">Amarre Conseil</div>
+        <p class="partner-desc"><span data-lang="fr">Conseil & accompagnement</span><span data-lang="en">Advisory services</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#7c4a1e,#c98b4a);color:#fff;font-size:13px;">MS</div>
+      <div class="partner-info">
+        <div class="partner-name">Menuiserie Sébastien Sollier</div>
+        <p class="partner-desc"><span data-lang="fr">Menuiserie · Bois · Sur mesure</span><span data-lang="en">Joinery · Custom woodwork</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#5a3a1a,#a06a2a);color:#fff;">EM</div>
+      <div class="partner-info">
+        <div class="partner-name">EMRG Menuiserie</div>
+        <p class="partner-desc"><span data-lang="fr">Menuiserie · Pose · Aménagement</span><span data-lang="en">Joinery · Installation · Fitting</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#c9962a,#f4c440);color:#5a3a1a;">CD</div>
+      <div class="partner-info">
+        <div class="partner-name">La Croûte Dorée</div>
+        <p class="partner-desc"><span data-lang="fr">Boulangerie · Pain artisanal</span><span data-lang="en">Bakery · Artisan bread</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#d4a017,#f4c440);color:#5a3a1a;">FI</div>
+      <div class="partner-info">
+        <div class="partner-name">Au Fournil d'Isigny</div>
+        <p class="partner-desc"><span data-lang="fr">Boulangerie · Pâtisserie</span><span data-lang="en">Bakery · Pastry</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#3a1a4a,#7c4a8e);color:#fff;">V</div>
+      <div class="partner-info">
+        <div class="partner-name">Le Versailles</div>
+        <p class="partner-desc"><span data-lang="fr">Restaurant · Brasserie · Cuisine traditionnelle</span><span data-lang="en">Restaurant · Brasserie · Traditional cuisine</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#1a3a6b,#1e5fbe);color:#fff;font-size:14px;">OM</div>
+      <div class="partner-info">
+        <div class="partner-name">Olivier Ménard</div>
+        <p class="partner-desc"><span data-lang="fr">Artisan local</span><span data-lang="en">Local craftsman</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#0d1f3c,#1e5fbe);color:#fff;">DH</div>
+      <div class="partner-info">
+        <div class="partner-name">Design'Hair</div>
+        <p class="partner-desc"><span data-lang="fr">Salon de coiffure · Hommes & femmes</span><span data-lang="en">Hair salon · Men & women</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#0d4a6e,#2089b8);color:#fff;font-size:13px;">IL</div>
+      <div class="partner-info">
+        <div class="partner-name">Isigny Loisirs</div>
+        <p class="partner-desc"><span data-lang="fr">Activités · Loisirs · Détente</span><span data-lang="en">Activities · Leisure · Recreation</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#1a3a6b,#1e5fbe);color:#fff;font-size:13px;">TR</div>
+      <div class="partner-info">
+        <div class="partner-name">Transports Romain</div>
+        <p class="partner-desc"><span data-lang="fr">Transport · Logistique</span><span data-lang="en">Transport · Logistics</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#1e5fbe,#3a7fe8);color:#fff;font-size:14px;">NR</div>
+      <div class="partner-info">
+        <div class="partner-name">Nicolas Rigault</div>
+        <p class="partner-desc"><span data-lang="fr">Artisan local</span><span data-lang="en">Local craftsman</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#0d1f3c,#1a3a6b);color:#fff;font-size:14px;">VL</div>
+      <div class="partner-info">
+        <div class="partner-name">Vincent Le Canu</div>
+        <p class="partner-desc"><span data-lang="fr">Artisan local</span><span data-lang="en">Local craftsman</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#005a2c,#0a8540);color:#fff;font-size:14px;">CO</div>
+      <div class="partner-info">
+        <div class="partner-name">Coopé d'Isigny</div>
+        <p class="partner-desc"><span data-lang="fr">Coopérative agricole locale</span><span data-lang="en">Local farming co-op</span></p>
+      </div>
+    </article>
+
+    <article class="partner-card compact">
+      <div class="partner-logo" style="background:linear-gradient(135deg,#9c0a18,#e02030);color:#fff;font-size:13px;">EC</div>
+      <div class="partner-info">
+        <div class="partner-name">Boucherie Eric Castel</div>
+        <p class="partner-desc"><span data-lang="fr">Boucherie d'Isigny · Charcuterie maison</span><span data-lang="en">Isigny butcher · House charcuterie</span></p>
+      </div>
+    </article>
+
   </div>
 
   <!-- ===== CTA Devenir partenaire ===== -->
