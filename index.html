@@ -673,17 +673,17 @@ nav.scrolled .hamburger span { background: var(--navy); }
   z-index: 10;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  flex: 0 1 600px;
-  max-width: 600px;
+  gap: 28px;
+  flex: 0 1 640px;
+  max-width: 640px;
 }
 .hero-eyebrow {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.32em;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.6);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -691,18 +691,19 @@ nav.scrolled .hamburger span { background: var(--navy); }
 }
 .hero-eyebrow::before {
   content: '';
-  width: 36px;
+  width: 32px;
   height: 1px;
-  background: rgba(255,255,255,0.4);
+  background: var(--bright);
 }
 .hero-title {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(58px, 8.5vw, 142px);
-  line-height: 0.85;
-  letter-spacing: -0.025em;
+  font-weight: 800;
+  font-size: clamp(54px, 7.5vw, 118px);
+  line-height: 0.88;
+  letter-spacing: -0.028em;
   color: var(--white);
   text-transform: uppercase;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.35);
   animation: fadeUp var(--anim-duration) ease 0.2s both;
 }
 .hero-title span { display: block; }
@@ -713,9 +714,9 @@ nav.scrolled .hamburger span { background: var(--navy); }
 .hero-tagline {
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.65);
-  max-width: 460px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.78);
+  max-width: 480px;
   animation: fadeUp var(--anim-duration) ease 0.35s both;
 }
 .hero-tagline strong {
@@ -726,47 +727,55 @@ nav.scrolled .hamburger span { background: var(--navy); }
 /* CTA row */
 .hero-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 8px;
+  margin-top: 4px;
   animation: fadeUp var(--anim-duration) ease 0.45s both;
 }
 .hero-cta {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 13px;
+  font-weight: 600;
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  padding: 14px 28px;
-  border-radius: 999px;
+  letter-spacing: 0.18em;
+  padding: 16px 30px;
+  border-radius: 2px;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  transition: all 0.25s;
+  gap: 12px;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
   cursor: pointer;
-  border: 0;
+  border: 1px solid transparent;
 }
 .hero-cta.primary {
   background: var(--white);
   color: var(--navy);
 }
-.hero-cta.primary:hover { background: var(--bright); color: var(--white); transform: translateY(-1px); }
+.hero-cta.primary:hover { background: var(--bright); color: var(--white); }
 .hero-cta.ghost {
-  background: rgba(255,255,255,0.06);
+  background: transparent;
   color: var(--white);
-  border: 1px solid rgba(255,255,255,0.18);
-  backdrop-filter: blur(8px);
+  border-color: rgba(255,255,255,0.35);
 }
-.hero-cta.ghost:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.4); }
+.hero-cta.ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--white); }
 .hero-cta-arrow {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--electric);
-  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 1px;
+  background: currentColor;
+  position: relative;
   flex-shrink: 0;
+  transition: width 0.25s ease;
 }
-.hero-cta-arrow svg { width: 10px; height: 10px; fill: var(--white); }
-.hero-cta.primary .hero-cta-arrow { background: var(--electric); }
+.hero-cta-arrow::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 50%;
+  width: 6px; height: 6px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+.hero-cta-arrow svg { display: none; }
+.hero-cta:hover .hero-cta-arrow { width: 24px; }
 
 /* Hero social icons (bottom right) */
 .hero-social {
@@ -1368,23 +1377,33 @@ nav.scrolled .hamburger span { background: var(--navy); }
 .timeline-btn svg { width: 16px; height: 16px; stroke: var(--navy); fill: none; stroke-width: 2; transition: stroke 0.2s; }
 
 /* ===== SECTION BASE ===== */
-.section-header { margin-bottom: 48px; }
+.section-header { margin-bottom: 56px; }
 .section-eyebrow {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 12px;
+  font-weight: 600;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.24em;
   color: var(--electric);
-  margin-bottom: 8px;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  display: inline-block;
 }
 .section-title {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 800;
+  font-size: clamp(42px, 5.4vw, 72px);
   text-transform: uppercase;
-  line-height: 0.9;
-  letter-spacing: -0.01em;
+  line-height: 0.92;
+  letter-spacing: -0.022em;
   color: var(--navy);
 }
 .section-title.light { color: var(--white); }
@@ -5232,7 +5251,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="timeline-slide-year">2025–26</span>
         <div class="timeline-slide-overlay"></div>
         <div class="timeline-slide-content">
-          <div class="timeline-slide-title">🥇 <span data-lang="fr">Saison du centenaire</span><span data-lang="en">Centenary season</span></div>
+          <div class="timeline-slide-title"><span data-lang="fr">Saison du centenaire</span><span data-lang="en">Centenary season</span></div>
           <div class="timeline-slide-desc"><span data-lang="fr">Les U15 1<sup>ers</sup> de leur poule, les Seniors A 2<sup>es</sup>, première victoire des Seniors B en mai. Le club a 100 ans et il avance.</span><span data-lang="en">U15s top of their pool, Seniors A 2nd, first win for Seniors B in May. The club is 100 and on the move.</span></div>
         </div>
       </article>
@@ -5251,10 +5270,10 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </div>
 
-    <p style="margin-top:18px;font-family:var(--font-body);font-size:12px;color:var(--draw);line-height:1.6;max-width:640px;padding-right:48px;background:var(--offwhite);padding:14px 18px;border-radius:10px;border-left:3px solid var(--electric);">
-      📷 <strong style="color:var(--navy);"><span data-lang="fr">Vous avez des photos d'archives du club ?</span><span data-lang="en">Have old ESI photos?</span></strong><br>
-      <span data-lang="fr">Si vous possédez des clichés ESI des années 1925-2010, écrivez-nous à <a href="mailto:501416@lfnfoot.com" style="color:var(--electric);">501416@lfnfoot.com</a> — on les scanne et on les ajoute à la timeline du centenaire.</span>
-      <span data-lang="en">If you have old ESI photos from 1925-2010, email <a href="mailto:501416@lfnfoot.com" style="color:var(--electric);">501416@lfnfoot.com</a> — we'll scan and add them to the centenary timeline.</span>
+    <p style="margin-top:18px;font-family:var(--font-body);font-size:13px;color:var(--draw);line-height:1.65;max-width:640px;background:var(--offwhite);padding:18px 22px;border-radius:10px;border-left:3px solid var(--electric);">
+      <strong style="color:var(--navy);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;display:block;margin-bottom:6px;"><span data-lang="fr">Appel à archives</span><span data-lang="en">Archive call</span></strong>
+      <span data-lang="fr">Si vous possédez des clichés ESI des années 1925-2010, écrivez-nous à <a href="mailto:501416@lfnfoot.com" style="color:var(--electric);font-weight:500;">501416@lfnfoot.com</a> — nous les scannons et les ajoutons à la timeline du centenaire.</span>
+      <span data-lang="en">If you have old ESI photos from 1925-2010, email <a href="mailto:501416@lfnfoot.com" style="color:var(--electric);font-weight:500;">501416@lfnfoot.com</a> — we'll scan and add them to the centenary timeline.</span>
     </p>
   </div>
 </section>
@@ -5446,7 +5465,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <button type="button" class="team-card reveal" data-cat="seniors" data-classement="seniors-b">
       <div class="team-card-head">
         <div>
-          <div class="team-card-cat">Seniors · Réserve · 🎉 +3 pts</div>
+          <div class="team-card-cat">Seniors · Réserve · +3 pts</div>
           <div class="team-card-name">Seniors B</div>
           <div class="team-card-rank" style="margin-top:8px;background:rgba(239,68,68,0.08);">
             <span class="team-card-rank-pos" style="color:var(--loss);">10<sup>e</sup></span>
@@ -5525,7 +5544,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <button type="button" class="team-card reveal" data-cat="jeunes" data-classement="u15-1" style="background:linear-gradient(135deg,rgba(212,160,23,0.08),rgba(255,255,255,1));border-color:rgba(212,160,23,0.3);">
       <div class="team-card-head">
         <div>
-          <div class="team-card-cat" style="color:#d4a017;">🥇 Jeunes · 1<sup>er</sup> du classement</div>
+          <div class="team-card-cat" style="color:#b8860b;font-weight:700;">Jeunes · 1<sup>er</sup> du classement</div>
           <div class="team-card-name">U15 (1)</div>
           <div class="team-card-rank" style="margin-top:8px;background:rgba(212,160,23,0.15);">
             <span class="team-card-rank-pos" style="color:#d4a017;">1<sup>er</sup></span>
@@ -5660,7 +5679,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <div class="result-row win reveal" style="background:linear-gradient(135deg,rgba(34,197,94,0.10),rgba(34,197,94,0.04));">
           <div class="result-indicator">V</div>
           <div class="result-teams">AS Théreval 2 — ESI Seniors B
-            <span class="result-competition">2 mai · D4 Poule D · <span data-lang="fr">Extérieur · 🎉 1<sup>re</sup> victoire saison</span><span data-lang="en">Away · 🎉 First win</span></span>
+            <span class="result-competition">2 mai · D4 Poule D · <span data-lang="fr">Extérieur · 1<sup>re</sup> victoire de la saison</span><span data-lang="en">Away · First win</span></span>
           </div>
           <div class="result-score">1 - 2</div>
         </div>
@@ -5893,11 +5912,11 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         </button>
 
         <div class="upload-success" id="upSuccess">
-          🎉 <span data-lang="fr"><strong>Merci !</strong> Tes photos sont en ligne dans la galerie. Allez ESI !</span>
+          <span data-lang="fr"><strong>Merci !</strong> Tes photos sont en ligne dans la galerie. Allez ESI !</span>
           <span data-lang="en"><strong>Thanks!</strong> Your photos are now live in the gallery. Allez ESI!</span>
         </div>
         <div class="upload-error" id="upError">
-          ⚠ <span data-lang="fr">Vérifie que tu as bien sélectionné une catégorie, au moins une photo, et coché la case d'autorisation.</span>
+          <span data-lang="fr">Vérifie que tu as bien sélectionné une catégorie, au moins une photo, et coché la case d'autorisation.</span>
           <span data-lang="en">Make sure you selected a team, at least one photo, and ticked the consent box.</span>
         </div>
       </form>
@@ -5953,8 +5972,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   <!-- Login banner — toggles between guest and logged states -->
   <div class="convoc-banner" id="convocBanner">
     <div class="convoc-banner-text" data-state="guest">
-      <span data-lang="fr"><strong>🔒 Espace réservé</strong> — Connecte-toi avec ton compte licencié pour voir les listes complètes des joueurs convoqués.</span>
-      <span data-lang="en"><strong>🔒 Members only</strong> — Sign in with your member account to view full call-up lists.</span>
+      <span data-lang="fr"><strong><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Espace réservé</strong> — Connecte-toi avec ton compte licencié pour voir les listes complètes des joueurs convoqués.</span>
+      <span data-lang="en"><strong><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Members only</strong> — Sign in with your member account to view full call-up lists.</span>
     </div>
     <div class="convoc-banner-text" data-state="logged" style="display:none;">
       <span data-lang="fr"><strong>✓ Connecté</strong> — Tu vois maintenant les convocations complètes.</span>
@@ -5999,13 +6018,13 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         </ul>
         <div class="convoc-lock" data-lock>
           <div class="convoc-lock-content">
-            <span data-lang="fr">🔒 Connecte-toi pour voir dès parution</span><span data-lang="en">🔒 Sign in to see as soon as published</span><br>
+            <span data-lang="fr"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Connecte-toi pour voir dès parution</span><span data-lang="en"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Sign in to see as soon as published</span><br>
             <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
           </div>
         </div>
       </div>
       <div class="convoc-extras">
-        <span><strong>👕 Maillot :</strong> Bleu domicile</span>
+        <span><strong>Maillot :</strong> Bleu domicile</span>
         <span><strong>🅿️ Stade Municipal</strong></span>
       </div>
     </article>
@@ -6014,7 +6033,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <article class="convoc-card reveal" style="background:linear-gradient(135deg,rgba(212,160,23,0.08),rgba(255,255,255,1));border-color:rgba(212,160,23,0.3);">
       <div class="convoc-card-head">
         <div>
-          <div class="convoc-cat" style="color:#d4a017;">🥇 U15 D3 · Poule B · J7 · 1<sup>er</sup>/9</div>
+          <div class="convoc-cat" style="color:#b8860b;font-weight:700;">U15 D3 · Poule B · J7 · 1<sup>er</sup>/9</div>
           <div class="convoc-team">U15 (1)</div>
         </div>
         <span class="convoc-loc-tag home"><span data-lang="fr">Domicile</span><span data-lang="en">Home</span></span>
@@ -6040,13 +6059,13 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         </ul>
         <div class="convoc-lock" data-lock>
           <div class="convoc-lock-content">
-            <span data-lang="fr">🔒 Liste réservée aux licenciés</span><span data-lang="en">🔒 Members only list</span><br>
+            <span data-lang="fr"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Liste réservée aux licenciés</span><span data-lang="en"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Members only list</span><br>
             <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
           </div>
         </div>
       </div>
       <div class="convoc-extras">
-        <span><strong>👕 Maillot :</strong> Bleu · Short bleu</span>
+        <span><strong>Maillot :</strong> Bleu · Short bleu</span>
         <span><strong>🅿️ Stade Municipal Isigny</strong></span>
       </div>
     </article>
@@ -6080,13 +6099,13 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         </ul>
         <div class="convoc-lock" data-lock>
           <div class="convoc-lock-content">
-            <span data-lang="fr">🔒 Liste réservée aux licenciés</span><span data-lang="en">🔒 Members only list</span><br>
+            <span data-lang="fr"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Liste réservée aux licenciés</span><span data-lang="en"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Members only list</span><br>
             <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
           </div>
         </div>
       </div>
       <div class="convoc-extras">
-        <span><strong>👕 Maillot :</strong> Bleu · Short bleu</span>
+        <span><strong>Maillot :</strong> Bleu · Short bleu</span>
         <span><strong>🅿️ Stade Municipal Isigny</strong></span>
       </div>
     </article>
@@ -6120,14 +6139,14 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         </ul>
         <div class="convoc-lock" data-lock>
           <div class="convoc-lock-content">
-            <span data-lang="fr">🔒 Liste réservée aux licenciés</span><span data-lang="en">🔒 Members only list</span><br>
+            <span data-lang="fr"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Liste réservée aux licenciés</span><span data-lang="en"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Members only list</span><br>
             <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
           </div>
         </div>
       </div>
       <div class="convoc-extras">
-        <span><strong>🚗 Voitures :</strong> 2 demandées</span>
-        <span><strong>👕 Maillot :</strong> Bleu</span>
+        <span><strong>Voitures :</strong> 2 demandées</span>
+        <span><strong>Maillot :</strong> Bleu</span>
       </div>
     </article>
 
@@ -6135,7 +6154,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <article class="convoc-card reveal">
       <div class="convoc-card-head">
         <div>
-          <div class="convoc-cat">D4 · Poule D · Journée 21 · 🔁 Revanche</div>
+          <div class="convoc-cat">D4 · Poule D · Journée 21 · Revanche</div>
           <div class="convoc-team">Seniors B</div>
         </div>
         <span class="convoc-loc-tag home"><span data-lang="fr">Domicile</span><span data-lang="en">Home</span></span>
@@ -6158,7 +6177,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         </ul>
         <div class="convoc-lock" data-lock>
           <div class="convoc-lock-content">
-            <span data-lang="fr">🔒 Connecte-toi pour voir dès parution</span><span data-lang="en">🔒 Sign in to see as soon as published</span><br>
+            <span data-lang="fr"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Connecte-toi pour voir dès parution</span><span data-lang="en"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Sign in to see as soon as published</span><br>
             <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
           </div>
         </div>
@@ -6192,7 +6211,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         </ul>
         <div class="convoc-lock" data-lock>
           <div class="convoc-lock-content">
-            <span data-lang="fr">🔒 Sera visible jeudi 8 mai</span><span data-lang="en">🔒 Available Thu May 8</span><br>
+            <span data-lang="fr"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Sera visible jeudi 8 mai</span><span data-lang="en"><svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:5px;flex-shrink:0;"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Available Thu May 8</span><br>
             <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
           </div>
         </div>
@@ -6248,7 +6267,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       <button class="classement-trigger" data-classement="seniors-b">
         <div class="classement-trigger-pos" style="color:var(--loss);">10<sup>e</sup></div>
         <div class="classement-trigger-info">
-          <div class="classement-trigger-team">Seniors B <span style="color:var(--win);font-size:11px;">🎉 1<sup>re</sup> V</span></div>
+          <div class="classement-trigger-team">Seniors B <span style="color:var(--win);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">1<sup>re</sup> V</span></div>
           <div class="classement-trigger-meta">D4 Poule D · 2 pts · 1G/1N/13P</div>
         </div>
         <span class="classement-trigger-arrow"><svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg></span>
@@ -6275,7 +6294,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       <button class="classement-trigger" data-classement="u15-1" style="background:linear-gradient(135deg,rgba(212,160,23,0.08),rgba(255,255,255,1));border-color:rgba(212,160,23,0.4);">
         <div class="classement-trigger-pos" style="color:#d4a017;">1<sup>er</sup></div>
         <div class="classement-trigger-info">
-          <div class="classement-trigger-team">U15 (1) <span style="color:#d4a017;font-size:11px;">🥇</span></div>
+          <div class="classement-trigger-team">U15 (1) <span style="color:#b8860b;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">1<sup>er</sup></span></div>
           <div class="classement-trigger-meta">D3 Poule B Printemps · 12 pts · +25 diff.</div>
         </div>
         <span class="classement-trigger-arrow"><svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg></span>
@@ -6424,7 +6443,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </a>
     <div class="partner-major-info">
-      <span class="partner-major-tier">⭐ <span data-lang="fr">Sponsor maillot</span><span data-lang="en">Jersey sponsor</span></span>
+      <span class="partner-major-tier"><span data-lang="fr">Sponsor maillot officiel</span><span data-lang="en">Official jersey sponsor</span></span>
       <h3 class="partner-major-name"><span data-lang="fr">Rigault — Rénovation à l'ancienne</span><span data-lang="en">Rigault — Heritage renovation</span></h3>
       <p class="partner-major-desc"><span data-lang="fr">Présent sur le maillot officiel de l'ESI depuis plusieurs saisons, Rigault est l'artisan de référence du Bessin pour la rénovation de pierre, la taille et la maçonnerie traditionnelle. Un savoir-faire local au service du sport amateur.</span><span data-lang="en">Featured on the official ESI jersey for several seasons, Rigault is the reference Bessin artisan for stone restoration, masonry and heritage building. Local craftsmanship supporting amateur sport.</span></p>
       <a href="https://www.maconnerie-rigault.fr/" target="_blank" rel="noopener" class="partner-major-link"><span data-lang="fr">Visiter maconnerie-rigault.fr</span><span data-lang="en">Visit maconnerie-rigault.fr</span></a>
@@ -7364,7 +7383,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
           <input type="text" placeholder="Ex : Maillot bleu · Short bleu" style="padding:12px 14px;border:1px solid var(--lightgrey);border-radius:8px;background:#fff;font:inherit;color:var(--dark);">
         </div>
         <button type="submit" class="login-submit"><span data-lang="fr">Publier la convocation</span><span data-lang="en">Publish call-up</span></button>
-        <p class="login-helper" style="text-align:center;font-size:11px;">⚠️ <span data-lang="fr">Démo — backend requis pour stocker les convocations.</span><span data-lang="en">Demo — backend required to persist call-ups.</span></p>
+        <p class="login-helper" style="text-align:center;font-size:11px;"><span data-lang="fr">Démo — backend requis pour stocker les convocations.</span><span data-lang="en">Demo — backend required to persist call-ups.</span></p>
       </form>
     </div>
 
@@ -7378,8 +7397,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       <div class="agents-grid" id="agentsGrid"></div>
       <div class="agents-foot">
         <p class="login-helper" style="font-size:12px;">
-          <span data-lang="fr">⚙️ Code source : <code>/agents/</code> · Config cron : <code>vercel.json</code> · Déploiement : voir <code>agents/README.md</code></span>
-          <span data-lang="en">⚙️ Source : <code>/agents/</code> · Cron config : <code>vercel.json</code> · Deployment : see <code>agents/README.md</code></span>
+          <span data-lang="fr">Code source : <code>/agents/</code> · Config cron : <code>vercel.json</code> · Déploiement : voir <code>agents/README.md</code></span>
+          <span data-lang="en">Source : <code>/agents/</code> · Cron config : <code>vercel.json</code> · Deployment : see <code>agents/README.md</code></span>
         </p>
         <button type="button" class="btn-pill ghost" id="agentsRefresh">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M14 2v4h-4M2 14v-4h4M3.5 6a5 5 0 018.6-1.5L14 6M2 10l1.9 1.5A5 5 0 0012.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -7396,7 +7415,12 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </p>
       <label class="upload-drop" id="uploadDrop">
         <input type="file" id="uploadInput" accept="image/*" multiple hidden>
-        <div class="upload-icon">📷</div>
+        <div class="upload-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h3l2-3h8l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
         <div class="upload-text">
           <strong><span data-lang="fr">Choisir des photos</span><span data-lang="en">Pick photos</span></strong>
           <span><span data-lang="fr">JPG · PNG · HEIC · jusqu'à 20 photos à la fois</span><span data-lang="en">JPG · PNG · HEIC · up to 20 at a time</span></span>
@@ -7414,7 +7438,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       <button type="button" class="login-submit" id="uploadBtn" style="margin-top:14px;" disabled>
         <span data-lang="fr">Publier (démo)</span><span data-lang="en">Publish (demo)</span>
       </button>
-      <p class="login-helper" style="text-align:center;font-size:11px;margin-top:8px;">⚠️ <span data-lang="fr">Démo — backend Supabase Storage requis pour stocker les photos.</span><span data-lang="en">Demo — Supabase Storage backend required.</span></p>
+      <p class="login-helper" style="text-align:center;font-size:11px;margin-top:8px;"><span data-lang="fr">Démo — backend Supabase Storage requis pour stocker les photos.</span><span data-lang="en">Demo — Supabase Storage backend required.</span></p>
     </div>
 
   </div>
@@ -7439,8 +7463,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   </div>
   <div class="chatbot-messages" id="chatMessages">
     <div class="chat-msg bot">
-      <span data-lang="fr">👋 Salut ! Je suis l'assistant de l'Étoile Sportive d'Isigny. Pose-moi une question sur les matchs, le classement, le club…</span>
-      <span data-lang="en">👋 Hi! I'm the Étoile Sportive d'Isigny assistant. Ask me about matches, rankings, the club…</span>
+      <span data-lang="fr">Salut ! Je suis l'assistant de l'Étoile Sportive d'Isigny. Pose-moi une question sur les matchs, le classement, le club…</span>
+      <span data-lang="en">Hi! I'm the Étoile Sportive d'Isigny assistant. Ask me about matches, rankings, the club…</span>
     </div>
   </div>
   <div class="chat-suggestions">
@@ -7803,7 +7827,7 @@ const CAT_LABEL = {
       if (window.refreshRecentUploads) window.refreshRecentUploads();
     } catch (err) {
       errorEl.classList.add('show');
-      errorEl.textContent = '⚠ Erreur lors de l\'envoi. Réessaie ou écris-nous à 501416@lfnfoot.com';
+      errorEl.textContent = 'Erreur lors de l\'envoi. Réessaie ou écris-nous à 501416@lfnfoot.com';
     } finally {
       submit.disabled = false;
       submit.innerHTML = '<span data-lang="fr">Publier mes photos</span><span data-lang="en">Publish my photos</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -8304,7 +8328,7 @@ function renderAgents() {
   document.getElementById('agentsLastRun').textContent = okAgents.length ? '02:00' : '—';
   const health = document.getElementById('agentsHealth').querySelector('strong');
   const failing = AGENTS_DATA.filter(a => a.status === 'error').length;
-  health.textContent = failing === 0 ? '✓' : `⚠ ${failing}`;
+  health.textContent = failing === 0 ? '✓' : `${failing}`;
   health.style.color = failing === 0 ? 'var(--win)' : 'var(--loss)';
 }
 
@@ -8378,7 +8402,7 @@ const CLASSEMENTS = {
   'seniors-b': {
     title: 'Classement Seniors B',
     subtitle: 'D4 · Poule D · JBS Prorété · Mis à jour 3 mai 2026',
-    lastMatch: { date: '2 mai', home: 'AS Théreval 2', away: 'ESI Seniors B', score: '1-2', result: 'win', venue: 'away', logoHome: '531034', logoAway: '501416', highlight: '🎉 Première victoire !' },
+    lastMatch: { date: '2 mai', home: 'AS Théreval 2', away: 'ESI Seniors B', score: '1-2', result: 'win', venue: 'away', logoHome: '531034', logoAway: '501416', highlight: 'Première victoire de la saison' },
     nextMatch: { date: 'Dim. 17 mai · 15h00', home: 'ESI Seniors B', away: 'AS Théreval 2', venue: 'home', logoHome: '501416', logoAway: '531034', note: 'Revanche' },
     rows: [
       {pos:1, team:"FC de l'Elle 2", pts:40, j:15, g:13, n:1, p:1, bp:50, bc:15, diff:35},
@@ -8433,7 +8457,7 @@ const CLASSEMENTS = {
     ],
   },
   'u15-1': {
-    title: 'Classement U15 (1) — 🥇 1ᵉʳ',
+    title: 'Classement U15 (1) — 1ᵉʳ',
     subtitle: 'U15 D3 · Poule B · Phase Printemps · Mis à jour 3 mai 2026',
     lastMatch: { date: '2 mai', home: 'AS Valognes F. 2', away: 'ESI U15 (1)', score: '3-4', result: 'win', venue: 'away', logoHome: '500140', logoAway: '501416' },
     nextMatch: { date: 'Sam. 9 mai · 15h00', home: 'ESI U15 (1)', away: 'SM Haytillon', venue: 'home', logoHome: '501416', logoAway: '510449' },
@@ -8452,7 +8476,7 @@ const CLASSEMENTS = {
   'u15-2': {
     title: 'Classement U15 (2) · Entente',
     subtitle: 'U15 D3 · Poule C · Phase Printemps · Ent. Isigny–Carentan',
-    lastMatch: { date: '2 mai', home: 'Ent. Isigny–Carentan 2', away: "ES de l'Ay 2", score: '10-1', result: 'win', venue: 'home', logoHome: '501416', logoAway: '565165', highlight: '⚽ Festival offensif' },
+    lastMatch: { date: '2 mai', home: 'Ent. Isigny–Carentan 2', away: "ES de l'Ay 2", score: '10-1', result: 'win', venue: 'home', logoHome: '501416', logoAway: '565165', highlight: 'Festival offensif · 10 buts marqués' },
     nextMatch: { date: 'Sam. 9 mai · 15h00', home: 'Ent. FC3R/Condé', away: 'Ent. Isigny–Carentan 2', venue: 'away', logoHome: '581303', logoAway: '501416' },
     rows: [
       {pos:1, team:'Agneaux FC 2', pts:12, j:4, g:4, n:0, p:0, bp:48, bc:2, diff:46},
@@ -8609,37 +8633,37 @@ const CHAT_RULES = [
   { kw: ['prochain match', 'next match', 'prochain', 'demain', 'samedi', 'dimanche', 'sam 9', 'dim 10'],
     a: 'Le <strong>prochain match Seniors A</strong> est <strong>Dim. 10 mai à 15h00</strong> — ESI vs AS Montmartin Graig. (Domicile, D4 Poule C, J20). Avant ça : <strong>Sam. 9 mai 13h15</strong> ESI U13 vs Roncey, et <strong>15h00</strong> ESI U15 (1er du classement !) vs SM Haytillon. <a href="#calendrier">Voir le calendrier</a>' },
   { kw: ['seniors a', 'seniors 1', 'séniors a', 'équipe première'],
-    a: '🟢 <strong>Seniors A — D4 Poule C : 2ᵉ/12 (↑1)</strong> · 31 pts · 14J · 10G/1N/3P · 46 BP / 14 BC · +32 diff. Forme : V V V (3 victoires d\'affilée). Prochain : <strong>Dim. 10 mai 15h vs AS Montmartin</strong> (Dom).' },
+    a: '<strong>Seniors A — D4 Poule C : 2ᵉ/12 (↑1)</strong> · 31 pts · 14J · 10G/1N/3P · 46 BP / 14 BC · +32 diff. Forme : V V V (3 victoires d\'affilée). Prochain : <strong>Dim. 10 mai 15h vs AS Montmartin</strong> (Dom).' },
   { kw: ['seniors b', 'seniors 2', 'séniors b', 'réserve'],
-    a: '🎉 <strong>Seniors B — D4 Poule D : 10ᵉ/12 · 2 pts (+3 !)</strong> · 16J · 1G/1N/13P · -37 diff. <strong>Première victoire</strong> le 2 mai 1-2 contre Théreval ! Prochain : <strong>Dim. 17 mai 15h vs Théreval (revanche)</strong>, à domicile.' },
+    a: '<strong>Seniors B — D4 Poule D : 10ᵉ/12 · 2 pts (+3)</strong> · 16J · 1G/1N/13P · -37 diff. <strong>Première victoire</strong> le 2 mai 1-2 contre Théreval. Prochain : <strong>Dim. 17 mai 15h vs Théreval (revanche)</strong>, à domicile.' },
   { kw: ['seniors f', 'féminin', 'feminine', 'feminin', 'femme', 'women'],
     a: '<strong>Seniors F — A8 D2 Nord : 4ᵉ/12 · 24 pts</strong> · 14J · 8G/0N/6P · +1 diff. Prochain : <strong>Ven. 8 mai 20h30 vs AS Pointe Cotentin</strong> (Ext).' },
   { kw: ['vétéran', 'veteran', 'vétérans'],
     a: '<strong>Vétérans — Poule B : 6ᵉ/9 · 5 pts</strong> · 8J · 1G/3N/3P. Prochain : <strong>Ven. 15 mai 21h vs FC St-Lô Manche</strong> (Dom).' },
   { kw: ['u15 (1)', 'u15 1', 'u15-1'],
-    a: '🥇 <strong>U15 (1) — D3 Poule B Printemps : 1ᵉʳ/9 · 12 pts !</strong> 5J · 4G/0N/1P · 39 BP / 14 BC · +25 diff. Victoire 4-3 à Valognes le 2 mai. Prochain : <strong>Sam. 9 mai 15h vs SM Haytillon</strong> (Dom).' },
+    a: '<strong>U15 (1) — D3 Poule B Printemps : 1ᵉʳ/9 · 12 pts</strong> · 5J · 4G/0N/1P · 39 BP / 14 BC · +25 diff. Victoire 4-3 à Valognes le 2 mai. Prochain : <strong>Sam. 9 mai 15h vs SM Haytillon</strong> (Dom).' },
   { kw: ['u15 (2)', 'u15 2', 'u15-2', 'entente', 'carentan'],
-    a: '⚽ <strong>U15 (2) Ent. Isigny–Carentan — D3 Poule C :</strong> Festival offensif le 2 mai, victoire <strong>10-1 contre ES de l\'Ay 2</strong> ! Prochain : Sam. 9 mai 15h vs Ent. FC3R/Condé (Ext).' },
+    a: '<strong>U15 (2) Ent. Isigny–Carentan — D3 Poule C :</strong> Festival offensif le 2 mai, victoire <strong>10-1 contre ES de l\'Ay 2</strong>. Prochain : Sam. 9 mai 15h vs Ent. FC3R/Condé (Ext).' },
   { kw: ['u15', 'u14', 'jeunes 15'],
-    a: 'Deux équipes U15 à l\'ESI :<br>🥇 <strong>U15 (1)</strong> — 1ᵉʳ/9, 12 pts, +25 diff<br>⚽ <strong>U15 (2) Ent. Isigny–Carentan</strong> — victoire 10-1 le 2 mai !<br>Demande "u15 1" ou "u15 2" pour le détail.' },
+    a: 'Deux équipes U15 à l\'ESI :<br>• <strong>U15 (1)</strong> — 1ᵉʳ/9, 12 pts, +25 diff<br>• <strong>U15 (2) Ent. Isigny–Carentan</strong> — victoire 10-1 le 2 mai<br>Demande "u15 1" ou "u15 2" pour le détail.' },
   { kw: ['u13', 'u12', 'jeunes 13'],
     a: '<strong>U13 — Niveau 4 Poule B : 6ᵉ/6 · 3 pts</strong> · 4J · 1G/0N/3P · -20 diff. Saison difficile, équipe en construction. Prochain : <strong>Sam. 9 mai 13h15 vs US Roncey Cerisy 2</strong> (Dom).' },
   { kw: ['classement', 'rank', 'standing', 'position'],
-    a: '<strong>Classements 3 mai 2026 :</strong><br>🟢 Seniors A 2ᵉ/12 (31 pts)<br>🎉 Seniors B 10ᵉ/12 (2 pts, 1ʳᵉ V)<br>Seniors F 4ᵉ/12 (24 pts)<br>Vétérans 6ᵉ/9 (5 pts)<br>🥇 U15 (1) 1ᵉʳ/9 (12 pts)<br>U15 (2) Ent. 9ᵉ/9 (1 pt)<br>U13 6ᵉ/6 (3 pts)<br>Clique sur une équipe dans la section "Toutes nos équipes" pour voir le classement complet.' },
+    a: '<strong>Classements 3 mai 2026 :</strong><br>• Seniors A — 2ᵉ/12 (31 pts)<br>• Seniors B — 10ᵉ/12 (2 pts, 1ʳᵉ V)<br>• Seniors F — 4ᵉ/12 (24 pts)<br>• Vétérans — 6ᵉ/9 (5 pts)<br>• U15 (1) — 1ᵉʳ/9 (12 pts)<br>• U15 (2) Ent. — 9ᵉ/9 (1 pt)<br>• U13 — 6ᵉ/6 (3 pts)<br>Clique sur une équipe dans la section "Toutes nos équipes" pour voir le classement complet.' },
   { kw: ['rejoindre', 'inscription', 'inscrire', 'comment faire', 'club', 'jouer'],
-    a: 'Pour <strong>rejoindre l\'ESI</strong>, contacte-nous au 📧 <a href="mailto:501416@lfnfoot.com">501416@lfnfoot.com</a> ou viens directement au stade. Toutes catégories de U7 à Vétérans, hommes et femmes.' },
+    a: 'Pour <strong>rejoindre l\'ESI</strong>, contacte-nous à <a href="mailto:501416@lfnfoot.com">501416@lfnfoot.com</a> ou viens directement au stade. Toutes catégories de U7 à Vétérans, hommes et femmes.' },
   { kw: ['stade', 'adresse', 'où', 'venir', 'lieu', 'plan'],
-    a: '🏟️ <strong>Stade Municipal d\'Isigny</strong> · Impasse du Stade · 14230 Isigny-sur-Mer · Calvados, Normandie. <a href="https://www.google.com/maps?q=Stade+Municipal+Isigny-sur-Mer" target="_blank">Voir sur Maps</a>' },
+    a: '<strong>Stade Municipal d\'Isigny</strong> · Impasse du Stade · 14230 Isigny-sur-Mer · Calvados, Normandie. <a href="https://www.google.com/maps?q=Stade+Municipal+Isigny-sur-Mer" target="_blank">Voir sur Maps</a>' },
   { kw: ['entraîneur', 'entraineur', 'coach', 'staff', 'dirigeant', 'qui'],
     a: '<strong>Encadrement :</strong><br>• Seniors A : Thomas Pottier<br>• Seniors B : Adrien Goubert / Alain Piazza / Jessy Thomine<br>• U15 : Théo Castel · U13 : Evann Lecourt · U11 : Pierre Goubert · U9 : Jessy Thomine / Lionnel Lepainteur. <a href="#staff">Voir tous les dirigeants</a>' },
   { kw: ['convocation', 'convoq', 'sélection', 'liste'],
-    a: '📋 Les <strong>convocations</strong> sont dans la <a href="#convocations">section Convocations</a>. Liste complète des joueurs réservée aux licenciés (compte ESI requis).' },
+    a: 'Les <strong>convocations</strong> sont dans la <a href="#convocations">section Convocations</a>. Liste complète des joueurs réservée aux licenciés (compte ESI requis).' },
   { kw: ['fondé', 'histoire', 'créé', 'cree', 'année', 'ans', '1925', 'depuis quand'],
-    a: '🌟 L\'<strong>Étoile Sportive d\'Isigny</strong> a été fondée en <strong>1925</strong>. Le club fête ses <strong>100 ans</strong> en 2025-26 ! Un siècle de football amateur dans le Calvados.' },
+    a: 'L\'<strong>Étoile Sportive d\'Isigny</strong> a été fondée en <strong>1925</strong>. Le club fête ses <strong>100 ans</strong> en 2025-26. Un siècle de football amateur dans le Calvados.' },
   { kw: ['merci', 'thanks', 'thank you', 'super', 'cool'],
-    a: 'Avec plaisir ! 🟦⚪ Allez ESI !' },
+    a: 'Avec plaisir. Allez ESI.' },
   { kw: ['bonjour', 'salut', 'hello', 'hi', 'hey', 'coucou'],
-    a: 'Salut ! 👋 Je peux te renseigner sur les matchs, classements, convocations, le club… Pose ta question.' },
+    a: 'Bonjour. Je peux te renseigner sur les matchs, classements, convocations, le club. Pose ta question.' },
 ];
 
 function answer(input) {
