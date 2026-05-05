@@ -5052,27 +5052,12 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </div>
 
-    <!-- CARROUSEL DE PHOTOS ESI (auto-fade) -->
+    <!-- CARROUSEL DE PHOTOS ESI (auto-fade · pioche aléatoire dans la galerie) -->
     <div class="histoire-carousel reveal" id="histoireCarousel">
+      <!-- Slide de fallback affichée pendant le chargement du manifest -->
       <div class="histoire-slide active">
-        <img src="assets/team-bg.jpg" alt="Équipe Seniors B 2024-25 ESI" loading="lazy">
+        <img src="assets/team-bg.jpg" alt="ESI — Équipe Seniors B" loading="eager">
       </div>
-      <div class="histoire-slide">
-        <img src="assets/gallery/match-26-04/156-DSC_0784.jpg" alt="Match Seniors A vs St Jores 26 avril 2026 — Victoire 7-0" loading="lazy">
-      </div>
-      <div class="histoire-slide">
-        <img src="assets/gallery/match-26-04/130-DSC_0680.jpg" alt="Action de match ESI" loading="lazy">
-      </div>
-      <div class="histoire-slide">
-        <img src="assets/gallery/u15/IMG_0190.jpeg" alt="U15 ESI - 1ers de la poule" loading="lazy">
-      </div>
-      <div class="histoire-slide">
-        <img src="assets/gallery/match-26-04/200-DSC_0960.jpg" alt="Match ESI - célébration" loading="lazy">
-      </div>
-      <div class="histoire-slide">
-        <img src="assets/gallery/match-26-04/85-DSC_0566.jpg" alt="Action ESI" loading="lazy">
-      </div>
-
       <div class="histoire-carousel-dots" id="histoireDots"></div>
     </div>
   </div>
@@ -7732,11 +7717,45 @@ const CAT_LABEL = {
   });
 })();
 
-// --- Histoire photo carousel (auto-fade) ---
-(function setupHistoireCarousel() {
+// --- Histoire photo carousel (auto-fade · pioche aléatoire dans la galerie) ---
+(async function setupHistoireCarousel() {
   const carousel = document.getElementById('histoireCarousel');
   const dotsContainer = document.getElementById('histoireDots');
   if (!carousel || !dotsContainer) return;
+
+  // Pioche aléatoire de N photos depuis le manifest
+  const NB_SLIDES = 6;
+  try {
+    const res = await fetch('assets/gallery/manifest.json', { cache: 'no-store' });
+    if (res.ok) {
+      const manifest = await res.json();
+      const allPhotos = [];
+      Object.entries(manifest).forEach(([folder, files]) => {
+        files.forEach(f => allPhotos.push('assets/gallery/' + folder + '/' + f));
+      });
+      // Shuffle Fisher-Yates puis prend les N premiers
+      for (let i = allPhotos.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allPhotos[i], allPhotos[j]] = [allPhotos[j], allPhotos[i]];
+      }
+      const picked = allPhotos.slice(0, NB_SLIDES);
+      // Remplace toutes les slides existantes (sauf le container des dots)
+      const existingSlides = carousel.querySelectorAll('.histoire-slide');
+      existingSlides.forEach(s => s.remove());
+      picked.forEach((src, i) => {
+        const div = document.createElement('div');
+        div.className = 'histoire-slide' + (i === 0 ? ' active' : '');
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'ESI · photo ' + (i + 1);
+        img.loading = i === 0 ? 'eager' : 'lazy';
+        div.appendChild(img);
+        carousel.insertBefore(div, dotsContainer);
+      });
+    }
+  } catch (err) {
+    console.warn('[histoire] manifest non chargé, fallback sur slides statiques', err);
+  }
 
   const slides = carousel.querySelectorAll('.histoire-slide');
   if (slides.length === 0) return;
