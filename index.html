@@ -809,6 +809,224 @@ nav.scrolled .hamburger span { background: var(--navy); }
   color: rgba(255,255,255,0.4);
 }
 
+/* ===== HISTOIRE / TIMELINE ===== */
+#histoire {
+  padding: var(--section-padding) 0 var(--section-padding) 48px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+#histoire::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%; height: 100%;
+  background: radial-gradient(ellipse at top right, rgba(58,127,232,0.05), transparent 60%);
+  pointer-events: none;
+}
+
+.histoire-intro {
+  max-width: 640px;
+  margin-bottom: 56px;
+}
+.histoire-intro .section-eyebrow { color: var(--electric); }
+.histoire-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--dark);
+  margin-top: 24px;
+}
+.histoire-text strong {
+  color: var(--navy);
+  font-weight: 600;
+}
+.histoire-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.histoire-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.histoire-stat-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 48px;
+  color: var(--electric);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.histoire-stat-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--draw);
+}
+
+/* Timeline horizontal carousel */
+.timeline-wrap {
+  position: relative;
+  padding-right: 48px;
+}
+.timeline-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 32px;
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.timeline-track::-webkit-scrollbar { display: none; }
+
+.timeline-slide {
+  flex: 0 0 auto;
+  width: clamp(280px, 32vw, 420px);
+  scroll-snap-align: start;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--dark);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.timeline-slide:hover { transform: translateY(-4px); }
+.timeline-slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.timeline-slide:hover .timeline-slide-img { transform: scale(1.06); }
+.timeline-slide.vintage .timeline-slide-img {
+  filter: sepia(0.85) contrast(0.92) brightness(0.85) saturate(0.6);
+}
+.timeline-slide.bw .timeline-slide-img {
+  filter: grayscale(1) contrast(1.1) brightness(0.92);
+}
+.timeline-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.85) 100%);
+  pointer-events: none;
+}
+.timeline-slide-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 14px),
+    linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
+}
+.timeline-slide-placeholder span {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border: 1px dashed rgba(255,255,255,0.25);
+  border-radius: 6px;
+}
+.timeline-slide-year {
+  position: absolute;
+  top: 18px; left: 18px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  background: var(--electric);
+  padding: 6px 14px;
+  border-radius: 999px;
+  z-index: 2;
+  box-shadow: 0 4px 16px rgba(30,95,190,0.3);
+}
+.timeline-slide.featured .timeline-slide-year {
+  background: linear-gradient(135deg, #d4a017, #f4c440);
+  color: var(--navy);
+  box-shadow: 0 4px 16px rgba(212,160,23,0.4);
+}
+.timeline-slide-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 24px;
+  color: var(--white);
+  z-index: 2;
+}
+.timeline-slide-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.timeline-slide-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.8);
+}
+
+.timeline-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-right: 48px;
+}
+.timeline-progress {
+  flex: 1;
+  height: 2px;
+  background: var(--lightgrey);
+  border-radius: 999px;
+  margin-right: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.timeline-progress-bar {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--electric), var(--bright));
+  border-radius: 999px;
+  width: 16%;
+  transition: width 0.3s ease;
+}
+.timeline-nav {
+  display: flex;
+  gap: 8px;
+}
+.timeline-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--lightgrey);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.timeline-btn:hover { background: var(--electric); border-color: var(--electric); }
+.timeline-btn:hover svg { stroke: var(--white); }
+.timeline-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.timeline-btn svg { width: 16px; height: 16px; stroke: var(--navy); fill: none; stroke-width: 2; transition: stroke 0.2s; }
+
 /* ===== SECTION BASE ===== */
 .section-header { margin-bottom: 48px; }
 .section-eyebrow {
@@ -3856,6 +4074,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
   <div class="nav-links">
     <a href="#hero"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span></a>
+    <a href="#histoire"><span data-lang="fr">Histoire</span><span data-lang="en">History</span></a>
     <a href="#calendrier"><span data-lang="fr">Calendrier</span><span data-lang="en">Schedule</span></a>
     <a href="#resultats"><span data-lang="fr">Résultats</span><span data-lang="en">Results</span></a>
     <a href="#galerie"><span data-lang="fr">Galerie</span><span data-lang="en">Gallery</span></a>
@@ -3884,6 +4103,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu">
   <a href="#hero" onclick="closeMobileMenu()"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span></a>
+  <a href="#histoire" onclick="closeMobileMenu()"><span data-lang="fr">Histoire</span><span data-lang="en">History</span></a>
   <a href="#calendrier" onclick="closeMobileMenu()"><span data-lang="fr">Calendrier</span><span data-lang="en">Schedule</span></a>
   <a href="#resultats" onclick="closeMobileMenu()"><span data-lang="fr">Résultats</span><span data-lang="en">Results</span></a>
   <a href="#galerie" onclick="closeMobileMenu()"><span data-lang="fr">Galerie</span><span data-lang="en">Gallery</span></a>
@@ -4008,6 +4228,128 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     </div>
   </div>
 </div>
+
+<!-- ===== NOTRE HISTOIRE ===== -->
+<section id="histoire">
+  <div class="histoire-intro reveal">
+    <div class="section-eyebrow"><span data-lang="fr">100 ans d'histoire</span><span data-lang="en">100 years of history</span></div>
+    <h2 class="section-title"><span data-lang="fr">Notre<br>histoire</span><span data-lang="en">Our<br>story</span></h2>
+    <p class="histoire-text">
+      <span data-lang="fr">Fondée en <strong>1925</strong> à Isigny-sur-Mer, l'Étoile Sportive d'Isigny est l'un des plus anciens clubs amateurs du Bessin. <strong>Cent ans plus tard</strong>, l'ESI fait toujours vivre le football de village avec <strong>9 équipes engagées</strong>, des U7 aux Vétérans, en passant par notre fierté féminine. Au-delà des résultats, c'est une famille — entraîneurs bénévoles, dirigeants passionnés, parents fidèles, et trois générations de joueurs qui ont porté le maillot bleu et blanc.</span>
+      <span data-lang="en">Founded in <strong>1925</strong> in Isigny-sur-Mer, Étoile Sportive d'Isigny is one of the Bessin's oldest amateur clubs. <strong>A hundred years later</strong>, ESI still keeps village football alive with <strong>9 teams</strong> from U7s to Veterans, including our pride: the women's squad. Beyond results, it's a family — volunteer coaches, passionate managers, loyal parents, and three generations of players who have worn the blue and white.</span>
+    </p>
+    <div class="histoire-stats">
+      <div class="histoire-stat">
+        <span class="histoire-stat-num">100</span>
+        <span class="histoire-stat-label"><span data-lang="fr">ans en 2025</span><span data-lang="en">years in 2025</span></span>
+      </div>
+      <div class="histoire-stat">
+        <span class="histoire-stat-num">9</span>
+        <span class="histoire-stat-label"><span data-lang="fr">équipes</span><span data-lang="en">teams</span></span>
+      </div>
+      <div class="histoire-stat">
+        <span class="histoire-stat-num">3</span>
+        <span class="histoire-stat-label"><span data-lang="fr">générations</span><span data-lang="en">generations</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-wrap reveal">
+    <div class="timeline-track" id="timelineTrack">
+
+      <article class="timeline-slide vintage">
+        <div class="timeline-slide-placeholder">
+          <span>Archives 1925</span>
+        </div>
+        <span class="timeline-slide-year">1925</span>
+        <div class="timeline-slide-overlay"></div>
+        <div class="timeline-slide-content">
+          <div class="timeline-slide-title"><span data-lang="fr">Fondation du club</span><span data-lang="en">Club founded</span></div>
+          <div class="timeline-slide-desc"><span data-lang="fr">Naissance de l'Étoile Sportive d'Isigny dans le Bessin d'après-guerre.</span><span data-lang="en">Birth of Étoile Sportive d'Isigny in post-war Bessin.</span></div>
+        </div>
+      </article>
+
+      <article class="timeline-slide vintage">
+        <div class="timeline-slide-placeholder">
+          <span>Archives années 60</span>
+        </div>
+        <span class="timeline-slide-year">1960s</span>
+        <div class="timeline-slide-overlay"></div>
+        <div class="timeline-slide-content">
+          <div class="timeline-slide-title"><span data-lang="fr">L'âge d'or villageois</span><span data-lang="en">Village golden age</span></div>
+          <div class="timeline-slide-desc"><span data-lang="fr">Le club s'enracine dans la vie d'Isigny — premiers tournois locaux et grandes affiches du dimanche.</span><span data-lang="en">The club roots itself in Isigny life — first local tournaments and Sunday derbies.</span></div>
+        </div>
+      </article>
+
+      <article class="timeline-slide bw">
+        <div class="timeline-slide-placeholder">
+          <span>Archives années 80</span>
+        </div>
+        <span class="timeline-slide-year">1980s</span>
+        <div class="timeline-slide-overlay"></div>
+        <div class="timeline-slide-content">
+          <div class="timeline-slide-title"><span data-lang="fr">Génération dorée</span><span data-lang="en">Golden generation</span></div>
+          <div class="timeline-slide-desc"><span data-lang="fr">Plusieurs montées dans les divisions de district — l'ESI prend du galon dans le Calvados.</span><span data-lang="en">Several promotions through district divisions — ESI gains stripes in Calvados.</span></div>
+        </div>
+      </article>
+
+      <article class="timeline-slide bw">
+        <div class="timeline-slide-placeholder">
+          <span>Archives années 2000</span>
+        </div>
+        <span class="timeline-slide-year">2000s</span>
+        <div class="timeline-slide-overlay"></div>
+        <div class="timeline-slide-content">
+          <div class="timeline-slide-title"><span data-lang="fr">École de foot</span><span data-lang="en">Football school</span></div>
+          <div class="timeline-slide-desc"><span data-lang="fr">Mise en place de l'école de foot moderne : U7 à U15. Les jeunes au cœur du projet.</span><span data-lang="en">Modern academy launched: U7 to U15. Youth at the heart of the project.</span></div>
+        </div>
+      </article>
+
+      <article class="timeline-slide">
+        <img src="assets/team-bg.jpg" alt="Équipe Seniors B 2025" class="timeline-slide-img">
+        <span class="timeline-slide-year">2024</span>
+        <div class="timeline-slide-overlay"></div>
+        <div class="timeline-slide-content">
+          <div class="timeline-slide-title"><span data-lang="fr">L'équipe d'aujourd'hui</span><span data-lang="en">Today's squad</span></div>
+          <div class="timeline-slide-desc"><span data-lang="fr">Les Seniors B en cage de but, sous le maillot RIGAULT, prêts pour la saison du centenaire.</span><span data-lang="en">Seniors B at the goal mouth, in their RIGAULT jersey, ready for the centenary season.</span></div>
+        </div>
+      </article>
+
+      <article class="timeline-slide">
+        <img src="assets/gallery/match-26-04/156-DSC_0784.jpg" alt="Match avril 2026" class="timeline-slide-img">
+        <span class="timeline-slide-year">Avril 2026</span>
+        <div class="timeline-slide-overlay"></div>
+        <div class="timeline-slide-content">
+          <div class="timeline-slide-title"><span data-lang="fr">Victoire 7-0</span><span data-lang="en">Win 7-0</span></div>
+          <div class="timeline-slide-desc"><span data-lang="fr">Seniors A étrillent St Jores 7-0 et grimpent à la 2<sup>e</sup> place du championnat.</span><span data-lang="en">Seniors A thrash St Jores 7-0 and climb to 2nd in the standings.</span></div>
+        </div>
+      </article>
+
+      <article class="timeline-slide featured">
+        <img src="assets/gallery/u15/IMG_0190.jpeg" alt="U15 saison du centenaire" class="timeline-slide-img">
+        <span class="timeline-slide-year">2025–26</span>
+        <div class="timeline-slide-overlay"></div>
+        <div class="timeline-slide-content">
+          <div class="timeline-slide-title">🥇 <span data-lang="fr">Saison du centenaire</span><span data-lang="en">Centenary season</span></div>
+          <div class="timeline-slide-desc"><span data-lang="fr">Les U15 1<sup>ers</sup> de leur poule, les Seniors A 2<sup>es</sup>, première victoire des Seniors B en mai. Le club a 100 ans et il avance.</span><span data-lang="en">U15s top of their pool, Seniors A 2nd, first win for Seniors B in May. The club is 100 and on the move.</span></div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="timeline-controls">
+      <div class="timeline-progress"><div class="timeline-progress-bar" id="timelineProgress"></div></div>
+      <div class="timeline-nav">
+        <button class="timeline-btn" id="timelinePrev" aria-label="Précédent">
+          <svg viewBox="0 0 16 16"><path d="M10 4L6 8l4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="timeline-btn" id="timelineNext" aria-label="Suivant">
+          <svg viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ===== CALENDRIER / NOS ÉQUIPES ===== -->
 <section id="calendrier">
@@ -5919,6 +6261,45 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
+
+// --- Timeline carousel ---
+(function setupTimeline() {
+  const track = document.getElementById('timelineTrack');
+  const prev = document.getElementById('timelinePrev');
+  const next = document.getElementById('timelineNext');
+  const progress = document.getElementById('timelineProgress');
+  if (!track || !prev || !next) return;
+
+  const slideWidth = () => {
+    const slide = track.querySelector('.timeline-slide');
+    if (!slide) return 320;
+    const style = getComputedStyle(track);
+    return slide.offsetWidth + parseInt(style.gap || 20, 10);
+  };
+
+  function updateProgress() {
+    const max = track.scrollWidth - track.clientWidth;
+    if (max <= 0) { progress.style.width = '100%'; return; }
+    const pct = Math.min(100, Math.max(0, (track.scrollLeft / max) * 100));
+    progress.style.width = pct + '%';
+    prev.disabled = track.scrollLeft <= 4;
+    next.disabled = track.scrollLeft >= max - 4;
+  }
+
+  prev.addEventListener('click', () => track.scrollBy({ left: -slideWidth(), behavior: 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left: slideWidth(), behavior: 'smooth' }));
+  track.addEventListener('scroll', updateProgress, { passive: true });
+
+  // Keyboard nav when timeline is in viewport
+  document.addEventListener('keydown', (e) => {
+    const rect = track.getBoundingClientRect();
+    if (rect.top > window.innerHeight || rect.bottom < 0) return;
+    if (e.key === 'ArrowLeft' && document.activeElement.tagName !== 'INPUT') prev.click();
+    if (e.key === 'ArrowRight' && document.activeElement.tagName !== 'INPUT') next.click();
+  });
+
+  updateProgress();
+})();
 
 // --- Team category filter ---
 const catTags = document.querySelectorAll('.team-cat-tag');

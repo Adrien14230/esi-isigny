@@ -10,6 +10,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://esi-isigny.fr/?lang=en"/>
   </url>
   <url>
+    <loc>https://esi-isigny.fr/#histoire</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://esi-isigny.fr/#calendrier</loc>
     <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
