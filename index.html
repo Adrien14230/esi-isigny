@@ -29,8 +29,10 @@
 <meta property="og:title" content="Étoile Sportive d'Isigny — Club de football amateur depuis 1925">
 <meta property="og:description" content="9 équipes engagées en District Manche · Calendrier, résultats, classements FFF · Espace licenciés et dirigeants. Allez ESI !">
 <meta property="og:image" content="https://esi-isigny.fr/assets/team-bg.jpg">
-<meta property="og:image:width" content="1024">
-<meta property="og:image:height" content="768">
+<meta property="og:image:secure_url" content="https://esi-isigny.fr/assets/team-bg.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1280">
 <meta property="og:image:alt" content="L'équipe Senior B de l'Étoile Sportive d'Isigny en cage de but">
 
 <!-- ===== TWITTER / X ===== -->
@@ -65,11 +67,10 @@
       "image": "https://esi-isigny.fr/assets/team-bg.jpg",
       "url": "https://esi-isigny.fr/",
       "sport": "Football (Soccer)",
-      "telephone": "+33-2-31-XX-XX-XX",
       "email": "501416@lfnfoot.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Rue du Fanal",
+        "streetAddress": "Impasse du Stade",
         "addressLocality": "Isigny-sur-Mer",
         "postalCode": "14230",
         "addressRegion": "Normandie",
@@ -151,7 +152,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="assets/team-bg.jpg" fetchpriority="high">
-<link rel="preload" as="image" href="assets/player-hero.png">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -185,6 +185,38 @@ img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 button { font-family: inherit; cursor: pointer; }
+
+/* ===== ACCESSIBILITÉ ===== */
+/* Skip link : invisible jusqu'au focus clavier (Tab) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 24px;
+  z-index: 99999;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: top 0.2s ease;
+  border-radius: 0 0 6px 0;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--bright);
+  outline-offset: 2px;
+}
+/* Focus visible cohérent partout (clavier uniquement, pas au click) */
+:focus-visible {
+  outline: 2px solid var(--bright);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+/* Pas d'outline disgracieux au click */
+:focus:not(:focus-visible) { outline: none; }
 
 /* ===== LANGUAGE TOGGLE ===== */
 [data-lang="en"] { display: none; }
@@ -2414,8 +2446,158 @@ button.team-card { font-family: inherit; }
 @media (max-width: 768px) {
   .divider-marquee { padding: 20px 0; }
   .divider-marquee-label { display: none; }
-  .divider-marquee-track { gap: 40px; padding-left: 24px; animation-duration: 40s; }
+  .divider-marquee-track { gap: 40px; padding-left: 24px; animation-duration: 60s; }
   .divider-marquee-logo { width: 100px; height: 70px; }
+}
+
+/* ===== NEWSLETTER CTA ===== */
+.newsletter-cta {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.newsletter-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+.newsletter-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.newsletter-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bright);
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.newsletter-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+}
+.newsletter-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 0.95;
+  letter-spacing: -0.022em;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.newsletter-desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.65);
+  max-width: 460px;
+}
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: end;
+}
+.newsletter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.newsletter-label-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.newsletter-field input {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.05);
+  color: var(--white);
+  border-radius: 4px;
+  transition: border-color 0.25s ease, background 0.25s ease;
+  width: 100%;
+}
+.newsletter-field input::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+.newsletter-field input:focus {
+  outline: none;
+  border-color: var(--bright);
+  background: rgba(255,255,255,0.08);
+}
+.newsletter-submit {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--white);
+  color: var(--navy);
+  border: 0;
+  padding: 16px 28px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.newsletter-submit:hover { background: var(--bright); color: var(--white); }
+.newsletter-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.newsletter-submit-arrow {
+  width: 18px; height: 1px;
+  background: currentColor;
+  position: relative;
+  transition: width 0.25s;
+}
+.newsletter-submit-arrow::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 50%;
+  width: 6px; height: 6px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+.newsletter-submit:hover .newsletter-submit-arrow { width: 24px; }
+.newsletter-feedback {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  min-height: 18px;
+  text-align: center;
+}
+.newsletter-feedback.success { color: var(--win); }
+.newsletter-feedback.error { color: #ff8080; }
+
+@media (max-width: 900px) {
+  .newsletter-cta { padding: 56px 24px; }
+  .newsletter-inner { grid-template-columns: 1fr; gap: 36px; }
+  .newsletter-form { align-self: stretch; }
 }
 
 /* ===== FOOTER (3 colonnes légères) ===== */
@@ -4820,6 +5002,12 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   .nav-right { gap: 8px; }
 
   #hero { padding: 100px 20px 100px; min-height: 100svh; }
+  /* Overlay plus marqué sur mobile pour la lisibilité du texte sur photo */
+  #hero::before {
+    background:
+      linear-gradient(180deg, rgba(6,14,30,0.78) 0%, rgba(6,14,30,0.85) 100%),
+      linear-gradient(105deg, rgba(6,14,30,0.5) 0%, rgba(6,14,30,0.3) 100%);
+  }
   .hero-content { gap: 18px; }
   .hero-eyebrow { font-size: 10px; gap: 10px; }
   .hero-eyebrow::before { width: 24px; }
@@ -4922,6 +5110,9 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
 <body>
 
+<!-- ===== SKIP LINK (accessibilité clavier) ===== -->
+<a class="skip-link" href="#hero">Aller au contenu principal</a>
+
 <!-- ===== NAVIGATION ===== -->
 <nav id="main-nav">
   <a href="#hero" class="nav-logo" aria-label="Accueil ESI">
@@ -4951,7 +5142,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       <span data-lang="fr">Nous rejoindre</span>
       <span data-lang="en">Join us</span>
     </a>
-    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="burgerOverlay" aria-haspopup="dialog">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -5196,7 +5387,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     </div>
   </div>
 
-  <div class="timeline-wrap reveal" style="display:none;">
+  <div class="timeline-wrap reveal">
     <div class="timeline-track" id="timelineTrack">
 
       <article class="timeline-slide vintage">
@@ -5258,7 +5449,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </article>
 
       <article class="timeline-slide">
-        <img src="assets/gallery/match-26-04/156-DSC_0784.jpg" alt="Match avril 2026" class="timeline-slide-img">
+        <img src="assets/gallery/match-26-04/medium/156-DSC_0784.webp" alt="Match avril 2026" class="timeline-slide-img" loading="lazy">
         <span class="timeline-slide-year">Avril 2026</span>
         <div class="timeline-slide-overlay"></div>
         <div class="timeline-slide-content">
@@ -5268,7 +5459,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </article>
 
       <article class="timeline-slide featured">
-        <img src="assets/gallery/u15/IMG_0190.jpeg" alt="U15 saison du centenaire" class="timeline-slide-img">
+        <img src="assets/gallery/u15/medium/IMG_0190.webp" alt="U15 saison du centenaire" class="timeline-slide-img" loading="lazy">
         <span class="timeline-slide-year">2025–26</span>
         <div class="timeline-slide-overlay"></div>
         <div class="timeline-slide-content">
@@ -6458,7 +6649,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   <article class="partner-major reveal">
     <a href="https://www.maconnerie-rigault.fr/" target="_blank" rel="noopener" class="partner-major-logo" aria-label="Site Rigault — maconnerie-rigault.fr">
       <div class="partner-major-logo-content">
-        <img src="assets/partners/rigault.png" alt="Logo Rigault — Maçonnerie & Taille de pierre" style="max-width:180px;max-height:140px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(13,31,60,0.10));">
+        <img src="assets/partners/rigault.png" alt="Logo Rigault — Maçonnerie & Taille de pierre" style="max-width:180px;max-height:140px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(13,31,60,0.10));" loading="lazy">
         <div class="partner-major-logo-tagline"><span data-lang="fr">Tailleur de pierre · Maçonnerie</span><span data-lang="en">Stonemason · Masonry</span></div>
       </div>
     </a>
@@ -6477,7 +6668,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <article class="partner-card compact">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/garage-marie.png" alt="Logo Garage Marie">
+        <img src="assets/partners/garage-marie.png" alt="Logo Garage Marie" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Garage Marie</div>
@@ -6487,7 +6678,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a class="partner-card compact" href="https://www.facebook.com/MaisonBoloch/" target="_blank" rel="noopener">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/huitres-boloch.jpeg" alt="Logo Huîtres Boloch">
+        <img src="assets/partners/huitres-boloch.jpeg" alt="Logo Huîtres Boloch" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Huîtres Boloch</div>
@@ -6497,7 +6688,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a class="partner-card compact" href="https://www.carrefour.fr/" target="_blank" rel="noopener">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/carrefour.svg" alt="Logo Carrefour">
+        <img src="assets/partners/carrefour.svg" alt="Logo Carrefour" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Carrefour</div>
@@ -6507,7 +6698,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a class="partner-card compact" href="https://www.lecentralisigny.fr/" target="_blank" rel="noopener">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/le-central.jpeg" alt="Logo Le Central">
+        <img src="assets/partners/le-central.jpeg" alt="Logo Le Central" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Le Central</div>
@@ -6517,7 +6708,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <article class="partner-card compact">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/amarre-conseil.png?v=2" alt="Logo Amarre Conseil">
+        <img src="assets/partners/amarre-conseil.png?v=2" alt="Logo Amarre Conseil" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Amarre Conseil</div>
@@ -6527,7 +6718,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <article class="partner-card compact">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/sebastien-sollier.jpg" alt="Logo Menuiserie Sébastien Sollier">
+        <img src="assets/partners/sebastien-sollier.jpg" alt="Logo Menuiserie Sébastien Sollier" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Menuiserie Sébastien Sollier</div>
@@ -6537,7 +6728,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a class="partner-card compact" href="https://www.facebook.com/p/EMRG-Menuiserie-100092828254815/" target="_blank" rel="noopener">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/emrg.jpeg" alt="Logo EMRG Menuiserie">
+        <img src="assets/partners/emrg.jpeg" alt="Logo EMRG Menuiserie" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">EMRG Menuiserie</div>
@@ -6547,7 +6738,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a class="partner-card compact" href="https://www.facebook.com/p/La-Cro%C3%BBte-Dor%C3%A9e-Tanquerel-Et-Fils-100054566015001/" target="_blank" rel="noopener">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/croute-doree.jpeg" alt="Logo La Croûte Dorée">
+        <img src="assets/partners/croute-doree.jpeg" alt="Logo La Croûte Dorée" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">La Croûte Dorée</div>
@@ -6557,7 +6748,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <article class="partner-card compact">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/au-fournil-isigny.png" alt="Logo Au Fournil d'Isigny">
+        <img src="assets/partners/au-fournil-isigny.png" alt="Logo Au Fournil d'Isigny" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Au Fournil d'Isigny</div>
@@ -6567,7 +6758,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a class="partner-card compact" href="https://www.facebook.com/people/Le-Versailles/100083436696466/" target="_blank" rel="noopener">
       <div class="partner-logo" style="background:#fff;padding:4px;">
-        <img src="assets/partners/le-versailles.png?v=4" alt="Logo Le Versailles">
+        <img src="assets/partners/le-versailles.png?v=4" alt="Logo Le Versailles" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Le Versailles</div>
@@ -6577,7 +6768,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a class="partner-card compact" href="https://www.menard-terrassements.fr/" target="_blank" rel="noopener">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/olivier-menard.jpg" alt="Logo Olivier Ménard Terrassement">
+        <img src="assets/partners/olivier-menard.jpg" alt="Logo Olivier Ménard Terrassement" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Olivier Ménard</div>
@@ -6587,7 +6778,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a class="partner-card compact" href="https://www.fresha.com/fr/lvp/designhair-rue-emile-demagny-isigny-sur-mer-6NQ52e" target="_blank" rel="noopener">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/design-hair.png?v=4" alt="Logo Design'Hair">
+        <img src="assets/partners/design-hair.png?v=4" alt="Logo Design'Hair" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Design'Hair</div>
@@ -6597,7 +6788,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <article class="partner-card compact">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/isigny-loisirs.png" alt="Logo Isigny Loisirs">
+        <img src="assets/partners/isigny-loisirs.png" alt="Logo Isigny Loisirs" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Isigny Loisirs</div>
@@ -6615,7 +6806,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a class="partner-card compact" href="https://www.facebook.com/p/Le-canu-Vincent-couverture-100052710940111/" target="_blank" rel="noopener">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/vincent-le-canu.webp" alt="Logo Vincent Le Canu">
+        <img src="assets/partners/vincent-le-canu.webp" alt="Logo Vincent Le Canu" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Vincent Le Canu</div>
@@ -6625,7 +6816,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a class="partner-card compact" href="https://www.isigny-ste-mere.com/" target="_blank" rel="noopener">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/coope-isigny.svg" alt="Logo Coopérative Isigny Sainte-Mère">
+        <img src="assets/partners/coope-isigny.svg" alt="Logo Coopérative Isigny Sainte-Mère" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Coopé Isigny Sainte-Mère</div>
@@ -6643,7 +6834,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <article class="partner-card compact">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/boucherie-isigny.png?v=2" alt="Logo Boucherie d'Isigny">
+        <img src="assets/partners/boucherie-isigny.png?v=2" alt="Logo Boucherie d'Isigny" loading="lazy">
       </div>
       <div class="partner-info">
         <div class="partner-name">Boucherie d'Isigny</div>
@@ -6659,7 +6850,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   <div class="partners-grid reveal">
     <a href="https://www.sport2000.fr/magasin/sport-2000-carentan" target="_blank" rel="noopener" class="partner-card">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/sport-2000.png" alt="Logo Sport 2000">
+        <img src="assets/partners/sport-2000.png" alt="Logo Sport 2000" loading="lazy">
       </div>
       <div class="partner-name">Sport 2000 Carentan</div>
       <div class="partner-cat"><span data-lang="fr">Équipementier · Maillots & matériel club</span><span data-lang="en">Equipment · Jerseys & club gear</span></div>
@@ -6672,7 +6863,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   <div class="partners-grid reveal">
     <a href="https://www.isigny-sur-mer.fr/" target="_blank" rel="noopener" class="partner-card">
       <div class="partner-logo" style="background:#fff;padding:8px;">
-        <img src="assets/partners/mairie-isigny.png" alt="Logo Mairie d'Isigny-sur-Mer">
+        <img src="assets/partners/mairie-isigny.png" alt="Logo Mairie d'Isigny-sur-Mer" loading="lazy">
       </div>
       <div class="partner-name"><span data-lang="fr">Mairie d'Isigny-sur-Mer</span><span data-lang="en">Isigny-sur-Mer Town Hall</span></div>
       <div class="partner-cat"><span data-lang="fr">Stade municipal · Subventions</span><span data-lang="en">Municipal stadium · Funding</span></div>
@@ -6680,7 +6871,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a href="https://manche.fff.fr/" target="_blank" rel="noopener" class="partner-card">
       <div class="partner-logo" style="background:#fff;padding:6px;">
-        <img src="assets/partners/district-manche.png" alt="Logo District Manche de Football">
+        <img src="assets/partners/district-manche.png" alt="Logo District Manche de Football" loading="lazy">
       </div>
       <div class="partner-name">District Manche</div>
       <div class="partner-cat">Affiliation FFF · 501416</div>
@@ -6688,7 +6879,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <a href="https://www.fff.fr/" target="_blank" rel="noopener" class="partner-card">
       <div class="partner-logo" style="background:#fff;padding:8px;">
-        <img src="assets/partners/fff.png" alt="Logo Fédération Française de Football">
+        <img src="assets/partners/fff.png" alt="Logo Fédération Française de Football" loading="lazy">
       </div>
       <div class="partner-name">Fédération Française de Football</div>
       <div class="partner-cat"><span data-lang="fr">Tutelle nationale</span><span data-lang="en">National authority</span></div>
@@ -7140,6 +7331,34 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   </div>
 </section>
 
+<!-- ===== NEWSLETTER (CTA capture email avant footer) ===== -->
+<section class="newsletter-cta reveal" aria-label="S'inscrire à la newsletter ESI">
+  <div class="newsletter-inner">
+    <div class="newsletter-text">
+      <div class="newsletter-eyebrow"><span data-lang="fr">Restez connectés</span><span data-lang="en">Stay connected</span></div>
+      <h2 class="newsletter-title">
+        <span data-lang="fr">Recevez les résultats<br>et convocations par email</span>
+        <span data-lang="en">Get results and<br>call-ups by email</span>
+      </h2>
+      <p class="newsletter-desc">
+        <span data-lang="fr">Une newsletter mensuelle, courte et nette : résultats des 9 équipes, prochains matchs, news du club. Sans spam, désabonnement en un clic.</span>
+        <span data-lang="en">A short monthly newsletter: 9 teams' results, upcoming matches, club news. No spam, one-click unsubscribe.</span>
+      </p>
+    </div>
+    <form class="newsletter-form" id="newsletterForm" novalidate>
+      <label class="newsletter-field">
+        <span class="newsletter-label-text"><span data-lang="fr">Votre email</span><span data-lang="en">Your email</span></span>
+        <input type="email" name="email" id="newsletterEmail" required autocomplete="email" placeholder="prenom@example.fr">
+      </label>
+      <button type="submit" class="newsletter-submit">
+        <span data-lang="fr">S'inscrire</span><span data-lang="en">Sign up</span>
+        <span class="newsletter-submit-arrow" aria-hidden="true"></span>
+      </button>
+      <div class="newsletter-feedback" id="newsletterFeedback" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
 <!-- ===== FOOTER ===== -->
 <footer id="contact">
   <div class="footer-grid">
@@ -7522,13 +7741,19 @@ function openBurger() {
   hamburger.classList.add('open');
   burgerOverlay.classList.add('open');
   hamburger.setAttribute('aria-expanded', 'true');
+  hamburger.setAttribute('aria-label', 'Fermer le menu de navigation');
   document.body.style.overflow = 'hidden';
+  // Focus le bouton close pour la nav clavier
+  setTimeout(() => burgerClose && burgerClose.focus(), 50);
 }
 function closeBurger() {
   hamburger.classList.remove('open');
   burgerOverlay.classList.remove('open');
   hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-label', 'Ouvrir le menu de navigation');
   document.body.style.overflow = '';
+  // Rend le focus au hamburger pour ne pas perdre la position clavier
+  hamburger.focus();
 }
 function closeMobileMenu() { closeBurger(); }  // Backwards-compat alias
 
@@ -7857,6 +8082,41 @@ const CAT_LABEL = {
   });
 })();
 
+// --- Newsletter form : mailto fallback (en attendant backend Resend) ---
+(function setupNewsletter() {
+  const form = document.getElementById('newsletterForm');
+  const feedback = document.getElementById('newsletterFeedback');
+  const emailInput = document.getElementById('newsletterEmail');
+  if (!form || !feedback || !emailInput) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    feedback.className = 'newsletter-feedback';
+    feedback.textContent = '';
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      feedback.classList.add('error');
+      feedback.textContent = document.body.classList.contains('en')
+        ? 'Please enter a valid email address.'
+        : 'Email invalide. Vérifie le format.';
+      emailInput.focus();
+      return;
+    }
+
+    // En attendant le backend Resend : on ouvre un mailto pré-rempli vers le club
+    const subject = encodeURIComponent('Inscription newsletter ESI');
+    const body = encodeURIComponent(`Bonjour,\n\nJe souhaite m'inscrire à la newsletter de l'Étoile Sportive d'Isigny pour recevoir les résultats et convocations.\n\nMon email : ${email}\n\nMerci.`);
+    window.location.href = `mailto:501416@lfnfoot.com?subject=${subject}&body=${body}`;
+
+    feedback.classList.add('success');
+    feedback.textContent = document.body.classList.contains('en')
+      ? 'Email client opening — send to confirm your subscription.'
+      : 'Ouverture de votre messagerie — envoyez l\'email pour confirmer.';
+    emailInput.value = '';
+  });
+})();
+
 // --- Hero slideshow : photos ESI en fond, crossfade Ken Burns ---
 (async function setupHeroSlideshow() {
   const bg = document.getElementById('heroBg');
@@ -7878,7 +8138,7 @@ const CAT_LABEL = {
       const manifest = await res.json();
       const all = [];
       Object.entries(manifest).forEach(([folder, files]) => {
-        files.forEach(f => all.push('assets/gallery/' + folder + '/' + f));
+        files.forEach(f => all.push('assets/gallery/' + folder + '/medium/' + f));
       });
       // Shuffle
       for (let i = all.length - 1; i > 0; i--) {
@@ -8009,7 +8269,7 @@ const CAT_LABEL = {
       const manifest = await res.json();
       const allPhotos = [];
       Object.entries(manifest).forEach(([folder, files]) => {
-        files.forEach(f => allPhotos.push('assets/gallery/' + folder + '/' + f));
+        files.forEach(f => allPhotos.push('assets/gallery/' + folder + '/medium/' + f));
       });
       // Shuffle Fisher-Yates puis prend les N premiers
       for (let i = allPhotos.length - 1; i > 0; i--) {
