@@ -1697,6 +1697,22 @@ button.team-card { font-family: inherit; }
   z-index: 2;
 }
 .bureau-card.president .bureau-name { color: var(--white); }
+.bureau-subrole {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--draw);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(13,31,60,0.08);
+  position: relative;
+  z-index: 2;
+}
+.bureau-card.president .bureau-subrole {
+  color: rgba(255,255,255,0.75);
+  border-top-color: rgba(255,255,255,0.18);
+}
 
 .staff-section-title {
   font-family: var(--font-display);
@@ -4950,12 +4966,13 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       <div class="bureau-name">Olivier Duchesne</div>
     </article>
 
-    <article class="bureau-card">
+    <article class="bureau-card president">
       <div class="bureau-card-icon">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.5"/><circle cx="16" cy="9" r="3.5"/><path d="M3 20 c0-4 3-6 6-6 s6 2 6 6"/><path d="M10 20 c0-4 3-6 6-6 s6 2 6 6"/></svg>
       </div>
       <div class="bureau-role"><span data-lang="fr">Co-président</span><span data-lang="en">Co-president</span></div>
       <div class="bureau-name">Johann L'Homme</div>
+      <div class="bureau-subrole"><span data-lang="fr">Responsable Jeunes</span><span data-lang="en">Youth Director</span></div>
     </article>
 
     <article class="bureau-card">
@@ -4964,6 +4981,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
       <div class="bureau-role"><span data-lang="fr">Vice-président</span><span data-lang="en">Vice-president</span></div>
       <div class="bureau-name">Thomas Pottier</div>
+      <div class="bureau-subrole"><span data-lang="fr">Responsable Seniors</span><span data-lang="en">Seniors Director</span></div>
     </article>
 
     <article class="bureau-card">
@@ -4987,10 +5005,6 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   <h3 class="staff-section-title"><span data-lang="fr">Encadrement sportif</span><span data-lang="en">Coaching staff</span></h3>
   <div class="staff-grid">
     <div class="staff-card reveal">
-      <div class="staff-role"><span data-lang="fr">Entraîneur Seniors A</span><span data-lang="en">Seniors A Coach</span></div>
-      <div class="staff-name">Thomas Pottier</div>
-    </div>
-    <div class="staff-card reveal">
       <div class="staff-role"><span data-lang="fr">Entraîneurs Seniors B</span><span data-lang="en">Seniors B Coaches</span></div>
       <div class="staff-name">Adrien Goubert <span class="staff-sep">/</span> Alain Piazza <span class="staff-sep">/</span> Jessy Thomine</div>
     </div>
@@ -5001,10 +5015,6 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <div class="staff-card reveal">
       <div class="staff-role"><span data-lang="fr">Dirigeant U15 B</span><span data-lang="en">U15 B Director</span></div>
       <div class="staff-name">Poisson Thibaut</div>
-    </div>
-    <div class="staff-card reveal">
-      <div class="staff-role"><span data-lang="fr">Responsable Jeunes</span><span data-lang="en">Youth Director</span></div>
-      <div class="staff-name">Johann L'Homme</div>
     </div>
     <div class="staff-card reveal">
       <div class="staff-role"><span data-lang="fr">Dirigeant U13</span><span data-lang="en">U13 Director</span></div>
