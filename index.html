@@ -367,9 +367,9 @@ nav.scrolled .hamburger span { background: var(--navy); }
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(6, 14, 30, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(6, 14, 30, 0.96);
+  backdrop-filter: blur(20px) saturate(0.6);
+  -webkit-backdrop-filter: blur(20px) saturate(0.6);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -400,45 +400,53 @@ nav.scrolled .hamburger span { background: var(--navy); }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 28px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 24px;
   flex-shrink: 0;
+  min-height: 72px;
+  box-sizing: border-box;
 }
 .burger-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
+  min-width: 0;
 }
-.burger-logo img { width: 36px; height: 36px; }
+.burger-logo img { width: 32px; height: 32px; flex-shrink: 0; }
 .burger-logo-name {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 11px;
   text-transform: uppercase;
   color: var(--white);
-  letter-spacing: 0.04em;
-  line-height: 1.1;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .burger-logo-name span {
   display: block;
   font-size: 9px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.2em;
   font-weight: 400;
-  opacity: 0.55;
+  opacity: 0.5;
+  margin-top: 1px;
 }
 .burger-close {
-  width: 40px; height: 40px;
+  width: 38px; height: 38px;
   border-radius: 50%;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.14);
   color: var(--white);
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 200;
   line-height: 1;
   cursor: pointer;
   transition: all 0.3s;
   display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-left: 12px;
 }
 .burger-close:hover {
   background: rgba(255,255,255,0.18);
@@ -448,7 +456,8 @@ nav.scrolled .hamburger span { background: var(--navy); }
 .burger-body {
   flex: 1;
   overflow-y: auto;
-  padding: 24px 28px 32px;
+  padding: 32px 24px 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 
 .burger-nav {
