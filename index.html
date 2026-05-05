@@ -237,6 +237,18 @@ nav.scrolled .nav-links a::after { background: var(--electric); }
   align-items: center;
   gap: 12px;
 }
+.nav-logo img {
+  background: var(--navy);
+  border-radius: 50%;
+  padding: 4px;
+  box-sizing: border-box;
+  border: 2px solid rgba(255,255,255,0.85);
+  transition: border-color 0.3s, background 0.3s;
+}
+nav.scrolled .nav-logo img {
+  background: var(--navy);
+  border-color: var(--navy);
+}
 .nav-logo-name {
   font-family: var(--font-display);
   font-weight: 800;
@@ -5044,51 +5056,21 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <div class="histoire-carousel reveal" id="histoireCarousel">
       <div class="histoire-slide active">
         <img src="assets/team-bg.jpg" alt="Équipe Seniors B 2024-25 ESI" loading="lazy">
-        <div class="histoire-slide-overlay"></div>
-        <div class="histoire-slide-caption">
-          <span class="histoire-slide-caption-tag"><span data-lang="fr">Saison 2024-25</span><span data-lang="en">Season 2024-25</span></span>
-          <div class="histoire-slide-caption-text"><span data-lang="fr">Les Seniors B en cage de but</span><span data-lang="en">Seniors B at the goal mouth</span></div>
-        </div>
       </div>
       <div class="histoire-slide">
         <img src="assets/gallery/match-26-04/156-DSC_0784.jpg" alt="Match Seniors A vs St Jores 26 avril 2026 — Victoire 7-0" loading="lazy">
-        <div class="histoire-slide-overlay"></div>
-        <div class="histoire-slide-caption">
-          <span class="histoire-slide-caption-tag">26 avril 2026</span>
-          <div class="histoire-slide-caption-text"><span data-lang="fr">Seniors A · Victoire 7-0</span><span data-lang="en">Seniors A · 7-0 Win</span></div>
-        </div>
       </div>
       <div class="histoire-slide">
         <img src="assets/gallery/match-26-04/130-DSC_0680.jpg" alt="Action de match ESI" loading="lazy">
-        <div class="histoire-slide-overlay"></div>
-        <div class="histoire-slide-caption">
-          <span class="histoire-slide-caption-tag"><span data-lang="fr">D4 Poule C</span><span data-lang="en">D4 Group C</span></span>
-          <div class="histoire-slide-caption-text"><span data-lang="fr">L'ESI en action</span><span data-lang="en">ESI in action</span></div>
-        </div>
       </div>
       <div class="histoire-slide">
         <img src="assets/gallery/u15/IMG_0190.jpeg" alt="U15 ESI - 1ers de la poule" loading="lazy">
-        <div class="histoire-slide-caption">
-          <span class="histoire-slide-caption-tag">🥇 U15 (1)</span>
-          <div class="histoire-slide-caption-text"><span data-lang="fr">Les jeunes en tête de poule</span><span data-lang="en">Youth top of the pool</span></div>
-        </div>
-        <div class="histoire-slide-overlay"></div>
       </div>
       <div class="histoire-slide">
         <img src="assets/gallery/match-26-04/200-DSC_0960.jpg" alt="Match ESI - célébration" loading="lazy">
-        <div class="histoire-slide-overlay"></div>
-        <div class="histoire-slide-caption">
-          <span class="histoire-slide-caption-tag"><span data-lang="fr">Saison 2025-26</span><span data-lang="en">Season 2025-26</span></span>
-          <div class="histoire-slide-caption-text"><span data-lang="fr">Allez ESI !</span><span data-lang="en">Allez ESI !</span></div>
-        </div>
       </div>
       <div class="histoire-slide">
         <img src="assets/gallery/match-26-04/85-DSC_0566.jpg" alt="Action ESI" loading="lazy">
-        <div class="histoire-slide-overlay"></div>
-        <div class="histoire-slide-caption">
-          <span class="histoire-slide-caption-tag"><span data-lang="fr">Stade Municipal</span><span data-lang="en">Municipal stadium</span></span>
-          <div class="histoire-slide-caption-text"><span data-lang="fr">Notre maison depuis 1925</span><span data-lang="en">Our home since 1925</span></div>
-        </div>
       </div>
 
       <div class="histoire-carousel-dots" id="histoireDots"></div>
@@ -7043,29 +7025,45 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   <div class="footer-grid">
 
     <div class="footer-col footer-col-brand">
-      <img src="assets/logo-esi.png" alt="Logo ESI" width="56" height="56" style="object-fit:contain;" />
-      <div class="nav-logo-name" style="font-size:15px;margin-top:4px;">ÉTOILE SPORTIVE D'ISIGNY<span style="font-size:10px;">Fondé en 1925 · 100 ans en 2025</span></div>
+      <img src="assets/logo-esi.png" alt="Logo ESI" width="64" height="64" style="object-fit:contain; background:var(--navy); border-radius:50%; padding:6px; box-sizing:border-box; border:2px solid rgba(255,255,255,0.15);" />
+      <div class="nav-logo-name" style="font-size:16px;margin-top:8px;color:var(--white);">ÉTOILE SPORTIVE<span style="font-size:11px;letter-spacing:0.18em;font-weight:400;opacity:0.6;margin-top:2px;">D'ISIGNY · DEPUIS 1925</span></div>
       <p class="footer-desc">
-        <span data-lang="fr">9 équipes engagées du U7 aux Vétérans · District Manche</span>
-        <span data-lang="en">9 teams from U7 to Veterans · Manche District</span>
+        <span data-lang="fr">Club familial du Bessin engagé en District Manche. <strong style="color:var(--white);font-weight:600;">9 équipes</strong> du U7 aux Vétérans, <strong style="color:var(--white);font-weight:600;">100 ans en 2025</strong> — l'esprit village, le maillot bleu et blanc.</span>
+        <span data-lang="en">Family club from Bessin in Manche District. <strong style="color:var(--white);font-weight:600;">9 teams</strong> from U7 to Veterans, <strong style="color:var(--white);font-weight:600;">100 years in 2025</strong> — village spirit, blue and white jersey.</span>
       </p>
+      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+        <span style="font-family:var(--font-display);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--bright);background:rgba(58,127,232,0.12);border:1px solid rgba(58,127,232,0.3);padding:5px 10px;border-radius:20px;">FFF 501416</span>
+        <span style="font-family:var(--font-display);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:5px 10px;border-radius:20px;">District Manche</span>
+      </div>
     </div>
 
     <div class="footer-col">
       <h4 class="footer-col-title"><span data-lang="fr">Le club</span><span data-lang="en">The club</span></h4>
-      <a href="#calendrier" class="footer-link"><span data-lang="fr">Calendrier · Résultats</span><span data-lang="en">Schedule · Results</span></a>
+      <a href="#histoire" class="footer-link"><span data-lang="fr">Notre histoire</span><span data-lang="en">Our history</span></a>
+      <a href="#calendrier" class="footer-link"><span data-lang="fr">Calendrier des matchs</span><span data-lang="en">Match calendar</span></a>
+      <a href="#resultats" class="footer-link"><span data-lang="fr">Résultats & classements</span><span data-lang="en">Results & standings</span></a>
+      <a href="#galerie" class="footer-link"><span data-lang="fr">Galerie photos</span><span data-lang="en">Photo gallery</span></a>
+      <a href="#staff" class="footer-link"><span data-lang="fr">Dirigeants & staff</span><span data-lang="en">Staff & officials</span></a>
       <a href="#partenaires" class="footer-link"><span data-lang="fr">Nos partenaires</span><span data-lang="en">Our partners</span></a>
       <a href="#boutique" class="footer-link"><span data-lang="fr">Boutique JAKO</span><span data-lang="en">JAKO Shop</span></a>
     </div>
 
     <div class="footer-col">
-      <h4 class="footer-col-title"><span data-lang="fr">Contact</span><span data-lang="en">Contact</span></h4>
+      <h4 class="footer-col-title"><span data-lang="fr">Contact & stade</span><span data-lang="en">Contact & stadium</span></h4>
       <a href="mailto:501416@lfnfoot.com" class="footer-link">501416@lfnfoot.com</a>
       <a href="https://www.google.com/maps?q=Stade+Municipal+Isigny-sur-Mer" target="_blank" rel="noopener" class="footer-link">
         <span data-lang="fr">Stade Municipal · Impasse du Stade</span>
         <span data-lang="en">Municipal Stadium · Impasse du Stade</span>
       </a>
       <span class="footer-link" style="opacity:0.55;">14230 Isigny-sur-Mer · Calvados</span>
+      <span class="footer-link" style="opacity:0.55;">
+        <span data-lang="fr">Affiliation FFF 501416 · District Manche</span>
+        <span data-lang="en">FFF 501416 · Manche District</span>
+      </span>
+      <span class="footer-link" style="opacity:0.55;">
+        <span data-lang="fr">Entraînements : mercredi & vendredi</span>
+        <span data-lang="en">Training: Wednesday & Friday</span>
+      </span>
 
       <div class="social-links" style="margin-top:14px;">
         <a href="https://www.instagram.com/etoilesportiveisigny/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
