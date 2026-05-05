@@ -22,15 +22,11 @@ export default async function handler(req: Request) {
     const form = await req.formData();
     const category = String(form.get('category') || '');
     const title = String(form.get('title') || '').slice(0, 80);
-    const email = String(form.get('email') || '').slice(0, 120);
     const photos = form.getAll('photos') as File[];
 
     // Validate
     if (!ALLOWED_CATEGORIES.includes(category)) {
       return Response.json({ error: 'Invalid category' }, { status: 400 });
-    }
-    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      return Response.json({ error: 'Invalid email' }, { status: 400 });
     }
     if (!photos.length || photos.length > MAX_PHOTOS) {
       return Response.json({ error: `1 to ${MAX_PHOTOS} photos required` }, { status: 400 });
@@ -60,11 +56,8 @@ export default async function handler(req: Request) {
 
       // Insert directly in gallery_approved — published immediately
       const { error: dbErr } = await db.from('gallery_approved').insert({
-        id, category, title,
-        path,
-        email,
+        id, category, title, path,
         approved_at: new Date().toISOString(),
-        approved_by: email,  // self-approved
       });
       if (dbErr) throw dbErr;
 

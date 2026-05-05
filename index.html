@@ -5416,11 +5416,6 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         </div>
 
         <div class="upload-field">
-          <label for="upEmail"><span data-lang="fr">Ton email</span><span data-lang="en">Your email</span> <span class="req">*</span></label>
-          <input id="upEmail" type="email" required placeholder="parent@example.com">
-        </div>
-
-        <div class="upload-field">
           <label><span data-lang="fr">Photos</span><span data-lang="en">Photos</span> <span class="req">*</span></label>
           <div class="upload-dropzone" id="upDrop">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5l5 5M5 19h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -5446,8 +5441,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
           <span data-lang="en"><strong>Thanks!</strong> Your photos are now live in the gallery. Allez ESI!</span>
         </div>
         <div class="upload-error" id="upError">
-          ⚠ <span data-lang="fr">Vérifie que tu as bien sélectionné une catégorie, ton email, au moins une photo, et coché la case d'autorisation.</span>
-          <span data-lang="en">Make sure you selected a team, your email, at least one photo, and ticked the consent box.</span>
+          ⚠ <span data-lang="fr">Vérifie que tu as bien sélectionné une catégorie, au moins une photo, et coché la case d'autorisation.</span>
+          <span data-lang="en">Make sure you selected a team, at least one photo, and ticked the consent box.</span>
         </div>
       </form>
     </div>
@@ -6907,11 +6902,11 @@ const PhotosDB = (() => {
   }
 
   return {
-    async addPhoto({ category, title, email, file }) {
+    async addPhoto({ category, title, file }) {
       const dataUrl = await fileToDataURL(file);
       const photo = {
         id: 'photo_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
-        category, title: title || '', email,
+        category, title: title || '',
         filename: file.name,
         size: file.size,
         dataUrl,
@@ -7043,9 +7038,8 @@ const CAT_LABEL = {
     errorEl.classList.remove('show');
 
     const cat = document.getElementById('upCat').value;
-    const email = document.getElementById('upEmail').value;
     const consent = document.getElementById('upConsent').checked;
-    if (!cat || !email || files.length === 0 || !consent) {
+    if (!cat || files.length === 0 || !consent) {
       errorEl.classList.add('show');
       return;
     }
@@ -7067,14 +7061,13 @@ const CAT_LABEL = {
         const fd = new FormData();
         fd.append('category', cat);
         fd.append('title', title);
-        fd.append('email', email);
         files.forEach(f => fd.append('photos', f));
         const r = await fetch('/api/upload-photo', { method: 'POST', body: fd });
         if (!r.ok) throw new Error('Upload failed');
       } else {
-        // Local demo: persist into IndexedDB, dirigeant can moderate from espace dirigeant
+        // Local demo: persist into IndexedDB
         for (const file of files) {
-          await PhotosDB.addPhoto({ category: cat, title, email, file });
+          await PhotosDB.addPhoto({ category: cat, title, file });
         }
       }
 
