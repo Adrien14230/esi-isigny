@@ -1442,14 +1442,15 @@ nav.scrolled .hamburger span { background: var(--navy); }
   background: var(--white);
   border-radius: var(--card-radius);
   padding: 28px 28px 24px;
-  box-shadow: 0 2px 12px rgba(26,58,107,0.06);
+  box-shadow: 0 1px 3px rgba(13,31,60,0.04);
   border: 1px solid var(--lightgrey);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   cursor: pointer;
 }
 .match-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(26,58,107,0.12);
+  border-color: rgba(58,127,232,0.25);
+  box-shadow: 0 8px 24px rgba(13,31,60,0.08);
+  transform: translateY(-2px);
 }
 .match-card.featured {
   background: var(--electric);
@@ -1736,7 +1737,8 @@ nav.scrolled .hamburger span { background: var(--navy); }
   border-radius: 12px;
   border: 1px solid var(--lightgrey);
   padding: 24px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 3px rgba(13,31,60,0.04);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -1751,9 +1753,9 @@ nav.scrolled .hamburger span { background: var(--navy); }
 }
 button.team-card { font-family: inherit; }
 .team-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(26,58,107,0.10);
-  border-color: var(--electric);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(13,31,60,0.08);
+  border-color: rgba(58,127,232,0.4);
 }
 .team-card-head {
   display: flex;
@@ -2735,23 +2737,23 @@ a.partner-major-logo:hover img { transform: scale(1.04); }
 .partner-card {
   background: var(--white);
   border: 1px solid var(--lightgrey);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 14px;
-  transition: all 0.25s;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   text-decoration: none;
   color: inherit;
   min-height: 180px;
   justify-content: center;
 }
 .partner-card:hover {
-  border-color: var(--electric);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(26,58,107,0.10);
+  border-color: rgba(58,127,232,0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(13,31,60,0.06);
 }
 .partner-card.empty {
   background: var(--offwhite);
@@ -6417,7 +6419,6 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       <div class="partner-stat-num">22</div>
       <div class="partner-stat-label"><span data-lang="fr">Partenaires actifs</span><span data-lang="en">Active partners</span></div>
     </div>
-    <!-- (1 sponsor maillot + 1 équipementier + 3 institutions + 18 locaux − 2 retirés + 1 split = 22 → en fait 22 reste juste) -->
     <div class="partner-stat">
       <div class="partner-stat-num">100%</div>
       <div class="partner-stat-label"><span data-lang="fr">Locaux</span><span data-lang="en">Local</span></div>
