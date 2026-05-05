@@ -1165,7 +1165,14 @@ nav.scrolled .hamburger span { background: var(--navy); }
   flex-direction: column;
   gap: 16px;
   min-height: 200px;
+  /* button reset (some team-cards are <button>) */
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  text-decoration: none;
 }
+button.team-card { font-family: inherit; }
 .team-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 32px rgba(26,58,107,0.10);
@@ -1662,6 +1669,243 @@ footer { background: var(--dark); padding: 64px 48px 32px; }
   font-family: var(--font-body);
   font-size: 13px;
   color: rgba(255,255,255,0.3);
+}
+
+/* ===== BOUTIQUE ===== */
+#boutique {
+  padding: var(--section-padding) 48px;
+  background: linear-gradient(180deg, var(--offwhite) 0%, var(--white) 100%);
+  position: relative;
+  overflow: hidden;
+}
+#boutique::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(58,127,232,0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.boutique-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.boutique-cta-jako {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--navy);
+  padding: 14px 24px;
+  border-radius: 999px;
+  transition: all 0.25s;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+.boutique-cta-jako:hover { background: var(--electric); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(30,95,190,0.3); }
+.boutique-cta-jako svg { width: 14px; height: 14px; }
+
+.boutique-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.boutique-card {
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid var(--lightgrey);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.boutique-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(26,58,107,0.10);
+}
+
+.boutique-card-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.boutique-card-img-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, var(--navy) 0%, var(--electric) 60%, var(--bright) 100%);
+  opacity: 0.08;
+}
+.boutique-card-img::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(58,127,232,0.18), transparent 50%);
+  pointer-events: none;
+}
+.boutique-card-icon {
+  width: 96px; height: 96px;
+  position: relative;
+  z-index: 2;
+}
+.boutique-card-icon svg {
+  width: 100%; height: 100%;
+  stroke: var(--electric);
+  fill: none;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 8px 16px rgba(30,95,190,0.18));
+}
+.boutique-card-tag {
+  position: absolute;
+  top: 14px; left: 14px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: var(--white);
+  color: var(--navy);
+  padding: 4px 10px;
+  border-radius: 999px;
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.boutique-card-brand {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--navy);
+  padding: 4px 10px;
+  border-radius: 4px;
+  z-index: 3;
+}
+
+.boutique-card-body {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.boutique-card-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.boutique-card-cat {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--draw);
+}
+.boutique-card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--lightgrey);
+}
+.boutique-card-price {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.boutique-card-price-from {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--draw);
+}
+.boutique-card-price-amount {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--electric);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.boutique-card-btn {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--navy);
+  color: var(--white);
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  border: 0;
+  cursor: pointer;
+}
+.boutique-card-btn:hover { background: var(--electric); transform: translateY(-1px); }
+.boutique-card-btn svg { width: 12px; height: 12px; }
+
+.boutique-footer {
+  margin-top: 48px;
+  padding: 28px;
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid var(--lightgrey);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.boutique-footer-text {
+  flex: 1;
+  min-width: 240px;
+}
+.boutique-footer-text h4 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.boutique-footer-text p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--dark);
+  line-height: 1.5;
 }
 
 /* ===== GALLERY ALBUMS ===== */
@@ -2282,6 +2526,112 @@ footer { background: var(--dark); padding: 64px 48px 32px; }
 }
 .modal-close:hover { background: var(--lightgrey); }
 .modal-body { padding: 24px 28px 28px; }
+
+/* Classement modal — last match + next match cards */
+.classement-recap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.recap-card {
+  position: relative;
+  padding: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--lightgrey);
+}
+.recap-card.last { background: linear-gradient(135deg, rgba(13,31,60,0.04), rgba(255,255,255,1)); }
+.recap-card.next { background: linear-gradient(135deg, rgba(30,95,190,0.06), rgba(255,255,255,1)); border-color: rgba(30,95,190,0.2); }
+.recap-card.win { background: linear-gradient(135deg, rgba(34,197,94,0.10), rgba(255,255,255,1)); border-color: rgba(34,197,94,0.3); }
+.recap-card.loss { background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(255,255,255,1)); border-color: rgba(239,68,68,0.25); }
+.recap-card.draw { background: linear-gradient(135deg, rgba(148,163,184,0.10), rgba(255,255,255,1)); border-color: rgba(148,163,184,0.3); }
+
+.recap-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--draw);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.recap-card.win .recap-label,
+.recap-card.win .recap-result-badge { color: var(--win); }
+.recap-card.loss .recap-label,
+.recap-card.loss .recap-result-badge { color: var(--loss); }
+.recap-card.draw .recap-label { color: var(--draw); }
+.recap-card.next .recap-label { color: var(--electric); }
+
+.recap-teams {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 10px;
+}
+.recap-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+.recap-team img {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--white);
+  padding: 3px;
+  border: 1px solid var(--lightgrey);
+  object-fit: contain;
+}
+.recap-team-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--navy);
+  line-height: 1.15;
+  max-width: 90px;
+}
+.recap-score {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  line-height: 1;
+}
+.recap-vs {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--draw);
+  letter-spacing: 0.05em;
+}
+.recap-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--lightgrey);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--draw);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.recap-result-badge {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
 
 .classement-table {
   width: 100%;
@@ -2966,6 +3316,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <a href="#galerie"><span data-lang="fr">Galerie</span><span data-lang="en">Gallery</span></a>
     <a href="#convocations"><span data-lang="fr">Convocations</span><span data-lang="en">Convocations</span></a>
     <a href="#staff"><span data-lang="fr">À propos</span><span data-lang="en">About</span></a>
+    <a href="#boutique"><span data-lang="fr">Boutique</span><span data-lang="en">Shop</span></a>
   </div>
 
   <div class="nav-right">
@@ -2991,6 +3342,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   <a href="#resultats" onclick="closeMobileMenu()"><span data-lang="fr">Résultats</span><span data-lang="en">Results</span></a>
   <a href="#galerie" onclick="closeMobileMenu()"><span data-lang="fr">Galerie</span><span data-lang="en">Gallery</span></a>
   <a href="#staff" onclick="closeMobileMenu()"><span data-lang="fr">À propos</span><span data-lang="en">About</span></a>
+  <a href="#boutique" onclick="closeMobileMenu()"><span data-lang="fr">Boutique</span><span data-lang="en">Shop</span></a>
   <a href="#contact" class="btn-join" style="text-align:center;border-radius:6px;" onclick="closeMobileMenu()">
     <span data-lang="fr">Nous rejoindre</span><span data-lang="en">Join us</span>
   </a>
@@ -3028,45 +3380,45 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
   <!-- Stacked fixture pills -->
   <div class="hero-fixtures">
-    <a href="https://epreuves.fff.fr/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/4/accueil" target="_blank" rel="noopener" class="fix-pill featured" aria-label="Prochain match Seniors B">
+    <a href="https://epreuves.fff.fr/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/3/accueil" target="_blank" rel="noopener" class="fix-pill featured" aria-label="Prochain match Seniors A">
       <div class="fix-pill-date">
-        <span class="fix-pill-date-label"><span data-lang="fr">Prochain</span><span data-lang="en">Next</span></span>
-        <span class="fix-pill-date-value"><span data-lang="fr">Sam. 2 mai</span><span data-lang="en">Sat 2 May</span></span>
-      </div>
-      <div class="fix-pill-vs">
-        <img src="assets/logos/531034.jpg" alt="Théreval" class="fix-pill-logo" loading="lazy"/>
-        <span class="fix-pill-vs-label">VS</span>
-        <img src="assets/logos/501416.jpg" alt="ESI" class="fix-pill-logo" loading="lazy"/>
-      </div>
-      <span class="fix-pill-arrow" aria-hidden="true">
-        <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
-    </a>
-
-    <a href="https://epreuves.fff.fr/competition/engagement/440195-seniors-f-a-8-sport-200-lequertier/phase/1/2/accueil" target="_blank" rel="noopener" class="fix-pill" aria-label="Match Seniors F">
-      <div class="fix-pill-date">
-        <span class="fix-pill-date-label">Seniors F</span>
-        <span class="fix-pill-date-value"><span data-lang="fr">Dim. 3 mai</span><span data-lang="en">Sun 3 May</span></span>
-      </div>
-      <div class="fix-pill-vs">
-        <img src="assets/logos/501416.jpg" alt="ESI" class="fix-pill-logo" loading="lazy"/>
-        <span class="fix-pill-vs-label">VS</span>
-        <img src="assets/logos/547673.jpg" alt="Pointe Cotentin" class="fix-pill-logo" loading="lazy"/>
-      </div>
-      <span class="fix-pill-arrow" aria-hidden="true">
-        <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
-    </a>
-
-    <a href="https://epreuves.fff.fr/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/3/accueil" target="_blank" rel="noopener" class="fix-pill" aria-label="Match Seniors A">
-      <div class="fix-pill-date">
-        <span class="fix-pill-date-label">Seniors A</span>
+        <span class="fix-pill-date-label"><span data-lang="fr">Prochain · Seniors A</span><span data-lang="en">Next · Seniors A</span></span>
         <span class="fix-pill-date-value"><span data-lang="fr">Dim. 10 mai</span><span data-lang="en">Sun 10 May</span></span>
       </div>
       <div class="fix-pill-vs">
         <img src="assets/logos/501416.jpg" alt="ESI" class="fix-pill-logo" loading="lazy"/>
         <span class="fix-pill-vs-label">VS</span>
-        <img src="assets/logos/549413.jpg" alt="Montmartin" class="fix-pill-logo" loading="lazy"/>
+        <img src="assets/logos/549413.jpg" alt="AS Montmartin" class="fix-pill-logo" loading="lazy"/>
+      </div>
+      <span class="fix-pill-arrow" aria-hidden="true">
+        <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+
+    <a href="https://epreuves.fff.fr/competition/engagement/445255-championnat-u15-d3/phase/2/2/accueil" target="_blank" rel="noopener" class="fix-pill" aria-label="Match U15 (1)">
+      <div class="fix-pill-date">
+        <span class="fix-pill-date-label">U15 (1) · 1<sup>er</sup></span>
+        <span class="fix-pill-date-value"><span data-lang="fr">Sam. 9 mai</span><span data-lang="en">Sat 9 May</span></span>
+      </div>
+      <div class="fix-pill-vs">
+        <img src="assets/logos/501416.jpg" alt="ESI" class="fix-pill-logo" loading="lazy"/>
+        <span class="fix-pill-vs-label">VS</span>
+        <img src="assets/logos/510449.jpg" alt="SM Haytillon" class="fix-pill-logo" loading="lazy"/>
+      </div>
+      <span class="fix-pill-arrow" aria-hidden="true">
+        <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+
+    <a href="https://epreuves.fff.fr/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/4/accueil" target="_blank" rel="noopener" class="fix-pill" aria-label="Match Seniors B">
+      <div class="fix-pill-date">
+        <span class="fix-pill-date-label"><span data-lang="fr">Seniors B · Revanche</span><span data-lang="en">Seniors B · Rematch</span></span>
+        <span class="fix-pill-date-value"><span data-lang="fr">Dim. 17 mai</span><span data-lang="en">Sun 17 May</span></span>
+      </div>
+      <div class="fix-pill-vs">
+        <img src="assets/logos/501416.jpg" alt="ESI" class="fix-pill-logo" loading="lazy"/>
+        <span class="fix-pill-vs-label">VS</span>
+        <img src="assets/logos/531034.jpg" alt="Théreval" class="fix-pill-logo" loading="lazy"/>
       </div>
       <span class="fix-pill-arrow" aria-hidden="true">
         <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -3076,10 +3428,10 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
   <!-- Social row (bottom right) -->
   <div class="hero-social">
-    <a href="#" class="hero-social-link" aria-label="Instagram" title="Instagram">
+    <a href="https://www.instagram.com/etoilesportiveisigny/" target="_blank" rel="noopener" class="hero-social-link" aria-label="Instagram" title="Instagram">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
-    <a href="#" class="hero-social-link" aria-label="Facebook" title="Facebook">
+    <a href="https://www.facebook.com/profile.php?id=61556659953798" target="_blank" rel="noopener" class="hero-social-link" aria-label="Facebook" title="Facebook">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
     </a>
     <a href="https://epreuves.fff.fr/competition/club/501416-e-s-isigny-s-mer/club" target="_blank" rel="noopener" class="hero-social-link" aria-label="FFF" title="FFF — Officiel">
@@ -3121,102 +3473,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   </div>
 
   <div class="fixtures-strip reveal">
-    <a href="https://epreuves.fff.fr/competition/engagement/445894-championnat-u13-niveau-4/phase/2/2/accueil" target="_blank" rel="noopener" class="fixture featured">
-      <div class="fixture-head">
-        <span class="fixture-comp">U13 · Niveau 4 · J5</span>
-        <span class="fixture-loc away"><span data-lang="fr">Ext.</span><span data-lang="en">Away</span></span>
-      </div>
-      <div class="fixture-logos">
-        <img src="assets/logos/527693.jpg" alt="AS Bérigny Cerisy" class="fixture-logo" loading="lazy"/>
-        <span class="fixture-vs">VS</span>
-        <img src="assets/logos/501416.jpg" alt="ESI" class="fixture-logo" loading="lazy"/>
-      </div>
-      <div class="fixture-teams" style="font-size:13px;text-align:center;">
-        AS Bérigny Cerisy <span class="vs-mini" style="margin:0 6px;">·</span> ESI U13
-      </div>
-      <div class="fixture-meta">
-        <span class="fixture-date"><span data-lang="fr">Sam. 2 mai</span><span data-lang="en">Sat. May 2</span></span>
-        <span class="fixture-time">13h15</span>
-      </div>
-    </a>
-
-    <a href="https://epreuves.fff.fr/competition/engagement/445255-championnat-u15-d3/phase/2/2/accueil" target="_blank" rel="noopener" class="fixture">
-      <div class="fixture-head">
-        <span class="fixture-comp">U15 · D3 · J6</span>
-        <span class="fixture-loc away"><span data-lang="fr">Ext.</span><span data-lang="en">Away</span></span>
-      </div>
-      <div class="fixture-logos">
-        <img src="assets/logos/500140.jpg" alt="AS Valognes 2" class="fixture-logo" loading="lazy"/>
-        <span class="fixture-vs">VS</span>
-        <img src="assets/logos/501416.jpg" alt="ESI" class="fixture-logo" loading="lazy"/>
-      </div>
-      <div class="fixture-teams" style="font-size:13px;text-align:center;">
-        AS Valognes 2 <span class="vs-mini" style="margin:0 6px;">·</span> ESI U15 (1)
-      </div>
-      <div class="fixture-meta">
-        <span class="fixture-date"><span data-lang="fr">Sam. 2 mai</span><span data-lang="en">Sat. May 2</span></span>
-        <span class="fixture-time">15h00</span>
-      </div>
-    </a>
-
-    <a href="https://epreuves.fff.fr/competition/engagement/445255-championnat-u15-d3/phase/2/3/accueil" target="_blank" rel="noopener" class="fixture">
-      <div class="fixture-head">
-        <span class="fixture-comp">U15 · D3 · J6</span>
-        <span class="fixture-loc home"><span data-lang="fr">Dom.</span><span data-lang="en">Home</span></span>
-      </div>
-      <div class="fixture-logos">
-        <img src="assets/logos/501416.jpg" alt="Ent. Isigny-Carentan" class="fixture-logo" loading="lazy"/>
-        <span class="fixture-vs">VS</span>
-        <img src="assets/logos/565165.jpg" alt="ES de l'Ay 2" class="fixture-logo" loading="lazy"/>
-      </div>
-      <div class="fixture-teams" style="font-size:13px;text-align:center;">
-        Ent. Isigny–Carentan 2 <span class="vs-mini" style="margin:0 6px;">·</span> ES de l'Ay 2
-      </div>
-      <div class="fixture-meta">
-        <span class="fixture-date"><span data-lang="fr">Sam. 2 mai</span><span data-lang="en">Sat. May 2</span></span>
-        <span class="fixture-time">15h00</span>
-      </div>
-    </a>
-
-    <a href="https://epreuves.fff.fr/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/4/accueil" target="_blank" rel="noopener" class="fixture">
-      <div class="fixture-head">
-        <span class="fixture-comp">Seniors B · D4 · J11</span>
-        <span class="fixture-loc away"><span data-lang="fr">Ext.</span><span data-lang="en">Away</span></span>
-      </div>
-      <div class="fixture-logos">
-        <img src="assets/logos/531034.jpg" alt="AS Théreval 2" class="fixture-logo" loading="lazy"/>
-        <span class="fixture-vs">VS</span>
-        <img src="assets/logos/501416.jpg" alt="ESI" class="fixture-logo" loading="lazy"/>
-      </div>
-      <div class="fixture-teams" style="font-size:13px;text-align:center;">
-        AS Théreval 2 <span class="vs-mini" style="margin:0 6px;">·</span> ESI Seniors B
-      </div>
-      <div class="fixture-meta">
-        <span class="fixture-date"><span data-lang="fr">Sam. 2 mai</span><span data-lang="en">Sat. May 2</span></span>
-        <span class="fixture-time">19h00</span>
-      </div>
-    </a>
-
-    <a href="https://epreuves.fff.fr/competition/engagement/440195-seniors-f-a-8-sport-200-lequertier/phase/1/2/accueil" target="_blank" rel="noopener" class="fixture">
-      <div class="fixture-head">
-        <span class="fixture-comp">Seniors F · A8 · J10</span>
-        <span class="fixture-loc home"><span data-lang="fr">Dom.</span><span data-lang="en">Home</span></span>
-      </div>
-      <div class="fixture-logos">
-        <img src="assets/logos/501416.jpg" alt="ESI" class="fixture-logo" loading="lazy"/>
-        <span class="fixture-vs">VS</span>
-        <img src="assets/logos/547673.jpg" alt="AS Pointe Cotentin" class="fixture-logo" loading="lazy"/>
-      </div>
-      <div class="fixture-teams" style="font-size:13px;text-align:center;">
-        ESI Seniors F <span class="vs-mini" style="margin:0 6px;">·</span> AS Pointe Cotentin
-      </div>
-      <div class="fixture-meta">
-        <span class="fixture-date"><span data-lang="fr">Dim. 3 mai</span><span data-lang="en">Sun. May 3</span></span>
-        <span class="fixture-time">10h30</span>
-      </div>
-    </a>
-
-    <a href="https://epreuves.fff.fr/competition/engagement/440195-seniors-f-a-8-sport-200-lequertier/phase/1/2/accueil" target="_blank" rel="noopener" class="fixture">
+    <a href="https://epreuves.fff.fr/competition/engagement/440195-seniors-f-a-8-sport-200-lequertier/phase/1/2/accueil" target="_blank" rel="noopener" class="fixture featured">
       <div class="fixture-head">
         <span class="fixture-comp">Seniors F · A8 · J20</span>
         <span class="fixture-loc away"><span data-lang="fr">Ext.</span><span data-lang="en">Away</span></span>
@@ -3362,61 +3619,61 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
   <div class="team-grid">
 
-    <a href="https://epreuves.fff.fr/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/3/classement" target="_blank" rel="noopener" class="team-card reveal" data-cat="seniors" style="text-decoration:none;">
+    <button type="button" class="team-card reveal" data-cat="seniors" data-classement="seniors-a">
       <div class="team-card-head">
         <div>
-          <div class="team-card-cat">Seniors · Équipe première</div>
+          <div class="team-card-cat">Seniors · Équipe première · ↑ 1</div>
           <div class="team-card-name">Seniors A</div>
-          <div class="team-card-rank" style="margin-top:8px;">
-            <span class="team-card-rank-pos">3<sup>e</sup></span>
-            <span class="team-card-rank-meta">/ 12 · 32 pts</span>
+          <div class="team-card-rank" style="margin-top:8px;background:rgba(34,197,94,0.10);">
+            <span class="team-card-rank-pos" style="color:var(--win);">2<sup>e</sup></span>
+            <span class="team-card-rank-meta">/ 12 · 31 pts</span>
           </div>
         </div>
         <img src="assets/logos/501416.jpg" alt="ESI" class="team-logo" loading="lazy" style="width:54px;height:54px;"/>
       </div>
       <div class="team-card-comp">
         <strong>D4 · Poule C · JBS Prorété</strong>
-        <span data-lang="fr">15 J · 10 G · 2 N · 3 P · +32 diff.</span>
-        <span data-lang="en">15 P · 10 W · 2 D · 3 L · +32 diff.</span>
+        <span data-lang="fr">14 J · 10 G · 1 N · 3 P · +32 diff.</span>
+        <span data-lang="en">14 P · 10 W · 1 D · 3 L · +32 diff.</span>
       </div>
       <div class="team-card-form">
         <span class="form-mini-label"><span data-lang="fr">3 derniers</span><span data-lang="en">Last 3</span></span>
         <div class="form-mini-dots" aria-label="3 derniers matchs">
-          <span class="dot-mini L" title="Aireloise 2-1">D</span>
+          <span class="dot-mini W" title="Creances 0-0 (forfait)">V</span>
           <span class="dot-mini W" title="Vesly 1-4">V</span>
           <span class="dot-mini W" title="St Jores 7-0">V</span>
         </div>
       </div>
-    </a>
+    </button>
 
-    <a href="https://epreuves.fff.fr/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/4/classement" target="_blank" rel="noopener" class="team-card reveal" data-cat="seniors" style="text-decoration:none;">
+    <button type="button" class="team-card reveal" data-cat="seniors" data-classement="seniors-b">
       <div class="team-card-head">
         <div>
-          <div class="team-card-cat">Seniors · Réserve</div>
+          <div class="team-card-cat">Seniors · Réserve · 🎉 +3 pts</div>
           <div class="team-card-name">Seniors B</div>
           <div class="team-card-rank" style="margin-top:8px;background:rgba(239,68,68,0.08);">
             <span class="team-card-rank-pos" style="color:var(--loss);">10<sup>e</sup></span>
-            <span class="team-card-rank-meta">/ 12 · -1 pt</span>
+            <span class="team-card-rank-meta">/ 12 · 2 pts</span>
           </div>
         </div>
         <img src="assets/logos/501416.jpg" alt="ESI" class="team-logo" loading="lazy" style="width:54px;height:54px;"/>
       </div>
       <div class="team-card-comp">
         <strong>D4 · Poule D · JBS Prorété</strong>
-        <span data-lang="fr">15 J · 0 G · 1 N · 13 P · -37 diff.</span>
-        <span data-lang="en">15 P · 0 W · 1 D · 13 L · -37 diff.</span>
+        <span data-lang="fr">16 J · 1 G · 1 N · 13 P · -37 diff. · 1<sup>re</sup> victoire le 2 mai</span>
+        <span data-lang="en">16 P · 1 W · 1 D · 13 L · -37 diff. · First win May 2</span>
       </div>
       <div class="team-card-form">
         <span class="form-mini-label"><span data-lang="fr">3 derniers</span><span data-lang="en">Last 3</span></span>
         <div class="form-mini-dots" aria-label="3 derniers matchs">
           <span class="dot-mini L" title="Marigny 3-1">D</span>
           <span class="dot-mini L" title="Aireloise 2-1">D</span>
-          <span class="dot-mini empty" title="À jouer">·</span>
+          <span class="dot-mini W" title="Théreval 1-2 · 1re victoire !">V</span>
         </div>
       </div>
-    </a>
+    </button>
 
-    <a href="https://epreuves.fff.fr/competition/engagement/441428-championnat-veterans/phase/1/2/classement" target="_blank" rel="noopener" class="team-card reveal" data-cat="seniors" style="text-decoration:none;">
+    <button type="button" class="team-card reveal" data-cat="seniors" data-classement="veterans">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat"><span data-lang="fr">Seniors · Vétérans</span><span data-lang="en">Seniors · Veterans</span></div>
@@ -3439,92 +3696,94 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
           <span class="dot-mini D" title="Auversoise 0-0">N</span>
         </div>
       </div>
-    </a>
+    </button>
 
-    <a href="https://epreuves.fff.fr/competition/engagement/440195-seniors-f-a-8-sport-200-lequertier/phase/1/2/classement" target="_blank" rel="noopener" class="team-card reveal" data-cat="feminines" style="text-decoration:none;">
+    <button type="button" class="team-card reveal" data-cat="feminines" data-classement="seniors-f">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat"><span data-lang="fr">Féminines · Football à 8</span><span data-lang="en">Women · 8-a-side</span></div>
           <div class="team-card-name"><span data-lang="fr">Seniors F</span><span data-lang="en">Women F</span></div>
           <div class="team-card-rank" style="margin-top:8px;">
             <span class="team-card-rank-pos">4<sup>e</sup></span>
-            <span class="team-card-rank-meta">/ 12 · 30 pts</span>
+            <span class="team-card-rank-meta">/ 12 · 24 pts</span>
           </div>
         </div>
         <img src="assets/logos/501416.jpg" alt="ESI" class="team-logo" loading="lazy" style="width:54px;height:54px;"/>
       </div>
       <div class="team-card-comp">
         <strong><span data-lang="fr">Seniors F · A8 · D2 Nord</span><span data-lang="en">Senior Women · 8-a-side · D2 North</span></strong>
-        <span data-lang="fr">16 J · 10 G · 0 N · 6 P · +5 diff.</span>
-        <span data-lang="en">16 P · 10 W · 0 D · 6 L · +5 diff.</span>
+        <span data-lang="fr">14 J · 8 G · 0 N · 6 P · +1 diff.</span>
+        <span data-lang="en">14 P · 8 W · 0 D · 6 L · +1 diff.</span>
       </div>
       <div class="team-card-form">
         <span class="form-mini-label"><span data-lang="fr">3 derniers</span><span data-lang="en">Last 3</span></span>
         <div class="form-mini-dots" aria-label="3 derniers matchs">
-          <span class="dot-mini L" title="Marais 2-1">D</span>
           <span class="dot-mini W" title="Rauville 0-3">V</span>
           <span class="dot-mini W" title="Plain Haytillon 3-1">V</span>
+          <span class="dot-mini W" title="Pointe Cotentin (3 mai)">V</span>
         </div>
       </div>
-    </a>
+    </button>
 
-    <a href="https://epreuves.fff.fr/competition/engagement/445255-championnat-u15-d3/phase/2/2/classement" target="_blank" rel="noopener" class="team-card reveal" data-cat="jeunes" style="text-decoration:none;">
+    <button type="button" class="team-card reveal" data-cat="jeunes" data-classement="u15-1" style="background:linear-gradient(135deg,rgba(212,160,23,0.08),rgba(255,255,255,1));border-color:rgba(212,160,23,0.3);">
       <div class="team-card-head">
         <div>
-          <div class="team-card-cat">Jeunes · U14 / U15</div>
+          <div class="team-card-cat" style="color:#d4a017;">🥇 Jeunes · 1<sup>er</sup> du classement</div>
           <div class="team-card-name">U15 (1)</div>
-          <div class="team-card-rank" style="margin-top:8px;">
-            <span class="team-card-rank-pos">4<sup>e</sup></span>
-            <span class="team-card-rank-meta">/ 9 · 9 pts</span>
+          <div class="team-card-rank" style="margin-top:8px;background:rgba(212,160,23,0.15);">
+            <span class="team-card-rank-pos" style="color:#d4a017;">1<sup>er</sup></span>
+            <span class="team-card-rank-meta">/ 9 · 12 pts</span>
           </div>
         </div>
         <img src="assets/logos/501416.jpg" alt="ESI" class="team-logo" loading="lazy" style="width:54px;height:54px;"/>
       </div>
       <div class="team-card-comp">
         <strong><span data-lang="fr">U15 D3 · Poule B · Printemps</span><span data-lang="en">U15 D3 · Group B · Spring</span></strong>
-        <span data-lang="fr">4 J · 3 G · 0 N · 1 P · +24 diff.</span>
-        <span data-lang="en">4 P · 3 W · 0 D · 1 L · +24 diff.</span>
+        <span data-lang="fr">5 J · 4 G · 0 N · 1 P · +25 diff.</span>
+        <span data-lang="en">5 P · 4 W · 0 D · 1 L · +25 diff.</span>
       </div>
       <div class="team-card-form">
-        <span class="form-mini-label"><span data-lang="fr">Dernier</span><span data-lang="en">Last</span></span>
-        <div class="form-mini-dots" aria-label="Dernier match">
+        <span class="form-mini-label"><span data-lang="fr">2 derniers</span><span data-lang="en">Last 2</span></span>
+        <div class="form-mini-dots" aria-label="2 derniers matchs">
           <span class="dot-mini W" title="Montebourg 4-1">V</span>
+          <span class="dot-mini W" title="Valognes 3-4">V</span>
         </div>
       </div>
-    </a>
+    </button>
 
-    <a href="https://epreuves.fff.fr/competition/engagement/445255-championnat-u15-d3/phase/2/3/classement" target="_blank" rel="noopener" class="team-card reveal" data-cat="jeunes" style="text-decoration:none;">
+    <button type="button" class="team-card reveal" data-cat="jeunes" data-classement="u15-2">
       <div class="team-card-head">
         <div>
-          <div class="team-card-cat"><span data-lang="fr">Entente Isigny–Carentan</span><span data-lang="en">Isigny–Carentan partnership</span></div>
+          <div class="team-card-cat"><span data-lang="fr">Entente Isigny–Carentan · ↑</span><span data-lang="en">Isigny–Carentan partnership</span></div>
           <div class="team-card-name">U15 (2)</div>
           <div class="team-card-rank" style="margin-top:8px;background:rgba(239,68,68,0.08);">
             <span class="team-card-rank-pos" style="color:var(--loss);">9<sup>e</sup></span>
-            <span class="team-card-rank-meta">/ 9 · -2 pts</span>
+            <span class="team-card-rank-meta">/ 9 · -1 pt</span>
           </div>
         </div>
         <img src="assets/logos/501416.jpg" alt="ESI Carentan" class="team-logo" loading="lazy" style="width:54px;height:54px;"/>
       </div>
       <div class="team-card-comp">
         <strong><span data-lang="fr">U15 D3 · Poule C · Printemps</span><span data-lang="en">U15 D3 · Group C · Spring</span></strong>
-        <span data-lang="fr">5 J · -28 diff. · entente Carentan</span>
-        <span data-lang="en">5 P · -28 diff. · Carentan partnership</span>
+        <span data-lang="fr">5 J · 0 G · 0 N · 4 P · -67 diff. · 10-1 vs Ay le 2 mai !</span>
+        <span data-lang="en">5 P · 0 W · 0 D · 4 L · -67 diff. · Won 10-1 vs Ay May 2 !</span>
       </div>
       <div class="team-card-form">
-        <span class="form-mini-label"><span data-lang="fr">Dernier</span><span data-lang="en">Last</span></span>
-        <div class="form-mini-dots" aria-label="Dernier match">
+        <span class="form-mini-label"><span data-lang="fr">2 derniers</span><span data-lang="en">Last 2</span></span>
+        <div class="form-mini-dots" aria-label="2 derniers matchs">
           <span class="dot-mini L" title="Agneaux 0-3 (forfait)">D</span>
+          <span class="dot-mini W" title="ES de l'Ay 10-1 !">V</span>
         </div>
       </div>
-    </a>
+    </button>
 
-    <a href="https://epreuves.fff.fr/competition/engagement/445894-championnat-u13-niveau-4/phase/2/2/classement" target="_blank" rel="noopener" class="team-card reveal" data-cat="jeunes" style="text-decoration:none;">
+    <button type="button" class="team-card reveal" data-cat="jeunes" data-classement="u13">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat">Jeunes · U12 / U13</div>
           <div class="team-card-name">U13</div>
-          <div class="team-card-rank" style="margin-top:8px;">
-            <span class="team-card-rank-pos">5<sup>e</sup></span>
+          <div class="team-card-rank" style="margin-top:8px;background:rgba(239,68,68,0.08);">
+            <span class="team-card-rank-pos" style="color:var(--loss);">6<sup>e</sup></span>
             <span class="team-card-rank-meta">/ 6 · 3 pts</span>
           </div>
         </div>
@@ -3532,17 +3791,18 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
       <div class="team-card-comp">
         <strong><span data-lang="fr">U13 Niveau 4 · Poule B · Printemps</span><span data-lang="en">U13 Level 4 · Group B · Spring</span></strong>
-        <span data-lang="fr">3 J · 1 G · 0 N · 2 P · -14 diff.</span>
-        <span data-lang="en">3 P · 1 W · 0 D · 2 L · -14 diff.</span>
+        <span data-lang="fr">4 J · 1 G · 0 N · 3 P · -20 diff.</span>
+        <span data-lang="en">4 P · 1 W · 0 D · 3 L · -20 diff.</span>
       </div>
       <div class="team-card-form">
-        <span class="form-mini-label"><span data-lang="fr">2 derniers</span><span data-lang="en">Last 2</span></span>
-        <div class="form-mini-dots" aria-label="2 derniers matchs">
-          <span class="dot-mini L" title="Condé/St Jean 6-1">D</span>
+        <span class="form-mini-label"><span data-lang="fr">3 derniers</span><span data-lang="en">Last 3</span></span>
+        <div class="form-mini-dots" aria-label="3 derniers matchs">
           <span class="dot-mini L" title="Coutancaise 2-12">D</span>
+          <span class="dot-mini L" title="Bérigny Cerisy 0-6">D</span>
+          <span class="dot-mini L" title="9 mai vs Roncey">·</span>
         </div>
       </div>
-    </a>
+    </button>
 
     <article class="team-card reveal" data-cat="animation">
       <div class="team-card-head">
@@ -3594,11 +3854,45 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   <div class="resultats-grid">
     <div>
       <div class="section-header reveal">
-        <div class="section-eyebrow"><span data-lang="fr">Avril 2026 · Données FFF</span><span data-lang="en">April 2026 · FFF data</span></div>
+        <div class="section-eyebrow"><span data-lang="fr">Mis à jour 3 mai 2026 · Données FFF</span><span data-lang="en">Updated May 3, 2026 · FFF data</span></div>
         <h2 class="section-title"><span data-lang="fr">Derniers<br>résultats</span><span data-lang="en">Recent<br>Results</span></h2>
       </div>
       <div class="results-list">
 
+        <!-- WEEK-END 2-3 MAI -->
+        <div class="result-row win reveal" style="background:linear-gradient(135deg,rgba(34,197,94,0.10),rgba(34,197,94,0.04));">
+          <div class="result-indicator">V</div>
+          <div class="result-teams">AS Théreval 2 — ESI Seniors B
+            <span class="result-competition">2 mai · D4 Poule D · <span data-lang="fr">Extérieur · 🎉 1<sup>re</sup> victoire saison</span><span data-lang="en">Away · 🎉 First win</span></span>
+          </div>
+          <div class="result-score">1 - 2</div>
+        </div>
+
+        <div class="result-row win reveal">
+          <div class="result-indicator">V</div>
+          <div class="result-teams">AS Valognes F. 2 — ESI U15 (1)
+            <span class="result-competition">2 mai · U15 D3 Poule B · <span data-lang="fr">Extérieur · ESI 1<sup>er</sup> du classement</span><span data-lang="en">Away · ESI now top</span></span>
+          </div>
+          <div class="result-score">3 - 4</div>
+        </div>
+
+        <div class="result-row win reveal">
+          <div class="result-indicator">V</div>
+          <div class="result-teams">Ent. Isigny–Carentan 2 — ES de l'Ay 2
+            <span class="result-competition">2 mai · U15 D3 Poule C · <span data-lang="fr">Domicile · Festival offensif</span><span data-lang="en">Home · Goal fest</span></span>
+          </div>
+          <div class="result-score">10 - 1</div>
+        </div>
+
+        <div class="result-row loss reveal">
+          <div class="result-indicator">D</div>
+          <div class="result-teams">AS Bérigny Cerisy — ESI U13
+            <span class="result-competition">2 mai · U13 Niveau 4 Poule B · <span data-lang="fr">Extérieur</span><span data-lang="en">Away</span></span>
+          </div>
+          <div class="result-score">6 - 0</div>
+        </div>
+
+        <!-- WEEK-END 26 AVRIL -->
         <div class="result-row win reveal">
           <div class="result-indicator">V</div>
           <div class="result-teams">ESI Seniors A — AS St Jores 2
@@ -3631,51 +3925,19 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
           <div class="result-score">1 - 4</div>
         </div>
 
-        <div class="result-row loss reveal">
-          <div class="result-indicator">D</div>
-          <div class="result-teams">ESI Seniors B — US Aireloise
-            <span class="result-competition">19 avril · D4 Poule D · <span data-lang="fr">Domicile</span><span data-lang="en">Home</span></span>
-          </div>
-          <div class="result-score">1 - 2</div>
-        </div>
-
-        <div class="result-row win reveal">
-          <div class="result-indicator">V</div>
-          <div class="result-teams">Ent. USSJ/Rauville — ESI Seniors F
-            <span class="result-competition">17 avril · Seniors F A8 D2 Nord · <span data-lang="fr">Extérieur</span><span data-lang="en">Away</span></span>
-          </div>
-          <div class="result-score">0 - 3</div>
-        </div>
-
-        <div class="result-row draw reveal">
-          <div class="result-indicator">N</div>
-          <div class="result-teams"><span data-lang="fr">ESI Vétérans — US Auversoise</span><span data-lang="en">ESI Veterans — US Auversoise</span>
-            <span class="result-competition">10 avril · <span data-lang="fr">Championnat Vétérans Poule B · Extérieur</span><span data-lang="en">Veterans Championship Group B · Away</span></span>
-          </div>
-          <div class="result-score">0 - 0</div>
-        </div>
-
-        <div class="result-row loss reveal">
-          <div class="result-indicator">D</div>
-          <div class="result-teams">ES Marigny Lozon M.V — ESI Seniors B
-            <span class="result-competition">11 avril · D4 Poule D · <span data-lang="fr">Extérieur</span><span data-lang="en">Away</span></span>
-          </div>
-          <div class="result-score">3 - 1</div>
-        </div>
-
       </div>
     </div>
 
     <aside class="season-card reveal">
-      <div class="season-title"><span data-lang="fr">Bilan club · Avril 2026</span><span data-lang="en">Club summary · April 2026</span></div>
+      <div class="season-title"><span data-lang="fr">Bilan club · Avril–Mai</span><span data-lang="en">Club summary · Apr–May</span></div>
       <div class="season-year"><span data-lang="fr">Saison 2025–26</span><span data-lang="en">Season 2025–26</span></div>
       <div class="season-stats">
         <div class="s-stat">
-          <div class="s-stat-val">12</div>
+          <div class="s-stat-val">16</div>
           <div class="s-stat-key"><span data-lang="fr">Matchs joués</span><span data-lang="en">Played</span></div>
         </div>
         <div class="s-stat">
-          <div class="s-stat-val">5</div>
+          <div class="s-stat-val">8</div>
           <div class="s-stat-key"><span data-lang="fr">Victoires</span><span data-lang="en">Wins</span></div>
         </div>
         <div class="s-stat">
@@ -3683,7 +3945,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
           <div class="s-stat-key"><span data-lang="fr">Nuls</span><span data-lang="en">Draws</span></div>
         </div>
         <div class="s-stat">
-          <div class="s-stat-val">6</div>
+          <div class="s-stat-val">7</div>
           <div class="s-stat-key"><span data-lang="fr">Défaites</span><span data-lang="en">Losses</span></div>
         </div>
         <div class="s-stat">
@@ -3691,23 +3953,23 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
           <div class="s-stat-key"><span data-lang="fr">Équipes engagées</span><span data-lang="en">Teams</span></div>
         </div>
         <div class="s-stat">
-          <div class="s-stat-val">2</div>
+          <div class="s-stat-val">9</div>
           <div class="s-stat-key"><span data-lang="fr">Matchs à venir</span><span data-lang="en">Upcoming</span></div>
         </div>
       </div>
       <div class="form-streak">
         <div class="streak-label"><span data-lang="fr">5 derniers résultats club</span><span data-lang="en">Last 5 club results</span></div>
         <div class="streak-dots">
-          <div class="dot W">V</div>
-          <div class="dot W">V</div>
-          <div class="dot W">V</div>
-          <div class="dot W">V</div>
-          <div class="dot L">D</div>
+          <div class="dot W" title="ESI U15 4-3 Valognes (2 mai)">V</div>
+          <div class="dot W" title="Ent. Isigny-Carent 10-1 Ay (2 mai)">V</div>
+          <div class="dot W" title="ESI Seniors B 2-1 Théreval (2 mai)">V</div>
+          <div class="dot L" title="ESI U13 0-6 Bérigny Cerisy (2 mai)">D</div>
+          <div class="dot W" title="ESI Seniors A 7-0 St Jores (26 avr)">V</div>
         </div>
       </div>
       <p style="margin-top:18px;font-family:var(--font-body);font-size:11px;line-height:1.5;color:rgba(255,255,255,0.4);">
-        <span data-lang="fr">Source : épreuves.fff.fr — affiliation 501416. Données du mois en cours uniquement.</span>
-        <span data-lang="en">Source: épreuves.fff.fr — club ID 501416. Current month only.</span>
+        <span data-lang="fr">Source : épreuves.fff.fr — affiliation 501416. Mis à jour le 3 mai 2026.</span>
+        <span data-lang="en">Source: épreuves.fff.fr — club ID 501416. Updated May 3, 2026.</span>
       </p>
     </aside>
   </div>
@@ -3783,8 +4045,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 <!-- ===== CONVOCATIONS ===== -->
 <section id="convocations">
   <div class="section-header reveal">
-    <div class="section-eyebrow"><span data-lang="fr">Espace licenciés · Sam 2 mai – Dim 10 mai</span><span data-lang="en">Members area · May 2 – May 10</span></div>
-    <h2 class="section-title"><span data-lang="fr">Convocations<br>du week-end</span><span data-lang="en">Weekend<br>Call-ups</span></h2>
+    <div class="section-eyebrow"><span data-lang="fr">Espace licenciés · 8–17 mai</span><span data-lang="en">Members area · May 8–17</span></div>
+    <h2 class="section-title"><span data-lang="fr">Convocations<br>à venir</span><span data-lang="en">Upcoming<br>Call-ups</span></h2>
   </div>
 
   <!-- Login banner — toggles between guest and logged states -->
@@ -3809,137 +4071,62 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
   <div class="convoc-grid">
 
-    <!-- SENIORS B -->
+    <!-- SENIORS A — Featured (gros match dim 10 mai) -->
     <article class="convoc-card featured reveal">
       <div class="convoc-card-head">
         <div>
-          <div class="convoc-cat">D4 · Poule D · Journée 11</div>
-          <div class="convoc-team">Seniors B</div>
-        </div>
-        <span class="convoc-loc-tag away"><span data-lang="fr">Extérieur</span><span data-lang="en">Away</span></span>
-      </div>
-      <p class="convoc-match-line"><strong>AS Théreval 2</strong> vs <strong>ESI Seniors B</strong></p>
-      <div class="convoc-times">
-        <div class="convoc-time-item">
-          <div class="convoc-time-label"><span data-lang="fr">Match</span><span data-lang="en">Match</span></div>
-          <div class="convoc-time-value">Sam 2 mai · 19h00</div>
-        </div>
-        <div class="convoc-time-item">
-          <div class="convoc-time-label"><span data-lang="fr">Convocation</span><span data-lang="en">Call-up</span></div>
-          <div class="convoc-time-value">17h45 au stade</div>
-        </div>
-      </div>
-      <div class="convoc-players">
-        <div class="convoc-players-title"><span data-lang="fr">14 joueurs convoqués</span><span data-lang="en">14 players called up</span></div>
-        <ul class="convoc-list">
-          <li>Adrien G.</li><li>Jessy T.</li><li>Alain P.</li><li>Lucas M.</li>
-          <li>Pierre B.</li><li>Romain V.</li><li>Théo D.</li><li>Mathieu L.</li>
-          <li>Antoine R.</li><li>Bastien C.</li><li>Hugo F.</li><li>Maxime P.</li>
-          <li>Florian S.</li><li>Quentin J.</li>
-        </ul>
-        <div class="convoc-lock" data-lock>
-          <div class="convoc-lock-content">
-            <span data-lang="fr">🔒 Liste réservée aux licenciés</span><span data-lang="en">🔒 Members only list</span><br>
-            <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- SENIORS F -->
-    <article class="convoc-card reveal">
-      <div class="convoc-card-head">
-        <div>
-          <div class="convoc-cat">A8 · D2 Nord · Journée 10</div>
-          <div class="convoc-team">Seniors F</div>
+          <div class="convoc-cat">D4 · Poule C · Journée 20 · 2<sup>e</sup>/12</div>
+          <div class="convoc-team">Seniors A</div>
         </div>
         <span class="convoc-loc-tag home"><span data-lang="fr">Domicile</span><span data-lang="en">Home</span></span>
       </div>
-      <p class="convoc-match-line"><strong>ESI Seniors F</strong> vs <strong>AS Pointe Cotentin</strong></p>
+      <p class="convoc-match-line"><strong>ESI Seniors A</strong> vs <strong>AS Montmartin Graig.</strong></p>
       <div class="convoc-times">
         <div class="convoc-time-item">
           <div class="convoc-time-label"><span data-lang="fr">Match</span><span data-lang="en">Match</span></div>
-          <div class="convoc-time-value">Dim 3 mai · 10h30</div>
+          <div class="convoc-time-value">Dim 10 mai · 15h00</div>
         </div>
         <div class="convoc-time-item">
           <div class="convoc-time-label"><span data-lang="fr">Convocation</span><span data-lang="en">Call-up</span></div>
-          <div class="convoc-time-value">9h30 au stade</div>
+          <div class="convoc-time-value">14h00 au stade</div>
         </div>
       </div>
       <div class="convoc-players">
-        <div class="convoc-players-title"><span data-lang="fr">11 joueuses convoquées</span><span data-lang="en">11 players called up</span></div>
-        <ul class="convoc-list">
-          <li>Marie L.</li><li>Camille D.</li><li>Léa B.</li><li>Manon T.</li>
-          <li>Sarah V.</li><li>Élise R.</li><li>Pauline G.</li><li>Justine M.</li>
-          <li>Anaïs P.</li><li>Clara F.</li><li>Emma S.</li>
+        <div class="convoc-players-title"><span data-lang="fr">Liste publiée jeudi 8 mai</span><span data-lang="en">Squad released Thu May 8</span></div>
+        <ul class="convoc-list" style="opacity:0.5;">
+          <li><span data-lang="fr">Sera publiée 48h avant le match</span><span data-lang="en">Released 48h before kickoff</span></li>
         </ul>
         <div class="convoc-lock" data-lock>
           <div class="convoc-lock-content">
-            <span data-lang="fr">🔒 Liste réservée aux licenciés</span><span data-lang="en">🔒 Members only list</span><br>
-            <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- U13 -->
-    <article class="convoc-card reveal">
-      <div class="convoc-card-head">
-        <div>
-          <div class="convoc-cat">U13 · Niveau 4 · Journée 5</div>
-          <div class="convoc-team">U13</div>
-        </div>
-        <span class="convoc-loc-tag away"><span data-lang="fr">Extérieur</span><span data-lang="en">Away</span></span>
-      </div>
-      <p class="convoc-match-line"><strong>AS Bérigny Cerisy</strong> vs <strong>ESI U13</strong></p>
-      <div class="convoc-times">
-        <div class="convoc-time-item">
-          <div class="convoc-time-label"><span data-lang="fr">Match</span><span data-lang="en">Match</span></div>
-          <div class="convoc-time-value">Sam 2 mai · 13h15</div>
-        </div>
-        <div class="convoc-time-item">
-          <div class="convoc-time-label"><span data-lang="fr">Convocation</span><span data-lang="en">Call-up</span></div>
-          <div class="convoc-time-value">11h45 au stade</div>
-        </div>
-      </div>
-      <div class="convoc-players">
-        <div class="convoc-players-title"><span data-lang="fr">11 joueurs convoqués</span><span data-lang="en">11 players called up</span></div>
-        <ul class="convoc-list">
-          <li>Tom G.</li><li>Léo P.</li><li>Noah M.</li><li>Ethan B.</li>
-          <li>Liam D.</li><li>Hugo R.</li><li>Lucas V.</li><li>Nathan C.</li>
-          <li>Raphaël S.</li><li>Jules F.</li><li>Arthur L.</li>
-        </ul>
-        <div class="convoc-lock" data-lock>
-          <div class="convoc-lock-content">
-            <span data-lang="fr">🔒 Liste réservée aux licenciés</span><span data-lang="en">🔒 Members only list</span><br>
+            <span data-lang="fr">🔒 Connecte-toi pour voir dès parution</span><span data-lang="en">🔒 Sign in to see as soon as published</span><br>
             <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
           </div>
         </div>
       </div>
       <div class="convoc-extras">
-        <span><strong>🚗 Voitures :</strong> 3 demandées · 2 confirmées</span>
-        <span><strong>👕 Maillot :</strong> Bleu · Short bleu</span>
+        <span><strong>👕 Maillot :</strong> Bleu domicile</span>
+        <span><strong>🅿️ Stade Municipal</strong></span>
       </div>
     </article>
 
-    <!-- U15 (1) -->
-    <article class="convoc-card reveal">
+    <!-- U15 (1) — 1er du classement, gros match samedi -->
+    <article class="convoc-card reveal" style="background:linear-gradient(135deg,rgba(212,160,23,0.08),rgba(255,255,255,1));border-color:rgba(212,160,23,0.3);">
       <div class="convoc-card-head">
         <div>
-          <div class="convoc-cat">U15 · D3 · Poule B · J6</div>
+          <div class="convoc-cat" style="color:#d4a017;">🥇 U15 D3 · Poule B · J7 · 1<sup>er</sup>/9</div>
           <div class="convoc-team">U15 (1)</div>
         </div>
-        <span class="convoc-loc-tag away"><span data-lang="fr">Extérieur</span><span data-lang="en">Away</span></span>
+        <span class="convoc-loc-tag home"><span data-lang="fr">Domicile</span><span data-lang="en">Home</span></span>
       </div>
-      <p class="convoc-match-line"><strong>AS Valognes 2</strong> vs <strong>ESI U15 (1)</strong></p>
+      <p class="convoc-match-line"><strong>ESI U15 (1)</strong> vs <strong>SM Haytillon</strong></p>
       <div class="convoc-times">
         <div class="convoc-time-item">
           <div class="convoc-time-label"><span data-lang="fr">Match</span><span data-lang="en">Match</span></div>
-          <div class="convoc-time-value">Sam 2 mai · 15h00</div>
+          <div class="convoc-time-value">Sam 9 mai · 15h00</div>
         </div>
         <div class="convoc-time-item">
           <div class="convoc-time-label"><span data-lang="fr">Convocation</span><span data-lang="en">Call-up</span></div>
-          <div class="convoc-time-value">13h15 au stade</div>
+          <div class="convoc-time-value">14h00 au stade</div>
         </div>
       </div>
       <div class="convoc-players">
@@ -3958,12 +4145,126 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         </div>
       </div>
       <div class="convoc-extras">
-        <span><strong>🚗 Voitures :</strong> 4 demandées · 4 confirmées ✓</span>
-        <span><strong>👕 Maillot :</strong> Blanc · Short blanc</span>
+        <span><strong>👕 Maillot :</strong> Bleu · Short bleu</span>
+        <span><strong>🅿️ Stade Municipal Isigny</strong></span>
       </div>
     </article>
 
-    <!-- SENIORS A -->
+    <!-- U13 — Sam 9 mai -->
+    <article class="convoc-card reveal">
+      <div class="convoc-card-head">
+        <div>
+          <div class="convoc-cat">U13 · Niveau 4 · Journée 6</div>
+          <div class="convoc-team">U13</div>
+        </div>
+        <span class="convoc-loc-tag home"><span data-lang="fr">Domicile</span><span data-lang="en">Home</span></span>
+      </div>
+      <p class="convoc-match-line"><strong>ESI U13</strong> vs <strong>US Roncey Cerisy 2</strong></p>
+      <div class="convoc-times">
+        <div class="convoc-time-item">
+          <div class="convoc-time-label"><span data-lang="fr">Match</span><span data-lang="en">Match</span></div>
+          <div class="convoc-time-value">Sam 9 mai · 13h15</div>
+        </div>
+        <div class="convoc-time-item">
+          <div class="convoc-time-label"><span data-lang="fr">Convocation</span><span data-lang="en">Call-up</span></div>
+          <div class="convoc-time-value">12h15 au stade</div>
+        </div>
+      </div>
+      <div class="convoc-players">
+        <div class="convoc-players-title"><span data-lang="fr">11 joueurs convoqués</span><span data-lang="en">11 players called up</span></div>
+        <ul class="convoc-list">
+          <li>Tom G.</li><li>Léo P.</li><li>Noah M.</li><li>Ethan B.</li>
+          <li>Liam D.</li><li>Hugo R.</li><li>Lucas V.</li><li>Nathan C.</li>
+          <li>Raphaël S.</li><li>Jules F.</li><li>Arthur L.</li>
+        </ul>
+        <div class="convoc-lock" data-lock>
+          <div class="convoc-lock-content">
+            <span data-lang="fr">🔒 Liste réservée aux licenciés</span><span data-lang="en">🔒 Members only list</span><br>
+            <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="convoc-extras">
+        <span><strong>👕 Maillot :</strong> Bleu · Short bleu</span>
+        <span><strong>🅿️ Stade Municipal Isigny</strong></span>
+      </div>
+    </article>
+
+    <!-- SENIORS F — Ven 8 mai (Ext) -->
+    <article class="convoc-card reveal">
+      <div class="convoc-card-head">
+        <div>
+          <div class="convoc-cat">A8 · D2 Nord · Journée 20</div>
+          <div class="convoc-team">Seniors F</div>
+        </div>
+        <span class="convoc-loc-tag away"><span data-lang="fr">Extérieur</span><span data-lang="en">Away</span></span>
+      </div>
+      <p class="convoc-match-line"><strong>AS Pointe Cotentin</strong> vs <strong>ESI Seniors F</strong></p>
+      <div class="convoc-times">
+        <div class="convoc-time-item">
+          <div class="convoc-time-label"><span data-lang="fr">Match</span><span data-lang="en">Match</span></div>
+          <div class="convoc-time-value">Ven 8 mai · 20h30</div>
+        </div>
+        <div class="convoc-time-item">
+          <div class="convoc-time-label"><span data-lang="fr">Convocation</span><span data-lang="en">Call-up</span></div>
+          <div class="convoc-time-value">19h00 au stade</div>
+        </div>
+      </div>
+      <div class="convoc-players">
+        <div class="convoc-players-title"><span data-lang="fr">11 joueuses convoquées</span><span data-lang="en">11 players called up</span></div>
+        <ul class="convoc-list">
+          <li>Marie L.</li><li>Camille D.</li><li>Léa B.</li><li>Manon T.</li>
+          <li>Sarah V.</li><li>Élise R.</li><li>Pauline G.</li><li>Justine M.</li>
+          <li>Anaïs P.</li><li>Clara F.</li><li>Emma S.</li>
+        </ul>
+        <div class="convoc-lock" data-lock>
+          <div class="convoc-lock-content">
+            <span data-lang="fr">🔒 Liste réservée aux licenciés</span><span data-lang="en">🔒 Members only list</span><br>
+            <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="convoc-extras">
+        <span><strong>🚗 Voitures :</strong> 2 demandées</span>
+        <span><strong>👕 Maillot :</strong> Bleu</span>
+      </div>
+    </article>
+
+    <!-- SENIORS B (revanche !) — Dim 17 mai (Dom) -->
+    <article class="convoc-card reveal">
+      <div class="convoc-card-head">
+        <div>
+          <div class="convoc-cat">D4 · Poule D · Journée 21 · 🔁 Revanche</div>
+          <div class="convoc-team">Seniors B</div>
+        </div>
+        <span class="convoc-loc-tag home"><span data-lang="fr">Domicile</span><span data-lang="en">Home</span></span>
+      </div>
+      <p class="convoc-match-line"><strong>ESI Seniors B</strong> vs <strong>AS Théreval 2</strong></p>
+      <div class="convoc-times">
+        <div class="convoc-time-item">
+          <div class="convoc-time-label"><span data-lang="fr">Match</span><span data-lang="en">Match</span></div>
+          <div class="convoc-time-value">Dim 17 mai · 15h00</div>
+        </div>
+        <div class="convoc-time-item">
+          <div class="convoc-time-label"><span data-lang="fr">Convocation</span><span data-lang="en">Call-up</span></div>
+          <div class="convoc-time-value">14h00 au stade</div>
+        </div>
+      </div>
+      <div class="convoc-players">
+        <div class="convoc-players-title"><span data-lang="fr">Liste publiée jeudi 15 mai</span><span data-lang="en">Squad released Thu May 15</span></div>
+        <ul class="convoc-list" style="opacity:0.5;">
+          <li><span data-lang="fr">Sera publiée 48h avant — confirme la victoire 1-2 du 2 mai !</span><span data-lang="en">Released 48h before — defending the May 2 win 2-1 !</span></li>
+        </ul>
+        <div class="convoc-lock" data-lock>
+          <div class="convoc-lock-content">
+            <span data-lang="fr">🔒 Connecte-toi pour voir dès parution</span><span data-lang="en">🔒 Sign in to see as soon as published</span><br>
+            <button data-open-login="licencie"><span data-lang="fr">Se connecter</span><span data-lang="en">Sign in</span></button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- DEPRECATED placeholder retiré -->
     <article class="convoc-card reveal">
       <div class="convoc-card-head">
         <div>
@@ -4035,10 +4336,10 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <div class="classement-cards">
       <button class="classement-trigger" data-classement="seniors-a">
-        <div class="classement-trigger-pos">3<sup>e</sup></div>
+        <div class="classement-trigger-pos" style="color:var(--win);">2<sup>e</sup></div>
         <div class="classement-trigger-info">
-          <div class="classement-trigger-team">Seniors A</div>
-          <div class="classement-trigger-meta">D4 Poule C · 32 pts · 12 équipes</div>
+          <div class="classement-trigger-team">Seniors A <span style="color:var(--win);font-size:11px;">↑1</span></div>
+          <div class="classement-trigger-meta">D4 Poule C · 31 pts · +32 diff.</div>
         </div>
         <span class="classement-trigger-arrow"><svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg></span>
       </button>
@@ -4046,8 +4347,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       <button class="classement-trigger" data-classement="seniors-b">
         <div class="classement-trigger-pos" style="color:var(--loss);">10<sup>e</sup></div>
         <div class="classement-trigger-info">
-          <div class="classement-trigger-team">Seniors B</div>
-          <div class="classement-trigger-meta">D4 Poule D · -1 pt · 12 équipes</div>
+          <div class="classement-trigger-team">Seniors B <span style="color:var(--win);font-size:11px;">🎉 1<sup>re</sup> V</span></div>
+          <div class="classement-trigger-meta">D4 Poule D · 2 pts · 1G/1N/13P</div>
         </div>
         <span class="classement-trigger-arrow"><svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg></span>
       </button>
@@ -4056,7 +4357,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <div class="classement-trigger-pos">4<sup>e</sup></div>
         <div class="classement-trigger-info">
           <div class="classement-trigger-team">Seniors F</div>
-          <div class="classement-trigger-meta">A8 D2 Nord · 30 pts · 12 équipes</div>
+          <div class="classement-trigger-meta">A8 D2 Nord · 24 pts · 8G/0N/6P</div>
         </div>
         <span class="classement-trigger-arrow"><svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg></span>
       </button>
@@ -4070,20 +4371,29 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <span class="classement-trigger-arrow"><svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg></span>
       </button>
 
-      <button class="classement-trigger" data-classement="u15-1">
-        <div class="classement-trigger-pos">4<sup>e</sup></div>
+      <button class="classement-trigger" data-classement="u15-1" style="background:linear-gradient(135deg,rgba(212,160,23,0.08),rgba(255,255,255,1));border-color:rgba(212,160,23,0.4);">
+        <div class="classement-trigger-pos" style="color:#d4a017;">1<sup>er</sup></div>
         <div class="classement-trigger-info">
-          <div class="classement-trigger-team">U15 (1)</div>
-          <div class="classement-trigger-meta">D3 Poule B Printemps · 9 pts</div>
+          <div class="classement-trigger-team">U15 (1) <span style="color:#d4a017;font-size:11px;">🥇</span></div>
+          <div class="classement-trigger-meta">D3 Poule B Printemps · 12 pts · +25 diff.</div>
+        </div>
+        <span class="classement-trigger-arrow"><svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+      </button>
+
+      <button class="classement-trigger" data-classement="u15-2">
+        <div class="classement-trigger-pos" style="color:var(--loss);">9<sup>e</sup></div>
+        <div class="classement-trigger-info">
+          <div class="classement-trigger-team">U15 (2) Ent. <span style="color:var(--win);font-size:11px;">10-1 vs Ay !</span></div>
+          <div class="classement-trigger-meta">D3 Poule C Printemps · Ent. Carentan</div>
         </div>
         <span class="classement-trigger-arrow"><svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg></span>
       </button>
 
       <button class="classement-trigger" data-classement="u13">
-        <div class="classement-trigger-pos">5<sup>e</sup></div>
+        <div class="classement-trigger-pos" style="color:var(--loss);">6<sup>e</sup></div>
         <div class="classement-trigger-info">
           <div class="classement-trigger-team">U13</div>
-          <div class="classement-trigger-meta">Niveau 4 Poule B · 3 pts · 6 équipes</div>
+          <div class="classement-trigger-meta">Niveau 4 Poule B · 3 pts · 1G/0N/3P</div>
         </div>
         <span class="classement-trigger-arrow"><svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg></span>
       </button>
@@ -4133,6 +4443,268 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   </div>
 </section>
 
+<!-- ===== BOUTIQUE JAKO ===== -->
+<section id="boutique">
+  <div class="boutique-header reveal">
+    <div class="section-header" style="margin-bottom:0;">
+      <div class="section-eyebrow"><span data-lang="fr">Boutique officielle · Partenaire JAKO</span><span data-lang="en">Official shop · JAKO partner</span></div>
+      <h2 class="section-title"><span data-lang="fr">Aux<br>couleurs ESI</span><span data-lang="en">In our<br>colours</span></h2>
+    </div>
+    <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-cta-jako">
+      <span data-lang="fr">Voir tout sur JAKO</span><span data-lang="en">View all on JAKO</span>
+      <svg viewBox="0 0 16 16"><path d="M5 4l4 4-4 4M11 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <div class="boutique-grid reveal">
+
+    <!-- 1. Veste à capuche Power -->
+    <article class="boutique-card">
+      <div class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Veste</span><span data-lang="en">Jacket</span></span>
+        <span class="boutique-card-brand">JAKO</span>
+        <div class="boutique-card-img-bg"></div>
+        <div class="boutique-card-icon">
+          <svg viewBox="0 0 64 64"><path d="M16 22 L32 14 L48 22 L48 56 L40 56 L40 32 L24 32 L24 56 L16 56 Z M28 16 Q32 22 36 16"/><path d="M32 14 L32 32"/></svg>
+        </div>
+      </div>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Veste à capuche</span><span data-lang="en">Hooded jacket</span></span>
+        <h3 class="boutique-card-name">Power Hooded</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">43,49 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Maillot Power MC -->
+    <article class="boutique-card">
+      <div class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Maillot</span><span data-lang="en">Jersey</span></span>
+        <span class="boutique-card-brand">JAKO</span>
+        <div class="boutique-card-img-bg"></div>
+        <div class="boutique-card-icon">
+          <svg viewBox="0 0 64 64"><path d="M14 22 L24 16 L28 22 L36 22 L40 16 L50 22 L46 30 L42 28 L42 54 L22 54 L22 28 L18 30 Z"/></svg>
+        </div>
+      </div>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Manches courtes</span><span data-lang="en">Short sleeves</span></span>
+        <h3 class="boutique-card-name">Maillot Power MC</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">18,99 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Polo Power -->
+    <article class="boutique-card">
+      <div class="boutique-card-img">
+        <span class="boutique-card-tag">Polo</span>
+        <span class="boutique-card-brand">JAKO</span>
+        <div class="boutique-card-img-bg"></div>
+        <div class="boutique-card-icon">
+          <svg viewBox="0 0 64 64"><path d="M16 22 L24 16 L28 20 L32 24 L36 20 L40 16 L48 22 L46 28 L42 26 L42 54 L22 54 L22 26 L18 28 Z M28 20 L32 28 L36 20"/></svg>
+        </div>
+      </div>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Polo cérémonie</span><span data-lang="en">Polo</span></span>
+        <h3 class="boutique-card-name">Polo Power</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">29,49 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. Pantalon polyester Power -->
+    <article class="boutique-card">
+      <div class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Pantalon</span><span data-lang="en">Pants</span></span>
+        <span class="boutique-card-brand">JAKO</span>
+        <div class="boutique-card-img-bg"></div>
+        <div class="boutique-card-icon">
+          <svg viewBox="0 0 64 64"><path d="M22 14 L42 14 L44 32 L40 56 L34 56 L32 36 L30 56 L24 56 L20 32 Z"/></svg>
+        </div>
+      </div>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Polyester</span><span data-lang="en">Polyester</span></span>
+        <h3 class="boutique-card-name">Pantalon Power</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">26,49 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. Ziptop Power -->
+    <article class="boutique-card">
+      <div class="boutique-card-img">
+        <span class="boutique-card-tag">Ziptop</span>
+        <span class="boutique-card-brand">JAKO</span>
+        <div class="boutique-card-img-bg"></div>
+        <div class="boutique-card-icon">
+          <svg viewBox="0 0 64 64"><path d="M16 22 L24 16 L28 20 L36 20 L40 16 L48 22 L46 28 L42 26 L42 54 L22 54 L22 26 L18 28 Z M32 20 L32 54"/></svg>
+        </div>
+      </div>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Veste zippée</span><span data-lang="en">Zip-up jacket</span></span>
+        <h3 class="boutique-card-name">Ziptop Power</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">36,49 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6. Sweat Power -->
+    <article class="boutique-card">
+      <div class="boutique-card-img">
+        <span class="boutique-card-tag">Sweat</span>
+        <span class="boutique-card-brand">JAKO</span>
+        <div class="boutique-card-img-bg"></div>
+        <div class="boutique-card-icon">
+          <svg viewBox="0 0 64 64"><path d="M14 22 L24 16 L28 20 L36 20 L40 16 L50 22 L48 30 L42 28 L42 54 L22 54 L22 28 L16 30 Z"/></svg>
+        </div>
+      </div>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Pull col rond</span><span data-lang="en">Crew sweater</span></span>
+        <h3 class="boutique-card-name">Sweat Power</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">32,99 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7. Veste de pluie Power -->
+    <article class="boutique-card">
+      <div class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Pluie</span><span data-lang="en">Rain</span></span>
+        <span class="boutique-card-brand">JAKO</span>
+        <div class="boutique-card-img-bg"></div>
+        <div class="boutique-card-icon">
+          <svg viewBox="0 0 64 64"><path d="M14 22 L24 16 L28 20 L36 20 L40 16 L50 22 L48 28 L44 26 L44 54 L20 54 L20 26 L16 28 Z"/><circle cx="22" cy="40" r="1"/><circle cx="42" cy="42" r="1"/><circle cx="32" cy="48" r="1"/></svg>
+        </div>
+      </div>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Imperméable</span><span data-lang="en">Waterproof</span></span>
+        <h3 class="boutique-card-name">Veste de pluie Power</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">46,99 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8. Veste matelassée -->
+    <article class="boutique-card">
+      <div class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Doudoune</span><span data-lang="en">Padded</span></span>
+        <span class="boutique-card-brand">JAKO</span>
+        <div class="boutique-card-img-bg"></div>
+        <div class="boutique-card-icon">
+          <svg viewBox="0 0 64 64"><path d="M14 22 L24 16 L28 20 L36 20 L40 16 L50 22 L48 28 L44 26 L44 54 L20 54 L20 26 L16 28 Z"/><line x1="20" y1="32" x2="44" y2="32"/><line x1="20" y1="40" x2="44" y2="40"/><line x1="20" y1="48" x2="44" y2="48"/></svg>
+        </div>
+      </div>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Hiver</span><span data-lang="en">Winter</span></span>
+        <h3 class="boutique-card-name"><span data-lang="fr">Veste matelassée</span><span data-lang="en">Padded jacket</span></h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">74,99 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 9. Sac à dos Iconic -->
+    <article class="boutique-card">
+      <div class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Sac</span><span data-lang="en">Bag</span></span>
+        <span class="boutique-card-brand">JAKO</span>
+        <div class="boutique-card-img-bg"></div>
+        <div class="boutique-card-icon">
+          <svg viewBox="0 0 64 64"><path d="M20 24 L20 56 L44 56 L44 24 Q44 18 38 16 L26 16 Q20 18 20 24 Z"/><path d="M26 16 L26 22 L38 22 L38 16"/><rect x="26" y="32" width="12" height="6" rx="1"/></svg>
+        </div>
+      </div>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Accessoire</span><span data-lang="en">Accessory</span></span>
+        <h3 class="boutique-card-name">Sac à dos Iconic</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from">Prix</span>
+            <span class="boutique-card-price-amount">25,99 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="boutique-footer reveal">
+    <div class="boutique-footer-text">
+      <h4><span data-lang="fr">Une commande, un soutien direct au club</span><span data-lang="en">Every order supports the club</span></h4>
+      <p><span data-lang="fr">Tous les articles sont vendus via notre partenaire officiel <strong>JAKO</strong>. Personnalisation aux couleurs ESI possible (logo + sponsor RIGAULT). Livraison sous 2 à 3 semaines.</span><span data-lang="en">All items sold via our official partner <strong>JAKO</strong>. Personalization with ESI colours available (logo + RIGAULT sponsor). Delivery in 2–3 weeks.</span></p>
+    </div>
+    <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-cta-jako">
+      <span data-lang="fr">Boutique complète →</span><span data-lang="en">Full shop →</span>
+    </a>
+  </div>
+</section>
+
 <!-- ===== FOOTER ===== -->
 <footer id="contact">
   <div class="footer-top">
@@ -4153,15 +4725,16 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <li><a href="#galerie"><span data-lang="fr">Galerie</span><span data-lang="en">Gallery</span></a></li>
         <li><a href="#staff"><span data-lang="fr">Nos dirigeants</span><span data-lang="en">Our staff</span></a></li>
         <li><a href="#convocations"><span data-lang="fr">Convocations</span><span data-lang="en">Convocations</span></a></li>
+        <li><a href="#boutique"><span data-lang="fr">Boutique JAKO</span><span data-lang="en">JAKO Shop</span></a></li>
       </ul>
     </div>
     <div class="footer-social">
       <h4><span data-lang="fr">Nous suivre</span><span data-lang="en">Follow us</span></h4>
       <div class="social-links" style="margin-bottom:20px;">
-        <a href="#" class="social-btn" title="Instagram" aria-label="Instagram">
+        <a href="https://www.instagram.com/etoilesportiveisigny/" target="_blank" rel="noopener" class="social-btn" title="Instagram" aria-label="Instagram">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-        <a href="#" class="social-btn" title="Facebook" aria-label="Facebook">
+        <a href="https://www.facebook.com/profile.php?id=61556659953798" target="_blank" rel="noopener" class="social-btn" title="Facebook" aria-label="Facebook">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
       </div>
@@ -4279,6 +4852,14 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       <button class="modal-close" data-close-classement aria-label="Fermer">×</button>
     </div>
     <div class="modal-body">
+      <!-- Last match + Next match cards -->
+      <div class="classement-recap" id="classementRecap"></div>
+
+      <h4 style="font-family:var(--font-display);font-weight:800;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--draw);margin:8px 0 12px;display:flex;align-items:center;gap:10px;">
+        <span data-lang="fr">Classement complet</span><span data-lang="en">Full standings</span>
+        <span style="flex:1;height:1px;background:var(--lightgrey);"></span>
+      </h4>
+
       <table class="classement-table" id="classementTable">
         <thead>
           <tr>
@@ -4295,8 +4876,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <tbody id="classementTbody"></tbody>
       </table>
       <p style="margin-top:16px;font-family:var(--font-body);font-size:11px;color:var(--draw);">
-        <span data-lang="fr">Source : épreuves.fff.fr · mis à jour automatiquement après chaque rencontre.</span>
-        <span data-lang="en">Source: épreuves.fff.fr · auto-updated after each match.</span>
+        <span data-lang="fr">Source : épreuves.fff.fr · données du 3 mai 2026.</span>
+        <span data-lang="en">Source: épreuves.fff.fr · data from May 3, 2026.</span>
       </p>
     </div>
   </div>
@@ -4809,25 +5390,29 @@ uploadBtn?.addEventListener('click', () => {
 const CLASSEMENTS = {
   'seniors-a': {
     title: 'Classement Seniors A',
-    subtitle: 'Championnat D4 · Poule C · JBS Prorété',
+    subtitle: 'D4 · Poule C · JBS Prorété · Mis à jour 3 mai 2026',
+    lastMatch: { date: '26 avr', home: 'ESI Seniors A', away: 'AS St Jores 2', score: '7-0', result: 'win', venue: 'home', logoHome: '501416', logoAway: '521699' },
+    nextMatch: { date: 'Dim. 10 mai · 15h00', home: 'ESI Seniors A', away: 'AS Montmartin Graig.', venue: 'home', logoHome: '501416', logoAway: '549413' },
     rows: [
-      {pos:1, team:'Periers S. 2', pts:41, j:15, g:13, n:2, p:0, bp:64, bc:10, diff:54},
-      {pos:2, team:"ES de l'Ay 2", pts:34, j:15, g:11, n:1, p:3, bp:45, bc:9, diff:36},
-      {pos:3, team:'ES Isigny sur Mer', pts:32, j:15, g:10, n:2, p:3, bp:47, bc:15, diff:32, esi:true},
-      {pos:4, team:'ES des Marais 2', pts:32, j:14, g:10, n:2, p:2, bp:35, bc:17, diff:18},
-      {pos:5, team:'AS Montmartin Graig.', pts:19, j:15, g:6, n:2, p:6, bp:20, bc:31, diff:-11},
-      {pos:6, team:'ES Munevillaise 2', pts:15, j:15, g:5, n:2, p:6, bp:32, bc:36, diff:-4},
-      {pos:7, team:'Aubigny SC', pts:10, j:15, g:3, n:2, p:9, bp:19, bc:48, diff:-29},
-      {pos:8, team:'AS St Jores 2', pts:9, j:14, g:2, n:3, p:9, bp:23, bc:50, diff:-27},
-      {pos:9, team:'AJ St Hilaire PV 3', pts:7, j:15, g:3, n:2, p:6, bp:18, bc:50, diff:-32},
-      {pos:10, team:'US Vesly Laulne 2', pts:4, j:15, g:0, n:4, p:11, bp:14, bc:51, diff:-37},
-      {pos:11, team:'Creances S. 2', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
-      {pos:12, team:'Ent. CSC Montebourg 4', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
+      {pos:1, team:'Periers S. 2', pts:35, j:13, g:11, n:2, p:0, bp:56, bc:10, diff:46},
+      {pos:2, team:'ES Isigny sur Mer', pts:31, j:14, g:10, n:1, p:3, bp:46, bc:14, diff:32, esi:true},
+      {pos:3, team:"ES de l'Ay 2", pts:28, j:13, g:9, n:1, p:3, bp:31, bc:8, diff:23},
+      {pos:4, team:'ES des Marais 2', pts:26, j:12, g:8, n:2, p:2, bp:29, bc:16, diff:13},
+      {pos:5, team:'AS Montmartin Graig.', pts:16, j:13, g:5, n:2, p:5, bp:16, bc:27, diff:-11},
+      {pos:6, team:'Aubigny SC', pts:10, j:14, g:3, n:2, p:8, bp:18, bc:44, diff:-26},
+      {pos:7, team:'ES Munevillaise 2', pts:9, j:13, g:3, n:2, p:6, bp:21, bc:36, diff:-15},
+      {pos:8, team:'AS St Jores 2', pts:6, j:12, g:1, n:3, p:8, bp:20, bc:45, diff:-25},
+      {pos:9, team:'US Vesly Laulne 2', pts:3, j:14, g:0, n:3, p:11, bp:12, bc:49, diff:-37},
+      {pos:10, team:'Ent. CSC Montebourg 4', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
+      {pos:11, team:'AJ St Hilaire PV 3', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
+      {pos:12, team:'Creances S. 2', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
     ],
   },
   'seniors-b': {
     title: 'Classement Seniors B',
-    subtitle: 'Championnat D4 · Poule D · JBS Prorété',
+    subtitle: 'D4 · Poule D · JBS Prorété · Mis à jour 3 mai 2026',
+    lastMatch: { date: '2 mai', home: 'AS Théreval 2', away: 'ESI Seniors B', score: '1-2', result: 'win', venue: 'away', logoHome: '531034', logoAway: '501416', highlight: '🎉 Première victoire !' },
+    nextMatch: { date: 'Dim. 17 mai · 15h00', home: 'ESI Seniors B', away: 'AS Théreval 2', venue: 'home', logoHome: '501416', logoAway: '531034', note: 'Revanche' },
     rows: [
       {pos:1, team:"FC de l'Elle 2", pts:40, j:15, g:13, n:1, p:1, bp:50, bc:15, diff:35},
       {pos:2, team:'ES Marigny Lozon M.V', pts:36, j:13, g:12, n:0, p:1, bp:43, bc:15, diff:28},
@@ -4836,34 +5421,38 @@ const CLASSEMENTS = {
       {pos:5, team:'US Semilly St André 2', pts:15, j:15, g:4, n:3, p:8, bp:20, bc:32, diff:-12},
       {pos:6, team:'AS Bérigny Cerisy 3', pts:15, j:14, g:5, n:2, p:6, bp:27, bc:25, diff:2},
       {pos:7, team:'FC 3 Rivières 3', pts:11, j:15, g:4, n:2, p:6, bp:29, bc:40, diff:-11},
-      {pos:8, team:'AS Théreval 2', pts:11, j:16, g:3, n:3, p:9, bp:24, bc:37, diff:-13},
+      {pos:8, team:'AS Théreval 2', pts:11, j:17, g:3, n:3, p:10, bp:25, bc:39, diff:-14},
       {pos:9, team:'US Ste Croix St Lo 3', pts:10, j:16, g:4, n:1, p:9, bp:19, bc:45, diff:-26},
-      {pos:10, team:'ES Isigny sur Mer 2', pts:-1, j:15, g:0, n:1, p:13, bp:8, bc:45, diff:-37, esi:true},
+      {pos:10, team:'ES Isigny sur Mer 2', pts:2, j:16, g:1, n:1, p:13, bp:10, bc:47, diff:-37, esi:true},
       {pos:11, team:'Ent. Domjean St Jean', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
       {pos:12, team:'Ent.StJores.Auvers 3', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
     ],
   },
   'seniors-f': {
     title: 'Classement Seniors F',
-    subtitle: 'Seniors F A8 Sport 200 Lequertier · D2 Nord',
+    subtitle: 'A8 Sport 200 Lequertier · D2 Nord · Mis à jour 3 mai 2026',
+    lastMatch: { date: '26 avr', home: 'ESI Seniors F', away: 'Ent. Plain Haytillon', score: '3-1', result: 'win', venue: 'home', logoHome: '501416', logoAway: '563667' },
+    nextMatch: { date: 'Ven. 8 mai · 20h30', home: 'AS Pointe Cotentin', away: 'ESI Seniors F', venue: 'away', logoHome: '547673', logoAway: '501416' },
     rows: [
-      {pos:1, team:'Ent. USCI / USPSG', pts:40, j:18, g:12, n:4, p:2, bp:73, bc:22, diff:51},
-      {pos:2, team:'CA Pontois', pts:37, j:16, g:11, n:4, p:1, bp:60, bc:26, diff:34},
-      {pos:3, team:'US Auversoise', pts:30, j:18, g:8, n:6, p:4, bp:45, bc:32, diff:13},
-      {pos:4, team:'ES Isigny sur Mer', pts:30, j:16, g:10, n:0, p:6, bp:32, bc:27, diff:5, esi:true},
-      {pos:5, team:'AS Montebourg', pts:28, j:16, g:9, n:1, p:6, bp:53, bc:27, diff:26},
-      {pos:6, team:'ES des Marais', pts:25, j:16, g:8, n:1, p:7, bp:35, bc:38, diff:-3},
-      {pos:7, team:'Ent. Plain Haytillon', pts:21, j:17, g:7, n:2, p:6, bp:21, bc:29, diff:-8},
-      {pos:8, team:'AS Pointe Cotentin', pts:17, j:16, g:5, n:3, p:7, bp:22, bc:30, diff:-8},
-      {pos:9, team:'ES Heauville Siouvil', pts:9, j:17, g:3, n:1, p:12, bp:22, bc:49, diff:-27},
-      {pos:10, team:'Ent.USSJ/Rauville', pts:9, j:15, g:3, n:2, p:8, bp:22, bc:48, diff:-26},
-      {pos:11, team:'El. de Tocqueville', pts:6, j:17, g:2, n:2, p:11, bp:13, bc:70, diff:-57},
-      {pos:12, team:'Ent.ASSUN/FCEH À 8 2', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
+      {pos:1, team:'CA Pontois', pts:34, j:15, g:10, n:4, p:1, bp:57, bc:29, diff:28},
+      {pos:2, team:'Ent. USCI / USPSG', pts:34, j:16, g:10, n:4, p:2, bp:55, bc:22, diff:33},
+      {pos:3, team:'US Auversoise', pts:29, j:17, g:8, n:5, p:4, bp:44, bc:31, diff:13},
+      {pos:4, team:'ES Isigny sur Mer', pts:24, j:14, g:8, n:0, p:6, bp:27, bc:26, diff:1, esi:true},
+      {pos:5, team:'AS Montebourg', pts:22, j:14, g:7, n:1, p:6, bp:35, bc:26, diff:9},
+      {pos:6, team:'ES des Marais', pts:22, j:15, g:7, n:1, p:7, bp:33, bc:41, diff:-8},
+      {pos:7, team:'AS Pointe Cotentin', pts:16, j:14, g:5, n:2, p:6, bp:20, bc:27, diff:-7},
+      {pos:8, team:'Ent. Plain Haytillon', pts:15, j:15, g:5, n:2, p:6, bp:19, bc:29, diff:-10},
+      {pos:9, team:'ES Heauville Siouvil', pts:6, j:16, g:2, n:1, p:12, bp:19, bc:48, diff:-29},
+      {pos:10, team:'Ent.USSJ/Rauville', pts:6, j:14, g:2, n:2, p:8, bp:17, bc:47, diff:-30},
+      {pos:11, team:'Ent.ASSUN/FCEH À 8 2', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
+      {pos:12, team:'El. de Tocqueville', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
     ],
   },
   'veterans': {
     title: 'Classement Vétérans',
-    subtitle: 'Championnat Vétérans · Poule B',
+    subtitle: 'Championnat Vétérans · Poule B · Mis à jour 3 mai 2026',
+    lastMatch: { date: '10 avr', home: 'US Auversoise', away: 'ESI Vétérans', score: '0-0', result: 'draw', venue: 'away', logoHome: '501399', logoAway: '501416' },
+    nextMatch: { date: 'Ven. 15 mai · 21h00', home: 'ESI Vétérans', away: 'FC St-Lô Manche', venue: 'home', logoHome: '501416', logoAway: '500088' },
     rows: [
       {pos:1, team:'Agneaux FC', pts:25, j:9, g:8, n:1, p:0, bp:35, bc:9, diff:26},
       {pos:2, team:'FC St Lo Manche', pts:23, j:9, g:7, n:2, p:0, bp:32, bc:7, diff:25},
@@ -4877,30 +5466,51 @@ const CLASSEMENTS = {
     ],
   },
   'u15-1': {
-    title: 'Classement U15 (1)',
-    subtitle: 'Championnat U15 D3 · Poule B · Phase Printemps',
+    title: 'Classement U15 (1) — 🥇 1ᵉʳ',
+    subtitle: 'U15 D3 · Poule B · Phase Printemps · Mis à jour 3 mai 2026',
+    lastMatch: { date: '2 mai', home: 'AS Valognes F. 2', away: 'ESI U15 (1)', score: '3-4', result: 'win', venue: 'away', logoHome: '500140', logoAway: '501416' },
+    nextMatch: { date: 'Sam. 9 mai · 15h00', home: 'ESI U15 (1)', away: 'SM Haytillon', venue: 'home', logoHome: '501416', logoAway: '510449' },
     rows: [
-      {pos:1, team:'CS Carentanais 2', pts:12, j:5, g:4, n:0, p:1, bp:29, bc:7, diff:22},
-      {pos:2, team:'SM Haytillon', pts:9, j:4, g:3, n:0, p:1, bp:23, bc:7, diff:16},
-      {pos:3, team:'PL Octeville', pts:9, j:4, g:3, n:0, p:1, bp:20, bc:7, diff:13},
-      {pos:4, team:'ES Isigny sur Mer', pts:9, j:4, g:3, n:0, p:1, bp:35, bc:11, diff:24, esi:true},
-      {pos:5, team:'AS Valognes F. 2', pts:6, j:3, g:2, n:0, p:1, bp:26, bc:6, diff:20},
-      {pos:6, team:'AS Montebourg', pts:1, j:4, g:0, n:1, p:3, bp:2, bc:13, diff:-11},
+      {pos:1, team:'ES Isigny sur Mer', pts:12, j:5, g:4, n:0, p:1, bp:39, bc:14, diff:25, esi:true},
+      {pos:2, team:'CS Carentanais 2', pts:12, j:5, g:4, n:0, p:1, bp:29, bc:7, diff:22},
+      {pos:3, team:'SM Haytillon', pts:9, j:4, g:3, n:0, p:1, bp:23, bc:7, diff:16},
+      {pos:4, team:'PL Octeville', pts:9, j:4, g:3, n:0, p:1, bp:20, bc:7, diff:13},
+      {pos:5, team:'AS Valognes F. 2', pts:6, j:4, g:2, n:0, p:2, bp:29, bc:10, diff:19},
+      {pos:6, team:'AS Montebourg', pts:4, j:5, g:1, n:1, p:3, bp:5, bc:13, diff:-8},
       {pos:7, team:'Ent. USCI 2 - RSSV 2', pts:1, j:4, g:0, n:1, p:3, bp:5, bc:25, diff:-20},
-      {pos:8, team:'Ent.UCB B2S 2', pts:0, j:4, g:0, n:0, p:4, bp:0, bc:64, diff:-64},
+      {pos:8, team:'Ent.UCB B2S 2', pts:-1, j:5, g:0, n:0, p:4, bp:0, bc:67, diff:-67},
       {pos:9, team:'Ent.ASQ-FCEH', pts:'FG', j:0, g:0, n:0, p:0, bp:0, bc:0, diff:0},
+    ],
+  },
+  'u15-2': {
+    title: 'Classement U15 (2) · Entente',
+    subtitle: 'U15 D3 · Poule C · Phase Printemps · Ent. Isigny–Carentan',
+    lastMatch: { date: '2 mai', home: 'Ent. Isigny–Carentan 2', away: "ES de l'Ay 2", score: '10-1', result: 'win', venue: 'home', logoHome: '501416', logoAway: '565165', highlight: '⚽ Festival offensif' },
+    nextMatch: { date: 'Sam. 9 mai · 15h00', home: 'Ent. FC3R/Condé', away: 'Ent. Isigny–Carentan 2', venue: 'away', logoHome: '581303', logoAway: '501416' },
+    rows: [
+      {pos:1, team:'Agneaux FC 2', pts:12, j:4, g:4, n:0, p:0, bp:48, bc:2, diff:46},
+      {pos:2, team:'ES Marigny Lozon M.V', pts:12, j:4, g:4, n:0, p:0, bp:18, bc:5, diff:13},
+      {pos:3, team:'ES St Sauveur Rond.', pts:9, j:4, g:3, n:0, p:1, bp:28, bc:4, diff:24},
+      {pos:4, team:'Ent.AJSHP/ES Plain', pts:7, j:5, g:2, n:1, p:2, bp:13, bc:30, diff:-17},
+      {pos:5, team:'Ent. FCE/CAP', pts:6, j:4, g:2, n:0, p:2, bp:12, bc:16, diff:-4},
+      {pos:6, team:"ES de l'Ay 2", pts:3, j:5, g:1, n:0, p:4, bp:8, bc:31, diff:-23},
+      {pos:7, team:'Ent. Agon VSM 2 2', pts:3, j:5, g:1, n:1, p:2, bp:6, bc:34, diff:-28},
+      {pos:8, team:'Ent. FC3R/Condé', pts:3, j:5, g:1, n:0, p:4, bp:7, bc:14, diff:-7},
+      {pos:9, team:'Ent. Isigny–Carentan 2', pts:1, j:5, g:1, n:0, p:4, bp:16, bc:34, diff:-18, esi:true},
     ],
   },
   'u13': {
     title: 'Classement U13',
-    subtitle: 'Championnat U13 Niveau 4 · Poule B · Printemps',
+    subtitle: 'U13 Niveau 4 · Poule B · Printemps · Mis à jour 3 mai 2026',
+    lastMatch: { date: '2 mai', home: 'AS Bérigny Cerisy', away: 'ESI U13', score: '6-0', result: 'loss', venue: 'away', logoHome: '527693', logoAway: '501416' },
+    nextMatch: { date: 'Sam. 9 mai · 13h15', home: 'ESI U13', away: 'US Roncey Cerisy 2', venue: 'home', logoHome: '501416', logoAway: '581301' },
     rows: [
-      {pos:1, team:'ES Coutancaise 4', pts:9, j:3, g:3, n:0, p:0, bp:29, bc:5, diff:24},
-      {pos:2, team:'AS Bérigny Cerisy', pts:6, j:2, g:2, n:0, p:0, bp:4, bc:1, diff:3},
-      {pos:3, team:'FC des Étangs 3', pts:3, j:4, g:1, n:0, p:3, bp:12, bc:18, diff:-6},
-      {pos:4, team:'Ent. Condé / St Jean 3', pts:3, j:2, g:1, n:0, p:1, bp:8, bc:9, diff:-1},
-      {pos:5, team:'ES Isigny sur Mer', pts:3, j:3, g:1, n:0, p:2, bp:6, bc:20, diff:-14, esi:true},
-      {pos:6, team:'US Roncey Cerisy 2', pts:0, j:2, g:0, n:0, p:2, bp:2, bc:8, diff:-6},
+      {pos:1, team:'ES Coutancaise 4', pts:12, j:4, g:4, n:0, p:0, bp:34, bc:6, diff:28},
+      {pos:2, team:'AS Bérigny Cerisy', pts:9, j:3, g:3, n:0, p:0, bp:10, bc:1, diff:9},
+      {pos:3, team:'US Roncey Cerisy 2', pts:3, j:3, g:1, n:0, p:2, bp:7, bc:10, diff:-3},
+      {pos:4, team:'FC des Étangs 3', pts:3, j:5, g:1, n:0, p:4, bp:14, bc:23, diff:-9},
+      {pos:5, team:'Ent. Condé / St Jean 3', pts:3, j:3, g:1, n:0, p:2, bp:9, bc:14, diff:-5},
+      {pos:6, team:'ES Isigny sur Mer', pts:3, j:4, g:1, n:0, p:3, bp:6, bc:26, diff:-20, esi:true},
     ],
   },
 };
@@ -4909,12 +5519,73 @@ const classementBackdrop = document.getElementById('classementBackdrop');
 const classementTitle = document.getElementById('classementTitle');
 const classementSubtitle = document.getElementById('classementSubtitle');
 const classementTbody = document.getElementById('classementTbody');
+const classementRecap = document.getElementById('classementRecap');
+
+function logoSrc(code) { return `assets/logos/${code}.jpg`; }
+
+function renderRecapCards(c) {
+  if (!classementRecap) return;
+  const lm = c.lastMatch, nm = c.nextMatch;
+  let html = '';
+
+  if (lm) {
+    const resultLabel = lm.result === 'win' ? 'Victoire' : lm.result === 'loss' ? 'Défaite' : 'Nul';
+    const venueLabel = lm.venue === 'home' ? 'Domicile' : 'Extérieur';
+    html += `
+      <div class="recap-card last ${lm.result}">
+        <div class="recap-label">📊 <span data-lang="fr">Dernier match · ${lm.date}</span><span data-lang="en">Last match · ${lm.date}</span></div>
+        <div class="recap-teams">
+          <div class="recap-team">
+            <img src="${logoSrc(lm.logoHome)}" alt="${lm.home}" loading="lazy">
+            <div class="recap-team-name">${lm.home}</div>
+          </div>
+          <div class="recap-score">${lm.score}</div>
+          <div class="recap-team">
+            <img src="${logoSrc(lm.logoAway)}" alt="${lm.away}" loading="lazy">
+            <div class="recap-team-name">${lm.away}</div>
+          </div>
+        </div>
+        <div class="recap-meta">
+          <span>${venueLabel}</span>
+          <span class="recap-result-badge">${resultLabel}${lm.highlight ? ' · ' + lm.highlight : ''}</span>
+        </div>
+      </div>`;
+  }
+
+  if (nm) {
+    const venueLabel = nm.venue === 'home' ? 'Domicile' : 'Extérieur';
+    html += `
+      <div class="recap-card next">
+        <div class="recap-label">⏭ <span data-lang="fr">Prochain match · ${nm.date}</span><span data-lang="en">Next match · ${nm.date}</span></div>
+        <div class="recap-teams">
+          <div class="recap-team">
+            <img src="${logoSrc(nm.logoHome)}" alt="${nm.home}" loading="lazy">
+            <div class="recap-team-name">${nm.home}</div>
+          </div>
+          <div class="recap-vs">VS</div>
+          <div class="recap-team">
+            <img src="${logoSrc(nm.logoAway)}" alt="${nm.away}" loading="lazy">
+            <div class="recap-team-name">${nm.away}</div>
+          </div>
+        </div>
+        <div class="recap-meta">
+          <span>${venueLabel}</span>
+          <span class="recap-result-badge" style="color:var(--electric);">${nm.note || 'À venir'}</span>
+        </div>
+      </div>`;
+  }
+
+  classementRecap.innerHTML = html;
+}
 
 function openClassement(key) {
   const c = CLASSEMENTS[key];
   if (!c) return;
   classementTitle.textContent = c.title;
   classementSubtitle.textContent = c.subtitle;
+
+  renderRecapCards(c);
+
   classementTbody.innerHTML = c.rows.map(r => {
     const posClass = r.pos <= 3 ? `pos pos-${r.pos}` : 'pos';
     const diff = typeof r.diff === 'number' ? (r.diff > 0 ? `+${r.diff}` : r.diff) : r.diff;
@@ -4930,6 +5601,9 @@ function openClassement(key) {
       <td class="num ${diffClass}">${diff}</td>
     </tr>`;
   }).join('');
+
+  // Scroll modal to top when opening
+  classementBackdrop.querySelector('.modal').scrollTop = 0;
   classementBackdrop.classList.add('open');
 }
 function closeClassement() { classementBackdrop.classList.remove('open'); }
@@ -4965,22 +5639,26 @@ function addMsg(text, sender) {
 }
 
 const CHAT_RULES = [
-  { kw: ['prochain match', 'next match', 'prochain', 'demain', 'samedi', 'sam 2', 'sam. 2'],
-    a: 'Le **prochain match** est <strong>Sam. 2 mai à 19h00</strong> — AS Théreval 2 vs ESI Seniors B (à l\'extérieur, D4 Poule D, J11). <a href="#calendrier">Voir le calendrier</a>' },
+  { kw: ['prochain match', 'next match', 'prochain', 'demain', 'samedi', 'dimanche', 'sam 9', 'dim 10'],
+    a: 'Le <strong>prochain match Seniors A</strong> est <strong>Dim. 10 mai à 15h00</strong> — ESI vs AS Montmartin Graig. (Domicile, D4 Poule C, J20). Avant ça : <strong>Sam. 9 mai 13h15</strong> ESI U13 vs Roncey, et <strong>15h00</strong> ESI U15 (1er du classement !) vs SM Haytillon. <a href="#calendrier">Voir le calendrier</a>' },
   { kw: ['seniors a', 'seniors 1', 'séniors a', 'équipe première'],
-    a: '<strong>Seniors A — D4 Poule C :</strong> 3ᵉ/12 · 32 pts · 10G/2N/3P · 47 buts marqués · +32 diff. Prochain match : Dim. 10 mai vs AS Montmartin (Domicile).' },
+    a: '🟢 <strong>Seniors A — D4 Poule C : 2ᵉ/12 (↑1)</strong> · 31 pts · 14J · 10G/1N/3P · 46 BP / 14 BC · +32 diff. Forme : V V V (3 victoires d\'affilée). Prochain : <strong>Dim. 10 mai 15h vs AS Montmartin</strong> (Dom).' },
   { kw: ['seniors b', 'seniors 2', 'séniors b', 'réserve'],
-    a: '<strong>Seniors B — D4 Poule D :</strong> 10ᵉ/12 · -1 pt · 0G/1N/13P. Saison difficile mais le groupe travaille. Prochain match : Sam. 2 mai vs Théreval (extérieur).' },
+    a: '🎉 <strong>Seniors B — D4 Poule D : 10ᵉ/12 · 2 pts (+3 !)</strong> · 16J · 1G/1N/13P · -37 diff. <strong>Première victoire</strong> le 2 mai 1-2 contre Théreval ! Prochain : <strong>Dim. 17 mai 15h vs Théreval (revanche)</strong>, à domicile.' },
   { kw: ['seniors f', 'féminin', 'feminine', 'feminin', 'femme', 'women'],
-    a: '<strong>Seniors F — A8 D2 Nord :</strong> 4ᵉ/12 · 30 pts · 10G/0N/6P · +5 diff. Prochain : Dim. 3 mai vs Pointe Cotentin (Dom).' },
+    a: '<strong>Seniors F — A8 D2 Nord : 4ᵉ/12 · 24 pts</strong> · 14J · 8G/0N/6P · +1 diff. Prochain : <strong>Ven. 8 mai 20h30 vs AS Pointe Cotentin</strong> (Ext).' },
   { kw: ['vétéran', 'veteran', 'vétérans'],
-    a: '<strong>Vétérans — Poule B :</strong> 6ᵉ/9 · 5 pts · 1G/3N/3P. Prochain : Ven. 15 mai vs FC St-Lô Manche (Dom, 21h00).' },
+    a: '<strong>Vétérans — Poule B : 6ᵉ/9 · 5 pts</strong> · 8J · 1G/3N/3P. Prochain : <strong>Ven. 15 mai 21h vs FC St-Lô Manche</strong> (Dom).' },
+  { kw: ['u15 (1)', 'u15 1', 'u15-1'],
+    a: '🥇 <strong>U15 (1) — D3 Poule B Printemps : 1ᵉʳ/9 · 12 pts !</strong> 5J · 4G/0N/1P · 39 BP / 14 BC · +25 diff. Victoire 4-3 à Valognes le 2 mai. Prochain : <strong>Sam. 9 mai 15h vs SM Haytillon</strong> (Dom).' },
+  { kw: ['u15 (2)', 'u15 2', 'u15-2', 'entente', 'carentan'],
+    a: '⚽ <strong>U15 (2) Ent. Isigny–Carentan — D3 Poule C :</strong> Festival offensif le 2 mai, victoire <strong>10-1 contre ES de l\'Ay 2</strong> ! Prochain : Sam. 9 mai 15h vs Ent. FC3R/Condé (Ext).' },
   { kw: ['u15', 'u14', 'jeunes 15'],
-    a: '<strong>U15 (1) — D3 Poule B Printemps :</strong> 4ᵉ/9 · 9 pts · 3G/0N/1P · +24 diff. Beau parcours en phase printemps.' },
+    a: 'Deux équipes U15 à l\'ESI :<br>🥇 <strong>U15 (1)</strong> — 1ᵉʳ/9, 12 pts, +25 diff<br>⚽ <strong>U15 (2) Ent. Isigny–Carentan</strong> — victoire 10-1 le 2 mai !<br>Demande "u15 1" ou "u15 2" pour le détail.' },
   { kw: ['u13', 'u12', 'jeunes 13'],
-    a: '<strong>U13 — Niveau 4 Poule B :</strong> 5ᵉ/6 · 3 pts. Apprentissage en cours. Prochain : Sam. 2 mai vs Bérigny Cerisy (ext).' },
+    a: '<strong>U13 — Niveau 4 Poule B : 6ᵉ/6 · 3 pts</strong> · 4J · 1G/0N/3P · -20 diff. Saison difficile, équipe en construction. Prochain : <strong>Sam. 9 mai 13h15 vs US Roncey Cerisy 2</strong> (Dom).' },
   { kw: ['classement', 'rank', 'standing', 'position'],
-    a: 'Toutes les équipes : Seniors A 3ᵉ/12 · Seniors B 10ᵉ/12 · Seniors F 4ᵉ/12 · Vétérans 6ᵉ/9 · U15 4ᵉ/9 · U13 5ᵉ/6. <a href="#convocations">Voir les classements complets</a>' },
+    a: '<strong>Classements 3 mai 2026 :</strong><br>🟢 Seniors A 2ᵉ/12 (31 pts)<br>🎉 Seniors B 10ᵉ/12 (2 pts, 1ʳᵉ V)<br>Seniors F 4ᵉ/12 (24 pts)<br>Vétérans 6ᵉ/9 (5 pts)<br>🥇 U15 (1) 1ᵉʳ/9 (12 pts)<br>U15 (2) Ent. 9ᵉ/9 (1 pt)<br>U13 6ᵉ/6 (3 pts)<br>Clique sur une équipe dans la section "Toutes nos équipes" pour voir le classement complet.' },
   { kw: ['rejoindre', 'inscription', 'inscrire', 'comment faire', 'club', 'jouer'],
     a: 'Pour <strong>rejoindre l\'ESI</strong>, contacte-nous au 📧 <a href="mailto:501416@lfnfoot.com">501416@lfnfoot.com</a> ou viens directement au stade. Toutes catégories de U7 à Vétérans, hommes et femmes.' },
   { kw: ['stade', 'adresse', 'où', 'venir', 'lieu', 'plan'],
