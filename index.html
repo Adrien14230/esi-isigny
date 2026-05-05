@@ -1745,34 +1745,27 @@ footer { background: var(--dark); padding: 64px 48px 32px; }
   justify-content: center;
   position: relative;
   overflow: hidden;
-}
-.boutique-card-img-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(135deg, var(--navy) 0%, var(--electric) 60%, var(--bright) 100%);
-  opacity: 0.08;
+  background: var(--white);
 }
 .boutique-card-img::before {
   content: '';
   position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle at 30% 30%, rgba(58,127,232,0.18), transparent 50%);
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(58,127,232,0.06), transparent 60%),
+    linear-gradient(180deg, var(--white) 0%, var(--offwhite) 100%);
   pointer-events: none;
 }
-.boutique-card-icon {
-  width: 96px; height: 96px;
+.boutique-card-photo {
+  width: 92%;
+  height: 92%;
+  object-fit: contain;
   position: relative;
   z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 8px 16px rgba(13,31,60,0.10));
 }
-.boutique-card-icon svg {
-  width: 100%; height: 100%;
-  stroke: var(--electric);
-  fill: none;
-  stroke-width: 1.5;
-  filter: drop-shadow(0 8px 16px rgba(30,95,190,0.18));
-}
+.boutique-card:hover .boutique-card-photo { transform: scale(1.06); }
 .boutique-card-tag {
   position: absolute;
   top: 14px; left: 14px;
@@ -4458,25 +4451,22 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
   <div class="boutique-grid reveal">
 
-    <!-- 1. Veste à capuche Power -->
+    <!-- 1. Maillot Power MC (le plus représentatif) -->
     <article class="boutique-card">
-      <div class="boutique-card-img">
-        <span class="boutique-card-tag"><span data-lang="fr">Veste</span><span data-lang="en">Jacket</span></span>
+      <a href="https://team.jako.com/be-fr/team/esi_/maillot-power-mc-p5813/" target="_blank" rel="noopener" class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Maillot</span><span data-lang="en">Jersey</span></span>
         <span class="boutique-card-brand">JAKO</span>
-        <div class="boutique-card-img-bg"></div>
-        <div class="boutique-card-icon">
-          <svg viewBox="0 0 64 64"><path d="M16 22 L32 14 L48 22 L48 56 L40 56 L40 32 L24 32 L24 56 L16 56 Z M28 16 Q32 22 36 16"/><path d="M32 14 L32 32"/></svg>
-        </div>
-      </div>
+        <img src="assets/jako/maillot-power-mc.jpg" alt="Maillot Power MC ESI" class="boutique-card-photo" loading="lazy">
+      </a>
       <div class="boutique-card-body">
-        <span class="boutique-card-cat"><span data-lang="fr">Veste à capuche</span><span data-lang="en">Hooded jacket</span></span>
-        <h3 class="boutique-card-name">Power Hooded</h3>
+        <span class="boutique-card-cat"><span data-lang="fr">Manches courtes · Officiel</span><span data-lang="en">Short sleeves · Official</span></span>
+        <h3 class="boutique-card-name">Maillot Power MC</h3>
         <div class="boutique-card-foot">
           <div class="boutique-card-price">
             <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
-            <span class="boutique-card-price-amount">43,49 €</span>
+            <span class="boutique-card-price-amount">18,99 €</span>
           </div>
-          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+          <a href="https://team.jako.com/be-fr/team/esi_/maillot-power-mc-p5813/" target="_blank" rel="noopener" class="boutique-card-btn">
             <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
             <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
@@ -4484,25 +4474,22 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </article>
 
-    <!-- 2. Maillot Power MC -->
+    <!-- 2. Veste à capuche Power -->
     <article class="boutique-card">
-      <div class="boutique-card-img">
-        <span class="boutique-card-tag"><span data-lang="fr">Maillot</span><span data-lang="en">Jersey</span></span>
+      <a href="https://team.jako.com/be-fr/team/esi_/veste-a-capuche-power-p5819/" target="_blank" rel="noopener" class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Veste</span><span data-lang="en">Jacket</span></span>
         <span class="boutique-card-brand">JAKO</span>
-        <div class="boutique-card-img-bg"></div>
-        <div class="boutique-card-icon">
-          <svg viewBox="0 0 64 64"><path d="M14 22 L24 16 L28 22 L36 22 L40 16 L50 22 L46 30 L42 28 L42 54 L22 54 L22 28 L18 30 Z"/></svg>
-        </div>
-      </div>
+        <img src="assets/jako/veste-capuche-power.jpg" alt="Veste à capuche Power ESI" class="boutique-card-photo" loading="lazy">
+      </a>
       <div class="boutique-card-body">
-        <span class="boutique-card-cat"><span data-lang="fr">Manches courtes</span><span data-lang="en">Short sleeves</span></span>
-        <h3 class="boutique-card-name">Maillot Power MC</h3>
+        <span class="boutique-card-cat"><span data-lang="fr">Veste à capuche · Power</span><span data-lang="en">Hooded jacket</span></span>
+        <h3 class="boutique-card-name">Power Hooded</h3>
         <div class="boutique-card-foot">
           <div class="boutique-card-price">
             <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
-            <span class="boutique-card-price-amount">18,99 €</span>
+            <span class="boutique-card-price-amount">43,49 €</span>
           </div>
-          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+          <a href="https://team.jako.com/be-fr/team/esi_/veste-a-capuche-power-p5819/" target="_blank" rel="noopener" class="boutique-card-btn">
             <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
             <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
@@ -4512,14 +4499,11 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <!-- 3. Polo Power -->
     <article class="boutique-card">
-      <div class="boutique-card-img">
+      <a href="https://team.jako.com/be-fr/team/esi_/polo-power-p5816/" target="_blank" rel="noopener" class="boutique-card-img">
         <span class="boutique-card-tag">Polo</span>
         <span class="boutique-card-brand">JAKO</span>
-        <div class="boutique-card-img-bg"></div>
-        <div class="boutique-card-icon">
-          <svg viewBox="0 0 64 64"><path d="M16 22 L24 16 L28 20 L32 24 L36 20 L40 16 L48 22 L46 28 L42 26 L42 54 L22 54 L22 26 L18 28 Z M28 20 L32 28 L36 20"/></svg>
-        </div>
-      </div>
+        <img src="assets/jako/polo-power.jpg" alt="Polo Power ESI" class="boutique-card-photo" loading="lazy">
+      </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Polo cérémonie</span><span data-lang="en">Polo</span></span>
         <h3 class="boutique-card-name">Polo Power</h3>
@@ -4528,7 +4512,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
             <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
             <span class="boutique-card-price-amount">29,49 €</span>
           </div>
-          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+          <a href="https://team.jako.com/be-fr/team/esi_/polo-power-p5816/" target="_blank" rel="noopener" class="boutique-card-btn">
             <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
             <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
@@ -4538,23 +4522,20 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <!-- 4. Pantalon polyester Power -->
     <article class="boutique-card">
-      <div class="boutique-card-img">
+      <a href="https://team.jako.com/be-fr/team/esi_/pantalon-polyester-power-p5825/" target="_blank" rel="noopener" class="boutique-card-img">
         <span class="boutique-card-tag"><span data-lang="fr">Pantalon</span><span data-lang="en">Pants</span></span>
         <span class="boutique-card-brand">JAKO</span>
-        <div class="boutique-card-img-bg"></div>
-        <div class="boutique-card-icon">
-          <svg viewBox="0 0 64 64"><path d="M22 14 L42 14 L44 32 L40 56 L34 56 L32 36 L30 56 L24 56 L20 32 Z"/></svg>
-        </div>
-      </div>
+        <img src="assets/jako/pantalon-power.jpg" alt="Pantalon polyester Power ESI" class="boutique-card-photo" loading="lazy">
+      </a>
       <div class="boutique-card-body">
-        <span class="boutique-card-cat"><span data-lang="fr">Polyester</span><span data-lang="en">Polyester</span></span>
+        <span class="boutique-card-cat"><span data-lang="fr">Polyester · Survêtement</span><span data-lang="en">Polyester · Tracksuit</span></span>
         <h3 class="boutique-card-name">Pantalon Power</h3>
         <div class="boutique-card-foot">
           <div class="boutique-card-price">
             <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
             <span class="boutique-card-price-amount">26,49 €</span>
           </div>
-          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+          <a href="https://team.jako.com/be-fr/team/esi_/pantalon-polyester-power-p5825/" target="_blank" rel="noopener" class="boutique-card-btn">
             <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
             <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
@@ -4564,23 +4545,20 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <!-- 5. Ziptop Power -->
     <article class="boutique-card">
-      <div class="boutique-card-img">
+      <a href="https://team.jako.com/be-fr/team/esi_/zip-top-power-p5822/" target="_blank" rel="noopener" class="boutique-card-img">
         <span class="boutique-card-tag">Ziptop</span>
         <span class="boutique-card-brand">JAKO</span>
-        <div class="boutique-card-img-bg"></div>
-        <div class="boutique-card-icon">
-          <svg viewBox="0 0 64 64"><path d="M16 22 L24 16 L28 20 L36 20 L40 16 L48 22 L46 28 L42 26 L42 54 L22 54 L22 26 L18 28 Z M32 20 L32 54"/></svg>
-        </div>
-      </div>
+        <img src="assets/jako/ziptop-power.jpg" alt="Ziptop Power ESI" class="boutique-card-photo" loading="lazy">
+      </a>
       <div class="boutique-card-body">
-        <span class="boutique-card-cat"><span data-lang="fr">Veste zippée</span><span data-lang="en">Zip-up jacket</span></span>
+        <span class="boutique-card-cat"><span data-lang="fr">Veste zippée</span><span data-lang="en">Zip-up</span></span>
         <h3 class="boutique-card-name">Ziptop Power</h3>
         <div class="boutique-card-foot">
           <div class="boutique-card-price">
             <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
             <span class="boutique-card-price-amount">36,49 €</span>
           </div>
-          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+          <a href="https://team.jako.com/be-fr/team/esi_/zip-top-power-p5822/" target="_blank" rel="noopener" class="boutique-card-btn">
             <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
             <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
@@ -4590,14 +4568,11 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <!-- 6. Sweat Power -->
     <article class="boutique-card">
-      <div class="boutique-card-img">
+      <a href="https://team.jako.com/be-fr/team/esi_/sweat-power-p5823/" target="_blank" rel="noopener" class="boutique-card-img">
         <span class="boutique-card-tag">Sweat</span>
         <span class="boutique-card-brand">JAKO</span>
-        <div class="boutique-card-img-bg"></div>
-        <div class="boutique-card-icon">
-          <svg viewBox="0 0 64 64"><path d="M14 22 L24 16 L28 20 L36 20 L40 16 L50 22 L48 30 L42 28 L42 54 L22 54 L22 28 L16 30 Z"/></svg>
-        </div>
-      </div>
+        <img src="assets/jako/sweat-power.jpg" alt="Sweat Power ESI" class="boutique-card-photo" loading="lazy">
+      </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Pull col rond</span><span data-lang="en">Crew sweater</span></span>
         <h3 class="boutique-card-name">Sweat Power</h3>
@@ -4606,7 +4581,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
             <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
             <span class="boutique-card-price-amount">32,99 €</span>
           </div>
-          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+          <a href="https://team.jako.com/be-fr/team/esi_/sweat-power-p5823/" target="_blank" rel="noopener" class="boutique-card-btn">
             <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
             <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
@@ -4616,14 +4591,11 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <!-- 7. Veste de pluie Power -->
     <article class="boutique-card">
-      <div class="boutique-card-img">
+      <a href="https://team.jako.com/be-fr/team/esi_/veste-de-pluie-power-p5820/" target="_blank" rel="noopener" class="boutique-card-img">
         <span class="boutique-card-tag"><span data-lang="fr">Pluie</span><span data-lang="en">Rain</span></span>
         <span class="boutique-card-brand">JAKO</span>
-        <div class="boutique-card-img-bg"></div>
-        <div class="boutique-card-icon">
-          <svg viewBox="0 0 64 64"><path d="M14 22 L24 16 L28 20 L36 20 L40 16 L50 22 L48 28 L44 26 L44 54 L20 54 L20 26 L16 28 Z"/><circle cx="22" cy="40" r="1"/><circle cx="42" cy="42" r="1"/><circle cx="32" cy="48" r="1"/></svg>
-        </div>
-      </div>
+        <img src="assets/jako/veste-pluie-power.jpg" alt="Veste de pluie Power ESI" class="boutique-card-photo" loading="lazy">
+      </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Imperméable</span><span data-lang="en">Waterproof</span></span>
         <h3 class="boutique-card-name">Veste de pluie Power</h3>
@@ -4632,7 +4604,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
             <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
             <span class="boutique-card-price-amount">46,99 €</span>
           </div>
-          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+          <a href="https://team.jako.com/be-fr/team/esi_/veste-de-pluie-power-p5820/" target="_blank" rel="noopener" class="boutique-card-btn">
             <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
             <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
@@ -4642,14 +4614,11 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
     <!-- 8. Veste matelassée -->
     <article class="boutique-card">
-      <div class="boutique-card-img">
+      <a href="https://team.jako.com/be-fr/team/esi_/steppjacke-p1823/" target="_blank" rel="noopener" class="boutique-card-img">
         <span class="boutique-card-tag"><span data-lang="fr">Doudoune</span><span data-lang="en">Padded</span></span>
         <span class="boutique-card-brand">JAKO</span>
-        <div class="boutique-card-img-bg"></div>
-        <div class="boutique-card-icon">
-          <svg viewBox="0 0 64 64"><path d="M14 22 L24 16 L28 20 L36 20 L40 16 L50 22 L48 28 L44 26 L44 54 L20 54 L20 26 L16 28 Z"/><line x1="20" y1="32" x2="44" y2="32"/><line x1="20" y1="40" x2="44" y2="40"/><line x1="20" y1="48" x2="44" y2="48"/></svg>
-        </div>
-      </div>
+        <img src="assets/jako/veste-matelassee.jpg" alt="Veste matelassée ESI" class="boutique-card-photo" loading="lazy">
+      </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Hiver</span><span data-lang="en">Winter</span></span>
         <h3 class="boutique-card-name"><span data-lang="fr">Veste matelassée</span><span data-lang="en">Padded jacket</span></h3>
@@ -4658,7 +4627,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
             <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
             <span class="boutique-card-price-amount">74,99 €</span>
           </div>
-          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+          <a href="https://team.jako.com/be-fr/team/esi_/steppjacke-p1823/" target="_blank" rel="noopener" class="boutique-card-btn">
             <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
             <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
@@ -4666,25 +4635,137 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </article>
 
-    <!-- 9. Sac à dos Iconic -->
+    <!-- 9. T-shirt Classico -->
     <article class="boutique-card">
-      <div class="boutique-card-img">
-        <span class="boutique-card-tag"><span data-lang="fr">Sac</span><span data-lang="en">Bag</span></span>
+      <a href="https://team.jako.com/be-fr/team/esi_/t-shirt-classico-p1721/" target="_blank" rel="noopener" class="boutique-card-img">
+        <span class="boutique-card-tag">T-shirt</span>
         <span class="boutique-card-brand">JAKO</span>
-        <div class="boutique-card-img-bg"></div>
-        <div class="boutique-card-icon">
-          <svg viewBox="0 0 64 64"><path d="M20 24 L20 56 L44 56 L44 24 Q44 18 38 16 L26 16 Q20 18 20 24 Z"/><path d="M26 16 L26 22 L38 22 L38 16"/><rect x="26" y="32" width="12" height="6" rx="1"/></svg>
+        <img src="assets/jako/tshirt-classico.jpg" alt="T-shirt Classico ESI" class="boutique-card-photo" loading="lazy">
+      </a>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Coton · Classico</span><span data-lang="en">Cotton · Classico</span></span>
+        <h3 class="boutique-card-name">T-shirt Classico</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">14,99 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/t-shirt-classico-p1721/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
         </div>
       </div>
+    </article>
+
+    <!-- 10. Veste à capuche Classico -->
+    <article class="boutique-card">
+      <a href="https://team.jako.com/be-fr/team/esi_/veste-a-capuche-classico-p1809/" target="_blank" rel="noopener" class="boutique-card-img">
+        <span class="boutique-card-tag">Hoodie</span>
+        <span class="boutique-card-brand">JAKO</span>
+        <img src="assets/jako/veste-capuche-classico.jpg" alt="Veste à capuche Classico ESI" class="boutique-card-photo" loading="lazy">
+      </a>
       <div class="boutique-card-body">
-        <span class="boutique-card-cat"><span data-lang="fr">Accessoire</span><span data-lang="en">Accessory</span></span>
+        <span class="boutique-card-cat"><span data-lang="fr">Hoodie casual</span><span data-lang="en">Casual hoodie</span></span>
+        <h3 class="boutique-card-name">Hoodie Classico</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">39,99 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/veste-a-capuche-classico-p1809/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 11. Débardeur Classico -->
+    <article class="boutique-card">
+      <a href="https://team.jako.com/be-fr/team/esi_/debardeur-classico-p1703/" target="_blank" rel="noopener" class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Débardeur</span><span data-lang="en">Tank</span></span>
+        <span class="boutique-card-brand">JAKO</span>
+        <img src="assets/jako/debardeur-classico.jpg" alt="Débardeur Classico ESI" class="boutique-card-photo" loading="lazy">
+      </a>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Été · Sans manches</span><span data-lang="en">Summer · Sleeveless</span></span>
+        <h3 class="boutique-card-name">Débardeur Classico</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">12,99 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/debardeur-classico-p1703/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 12. Tank top Challenge -->
+    <article class="boutique-card">
+      <a href="https://team.jako.com/be-fr/team/esi_/tank-top-challenge-p4210/" target="_blank" rel="noopener" class="boutique-card-img">
+        <span class="boutique-card-tag">Tank Top</span>
+        <span class="boutique-card-brand">JAKO</span>
+        <img src="assets/jako/tanktop-challenge.jpg" alt="Tank top Challenge ESI" class="boutique-card-photo" loading="lazy">
+      </a>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Entraînement</span><span data-lang="en">Training</span></span>
+        <h3 class="boutique-card-name">Tank top Challenge</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">15,99 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/tank-top-challenge-p4210/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 13. Pantalon Challenge -->
+    <article class="boutique-card">
+      <a href="https://team.jako.com/be-fr/team/esi_/pantalon-polyester-challenge-p4222/" target="_blank" rel="noopener" class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Pantalon</span><span data-lang="en">Pants</span></span>
+        <span class="boutique-card-brand">JAKO</span>
+        <img src="assets/jako/pantalon-challenge.jpg" alt="Pantalon Challenge ESI" class="boutique-card-photo" loading="lazy">
+      </a>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Polyester · Challenge</span><span data-lang="en">Polyester · Challenge</span></span>
+        <h3 class="boutique-card-name">Pantalon Challenge</h3>
+        <div class="boutique-card-foot">
+          <div class="boutique-card-price">
+            <span class="boutique-card-price-from"><span data-lang="fr">Dès</span><span data-lang="en">From</span></span>
+            <span class="boutique-card-price-amount">22,99 €</span>
+          </div>
+          <a href="https://team.jako.com/be-fr/team/esi_/pantalon-polyester-challenge-p4222/" target="_blank" rel="noopener" class="boutique-card-btn">
+            <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
+            <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 14. Sac à dos -->
+    <article class="boutique-card">
+      <a href="https://team.jako.com/be-fr/team/esi_/sac-a-dos-avec-comp-separe-p8095/" target="_blank" rel="noopener" class="boutique-card-img">
+        <span class="boutique-card-tag"><span data-lang="fr">Sac</span><span data-lang="en">Bag</span></span>
+        <span class="boutique-card-brand">JAKO</span>
+        <img src="assets/jako/sac-a-dos.jpg" alt="Sac à dos ESI" class="boutique-card-photo" loading="lazy">
+      </a>
+      <div class="boutique-card-body">
+        <span class="boutique-card-cat"><span data-lang="fr">Accessoire · Compartiment chaussures</span><span data-lang="en">Accessory · Shoe compartment</span></span>
         <h3 class="boutique-card-name">Sac à dos Iconic</h3>
         <div class="boutique-card-foot">
           <div class="boutique-card-price">
             <span class="boutique-card-price-from">Prix</span>
             <span class="boutique-card-price-amount">25,99 €</span>
           </div>
-          <a href="https://team.jako.com/be-fr/team/esi_/" target="_blank" rel="noopener" class="boutique-card-btn">
+          <a href="https://team.jako.com/be-fr/team/esi_/sac-a-dos-avec-comp-separe-p8095/" target="_blank" rel="noopener" class="boutique-card-btn">
             <span data-lang="fr">Commander</span><span data-lang="en">Order</span>
             <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
