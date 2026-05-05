@@ -456,9 +456,9 @@ nav.scrolled .hamburger span { background: var(--navy); }
   z-index: 5;
   display: grid;
   grid-template-columns: 1.4fr 1fr;
-  gap: 64px;
-  padding: 64px 56px 80px;
-  max-width: 1600px;
+  gap: 48px;
+  padding: 40px 56px 56px;
+  max-width: 1400px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
@@ -472,14 +472,14 @@ nav.scrolled .hamburger span { background: var(--navy); }
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 28px;
-  padding: 22px 0;
+  gap: 20px;
+  padding: 12px 0;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   text-decoration: none;
   color: var(--white);
   opacity: 0;
-  transform: translateY(24px);
-  transition: padding-left 0.3s ease, opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(16px);
+  transition: padding-left 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
 }
 .burger-overlay.open .burger-nav-item { opacity: 1; transform: translateY(0); }
 .burger-overlay.open .burger-nav-item:nth-child(1) { transition-delay: 0.10s; }
@@ -497,27 +497,26 @@ nav.scrolled .hamburger span { background: var(--navy); }
 .burger-num {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.22em;
+  font-size: 11px;
+  letter-spacing: 0.2em;
   color: rgba(255,255,255,0.35);
   font-variant-numeric: tabular-nums;
-  width: 38px;
+  width: 28px;
 }
 .burger-title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(36px, 5.5vw, 68px);
-  line-height: 0.95;
-  letter-spacing: -0.025em;
+  font-size: clamp(22px, 2.8vw, 36px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
   transition: color 0.25s, letter-spacing 0.25s;
 }
 .burger-nav-item:hover .burger-title {
   color: var(--bright);
-  letter-spacing: -0.015em;
 }
 .burger-arrow {
-  width: 38px; height: 38px;
+  width: 32px; height: 32px;
   border-radius: 50%;
   background: rgba(255,255,255,0.06);
   display: flex;
@@ -609,11 +608,11 @@ nav.scrolled .hamburger span { background: var(--navy); }
   .burger-logo img { width: 36px; height: 36px; }
   .burger-logo-name { font-size: 13px; }
   .burger-logo-name span { font-size: 9px; }
-  .burger-num { font-size: 10px; width: 28px; }
-  .burger-title { font-size: clamp(32px, 8vw, 48px); }
-  .burger-arrow { width: 32px; height: 32px; }
-  .burger-aside-card { padding: 18px; }
-  .burger-nav-item { padding: 16px 0; gap: 14px; }
+  .burger-num { font-size: 10px; width: 24px; }
+  .burger-title { font-size: clamp(20px, 5.5vw, 28px); }
+  .burger-arrow { width: 28px; height: 28px; }
+  .burger-aside-card { padding: 16px; }
+  .burger-nav-item { padding: 10px 0; gap: 12px; }
 }
 
 .mobile-menu {
@@ -2319,45 +2318,53 @@ button.team-card { font-family: inherit; }
   background: linear-gradient(to right, var(--lightgrey), transparent);
 }
 
-/* ===== FOOTER (simplifié — la nav est dans le burger menu) ===== */
-footer { background: var(--dark); padding: 48px 48px 28px; }
-.footer-simple {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
-  padding-bottom: 32px;
+/* ===== FOOTER (3 colonnes légères) ===== */
+footer { background: var(--dark); padding: 56px 48px 28px; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.3fr;
+  gap: 56px;
+  padding-bottom: 36px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   margin-bottom: 24px;
 }
-.footer-simple .footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.footer-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+.footer-col { display: flex; flex-direction: column; gap: 10px; }
+.footer-col-brand img { margin-bottom: 4px; }
+.footer-desc {
   font-family: var(--font-body);
   font-size: 13px;
-  color: rgba(255,255,255,0.55);
+  line-height: 1.55;
+  color: rgba(255,255,255,0.5);
+  margin-top: 8px;
+  max-width: 280px;
 }
-.footer-meta-link {
-  color: rgba(255,255,255,0.85);
+.footer-col-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 4px;
+}
+.footer-link {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(255,255,255,0.78);
   text-decoration: none;
+  line-height: 1.5;
   transition: color 0.2s;
 }
-.footer-meta-link:hover { color: var(--bright); }
-.footer-meta-sep { color: rgba(255,255,255,0.25); }
+.footer-link:hover { color: var(--bright); }
 
-@media (max-width: 720px) {
-  footer { padding: 36px 20px 24px; }
-  .footer-simple { flex-direction: column; align-items: flex-start; gap: 18px; padding-bottom: 24px; margin-bottom: 18px; }
-  .footer-meta { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .footer-meta-sep { display: none; }
+@media (max-width: 900px) {
+  footer { padding: 40px 24px 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; padding-bottom: 28px; }
+  .footer-col-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-col-brand { grid-column: auto; }
 }
 
 /* Old grid layout (kept for backward compat — unused) */
@@ -7092,31 +7099,46 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
 <!-- ===== FOOTER ===== -->
 <footer id="contact">
-  <div class="footer-simple">
-    <div class="footer-brand">
+  <div class="footer-grid">
+
+    <div class="footer-col footer-col-brand">
       <img src="assets/logo-esi.png" alt="Logo ESI" width="56" height="56" style="object-fit:contain;" />
-      <div>
-        <div class="nav-logo-name" style="font-size:15px;">ÉTOILE SPORTIVE D'ISIGNY<span style="font-size:10px;">1925 — Stade Municipal · 14230</span></div>
+      <div class="nav-logo-name" style="font-size:15px;margin-top:4px;">ÉTOILE SPORTIVE D'ISIGNY<span style="font-size:10px;">Fondé en 1925 · 100 ans en 2025</span></div>
+      <p class="footer-desc">
+        <span data-lang="fr">9 équipes engagées du U7 aux Vétérans · District Manche</span>
+        <span data-lang="en">9 teams from U7 to Veterans · Manche District</span>
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-title"><span data-lang="fr">Le club</span><span data-lang="en">The club</span></h4>
+      <a href="#calendrier" class="footer-link"><span data-lang="fr">Calendrier · Résultats</span><span data-lang="en">Schedule · Results</span></a>
+      <a href="#partenaires" class="footer-link"><span data-lang="fr">Nos partenaires</span><span data-lang="en">Our partners</span></a>
+      <a href="#boutique" class="footer-link"><span data-lang="fr">Boutique JAKO</span><span data-lang="en">JAKO Shop</span></a>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-title"><span data-lang="fr">Contact</span><span data-lang="en">Contact</span></h4>
+      <a href="mailto:501416@lfnfoot.com" class="footer-link">501416@lfnfoot.com</a>
+      <a href="https://www.google.com/maps?q=Stade+Municipal+Isigny-sur-Mer" target="_blank" rel="noopener" class="footer-link">
+        <span data-lang="fr">Stade Municipal · Impasse du Stade</span>
+        <span data-lang="en">Municipal Stadium · Impasse du Stade</span>
+      </a>
+      <span class="footer-link" style="opacity:0.55;">14230 Isigny-sur-Mer · Calvados</span>
+
+      <div class="social-links" style="margin-top:14px;">
+        <a href="https://www.instagram.com/etoilesportiveisigny/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61556659953798" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://epreuves.fff.fr/competition/club/501416-e-s-isigny-s-mer/club" target="_blank" rel="noopener" class="social-btn" aria-label="FFF">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zm0 13L2 10v6l10 5 10-5v-6l-10 5z"/></svg>
+        </a>
       </div>
     </div>
 
-    <div class="footer-meta">
-      <a href="mailto:501416@lfnfoot.com" class="footer-meta-link">501416@lfnfoot.com</a>
-      <span class="footer-meta-sep">·</span>
-      <a href="https://www.google.com/maps?q=Stade+Municipal+Isigny-sur-Mer" target="_blank" rel="noopener" class="footer-meta-link">Stade Municipal · Itinéraire</a>
-    </div>
-
-    <div class="social-links">
-      <a href="https://www.instagram.com/etoilesportiveisigny/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </a>
-      <a href="https://www.facebook.com/profile.php?id=61556659953798" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      </a>
-      <a href="https://epreuves.fff.fr/competition/club/501416-e-s-isigny-s-mer/club" target="_blank" rel="noopener" class="social-btn" aria-label="FFF">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zm0 13L2 10v6l10 5 10-5v-6l-10 5z"/></svg>
-      </a>
-    </div>
   </div>
 
   <div class="footer-bottom">
