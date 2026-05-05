@@ -2349,12 +2349,25 @@ button.team-card { font-family: inherit; }
   text-transform: uppercase;
   color: var(--draw);
   background: var(--white);
-  padding: 6px 14px;
+  padding: 7px 16px;
   border: 1px solid var(--lightgrey);
   border-radius: 20px;
   z-index: 3;
   white-space: nowrap;
-  pointer-events: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.divider-marquee-label:hover {
+  color: var(--electric);
+  border-color: var(--electric);
+  transform: translateY(-50%) scale(1.04);
+}
+.divider-marquee-label::after {
+  content: ' →';
+  margin-left: 4px;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 .divider-marquee-track {
   display: flex;
@@ -2376,8 +2389,12 @@ button.team-card { font-family: inherit; }
   opacity: 0.92;
   transition: opacity 0.3s ease, transform 0.3s ease;
   overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
 }
-.divider-marquee-logo:hover { opacity: 1; transform: scale(1.06); }
+.divider-marquee-logo:hover { opacity: 1; transform: scale(1.08); }
 .divider-marquee-logo img {
   max-width: 100%;
   max-height: 100%;
@@ -2385,6 +2402,7 @@ button.team-card { font-family: inherit; }
   height: auto;
   object-fit: contain;
   display: block;
+  pointer-events: none;
 }
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
@@ -7953,9 +7971,11 @@ const CAT_LABEL = {
     wrap.className = 'divider-marquee';
     wrap.setAttribute('aria-label', 'Partenaires de l’ESI');
 
-    const label = document.createElement('span');
+    const label = document.createElement('a');
+    label.href = '#partenaires';
     label.className = 'divider-marquee-label';
     label.textContent = 'Nos partenaires';
+    label.setAttribute('aria-label', 'Voir tous nos partenaires');
     wrap.appendChild(label);
 
     const track = document.createElement('div');
