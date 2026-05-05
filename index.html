@@ -2287,6 +2287,92 @@ button.team-card { font-family: inherit; }
   background: linear-gradient(to right, var(--lightgrey), transparent);
 }
 
+/* ===== MARQUEE INFINIE (entre les sections) ===== */
+.divider-marquee {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy);
+  padding: 16px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.divider-marquee::before,
+.divider-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 90px;
+  z-index: 2;
+  pointer-events: none;
+}
+.divider-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--navy), transparent);
+}
+.divider-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--navy), transparent);
+}
+.divider-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  width: max-content;
+  animation: marquee-scroll 38s linear infinite;
+  will-change: transform;
+}
+.divider-marquee:hover .divider-marquee-track { animation-play-state: paused; }
+.divider-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+.divider-marquee-logo {
+  width: 32px;
+  height: 32px;
+  background: var(--white);
+  border-radius: 50%;
+  padding: 4px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+.divider-marquee-logo img { width: 100%; height: 100%; object-fit: contain; }
+.divider-marquee-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white);
+  white-space: nowrap;
+}
+.divider-marquee-text.muted {
+  color: rgba(255,255,255,0.45);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+}
+.divider-marquee-star {
+  color: var(--bright);
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .divider-marquee-track { animation: none; }
+}
+@media (max-width: 600px) {
+  .divider-marquee { padding: 12px 0; }
+  .divider-marquee-track { gap: 32px; animation-duration: 28s; }
+  .divider-marquee-item { gap: 18px; }
+  .divider-marquee-logo { width: 26px; height: 26px; }
+  .divider-marquee-text { font-size: 12px; letter-spacing: 0.18em; }
+}
+
 /* ===== FOOTER (3 colonnes légères) ===== */
 footer { background: var(--dark); padding: 56px 48px 28px; }
 .footer-grid {
@@ -7714,6 +7800,79 @@ const CAT_LABEL = {
       submit.disabled = false;
       submit.innerHTML = '<span data-lang="fr">Publier mes photos</span><span data-lang="en">Publish my photos</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     }
+  });
+})();
+
+// --- Marquee infinie : injecte une bande défilante entre chaque section ---
+(function setupSectionMarquees() {
+  // Sections où on veut une marquee EN AMONT (au-dessus, pour annoncer la catégorie)
+  const targets = ['histoire', 'calendrier', 'resultats', 'galerie', 'convocations', 'staff', 'partenaires', 'boutique'];
+
+  // Contenu d'une "pass" : tableau de tokens — soit text, soit {logo, text}, soit star
+  const tokens = [
+    { type: 'logo', text: 'Étoile Sportive d’Isigny' },
+    { type: 'star' },
+    { type: 'muted', text: 'Depuis 1925' },
+    { type: 'star' },
+    { type: 'logo', text: 'Allez ESI' },
+    { type: 'star' },
+    { type: 'muted', text: 'District Manche' },
+    { type: 'star' },
+    { type: 'logo', text: '9 équipes engagées' },
+    { type: 'star' },
+    { type: 'muted', text: '100 ans en 2025' },
+    { type: 'star' },
+  ];
+
+  function buildToken(t) {
+    if (t.type === 'star') {
+      const s = document.createElement('span');
+      s.className = 'divider-marquee-star';
+      s.textContent = '★';
+      return s;
+    }
+    if (t.type === 'muted') {
+      const s = document.createElement('span');
+      s.className = 'divider-marquee-text muted';
+      s.textContent = t.text;
+      return s;
+    }
+    // logo + text
+    const item = document.createElement('div');
+    item.className = 'divider-marquee-item';
+    const logo = document.createElement('div');
+    logo.className = 'divider-marquee-logo';
+    const img = document.createElement('img');
+    img.src = 'assets/logo-esi.png';
+    img.alt = '';
+    img.loading = 'lazy';
+    logo.appendChild(img);
+    const txt = document.createElement('span');
+    txt.className = 'divider-marquee-text';
+    txt.textContent = t.text;
+    item.appendChild(logo);
+    item.appendChild(txt);
+    return item;
+  }
+
+  function buildMarquee() {
+    const wrap = document.createElement('div');
+    wrap.className = 'divider-marquee';
+    wrap.setAttribute('aria-hidden', 'true');
+    const track = document.createElement('div');
+    track.className = 'divider-marquee-track';
+    // Double pass pour boucle seamless (animation va à -50%)
+    for (let pass = 0; pass < 2; pass++) {
+      tokens.forEach(t => track.appendChild(buildToken(t)));
+    }
+    wrap.appendChild(track);
+    return wrap;
+  }
+
+  targets.forEach(id => {
+    const section = document.getElementById(id);
+    if (!section || !section.parentNode) return;
+    section.parentNode.insertBefore(buildMarquee(), section);
   });
 })();
 
