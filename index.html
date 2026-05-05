@@ -5323,6 +5323,22 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <h2 class="section-title light"><span data-lang="fr">Galerie</span><span data-lang="en">Gallery</span></h2>
   </div>
 
+  <!-- Récemment partagées (photos approuvées par modération) — masqué si vide -->
+  <div id="recentUploads" class="reveal" style="display:none;margin-bottom:48px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(186,213,255,0.7);">
+          ✓ <span data-lang="fr">Validées par un dirigeant</span><span data-lang="en">Approved by club staff</span>
+        </div>
+        <h3 style="font-family:var(--font-display);font-weight:900;font-size:clamp(28px,3.5vw,42px);color:var(--white);text-transform:uppercase;letter-spacing:-0.01em;margin-top:6px;">
+          <span data-lang="fr">Récemment partagées</span><span data-lang="en">Recently shared</span>
+        </h3>
+      </div>
+      <span id="recentUploadsCount" style="font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(186,213,255,0.6);">0 photos</span>
+    </div>
+    <div id="recentUploadsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;"></div>
+  </div>
+
   <div class="albums-grid">
 
     <!-- ALBUM 1: MATCH 26 AVRIL -->
@@ -6607,8 +6623,9 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <!-- Tabs : Convocation / Agents IA -->
     <div class="login-tabs" role="tablist" style="border-top:1px solid var(--lightgrey);">
       <button class="login-tab active" data-dirigeant-tab="convoc" role="tab"><span data-lang="fr">Convocation</span><span data-lang="en">Call-up</span></button>
+      <button class="login-tab" data-dirigeant-tab="moderation" role="tab"><span data-lang="fr">Photos en attente <span id="pendingBadge" style="display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 6px;border-radius:999px;background:var(--loss);color:#fff;font-size:10px;font-weight:800;margin-left:4px;display:none;">0</span></span><span data-lang="en">Pending</span></button>
       <button class="login-tab" data-dirigeant-tab="agents" role="tab"><span data-lang="fr">Agents IA · 10</span><span data-lang="en">AI Agents · 10</span></button>
-      <button class="login-tab" data-dirigeant-tab="upload" role="tab"><span data-lang="fr">Upload photos</span><span data-lang="en">Upload photos</span></button>
+      <button class="login-tab" data-dirigeant-tab="upload" role="tab"><span data-lang="fr">Upload direct</span><span data-lang="en">Direct upload</span></button>
     </div>
 
     <div class="modal-body" data-dirigeant-panel="convoc">
@@ -6661,6 +6678,34 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <button type="submit" class="login-submit"><span data-lang="fr">Publier la convocation</span><span data-lang="en">Publish call-up</span></button>
         <p class="login-helper" style="text-align:center;font-size:11px;">⚠️ <span data-lang="fr">Démo — backend requis pour stocker les convocations.</span><span data-lang="en">Demo — backend required to persist call-ups.</span></p>
       </form>
+    </div>
+
+    <!-- Panel : Modération photos en attente -->
+    <div class="modal-body" data-dirigeant-panel="moderation" hidden>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
+        <div>
+          <div style="font-family:var(--font-display);font-weight:800;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--draw);">
+            <span data-lang="fr">Photos déposées par les parents</span><span data-lang="en">Parent submissions</span>
+          </div>
+          <div id="modCount" style="font-family:var(--font-display);font-weight:900;font-size:24px;color:var(--navy);letter-spacing:-0.02em;">0 en attente</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button type="button" id="modRefresh" style="padding:8px 14px;font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;background:var(--offwhite);border:1px solid var(--lightgrey);border-radius:8px;cursor:pointer;color:var(--navy);">↻ Actualiser</button>
+        </div>
+      </div>
+
+      <div id="modList" style="display:flex;flex-direction:column;gap:12px;"></div>
+
+      <div id="modEmpty" style="text-align:center;padding:48px 24px;color:var(--draw);">
+        <div style="font-size:48px;margin-bottom:12px;opacity:0.4;">📭</div>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;">
+          <span data-lang="fr">Aucune photo en attente</span><span data-lang="en">No pending photos</span>
+        </div>
+        <p style="font-family:var(--font-body);font-size:13px;margin-top:8px;line-height:1.5;max-width:400px;margin-left:auto;margin-right:auto;">
+          <span data-lang="fr">Quand un parent envoie des photos via la galerie, elles apparaissent ici. Tu peux les approuver ou rejeter.</span>
+          <span data-lang="en">When parents submit photos via the gallery, they appear here for approval/rejection.</span>
+        </p>
+      </div>
     </div>
 
     <!-- Panel : Agents IA -->
@@ -6807,6 +6852,227 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
 
+// =================================================================
+// MODERATION (espace dirigeant — photos en attente)
+// =================================================================
+async function refreshModerationList() {
+  const list = document.getElementById('modList');
+  const empty = document.getElementById('modEmpty');
+  const count = document.getElementById('modCount');
+  const badge = document.getElementById('pendingBadge');
+  if (!list) return;
+
+  const photos = await PhotosDB.list('pending');
+  const n = photos.length;
+  count.textContent = `${n} en attente`;
+  if (badge) {
+    badge.textContent = n;
+    badge.style.display = n > 0 ? 'inline-flex' : 'none';
+  }
+
+  if (n === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  list.innerHTML = photos.map(p => `
+    <div class="mod-item" data-id="${p.id}" style="display:grid;grid-template-columns:auto 1fr auto;gap:14px;padding:14px;background:var(--offwhite);border:1px solid var(--lightgrey);border-radius:12px;align-items:center;">
+      <img src="${p.dataUrl}" alt="" style="width:80px;height:80px;object-fit:cover;border-radius:8px;">
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:0;">
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span style="font-family:var(--font-display);font-weight:800;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;background:var(--electric);color:#fff;padding:3px 8px;border-radius:999px;">${CAT_LABEL[p.category] || p.category}</span>
+          ${p.title ? `<span style="font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--navy);">${p.title}</span>` : ''}
+        </div>
+        <div style="font-family:var(--font-body);font-size:12px;color:var(--draw);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+          ${p.email} · ${(p.size/1024).toFixed(0)} KB · ${new Date(p.createdAt).toLocaleString('fr-FR')}
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <button class="mod-approve" data-id="${p.id}" style="padding:6px 12px;font-family:var(--font-display);font-weight:700;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:var(--win);color:#fff;border:0;border-radius:6px;cursor:pointer;">✓ Approuver</button>
+        <button class="mod-reject" data-id="${p.id}" style="padding:6px 12px;font-family:var(--font-display);font-weight:700;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:var(--loss);border:1px solid var(--loss);border-radius:6px;cursor:pointer;">✕ Rejeter</button>
+      </div>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('.mod-approve').forEach(b => b.addEventListener('click', async () => {
+    await PhotosDB.setStatus(b.dataset.id, 'approved');
+    refreshModerationList();
+    if (window.refreshRecentUploads) window.refreshRecentUploads();
+  }));
+  list.querySelectorAll('.mod-reject').forEach(b => b.addEventListener('click', async () => {
+    if (confirm('Rejeter cette photo ?')) {
+      await PhotosDB.remove(b.dataset.id);
+      refreshModerationList();
+    }
+  }));
+}
+window.refreshPendingCount = refreshModerationList;
+
+// Affiche les photos approuvées dans la galerie ("Récemment partagées")
+async function refreshRecentUploads() {
+  const block = document.getElementById('recentUploads');
+  const grid = document.getElementById('recentUploadsGrid');
+  const counter = document.getElementById('recentUploadsCount');
+  if (!block || !grid) return;
+  const photos = await PhotosDB.list('approved');
+  if (photos.length === 0) {
+    block.style.display = 'none';
+    return;
+  }
+  block.style.display = 'block';
+  counter.textContent = photos.length + ' ' + (photos.length === 1 ? 'photo' : 'photos');
+  grid.innerHTML = photos.slice(0, 20).map(p => `
+    <div style="position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;cursor:pointer;background:rgba(255,255,255,0.04);" data-recent-id="${p.id}">
+      <img src="${p.dataUrl}" alt="${p.title || ''}" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.3s;">
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.85));color:#fff;">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.85;">
+          ${CAT_LABEL[p.category] || p.category}
+        </div>
+        ${p.title ? `<div style="font-family:var(--font-display);font-weight:700;font-size:11px;line-height:1.2;margin-top:2px;">${p.title}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+window.refreshRecentUploads = refreshRecentUploads;
+window.addEventListener('load', () => setTimeout(refreshRecentUploads, 600));
+
+document.getElementById('modRefresh')?.addEventListener('click', refreshModerationList);
+
+// Refresh when dirigeant modal opens or moderation tab clicked
+document.addEventListener('click', e => {
+  if (e.target.closest('[data-dirigeant-tab="moderation"]') ||
+      e.target.closest('[data-open-login="dirigeant"]')) {
+    setTimeout(refreshModerationList, 100);
+  }
+});
+
+// Initial load (so the badge displays even before opening modal)
+window.addEventListener('load', () => setTimeout(refreshModerationList, 500));
+
+// =================================================================
+// PHOTO UPLOAD — full flow (IndexedDB demo mode + API production mode)
+// =================================================================
+
+// IndexedDB wrapper for offline/demo persistence.
+// In production with /api/upload-photo deployed, the API is preferred.
+const PhotosDB = (() => {
+  const DB = 'esi-photos';
+  const STORE = 'photos';
+  let dbp;
+
+  function open() {
+    if (dbp) return dbp;
+    dbp = new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB, 1);
+      req.onupgradeneeded = e => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(STORE)) {
+          const store = db.createObjectStore(STORE, { keyPath: 'id' });
+          store.createIndex('status', 'status', { unique: false });
+          store.createIndex('cat', 'category', { unique: false });
+          store.createIndex('createdAt', 'createdAt', { unique: false });
+        }
+      };
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+    return dbp;
+  }
+
+  async function tx(mode, fn) {
+    const db = await open();
+    return new Promise((resolve, reject) => {
+      const transaction = db.transaction(STORE, mode);
+      const store = transaction.objectStore(STORE);
+      const result = fn(store);
+      transaction.oncomplete = () => resolve(result);
+      transaction.onerror = () => reject(transaction.error);
+    });
+  }
+
+  function fileToDataURL(file) {
+    return new Promise((resolve, reject) => {
+      const r = new FileReader();
+      r.onload = () => resolve(r.result);
+      r.onerror = () => reject(r.error);
+      r.readAsDataURL(file);
+    });
+  }
+
+  return {
+    async addPhoto({ category, title, email, file }) {
+      const dataUrl = await fileToDataURL(file);
+      const photo = {
+        id: 'photo_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+        category, title: title || '', email,
+        filename: file.name,
+        size: file.size,
+        dataUrl,
+        status: 'pending',
+        createdAt: Date.now(),
+      };
+      await tx('readwrite', s => s.add(photo));
+      return photo;
+    },
+    async list(status) {
+      return tx('readonly', store => new Promise(res => {
+        const result = [];
+        const idx = status ? store.index('status') : store;
+        const range = status ? IDBKeyRange.only(status) : null;
+        const req = (status ? idx.openCursor(range) : idx.openCursor());
+        req.onsuccess = e => {
+          const cursor = e.target.result;
+          if (cursor) { result.push(cursor.value); cursor.continue(); }
+          else res(result.sort((a, b) => b.createdAt - a.createdAt));
+        };
+      }));
+    },
+    async setStatus(id, status) {
+      const db = await open();
+      return new Promise((resolve, reject) => {
+        const t = db.transaction(STORE, 'readwrite');
+        const s = t.objectStore(STORE);
+        const get = s.get(id);
+        get.onsuccess = () => {
+          const p = get.result;
+          if (!p) return resolve(false);
+          p.status = status;
+          p.moderatedAt = Date.now();
+          s.put(p);
+        };
+        t.oncomplete = () => resolve(true);
+        t.onerror = () => reject(t.error);
+      });
+    },
+    async remove(id) {
+      return tx('readwrite', s => s.delete(id));
+    },
+    async count(status) {
+      return tx('readonly', store => new Promise(res => {
+        if (!status) { const r = store.count(); r.onsuccess = () => res(r.result); return; }
+        const idx = store.index('status');
+        const r = idx.count(IDBKeyRange.only(status));
+        r.onsuccess = () => res(r.result);
+      }));
+    }
+  };
+})();
+
+const CAT_LABEL = {
+  'seniors-a': 'Seniors A',
+  'seniors-b': 'Seniors B',
+  'seniors-f': 'Seniors F',
+  'veterans': 'Vétérans',
+  'u15-1': 'U15 (1)',
+  'u15-2': 'U15 (2) Ent.',
+  'u13': 'U13',
+  'u11': 'U11',
+  'u9': 'U9',
+  'club': 'Vie du club',
+};
+
 // --- Photo upload form (parents) ---
 (function setupUpload() {
   const form = document.getElementById('uploadForm');
@@ -6881,22 +7147,45 @@ reveals.forEach(el => observer.observe(el));
 
     submit.disabled = true;
     submit.innerHTML = '<span>Envoi en cours…</span>';
+    const title = document.getElementById('upTitle').value;
 
-    // In production: POST FormData to /api/upload-photo (calls agent-08 image-optimizer)
-    // For now: simulate submission with delay
     try {
-      await new Promise(r => setTimeout(r, 900));
+      // Try production API first, fall back to local IndexedDB if unavailable
+      let useApi = false;
+      try {
+        const r = await fetch('/api/health', { method: 'GET', signal: AbortSignal.timeout(800) });
+        useApi = r.ok;
+      } catch (_) { useApi = false; }
+
+      if (useApi) {
+        // Production: POST FormData to backend (Vercel function + Supabase Storage)
+        const fd = new FormData();
+        fd.append('category', cat);
+        fd.append('title', title);
+        fd.append('email', email);
+        files.forEach(f => fd.append('photos', f));
+        const r = await fetch('/api/upload-photo', { method: 'POST', body: fd });
+        if (!r.ok) throw new Error('Upload failed');
+      } else {
+        // Local demo: persist into IndexedDB, dirigeant can moderate from espace dirigeant
+        for (const file of files) {
+          await PhotosDB.addPhoto({ category: cat, title, email, file });
+        }
+      }
+
       // Reset form
       form.reset();
       files = [];
       renderPreview();
       success.classList.add('show');
-      // Scroll to success message
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(() => success.classList.remove('show'), 8000);
+
+      // Refresh moderation tab counter if open
+      if (window.refreshPendingCount) window.refreshPendingCount();
     } catch (err) {
       errorEl.classList.add('show');
-      errorEl.textContent = '⚠ Erreur réseau. Réessaie ou écris-nous à 501416@lfnfoot.com';
+      errorEl.textContent = '⚠ Erreur lors de l\'envoi. Réessaie ou écris-nous à 501416@lfnfoot.com';
     } finally {
       submit.disabled = false;
       submit.innerHTML = '<span data-lang="fr">Envoyer pour modération</span><span data-lang="en">Submit for review</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
