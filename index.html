@@ -607,61 +607,65 @@ nav.scrolled .hamburger span { background: var(--navy); }
   padding-bottom: 16px;
 }
 
-/* ===== HERO (Épuré, façon premium / Moretti) ===== */
+/* ===== HERO (Photo réelle ESI + slideshow + dark overlay) ===== */
 #hero {
   position: relative;
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse 70% 50% at 60% 60%, rgba(58,127,232,0.28), transparent 70%),
-    linear-gradient(135deg, var(--dark) 0%, var(--navy) 55%, var(--electric) 110%);
+  background: var(--dark);
   display: flex;
-  align-items: center;
-  padding: 120px 56px 80px;
+  align-items: flex-end;
+  padding: 120px 56px 100px;
+  isolation: isolate;
 }
+/* Slideshow background images (toutes superposées, on fade entre elles) */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 35%;
+  opacity: 0;
+  transition: opacity 1.6s ease;
+  transform: scale(1.04);
+  animation: heroKenBurns 22s ease-in-out infinite alternate;
+}
+.hero-bg-slide.active { opacity: 1; }
+@keyframes heroKenBurns {
+  from { transform: scale(1.0) translate(0, 0); }
+  to   { transform: scale(1.08) translate(-1%, -1%); }
+}
+/* Overlay sombre pour lisibilité du texte (fort à gauche, fade vers droite) */
 #hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 90% 70% at 30% 100%, rgba(0,0,0,0.45), transparent 60%);
+  background:
+    linear-gradient(105deg, rgba(6,14,30,0.92) 0%, rgba(6,14,30,0.78) 32%, rgba(6,14,30,0.55) 60%, rgba(6,14,30,0.4) 100%),
+    linear-gradient(to top, rgba(6,14,30,0.6) 0%, transparent 50%);
   pointer-events: none;
   z-index: 1;
 }
+/* Grain léger pour matière */
 #hero::after {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
   background-size: 32px 32px;
   pointer-events: none;
   mix-blend-mode: overlay;
   z-index: 1;
 }
 
-/* Player photo — absolute, anchored bottom, full available height */
-.hero-player {
-  position: absolute;
-  left: 38%;
-  right: 26%;
-  bottom: 0;
-  top: 100px;
-  z-index: 2;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  pointer-events: none;
-  animation: fadeIn 1.1s ease 0.2s both;
-}
-.player-photo {
-  height: 100%;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  object-position: bottom center;
-  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.55)) drop-shadow(0 0 80px rgba(58,127,232,0.22));
-}
+/* Player transparent désactivé — la photo de fond fait le job */
+.hero-player { display: none !important; }
 
 /* Big title on the left */
 .hero-content {
@@ -4999,8 +5003,13 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   </aside>
 </div>
 
-<!-- ===== HERO (Épuré — version v2) ===== -->
+<!-- ===== HERO (Photo ESI en fond + slideshow Ken Burns) ===== -->
 <section id="hero">
+  <!-- Background slideshow : photos réelles ESI -->
+  <div class="hero-bg" id="heroBg" aria-hidden="true">
+    <div class="hero-bg-slide active" style="background-image:url('assets/team-bg.jpg');"></div>
+  </div>
+
   <!-- Title block (left) -->
   <div class="hero-content">
     <div class="hero-eyebrow"><span data-lang="fr">Club fondé en 1925 · District Manche</span><span data-lang="en">Founded 1925 · Manche District</span></div>
@@ -5024,10 +5033,8 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     </div>
   </div>
 
-  <!-- Player photo (right) -->
-  <div class="hero-player">
-    <img src="assets/player-hero.png" alt="Joueur Étoile Sportive d'Isigny" class="player-photo" />
-  </div>
+  <!-- (Ancienne hero-player désactivée — la photo de fond fait le job) -->
+  <div class="hero-player" style="display:none;"></div>
 
   <!-- Stacked fixture pills -->
   <div class="hero-fixtures">
@@ -7802,6 +7809,65 @@ const CAT_LABEL = {
       submit.innerHTML = '<span data-lang="fr">Publier mes photos</span><span data-lang="en">Publish my photos</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     }
   });
+})();
+
+// --- Hero slideshow : photos ESI en fond, crossfade Ken Burns ---
+(async function setupHeroSlideshow() {
+  const bg = document.getElementById('heroBg');
+  if (!bg) return;
+
+  const NB_HERO = 5;        // nombre de photos à pré-charger
+  const INTERVAL = 6500;    // ms entre chaque photo
+
+  // Photos manuelles prioritaires (les meilleures pour fond hero)
+  const curated = [
+    'assets/team-bg.jpg',
+  ];
+
+  // Complète avec des photos aléatoires de la galerie
+  let pool = [...curated];
+  try {
+    const res = await fetch('assets/gallery/manifest.json', { cache: 'no-store' });
+    if (res.ok) {
+      const manifest = await res.json();
+      const all = [];
+      Object.entries(manifest).forEach(([folder, files]) => {
+        files.forEach(f => all.push('assets/gallery/' + folder + '/' + f));
+      });
+      // Shuffle
+      for (let i = all.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [all[i], all[j]] = [all[j], all[i]];
+      }
+      pool = pool.concat(all.slice(0, NB_HERO * 2)); // marge pour préchargement
+    }
+  } catch (err) {
+    console.warn('[hero] manifest non chargé', err);
+  }
+
+  // Garde max NB_HERO photos
+  pool = pool.slice(0, NB_HERO);
+  if (pool.length < 2) return; // pas la peine de slideshow avec une seule photo
+
+  // Crée les slides (la 1ère existe déjà avec team-bg.jpg)
+  bg.innerHTML = '';
+  pool.forEach((src, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'hero-bg-slide' + (i === 0 ? ' active' : '');
+    slide.style.backgroundImage = `url('${src}')`;
+    bg.appendChild(slide);
+    // Préchargement
+    const preload = new Image();
+    preload.src = src;
+  });
+
+  const slides = bg.querySelectorAll('.hero-bg-slide');
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, INTERVAL);
 })();
 
 // --- Marquee partenaires : bande défilante avec logos partenaires entre les sections ---
