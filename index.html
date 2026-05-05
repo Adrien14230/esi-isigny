@@ -809,9 +809,9 @@ nav.scrolled .hamburger span { background: var(--navy); }
   color: rgba(255,255,255,0.4);
 }
 
-/* ===== HISTOIRE / TIMELINE ===== */
+/* ===== HISTOIRE — 2-col layout (text + photo carousel) ===== */
 #histoire {
-  padding: var(--section-padding) 0 var(--section-padding) 48px;
+  padding: var(--section-padding) 48px;
   background: var(--white);
   position: relative;
   overflow: hidden;
@@ -821,13 +821,20 @@ nav.scrolled .hamburger span { background: var(--navy); }
   position: absolute;
   top: 0; right: 0;
   width: 50%; height: 100%;
-  background: radial-gradient(ellipse at top right, rgba(58,127,232,0.05), transparent 60%);
+  background: radial-gradient(ellipse at top right, rgba(58,127,232,0.06), transparent 60%);
   pointer-events: none;
 }
 
+.histoire-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 .histoire-intro {
   max-width: 640px;
-  margin-bottom: 56px;
 }
 .histoire-intro .section-eyebrow { color: var(--electric); }
 .histoire-text {
@@ -869,7 +876,90 @@ nav.scrolled .hamburger span { background: var(--navy); }
   color: var(--draw);
 }
 
-/* Timeline horizontal carousel */
+/* === Photo Carousel (right side of Histoire) === */
+.histoire-carousel {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--dark);
+  box-shadow: 0 30px 80px rgba(13,31,60,0.18), 0 0 0 1px rgba(13,31,60,0.04);
+}
+.histoire-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 8s ease-out;
+  transform: scale(1.05);
+}
+.histoire-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+.histoire-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.histoire-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(13,31,60,0.85) 100%);
+  pointer-events: none;
+}
+.histoire-slide-caption {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  color: var(--white);
+  z-index: 2;
+}
+.histoire-slide-caption-tag {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--electric);
+  padding: 5px 12px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.histoire-slide-caption-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+.histoire-carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  right: 18px;
+  display: flex;
+  gap: 6px;
+  z-index: 3;
+}
+.histoire-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.histoire-dot.active {
+  background: var(--white);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Timeline horizontal carousel (gardée mais simplifiée — désactivée pour l'instant) */
 .timeline-wrap {
   position: relative;
   padding-right: 48px;
@@ -3936,6 +4026,12 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   .season-card { position: static; }
 }
 
+/* Histoire — stack on tablet/mobile */
+@media (max-width: 1024px) {
+  .histoire-grid { grid-template-columns: 1fr; gap: 32px; }
+  .histoire-carousel { aspect-ratio: 16 / 10; }
+}
+
 /* Tablette portrait + landscape */
 @media (max-width: 900px) {
   #convocations, #resultats, #calendrier, #staff { padding: 80px 24px; }
@@ -4231,30 +4327,86 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
 <!-- ===== NOTRE HISTOIRE ===== -->
 <section id="histoire">
-  <div class="histoire-intro reveal">
-    <div class="section-eyebrow"><span data-lang="fr">100 ans d'histoire</span><span data-lang="en">100 years of history</span></div>
-    <h2 class="section-title"><span data-lang="fr">Notre<br>histoire</span><span data-lang="en">Our<br>story</span></h2>
-    <p class="histoire-text">
-      <span data-lang="fr">Fondée en <strong>1925</strong> à Isigny-sur-Mer, l'Étoile Sportive d'Isigny est l'un des plus anciens clubs amateurs du Bessin. <strong>Cent ans plus tard</strong>, l'ESI fait toujours vivre le football de village avec <strong>9 équipes engagées</strong>, des U7 aux Vétérans, en passant par notre fierté féminine. Au-delà des résultats, c'est une famille — entraîneurs bénévoles, dirigeants passionnés, parents fidèles, et trois générations de joueurs qui ont porté le maillot bleu et blanc.</span>
-      <span data-lang="en">Founded in <strong>1925</strong> in Isigny-sur-Mer, Étoile Sportive d'Isigny is one of the Bessin's oldest amateur clubs. <strong>A hundred years later</strong>, ESI still keeps village football alive with <strong>9 teams</strong> from U7s to Veterans, including our pride: the women's squad. Beyond results, it's a family — volunteer coaches, passionate managers, loyal parents, and three generations of players who have worn the blue and white.</span>
-    </p>
-    <div class="histoire-stats">
-      <div class="histoire-stat">
-        <span class="histoire-stat-num">100</span>
-        <span class="histoire-stat-label"><span data-lang="fr">ans en 2025</span><span data-lang="en">years in 2025</span></span>
+  <div class="histoire-grid">
+    <div class="histoire-intro reveal">
+      <div class="section-eyebrow"><span data-lang="fr">100 ans d'histoire</span><span data-lang="en">100 years of history</span></div>
+      <h2 class="section-title"><span data-lang="fr">Notre<br>histoire</span><span data-lang="en">Our<br>story</span></h2>
+      <p class="histoire-text">
+        <span data-lang="fr">Fondée en <strong>1925</strong> à Isigny-sur-Mer, l'Étoile Sportive d'Isigny est l'un des plus anciens clubs amateurs du Bessin. <strong>Cent ans plus tard</strong>, l'ESI fait toujours vivre le football de village avec <strong>9 équipes engagées</strong>, des U7 aux Vétérans, en passant par notre fierté féminine. Au-delà des résultats, c'est une famille — entraîneurs bénévoles, dirigeants passionnés, parents fidèles, et trois générations de joueurs qui ont porté le maillot bleu et blanc.</span>
+        <span data-lang="en">Founded in <strong>1925</strong> in Isigny-sur-Mer, Étoile Sportive d'Isigny is one of the Bessin's oldest amateur clubs. <strong>A hundred years later</strong>, ESI still keeps village football alive with <strong>9 teams</strong> from U7s to Veterans, including our pride: the women's squad. Beyond results, it's a family — volunteer coaches, passionate managers, loyal parents, and three generations of players who have worn the blue and white.</span>
+      </p>
+      <div class="histoire-stats">
+        <div class="histoire-stat">
+          <span class="histoire-stat-num">100</span>
+          <span class="histoire-stat-label"><span data-lang="fr">ans en 2025</span><span data-lang="en">years in 2025</span></span>
+        </div>
+        <div class="histoire-stat">
+          <span class="histoire-stat-num">9</span>
+          <span class="histoire-stat-label"><span data-lang="fr">équipes</span><span data-lang="en">teams</span></span>
+        </div>
+        <div class="histoire-stat">
+          <span class="histoire-stat-num">3</span>
+          <span class="histoire-stat-label"><span data-lang="fr">générations</span><span data-lang="en">generations</span></span>
+        </div>
       </div>
-      <div class="histoire-stat">
-        <span class="histoire-stat-num">9</span>
-        <span class="histoire-stat-label"><span data-lang="fr">équipes</span><span data-lang="en">teams</span></span>
+    </div>
+
+    <!-- CARROUSEL DE PHOTOS ESI (auto-fade) -->
+    <div class="histoire-carousel reveal" id="histoireCarousel">
+      <div class="histoire-slide active">
+        <img src="assets/team-bg.jpg" alt="Équipe Seniors B 2024-25 ESI" loading="lazy">
+        <div class="histoire-slide-overlay"></div>
+        <div class="histoire-slide-caption">
+          <span class="histoire-slide-caption-tag"><span data-lang="fr">Saison 2024-25</span><span data-lang="en">Season 2024-25</span></span>
+          <div class="histoire-slide-caption-text"><span data-lang="fr">Les Seniors B en cage de but</span><span data-lang="en">Seniors B at the goal mouth</span></div>
+        </div>
       </div>
-      <div class="histoire-stat">
-        <span class="histoire-stat-num">3</span>
-        <span class="histoire-stat-label"><span data-lang="fr">générations</span><span data-lang="en">generations</span></span>
+      <div class="histoire-slide">
+        <img src="assets/gallery/match-26-04/156-DSC_0784.jpg" alt="Match Seniors A vs St Jores 26 avril 2026 — Victoire 7-0" loading="lazy">
+        <div class="histoire-slide-overlay"></div>
+        <div class="histoire-slide-caption">
+          <span class="histoire-slide-caption-tag">26 avril 2026</span>
+          <div class="histoire-slide-caption-text"><span data-lang="fr">Seniors A · Victoire 7-0</span><span data-lang="en">Seniors A · 7-0 Win</span></div>
+        </div>
       </div>
+      <div class="histoire-slide">
+        <img src="assets/gallery/match-26-04/130-DSC_0680.jpg" alt="Action de match ESI" loading="lazy">
+        <div class="histoire-slide-overlay"></div>
+        <div class="histoire-slide-caption">
+          <span class="histoire-slide-caption-tag"><span data-lang="fr">D4 Poule C</span><span data-lang="en">D4 Group C</span></span>
+          <div class="histoire-slide-caption-text"><span data-lang="fr">L'ESI en action</span><span data-lang="en">ESI in action</span></div>
+        </div>
+      </div>
+      <div class="histoire-slide">
+        <img src="assets/gallery/u15/IMG_0190.jpeg" alt="U15 ESI - 1ers de la poule" loading="lazy">
+        <div class="histoire-slide-caption">
+          <span class="histoire-slide-caption-tag">🥇 U15 (1)</span>
+          <div class="histoire-slide-caption-text"><span data-lang="fr">Les jeunes en tête de poule</span><span data-lang="en">Youth top of the pool</span></div>
+        </div>
+        <div class="histoire-slide-overlay"></div>
+      </div>
+      <div class="histoire-slide">
+        <img src="assets/gallery/match-26-04/200-DSC_0960.jpg" alt="Match ESI - célébration" loading="lazy">
+        <div class="histoire-slide-overlay"></div>
+        <div class="histoire-slide-caption">
+          <span class="histoire-slide-caption-tag"><span data-lang="fr">Saison 2025-26</span><span data-lang="en">Season 2025-26</span></span>
+          <div class="histoire-slide-caption-text"><span data-lang="fr">Allez ESI !</span><span data-lang="en">Allez ESI !</span></div>
+        </div>
+      </div>
+      <div class="histoire-slide">
+        <img src="assets/gallery/match-26-04/85-DSC_0566.jpg" alt="Action ESI" loading="lazy">
+        <div class="histoire-slide-overlay"></div>
+        <div class="histoire-slide-caption">
+          <span class="histoire-slide-caption-tag"><span data-lang="fr">Stade Municipal</span><span data-lang="en">Municipal stadium</span></span>
+          <div class="histoire-slide-caption-text"><span data-lang="fr">Notre maison depuis 1925</span><span data-lang="en">Our home since 1925</span></div>
+        </div>
+      </div>
+
+      <div class="histoire-carousel-dots" id="histoireDots"></div>
     </div>
   </div>
 
-  <div class="timeline-wrap reveal">
+  <div class="timeline-wrap reveal" style="display:none;">
     <div class="timeline-track" id="timelineTrack">
 
       <article class="timeline-slide vintage">
@@ -6267,6 +6419,57 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
+
+// --- Histoire photo carousel (auto-fade) ---
+(function setupHistoireCarousel() {
+  const carousel = document.getElementById('histoireCarousel');
+  const dotsContainer = document.getElementById('histoireDots');
+  if (!carousel || !dotsContainer) return;
+
+  const slides = carousel.querySelectorAll('.histoire-slide');
+  if (slides.length === 0) return;
+
+  // Build dots
+  dotsContainer.innerHTML = '';
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'histoire-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Photo ' + (i + 1));
+    dot.addEventListener('click', () => show(i, true));
+    dotsContainer.appendChild(dot);
+  });
+
+  let current = 0;
+  let timer;
+  const dots = dotsContainer.querySelectorAll('.histoire-dot');
+
+  function show(idx, manual) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    if (manual) restart();
+  }
+
+  function next() { show(current + 1); }
+
+  function start() { timer = setInterval(next, 4500); }
+  function restart() { clearInterval(timer); start(); }
+
+  // Pause on hover
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', start);
+
+  // Pause when not in viewport (perf)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) start();
+      else clearInterval(timer);
+    });
+  }, { threshold: 0.2 });
+  io.observe(carousel);
+})();
 
 // --- Timeline carousel ---
 (function setupTimeline() {
