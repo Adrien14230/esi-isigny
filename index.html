@@ -2287,76 +2287,77 @@ button.team-card { font-family: inherit; }
   background: linear-gradient(to right, var(--lightgrey), transparent);
 }
 
-/* ===== MARQUEE INFINIE (entre les sections) ===== */
+/* ===== MARQUEE PARTENAIRES (entre les sections) ===== */
 .divider-marquee {
   position: relative;
   overflow: hidden;
-  background: var(--navy);
-  padding: 16px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: var(--white);
+  padding: 28px 0;
+  border-top: 1px solid var(--lightgrey);
+  border-bottom: 1px solid var(--lightgrey);
 }
 .divider-marquee::before,
 .divider-marquee::after {
   content: '';
   position: absolute;
   top: 0; bottom: 0;
-  width: 90px;
+  width: 120px;
   z-index: 2;
   pointer-events: none;
 }
 .divider-marquee::before {
   left: 0;
-  background: linear-gradient(to right, var(--navy), transparent);
+  background: linear-gradient(to right, var(--white), transparent);
 }
 .divider-marquee::after {
   right: 0;
-  background: linear-gradient(to left, var(--navy), transparent);
+  background: linear-gradient(to left, var(--white), transparent);
+}
+.divider-marquee-label {
+  position: absolute;
+  top: 50%; left: 24px;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--draw);
+  background: var(--white);
+  padding: 6px 14px;
+  border: 1px solid var(--lightgrey);
+  border-radius: 20px;
+  z-index: 3;
+  white-space: nowrap;
+  pointer-events: none;
 }
 .divider-marquee-track {
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 64px;
   width: max-content;
-  animation: marquee-scroll 38s linear infinite;
+  animation: marquee-scroll 55s linear infinite;
   will-change: transform;
+  padding-left: 180px; /* laisse passer le label sticky */
 }
 .divider-marquee:hover .divider-marquee-track { animation-play-state: paused; }
-.divider-marquee-item {
+.divider-marquee-logo {
+  flex-shrink: 0;
+  height: 48px;
+  width: auto;
   display: flex;
   align-items: center;
-  gap: 24px;
-  flex-shrink: 0;
+  justify-content: center;
+  filter: grayscale(0.7) opacity(0.78);
+  transition: filter 0.3s ease;
 }
-.divider-marquee-logo {
-  width: 32px;
-  height: 32px;
-  background: var(--white);
-  border-radius: 50%;
-  padding: 4px;
-  box-sizing: border-box;
-  flex-shrink: 0;
-}
-.divider-marquee-logo img { width: 100%; height: 100%; object-fit: contain; }
-.divider-marquee-text {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--white);
-  white-space: nowrap;
-}
-.divider-marquee-text.muted {
-  color: rgba(255,255,255,0.45);
-  font-weight: 600;
-  letter-spacing: 0.3em;
-}
-.divider-marquee-star {
-  color: var(--bright);
-  font-size: 14px;
-  line-height: 1;
-  flex-shrink: 0;
+.divider-marquee:hover .divider-marquee-logo { filter: grayscale(0) opacity(1); }
+.divider-marquee-logo img {
+  height: 100%;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
 }
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
@@ -2365,12 +2366,12 @@ button.team-card { font-family: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .divider-marquee-track { animation: none; }
 }
-@media (max-width: 600px) {
-  .divider-marquee { padding: 12px 0; }
-  .divider-marquee-track { gap: 32px; animation-duration: 28s; }
-  .divider-marquee-item { gap: 18px; }
-  .divider-marquee-logo { width: 26px; height: 26px; }
-  .divider-marquee-text { font-size: 12px; letter-spacing: 0.18em; }
+@media (max-width: 768px) {
+  .divider-marquee { padding: 20px 0; }
+  .divider-marquee-label { display: none; }
+  .divider-marquee-track { gap: 40px; padding-left: 24px; animation-duration: 40s; }
+  .divider-marquee-logo { height: 36px; }
+  .divider-marquee-logo img { max-width: 100px; }
 }
 
 /* ===== FOOTER (3 colonnes légères) ===== */
@@ -7803,67 +7804,64 @@ const CAT_LABEL = {
   });
 })();
 
-// --- Marquee infinie : injecte une bande défilante entre chaque section ---
-(function setupSectionMarquees() {
-  // Sections où on veut une marquee EN AMONT (au-dessus, pour annoncer la catégorie)
-  const targets = ['histoire', 'calendrier', 'resultats', 'galerie', 'convocations', 'staff', 'partenaires', 'boutique'];
+// --- Marquee partenaires : bande défilante avec logos partenaires entre les sections ---
+(function setupPartnersMarquee() {
+  // Sections où on insère la marquee EN AMONT
+  const targets = ['histoire', 'calendrier', 'resultats', 'galerie', 'convocations', 'staff', 'boutique'];
 
-  // Contenu d'une "pass" : tableau de tokens — soit text, soit {logo, text}, soit star
-  const tokens = [
-    { type: 'logo', text: 'Étoile Sportive d’Isigny' },
-    { type: 'star' },
-    { type: 'muted', text: 'Depuis 1925' },
-    { type: 'star' },
-    { type: 'logo', text: 'Allez ESI' },
-    { type: 'star' },
-    { type: 'muted', text: 'District Manche' },
-    { type: 'star' },
-    { type: 'logo', text: '9 équipes engagées' },
-    { type: 'star' },
-    { type: 'muted', text: '100 ans en 2025' },
-    { type: 'star' },
+  // Logos des partenaires (sponsor maillot, équipementier, institutions, locaux)
+  // Ordre = volontairement mélangé pour la diversité visuelle dans le scroll
+  const partners = [
+    { src: 'assets/partners/rigault.png',           alt: 'Rigault — Sponsor maillot' },
+    { src: 'assets/partners/sport-2000.png',        alt: 'Sport 2000 — Équipementier' },
+    { src: 'assets/partners/coope-isigny.svg',      alt: 'Coopé Isigny Sainte-Mère' },
+    { src: 'assets/partners/mairie-isigny.png',     alt: 'Mairie d’Isigny-sur-Mer' },
+    { src: 'assets/partners/garage-marie.png',      alt: 'Garage Marie' },
+    { src: 'assets/partners/district-manche.png',   alt: 'District Manche' },
+    { src: 'assets/partners/huitres-boloch.jpeg',   alt: 'Huîtres Boloch' },
+    { src: 'assets/partners/le-central.jpeg',       alt: 'Le Central' },
+    { src: 'assets/partners/croute-doree.jpeg',     alt: 'La Croûte Dorée' },
+    { src: 'assets/partners/fff.png',               alt: 'Fédération Française de Football' },
+    { src: 'assets/partners/sebastien-sollier.jpg', alt: 'Menuiserie Sébastien Sollier' },
+    { src: 'assets/partners/au-fournil-isigny.png', alt: 'Au Fournil d’Isigny' },
+    { src: 'assets/partners/le-versailles.png',     alt: 'Le Versailles' },
+    { src: 'assets/partners/emrg.jpeg',             alt: 'EMRG Menuiserie' },
+    { src: 'assets/partners/olivier-menard.jpg',    alt: 'Olivier Ménard Terrassement' },
+    { src: 'assets/partners/design-hair.jpg',       alt: 'Design’Hair' },
+    { src: 'assets/partners/isigny-loisirs.png',    alt: 'Isigny Loisirs' },
+    { src: 'assets/partners/vincent-le-canu.webp',  alt: 'Vincent Le Canu' },
+    { src: 'assets/partners/boucherie-isigny.jpeg', alt: 'Boucherie d’Isigny' },
+    { src: 'assets/partners/carrefour.svg',         alt: 'Carrefour' },
   ];
 
-  function buildToken(t) {
-    if (t.type === 'star') {
-      const s = document.createElement('span');
-      s.className = 'divider-marquee-star';
-      s.textContent = '★';
-      return s;
-    }
-    if (t.type === 'muted') {
-      const s = document.createElement('span');
-      s.className = 'divider-marquee-text muted';
-      s.textContent = t.text;
-      return s;
-    }
-    // logo + text
-    const item = document.createElement('div');
-    item.className = 'divider-marquee-item';
-    const logo = document.createElement('div');
-    logo.className = 'divider-marquee-logo';
+  function buildLogo(p) {
+    const a = document.createElement('a');
+    a.href = '#partenaires';
+    a.className = 'divider-marquee-logo';
+    a.setAttribute('aria-label', p.alt);
     const img = document.createElement('img');
-    img.src = 'assets/logo-esi.png';
-    img.alt = '';
+    img.src = p.src;
+    img.alt = p.alt;
     img.loading = 'lazy';
-    logo.appendChild(img);
-    const txt = document.createElement('span');
-    txt.className = 'divider-marquee-text';
-    txt.textContent = t.text;
-    item.appendChild(logo);
-    item.appendChild(txt);
-    return item;
+    a.appendChild(img);
+    return a;
   }
 
   function buildMarquee() {
     const wrap = document.createElement('div');
     wrap.className = 'divider-marquee';
-    wrap.setAttribute('aria-hidden', 'true');
+    wrap.setAttribute('aria-label', 'Partenaires de l’ESI');
+
+    const label = document.createElement('span');
+    label.className = 'divider-marquee-label';
+    label.textContent = 'Nos partenaires';
+    wrap.appendChild(label);
+
     const track = document.createElement('div');
     track.className = 'divider-marquee-track';
-    // Double pass pour boucle seamless (animation va à -50%)
+    // Double pass pour boucle seamless (animation translate -50%)
     for (let pass = 0; pass < 2; pass++) {
-      tokens.forEach(t => track.appendChild(buildToken(t)));
+      partners.forEach(p => track.appendChild(buildLogo(p)));
     }
     wrap.appendChild(track);
     return wrap;
