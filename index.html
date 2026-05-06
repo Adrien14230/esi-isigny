@@ -154,6 +154,10 @@
 <link rel="preload" as="image" href="assets/team-bg.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+<!-- Leaflet (carte du stade) — chargé en defer -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+
 <style>
 /* ===== VARIABLES ===== */
 :root {
@@ -2480,14 +2484,14 @@ button.team-card { font-family: inherit; }
   .divider-marquee-logo { width: 100px; height: 70px; }
 }
 
-/* ===== NEWSLETTER CTA ===== */
-.newsletter-cta {
+/* ===== MAP SECTION (Stade Municipal Isigny avec logo ESI sur la carte) ===== */
+.map-section {
   background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
   padding: 80px 48px;
   position: relative;
   overflow: hidden;
 }
-.newsletter-cta::before {
+.map-section::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -2495,17 +2499,17 @@ button.team-card { font-family: inherit; }
   background-size: 32px 32px;
   pointer-events: none;
 }
-.newsletter-inner {
+.map-inner {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 64px;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 56px;
   align-items: center;
   position: relative;
   z-index: 1;
 }
-.newsletter-eyebrow {
+.map-eyebrow {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 11px;
@@ -2517,94 +2521,67 @@ button.team-card { font-family: inherit; }
   align-items: center;
   gap: 12px;
 }
-.newsletter-eyebrow::before {
+.map-eyebrow::before {
   content: '';
   width: 24px;
   height: 1px;
   background: currentColor;
 }
-.newsletter-title {
+.map-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(32px, 4vw, 52px);
+  font-size: clamp(28px, 3.6vw, 44px);
   line-height: 0.95;
   letter-spacing: -0.022em;
   color: var(--white);
   text-transform: uppercase;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
-.newsletter-desc {
+.map-address {
   font-family: var(--font-body);
   font-size: 15px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.65);
-  max-width: 460px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 28px;
 }
-.newsletter-form {
+.map-actions {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-  align-self: end;
+  flex-wrap: wrap;
+  gap: 12px;
 }
-.newsletter-field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.newsletter-label-text {
+.map-btn {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
-}
-.newsletter-field input {
-  font-family: var(--font-body);
-  font-size: 15px;
-  padding: 16px 20px;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.05);
-  color: var(--white);
-  border-radius: 4px;
-  transition: border-color 0.25s ease, background 0.25s ease;
-  width: 100%;
-}
-.newsletter-field input::placeholder {
-  color: rgba(255,255,255,0.35);
-}
-.newsletter-field input:focus {
-  outline: none;
-  border-color: var(--bright);
-  background: rgba(255,255,255,0.08);
-}
-.newsletter-submit {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  background: var(--white);
-  color: var(--navy);
-  border: 0;
-  padding: 16px 28px;
+  padding: 14px 24px;
   border-radius: 2px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
-  cursor: pointer;
-  transition: background 0.25s, color 0.25s;
+  text-decoration: none;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+  border: 1px solid transparent;
 }
-.newsletter-submit:hover { background: var(--bright); color: var(--white); }
-.newsletter-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.newsletter-submit-arrow {
+.map-btn.primary {
+  background: var(--white);
+  color: var(--navy);
+}
+.map-btn.primary:hover { background: var(--bright); color: var(--white); }
+.map-btn.ghost {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255,255,255,0.3);
+}
+.map-btn.ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--white); }
+.map-btn-arrow {
   width: 18px; height: 1px;
   background: currentColor;
   position: relative;
   transition: width 0.25s;
 }
-.newsletter-submit-arrow::after {
+.map-btn-arrow::after {
   content: '';
   position: absolute;
   right: 0; top: 50%;
@@ -2613,21 +2590,72 @@ button.team-card { font-family: inherit; }
   border-right: 1px solid currentColor;
   transform: translateY(-50%) rotate(45deg);
 }
-.newsletter-submit:hover .newsletter-submit-arrow { width: 24px; }
-.newsletter-feedback {
-  font-family: var(--font-body);
-  font-size: 13px;
-  color: rgba(255,255,255,0.7);
-  min-height: 18px;
-  text-align: center;
+.map-btn:hover .map-btn-arrow { width: 24px; }
+
+.map-canvas-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
 }
-.newsletter-feedback.success { color: var(--win); }
-.newsletter-feedback.error { color: #ff8080; }
+.map-canvas {
+  width: 100%;
+  height: 420px;
+  background: var(--offwhite);
+}
+/* Custom marker ESI : cercle navy + logo */
+.esi-map-marker {
+  width: 56px;
+  height: 56px;
+  background: var(--white);
+  border: 3px solid var(--navy);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+.esi-map-marker:hover { transform: rotate(-45deg) scale(1.1); }
+.esi-map-marker img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  transform: rotate(45deg);
+}
+.esi-map-popup {
+  font-family: var(--font-body);
+}
+.esi-map-popup strong {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy);
+  display: block;
+  margin-bottom: 4px;
+}
+.esi-map-popup a {
+  color: var(--electric);
+  font-size: 12px;
+  text-decoration: none;
+}
+.esi-map-popup a:hover { text-decoration: underline; }
+/* Override Leaflet popup pour rester cohérent */
+.leaflet-popup-content-wrapper {
+  border-radius: 6px !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15) !important;
+}
+.leaflet-popup-content { margin: 12px 14px !important; line-height: 1.5 !important; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--draw) !important; }
 
 @media (max-width: 900px) {
-  .newsletter-cta { padding: 56px 24px; }
-  .newsletter-inner { grid-template-columns: 1fr; gap: 36px; }
-  .newsletter-form { align-self: stretch; }
+  .map-section { padding: 56px 24px; }
+  .map-inner { grid-template-columns: 1fr; gap: 32px; }
+  .map-canvas { height: 320px; }
 }
 
 /* ===== FOOTER (3 colonnes légères) ===== */
@@ -7361,31 +7389,38 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   </div>
 </section>
 
-<!-- ===== NEWSLETTER (CTA capture email avant footer) ===== -->
-<section class="newsletter-cta reveal" aria-label="S'inscrire à la newsletter ESI">
-  <div class="newsletter-inner">
-    <div class="newsletter-text">
-      <div class="newsletter-eyebrow"><span data-lang="fr">Restez connectés</span><span data-lang="en">Stay connected</span></div>
-      <h2 class="newsletter-title">
-        <span data-lang="fr">Recevez les résultats<br>et convocations par email</span>
-        <span data-lang="en">Get results and<br>call-ups by email</span>
+<!-- ===== MAP SECTION (Stade Municipal d'Isigny avec logo ESI sur la map) ===== -->
+<section class="map-section reveal" aria-label="Localisation du Stade Municipal d'Isigny">
+  <div class="map-inner">
+    <div class="map-text">
+      <div class="map-eyebrow"><span data-lang="fr">Nous trouver</span><span data-lang="en">Find us</span></div>
+      <h2 class="map-title">
+        <span data-lang="fr">Stade Municipal<br>d'Isigny-sur-Mer</span>
+        <span data-lang="en">Isigny-sur-Mer<br>Municipal Stadium</span>
       </h2>
-      <p class="newsletter-desc">
-        <span data-lang="fr">Une newsletter mensuelle, courte et nette : résultats des 9 équipes, prochains matchs, news du club. Sans spam, désabonnement en un clic.</span>
-        <span data-lang="en">A short monthly newsletter: 9 teams' results, upcoming matches, club news. No spam, one-click unsubscribe.</span>
+      <p class="map-address">
+        Impasse du Stade<br>
+        14230 Isigny-sur-Mer<br>
+        Bessin · District Manche
       </p>
+      <div class="map-actions">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Stade+Municipal+Isigny-sur-Mer" target="_blank" rel="noopener" class="map-btn primary">
+          <span data-lang="fr">Itinéraire Google Maps</span><span data-lang="en">Google Maps directions</span>
+          <span class="map-btn-arrow" aria-hidden="true"></span>
+        </a>
+        <a href="https://www.openstreetmap.org/?mlat=49.31869&mlon=-1.10909&zoom=17" target="_blank" rel="noopener" class="map-btn ghost">
+          <span data-lang="fr">Voir sur OSM</span><span data-lang="en">View on OSM</span>
+        </a>
+      </div>
     </div>
-    <form class="newsletter-form" id="newsletterForm" novalidate>
-      <label class="newsletter-field">
-        <span class="newsletter-label-text"><span data-lang="fr">Votre email</span><span data-lang="en">Your email</span></span>
-        <input type="email" name="email" id="newsletterEmail" required autocomplete="email" placeholder="prenom@example.fr">
-      </label>
-      <button type="submit" class="newsletter-submit">
-        <span data-lang="fr">S'inscrire</span><span data-lang="en">Sign up</span>
-        <span class="newsletter-submit-arrow" aria-hidden="true"></span>
-      </button>
-      <div class="newsletter-feedback" id="newsletterFeedback" role="status" aria-live="polite"></div>
-    </form>
+    <div class="map-canvas-wrap">
+      <div id="esiMap" class="map-canvas" role="img" aria-label="Carte du Stade Municipal de l'ESI Isigny"></div>
+      <noscript>
+        <div style="padding:24px;background:var(--offwhite);text-align:center;">
+          <a href="https://www.openstreetmap.org/?mlat=49.31869&mlon=-1.10909" target="_blank" rel="noopener" style="color:var(--electric);">Voir le stade sur OpenStreetMap</a>
+        </div>
+      </noscript>
+    </div>
   </div>
 </section>
 
@@ -8112,39 +8147,68 @@ const CAT_LABEL = {
   });
 })();
 
-// --- Newsletter form : mailto fallback (en attendant backend Resend) ---
-(function setupNewsletter() {
-  const form = document.getElementById('newsletterForm');
-  const feedback = document.getElementById('newsletterFeedback');
-  const emailInput = document.getElementById('newsletterEmail');
-  if (!form || !feedback || !emailInput) return;
+// --- Map du Stade Municipal d'Isigny avec marker logo ESI ---
+(function setupEsiMap() {
+  const container = document.getElementById('esiMap');
+  if (!container) return;
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = emailInput.value.trim();
-    feedback.className = 'newsletter-feedback';
-    feedback.textContent = '';
+  // Coordonnées du Stade Municipal d'Isigny-sur-Mer
+  const STADE_COORDS = [49.31869, -1.10909];
 
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      feedback.classList.add('error');
-      feedback.textContent = document.body.classList.contains('en')
-        ? 'Please enter a valid email address.'
-        : 'Email invalide. Vérifie le format.';
-      emailInput.focus();
+  function init() {
+    if (typeof L === 'undefined') {
+      // Leaflet pas encore chargé : on retente
+      setTimeout(init, 200);
       return;
     }
 
-    // En attendant le backend Resend : on ouvre un mailto pré-rempli vers le club
-    const subject = encodeURIComponent('Inscription newsletter ESI');
-    const body = encodeURIComponent(`Bonjour,\n\nJe souhaite m'inscrire à la newsletter de l'Étoile Sportive d'Isigny pour recevoir les résultats et convocations.\n\nMon email : ${email}\n\nMerci.`);
-    window.location.href = `mailto:501416@lfnfoot.com?subject=${subject}&body=${body}`;
+    const map = L.map(container, {
+      center: STADE_COORDS,
+      zoom: 16,
+      scrollWheelZoom: false,        // pas de zoom au scroll (sinon ça bloque la nav verticale)
+      attributionControl: true,
+    });
 
-    feedback.classList.add('success');
-    feedback.textContent = document.body.classList.contains('en')
-      ? 'Email client opening — send to confirm your subscription.'
-      : 'Ouverture de votre messagerie — envoyez l\'email pour confirmer.';
-    emailInput.value = '';
-  });
+    // Tile layer : OpenStreetMap (gratuit, pas de clé)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    // Custom icon : div HTML qui contient le logo ESI dans un cercle navy
+    const esiIcon = L.divIcon({
+      className: 'esi-map-marker-wrapper',
+      html: '<div class="esi-map-marker"><img src="assets/logo-esi.png" alt="ESI"></div>',
+      iconSize: [56, 56],
+      iconAnchor: [28, 56],   // pointe du marker pile sur le centre du stade
+      popupAnchor: [0, -54],
+    });
+
+    const marker = L.marker(STADE_COORDS, { icon: esiIcon, title: 'Stade Municipal — ESI Isigny' }).addTo(map);
+
+    marker.bindPopup(`
+      <div class="esi-map-popup">
+        <strong>Étoile Sportive d'Isigny</strong>
+        Stade Municipal · Impasse du Stade<br>
+        14230 Isigny-sur-Mer<br>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Stade+Municipal+Isigny-sur-Mer" target="_blank" rel="noopener">Itinéraire →</a>
+      </div>
+    `);
+
+    // Ouvre le popup par défaut après 600 ms (le marker se voit, puis le popup apparaît)
+    setTimeout(() => marker.openPopup(), 600);
+
+    // Re-active le scroll-zoom uniquement quand on click sur la map (UX)
+    map.on('click', () => map.scrollWheelZoom.enable());
+    map.on('mouseout', () => map.scrollWheelZoom.disable());
+  }
+
+  // On lance l'init quand le DOM est prêt + Leaflet chargé en defer
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 
 // --- Hero slideshow : photos ESI en fond, crossfade Ken Burns ---
