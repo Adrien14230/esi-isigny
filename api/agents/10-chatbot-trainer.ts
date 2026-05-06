@@ -30,7 +30,7 @@ export default async function handler() {
         district: 'Manche',
         league: 'Normandie',
         stadium: 'Stade Municipal · Impasse du Stade · 14230 Isigny-sur-Mer',
-        contact: '501416@lfnfoot.com',
+        contact: 'etoilesportiveisigny@gmail.com',
       },
     };
 
