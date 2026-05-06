@@ -2604,7 +2604,13 @@ button.team-card { font-family: inherit; }
   height: 420px;
   background: var(--offwhite);
 }
-/* Custom marker ESI : cercle navy + logo */
+/* Override Leaflet's default divIcon style (background blanc + border qui écrasaient le custom) */
+.esi-map-marker-wrapper,
+.leaflet-div-icon.esi-map-marker-wrapper {
+  background: transparent !important;
+  border: none !important;
+}
+/* Custom marker ESI : cercle blanc bordé navy en forme goutte avec logo dedans */
 .esi-map-marker {
   width: 56px;
   height: 56px;
@@ -2619,12 +2625,13 @@ button.team-card { font-family: inherit; }
   cursor: pointer;
   transition: transform 0.25s ease;
 }
-.esi-map-marker:hover { transform: rotate(-45deg) scale(1.1); }
+.esi-map-marker:hover { transform: rotate(-45deg) scale(1.12); }
 .esi-map-marker img {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
   transform: rotate(45deg);
+  display: block;
 }
 .esi-map-popup {
   font-family: var(--font-body);
