@@ -1,15 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
-    { "path": "/api/agents/01-fff-results-sync",   "schedule": "0 2 * * 1" },
-    { "path": "/api/agents/02-fff-fixtures-sync",  "schedule": "30 2 * * 1" },
-    { "path": "/api/agents/03-classements-sync",   "schedule": "0 3 * * 1" },
-    { "path": "/api/agents/04-match-report-writer","schedule": "0 4 * * 1" },
-    { "path": "/api/agents/05-convoc-reminder",    "schedule": "0 18 * * *" },
-    { "path": "/api/agents/06-social-poster",      "schedule": "0 9 * * 1" },
-    { "path": "/api/agents/07-seo-optimizer",      "schedule": "0 23 * * 0" },
-    { "path": "/api/agents/09-stats-aggregator",   "schedule": "0 5 * * 1" },
-    { "path": "/api/agents/10-chatbot-trainer",    "schedule": "0 22 * * 0" }
+    { "path": "/api/agents/01-fff-results-sync", "schedule": "0 2 * * 1" },
+    { "path": "/api/agents/05-convoc-reminder",  "schedule": "0 18 * * *" }
   ],
   "headers": [
     {
