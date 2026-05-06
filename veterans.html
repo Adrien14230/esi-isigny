@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1A3A6B">
+
+<title>Vétérans · ESI Isigny — Vétérans Poule B</title>
+<meta name="description" content="L'équipe vétérans de l'ESI dispute le championnat Poule B du District Manche. Une équipe d'anciens passionnés qui continuent à porter les couleurs bleu et ...">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://esi-isigny.fr/veterans.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://esi-isigny.fr/veterans.html">
+<meta property="og:site_name" content="Étoile Sportive d'Isigny">
+<meta property="og:title" content="Vétérans · ESI Isigny">
+<meta property="og:description" content="L'équipe vétérans de l'ESI dispute le championnat Poule B du District Manche. Une équipe d'anciens passionnés qui continuent à porter les couleurs bleu et ...">
+<meta property="og:image" content="https://esi-isigny.fr/assets/team-bg.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1280">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vétérans · ESI Isigny">
+<meta name="twitter:description" content="L'équipe vétérans de l'ESI dispute le championnat Poule B du District Manche. Une équipe d'anciens passionnés qui continuent à porter les couleurs bleu et ...">
+<meta name="twitter:image" content="https://esi-isigny.fr/assets/team-bg.jpg">
+
+<link rel="icon" type="image/png" href="/assets/logo-esi.png">
+<link rel="apple-touch-icon" href="/assets/logo-esi.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsTeam",
+  "name": "ESI Vétérans",
+  "description": "L'équipe vétérans de l'ESI dispute le championnat Poule B du District Manche. Une équipe d'anciens passionnés qui continuent à porter les couleurs bleu et blanc.",
+  "url": "https://esi-isigny.fr/veterans.html",
+  "image": "https://esi-isigny.fr/assets/team-bg.jpg",
+  "logo": "https://esi-isigny.fr/assets/logo-esi.png",
+  "sport": "Football",
+  "memberOf": {
+    "@type": "SportsClub",
+    "name": "Étoile Sportive d'Isigny",
+    "url": "https://esi-isigny.fr/"
+  },
+  "coach": {
+    "@type": "Person",
+    "name": "Staff Vétérans ESI"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #1A3A6B;
+  --electric: #1E5FBE;
+  --bright: #3A7FE8;
+  --white: #FFFFFF;
+  --offwhite: #F4F6FA;
+  --lightgrey: #E8ECF2;
+  --dark: #0D1F3C;
+  --win: #22C55E;
+  --draw: #94A3B8;
+  --loss: #EF4444;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-body); background: var(--offwhite); color: var(--dark); line-height: 1.5; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+.skip-link {
+  position: absolute; top: -100px; left: 0;
+  background: var(--navy); color: var(--white);
+  padding: 12px 24px; z-index: 99999;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; }
+
+/* Mini nav */
+.team-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--lightgrey);
+  padding: 14px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.team-nav-logo { display: flex; align-items: center; gap: 12px; }
+.team-nav-logo img {
+  width: 36px; height: 36px; object-fit: contain;
+  background: var(--navy); border-radius: 50%;
+  padding: 4px; border: 2px solid var(--navy);
+}
+.team-nav-logo-name {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 14px; text-transform: uppercase;
+  color: var(--navy); letter-spacing: 0.04em; line-height: 1.1;
+}
+.team-nav-logo-name span {
+  display: block; font-size: 9px; letter-spacing: 0.16em;
+  font-weight: 400; opacity: 0.55;
+}
+.team-nav-back {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--navy); padding: 10px 20px;
+  border: 1px solid var(--lightgrey); border-radius: 2px;
+  transition: all 0.25s;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.team-nav-back:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.team-nav-back-arrow {
+  width: 18px; height: 1px; background: currentColor;
+  position: relative;
+}
+.team-nav-back-arrow::before {
+  content: ''; position: absolute;
+  left: 0; top: 50%;
+  width: 6px; height: 6px;
+  border-bottom: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Hero équipe */
+.team-hero {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
+  color: var(--white);
+  padding: 80px 32px 64px;
+  position: relative; overflow: hidden;
+}
+.team-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+.team-hero-inner {
+  max-width: 1200px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.team-hero-eyebrow {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--bright);
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-bottom: 18px;
+}
+.team-hero-eyebrow::before {
+  content: ''; width: 24px; height: 1px; background: currentColor;
+}
+.team-hero-title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(48px, 7vw, 96px); line-height: 0.92;
+  letter-spacing: -0.022em; text-transform: uppercase;
+  color: var(--white); margin-bottom: 14px;
+}
+.team-hero-subtitle {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(16px, 1.6vw, 22px); letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.7); text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.team-hero-desc {
+  font-family: var(--font-body); font-size: 16px;
+  line-height: 1.65; color: rgba(255,255,255,0.78);
+  max-width: 680px;
+}
+
+/* Sections */
+section.team-section {
+  max-width: 1200px;
+  margin: 64px auto;
+  padding: 0 32px;
+}
+.team-section-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--electric); margin-bottom: 22px;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.team-section-title::before {
+  content: ''; width: 24px; height: 1px; background: currentColor;
+}
+.team-section-h2 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(28px, 3.5vw, 42px); line-height: 1;
+  letter-spacing: -0.018em; text-transform: uppercase;
+  color: var(--navy); margin-bottom: 28px;
+}
+
+/* Rank block */
+.team-page-rank {
+  display: inline-flex; align-items: baseline; gap: 12px;
+  padding: 14px 24px; border-radius: 8px;
+  font-family: var(--font-display);
+}
+.team-page-rank-pos { font-weight: 800; font-size: 36px; line-height: 1; }
+.team-page-rank-meta { font-size: 14px; color: var(--dark); opacity: 0.7; letter-spacing: 0.04em; }
+.team-page-rank.empty { background: var(--offwhite); padding: 20px 24px; }
+.team-page-rank.empty .team-page-rank-label { font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin-right: 12px; }
+.team-page-rank.empty .team-page-rank-meta { font-size: 13px; }
+
+/* Stats grid */
+.team-page-stats {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  background: var(--white); border: 1px solid var(--lightgrey);
+  border-radius: 8px; overflow: hidden;
+  margin-top: 18px;
+}
+.stat-cell {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 18px 8px; border-right: 1px solid var(--lightgrey);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-cell strong {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 28px; color: var(--navy); line-height: 1;
+}
+.stat-cell span {
+  font-family: var(--font-display); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--draw); margin-top: 6px;
+}
+@media (max-width: 768px) {
+  .team-page-stats { grid-template-columns: repeat(4, 1fr); }
+  .stat-cell { border-bottom: 1px solid var(--lightgrey); }
+  .stat-cell:nth-last-child(-n+3) { border-bottom: none; }
+  .stat-cell:nth-child(4n) { border-right: none; }
+}
+
+/* Form dots */
+.dot-mini {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 13px; margin-right: 6px;
+}
+
+/* Info cards */
+.team-info-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px; margin-top: 24px;
+}
+@media (max-width: 720px) {
+  .team-info-grid { grid-template-columns: 1fr; }
+}
+.team-info-card {
+  background: var(--white); border: 1px solid var(--lightgrey);
+  border-radius: 12px; padding: 24px;
+}
+.team-info-card h3 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--draw); margin-bottom: 12px;
+}
+.team-info-card p {
+  font-family: var(--font-body); font-size: 16px;
+  line-height: 1.55; color: var(--dark);
+}
+
+/* CTA */
+.team-cta {
+  background: var(--navy); color: var(--white);
+  padding: 56px 32px; text-align: center;
+}
+.team-cta-inner { max-width: 720px; margin: 0 auto; }
+.team-cta h2 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(28px, 3.6vw, 42px); line-height: 1;
+  letter-spacing: -0.02em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.team-cta p {
+  font-family: var(--font-body); font-size: 15px;
+  line-height: 1.6; color: rgba(255,255,255,0.75);
+  max-width: 520px; margin: 0 auto 28px;
+}
+.team-cta-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  background: var(--white); color: var(--navy);
+  padding: 16px 30px; border-radius: 2px;
+  transition: background 0.25s, color 0.25s;
+}
+.team-cta-btn:hover { background: var(--bright); color: var(--white); }
+
+/* Footer */
+.team-footer {
+  background: var(--dark); color: var(--white);
+  padding: 40px 32px;
+  text-align: center;
+}
+.team-footer p {
+  font-family: var(--font-body); font-size: 13px;
+  color: rgba(255,255,255,0.55); line-height: 1.5;
+}
+.team-footer a { color: var(--bright); }
+.team-footer-links {
+  display: flex; gap: 24px; justify-content: center;
+  margin-top: 16px; flex-wrap: wrap;
+}
+.team-footer-links a {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.2s;
+}
+.team-footer-links a:hover { color: var(--bright); }
+
+@media (max-width: 600px) {
+  .team-nav { padding: 12px 18px; }
+  .team-nav-back { font-size: 10px; padding: 8px 14px; }
+  .team-hero { padding: 56px 20px 48px; }
+  section.team-section { margin: 48px auto; padding: 0 20px; }
+  .team-cta { padding: 40px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Aller au contenu principal</a>
+
+<nav class="team-nav" aria-label="Navigation principale">
+  <a href="/" class="team-nav-logo" aria-label="Retour à l'accueil ESI">
+    <img src="/assets/logo-esi.png" alt="Logo Étoile Sportive d'Isigny">
+    <div class="team-nav-logo-name">ÉTOILE SPORTIVE<span>D'ISIGNY · 1925</span></div>
+  </a>
+  <a href="/" class="team-nav-back">
+    <span class="team-nav-back-arrow"></span>
+    Retour au site
+  </a>
+</nav>
+
+<main id="main">
+
+  <header class="team-hero">
+    <div class="team-hero-inner">
+      <div class="team-hero-eyebrow">ESI · Seniors · Vétérans</div>
+      <h1 class="team-hero-title">Vétérans</h1>
+      <div class="team-hero-subtitle">Championnat Vétérans · Poule B</div>
+      <p class="team-hero-desc">L'équipe vétérans de l'ESI dispute le championnat Poule B du District Manche. Une équipe d'anciens passionnés qui continuent à porter les couleurs bleu et blanc.</p>
+    </div>
+  </header>
+
+  <section class="team-section" aria-labelledby="rank-title">
+    <div class="team-section-title">Saison 2025-26</div>
+    <h2 class="team-section-h2" id="rank-title">Classement & statistiques</h2>
+    
+        <div class="team-page-rank" style="background:var(--offwhite);">
+          <span class="team-page-rank-pos" style="color:var(--navy);">6ᵉ</span>
+          <span class="team-page-rank-meta">/ 9 · 5 pts</span>
+        </div>
+
+    
+        <div class="team-page-stats">
+          <div class="stat-cell"><strong>8</strong><span>J</span></div>
+          <div class="stat-cell"><strong>1</strong><span>G</span></div>
+          <div class="stat-cell"><strong>3</strong><span>N</span></div>
+          <div class="stat-cell"><strong>3</strong><span>P</span></div>
+          <div class="stat-cell"><strong>12</strong><span>BP</span></div>
+          <div class="stat-cell"><strong>17</strong><span>BC</span></div>
+          <div class="stat-cell"><strong>-5</strong><span>Diff.</span></div>
+        </div>
+
+  </section>
+
+  
+  <section class="team-section" aria-labelledby="form-title">
+    <div class="team-section-title">Forme récente</div>
+    <h2 class="team-section-h2" id="form-title">Derniers matchs</h2>
+    <div class="team-info-card" style="display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <span class="dot-mini" style="background:#94A3B8;color:#fff;" title="Auversoise 0-0">N</span>
+      <span style="color:var(--draw);font-size:13px;margin-left:12px;">Du plus ancien au plus récent</span>
+    </div>
+  </section>
+
+
+  <section class="team-section" aria-labelledby="match-title">
+    <div class="team-section-title">À venir</div>
+    <h2 class="team-section-h2" id="match-title">Prochain match</h2>
+    <div class="team-info-card">
+      <h3>Match prévu</h3>
+      <p><strong>Ven. 15 mai 21h00 vs FC St-Lô Manche (Domicile)</strong></p>
+    </div>
+  </section>
+
+  <section class="team-section" aria-labelledby="staff-title">
+    <div class="team-section-title">Encadrement</div>
+    <h2 class="team-section-h2" id="staff-title">Staff</h2>
+    <div class="team-info-grid">
+      <div class="team-info-card">
+        <h3>Dirigeants &amp; coachs</h3>
+        <p><strong>Staff Vétérans ESI</strong></p>
+      </div>
+      <div class="team-info-card">
+        <h3>Compétition officielle</h3>
+        <p><a href="https://epreuves.fff.fr/competition/club/501416-e-s-isigny-s-mer/club" target="_blank" rel="noopener" style="color:var(--electric);">Voir sur FFF.fr →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-cta" aria-label="Rejoindre l'ESI">
+    <div class="team-cta-inner">
+      <h2>Envie de rejoindre Vétérans ?</h2>
+      <p>Inscriptions ouvertes pour la saison 2025-26. Hommes, femmes, enfants : toutes les catégories sont accueillies à l'Étoile Sportive d'Isigny.</p>
+      <a href="mailto:501416@lfnfoot.com?subject=Inscription%20Vétérans%20-%20Saison%202025-26" class="team-cta-btn">
+        Nous contacter →
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="team-footer">
+  <p>© 2025 Étoile Sportive d'Isigny · Club fondé en 1925 · Affiliation FFF 501416</p>
+  <div class="team-footer-links">
+    <a href="/">Accueil</a>
+    <a href="/#calendrier">Calendrier</a>
+    <a href="/#resultats">Résultats</a>
+    <a href="/#staff">Tous les dirigeants</a>
+    <a href="/#partenaires">Partenaires</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>

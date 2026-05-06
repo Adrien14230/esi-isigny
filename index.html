@@ -1782,6 +1782,7 @@ nav.scrolled .hamburger span { background: var(--navy); }
   text-align: left;
   width: 100%;
   text-decoration: none;
+  position: relative;
 }
 button.team-card { font-family: inherit; }
 .team-card:hover {
@@ -1789,6 +1790,35 @@ button.team-card { font-family: inherit; }
   box-shadow: 0 8px 24px rgba(13,31,60,0.08);
   border-color: rgba(58,127,232,0.4);
 }
+/* Lien "Fiche complète →" injecté en JS sur chaque card pour SEO + accès direct */
+.team-card-link-badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--electric);
+  background: var(--white);
+  border: 1px solid var(--lightgrey);
+  padding: 5px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 5;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  opacity: 0.92;
+}
+.team-card-link-badge:hover {
+  background: var(--electric);
+  color: var(--white);
+  border-color: var(--electric);
+  opacity: 1;
+}
+.team-card-link-badge svg { width: 8px; height: 8px; stroke: currentColor; fill: none; stroke-width: 2; }
 .team-card-head {
   display: flex;
   align-items: flex-start;
@@ -5647,7 +5677,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
 
   <div class="team-grid">
 
-    <button type="button" class="team-card reveal" data-cat="seniors" data-classement="seniors-a">
+    <button type="button" class="team-card reveal" data-cat="seniors" data-classement="seniors-a" data-team-page="seniors-a.html">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat">Seniors · Équipe première · ↑ 1</div>
@@ -5674,7 +5704,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </button>
 
-    <button type="button" class="team-card reveal" data-cat="seniors" data-classement="seniors-b">
+    <button type="button" class="team-card reveal" data-cat="seniors" data-classement="seniors-b" data-team-page="seniors-b.html">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat">Seniors · Réserve · +3 pts</div>
@@ -5701,7 +5731,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </button>
 
-    <button type="button" class="team-card reveal" data-cat="seniors" data-classement="veterans">
+    <button type="button" class="team-card reveal" data-cat="seniors" data-classement="veterans" data-team-page="veterans.html">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat"><span data-lang="fr">Seniors · Vétérans</span><span data-lang="en">Seniors · Veterans</span></div>
@@ -5726,7 +5756,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </button>
 
-    <button type="button" class="team-card reveal" data-cat="feminines" data-classement="seniors-f">
+    <button type="button" class="team-card reveal" data-cat="feminines" data-classement="seniors-f" data-team-page="seniors-f.html">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat"><span data-lang="fr">Féminines · Football à 8</span><span data-lang="en">Women · 8-a-side</span></div>
@@ -5753,7 +5783,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </button>
 
-    <button type="button" class="team-card reveal" data-cat="jeunes" data-classement="u15-1" style="background:linear-gradient(135deg,rgba(212,160,23,0.08),rgba(255,255,255,1));border-color:rgba(212,160,23,0.3);">
+    <button type="button" class="team-card reveal" data-cat="jeunes" data-classement="u15-1" data-team-page="u15-1.html" style="background:linear-gradient(135deg,rgba(212,160,23,0.08),rgba(255,255,255,1));border-color:rgba(212,160,23,0.3);">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat" style="color:#b8860b;font-weight:700;">Jeunes · 1<sup>er</sup> du classement</div>
@@ -5779,7 +5809,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </button>
 
-    <button type="button" class="team-card reveal" data-cat="jeunes" data-classement="u15-2">
+    <button type="button" class="team-card reveal" data-cat="jeunes" data-classement="u15-2" data-team-page="u15-2.html">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat"><span data-lang="fr">Entente Isigny–Carentan · ↑</span><span data-lang="en">Isigny–Carentan partnership</span></div>
@@ -5805,7 +5835,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </button>
 
-    <button type="button" class="team-card reveal" data-cat="jeunes" data-classement="u13">
+    <button type="button" class="team-card reveal" data-cat="jeunes" data-classement="u13" data-team-page="u13.html">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat">Jeunes · U12 / U13</div>
@@ -5832,7 +5862,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </button>
 
-    <article class="team-card reveal" data-cat="animation">
+    <article class="team-card reveal" data-cat="animation" data-team-page="u11.html">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat"><span data-lang="fr">Animation · U10 / U11</span><span data-lang="en">Animation · U10 / U11</span></div>
@@ -5853,7 +5883,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       </div>
     </article>
 
-    <article class="team-card reveal" data-cat="animation">
+    <article class="team-card reveal" data-cat="animation" data-team-page="u9.html">
       <div class="team-card-head">
         <div>
           <div class="team-card-cat"><span data-lang="fr">Animation · U8 / U9</span><span data-lang="en">Animation · U8 / U9</span></div>
@@ -8892,6 +8922,40 @@ function closeClassement() { classementBackdrop.classList.remove('open'); }
 document.querySelectorAll('[data-classement]').forEach(b => {
   b.addEventListener('click', () => openClassement(b.dataset.classement));
 });
+
+// --- Injection du lien "Fiche complète →" sur chaque team-card pour SEO + accès direct page dédiée ---
+(function injectTeamCardLinks() {
+  document.querySelectorAll('.team-card[data-team-page]').forEach(card => {
+    const url = card.dataset.teamPage;
+    if (!url) return;
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.className = 'team-card-link-badge';
+    link.setAttribute('aria-label', 'Voir la fiche complète de cette équipe');
+    link.innerHTML = 'Fiche <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    // stopPropagation : un clic sur le badge ne déclenche pas le modal classement de la card parente
+    link.addEventListener('click', (e) => { e.stopPropagation(); });
+
+    // Pour les <button> on ne peut pas insérer un <a> à l'intérieur (HTML invalide)
+    // → on l'attache au parent (.team-grid > div ou directement dans team-card si elle est <article>)
+    if (card.tagName === 'BUTTON') {
+      // Wrappe le button dans un div positionné, et place le badge à côté
+      if (!card.parentElement.classList.contains('team-card-wrap')) {
+        const wrap = document.createElement('div');
+        wrap.className = 'team-card-wrap';
+        wrap.style.position = 'relative';
+        card.parentNode.insertBefore(wrap, card);
+        wrap.appendChild(card);
+      }
+      card.parentElement.appendChild(link);
+    } else {
+      // <article> : on peut insérer le badge directement à l'intérieur
+      card.appendChild(link);
+    }
+  });
+})();
 document.querySelectorAll('[data-close-classement]').forEach(b => b.addEventListener('click', closeClassement));
 classementBackdrop.addEventListener('click', e => { if (e.target === classementBackdrop) closeClassement(); });
 
