@@ -154,10 +154,6 @@
 <link rel="preload" as="image" href="assets/team-bg.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- Leaflet (carte du stade) — chargé en defer -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
-
 <style>
 /* ===== VARIABLES ===== */
 :root {
@@ -2490,78 +2486,111 @@ button.team-card { font-family: inherit; }
   .divider-marquee-logo { width: 100px; height: 70px; }
 }
 
-/* ===== MAP SECTION (Stade Municipal Isigny avec logo ESI sur la carte) ===== */
-.map-section {
-  background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
-  padding: 80px 48px;
+/* ===== STADE EDITORIAL (photo de fond + overlay navy + logo + meta + CTA) ===== */
+.stade-section {
   position: relative;
+  min-height: 540px;
+  background: var(--dark);
   overflow: hidden;
+  isolation: isolate;
 }
-.map-section::before {
+/* Photo du stade en background */
+.stade-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
-  background-size: 32px 32px;
-  pointer-events: none;
+  background-image: url('assets/team-bg.jpg');
+  background-size: cover;
+  background-position: center 35%;
+  filter: contrast(1.05);
+  z-index: -2;
 }
-.map-inner {
-  max-width: 1200px;
+/* Overlay navy fort (dégradé pour lisibilité du texte) + grain subtil */
+.stade-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(105deg, rgba(6,14,30,0.94) 0%, rgba(6,14,30,0.82) 45%, rgba(13,31,60,0.55) 100%),
+    radial-gradient(ellipse 70% 50% at 80% 40%, rgba(58,127,232,0.18), transparent 70%);
+  z-index: -1;
+}
+.stade-inner {
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 100px 56px;
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 56px;
   align-items: center;
   position: relative;
   z-index: 1;
 }
-.map-eyebrow {
+.stade-content { color: var(--white); }
+.stade-eyebrow {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 11px;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--bright);
-  margin-bottom: 16px;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  margin-bottom: 24px;
 }
-.map-eyebrow::before {
-  content: '';
-  width: 24px;
+.stade-eyebrow-line {
+  display: inline-block;
+  width: 32px;
   height: 1px;
   background: currentColor;
 }
-.map-title {
+.stade-eyebrow span[data-lang]:not(.stade-eyebrow-line) { display: inline; }
+.stade-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(28px, 3.6vw, 44px);
-  line-height: 0.95;
-  letter-spacing: -0.022em;
-  color: var(--white);
+  font-size: clamp(44px, 5.8vw, 84px);
+  line-height: 0.92;
+  letter-spacing: -0.026em;
   text-transform: uppercase;
-  margin-bottom: 22px;
+  color: var(--white);
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  margin-bottom: 36px;
 }
-.map-address {
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.7);
-  margin-bottom: 28px;
+/* Méta : 3 colonnes éditoriales, comme une fiche magazine */
+.stade-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding: 24px 0;
+  margin-bottom: 36px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
 }
-.map-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.map-btn {
+.stade-meta-item { display: flex; flex-direction: column; gap: 6px; }
+.stade-meta-label {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 11px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.stade-meta-value {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--white);
+  font-weight: 500;
+}
+.stade-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.stade-btn {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 14px 24px;
+  padding: 16px 28px;
   border-radius: 2px;
   display: inline-flex;
   align-items: center;
@@ -2570,24 +2599,12 @@ button.team-card { font-family: inherit; }
   transition: background 0.25s, color 0.25s, border-color 0.25s;
   border: 1px solid transparent;
 }
-.map-btn.primary {
-  background: var(--white);
-  color: var(--navy);
-}
-.map-btn.primary:hover { background: var(--bright); color: var(--white); }
-.map-btn.ghost {
-  background: transparent;
-  color: var(--white);
-  border-color: rgba(255,255,255,0.3);
-}
-.map-btn.ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--white); }
-.map-btn-arrow {
-  width: 18px; height: 1px;
-  background: currentColor;
-  position: relative;
-  transition: width 0.25s;
-}
-.map-btn-arrow::after {
+.stade-btn.primary { background: var(--white); color: var(--navy); }
+.stade-btn.primary:hover { background: var(--bright); color: var(--white); }
+.stade-btn.ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.35); }
+.stade-btn.ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--white); }
+.stade-btn-arrow { width: 18px; height: 1px; background: currentColor; position: relative; transition: width 0.25s; }
+.stade-btn-arrow::after {
   content: '';
   position: absolute;
   right: 0; top: 50%;
@@ -2596,184 +2613,61 @@ button.team-card { font-family: inherit; }
   border-right: 1px solid currentColor;
   transform: translateY(-50%) rotate(45deg);
 }
-.map-btn:hover .map-btn-arrow { width: 24px; }
+.stade-btn:hover .stade-btn-arrow { width: 24px; }
 
-.map-canvas-wrap {
+/* Logo en blason massif sur le côté droit — gravé dans le navy avec halo */
+.stade-logo-mark {
   position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04) inset;
-  /* Fond placeholder navy qui s'affiche INSTANTANÉMENT pendant que les tiles chargent */
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(58,127,232,0.18), transparent 70%),
-    linear-gradient(135deg, #0a1428 0%, #0d1f3c 50%, #1a3a6b 100%);
-}
-/* Loader subtil pendant le chargement des tiles */
-.map-canvas-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, rgba(58,127,232,0.06) 1px, transparent 0);
-  background-size: 24px 24px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 1;
-  transition: opacity 0.4s ease 0.6s;
-}
-.map-canvas-wrap.loaded::before { opacity: 0; }
-.map-canvas {
-  width: 100%;
-  height: 460px;
-  background: transparent;
-  position: relative;
-  z-index: 1;
-  /* Subtle warmth filter sur les tiles pour les harmoniser avec la DA */
-  filter: contrast(1.05) saturate(0.85);
-}
-/* Vignette éditoriale */
-.map-canvas-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: 12px;
-  background:
-    radial-gradient(ellipse 100% 60% at 50% 50%, transparent 50%, rgba(13,31,60,0.45) 100%);
-  z-index: 2;
-  mix-blend-mode: multiply;
-}
-
-/* ===== MARKER ESI : navy circle + logo PNG forcé en blanc via filter ===== */
-.esi-map-marker-wrapper,
-.leaflet-div-icon.esi-map-marker-wrapper {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-.esi-marker {
-  position: relative;
-  width: 72px;
-  height: 90px;
-  pointer-events: none;
-  cursor: pointer;
-}
-/* Triple pulse rings — éditorial, qui rayonnent en bleu electric */
-.esi-marker-pulse {
-  position: absolute;
-  top: 32px; left: 50%;
-  width: 24px; height: 24px;
-  margin: -12px 0 0 -12px;
-  border-radius: 50%;
-  border: 2px solid rgba(58,127,232,0.5);
-  background: transparent;
-  pointer-events: none;
-  animation: esiPulse 3s cubic-bezier(0.2, 0.6, 0.2, 1) infinite;
-}
-.esi-marker-pulse:nth-child(2) { animation-delay: 1s; }
-.esi-marker-pulse:nth-child(3) { animation-delay: 2s; }
-@keyframes esiPulse {
-  0%   { transform: scale(0.4); opacity: 1;   border-width: 2px; }
-  100% { transform: scale(3.2); opacity: 0;   border-width: 1px; }
-}
-/* La goutte SVG : navy massif + bordure blanche fine + halo */
-.esi-marker-svg {
-  position: relative;
-  z-index: 2;
-  width: 72px;
-  height: 90px;
-  display: block;
-  filter:
-    drop-shadow(0 10px 24px rgba(0,0,0,0.5))
-    drop-shadow(0 0 12px rgba(58,127,232,0.4));
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-/* Logo ESI : forcé en blanc plein via brightness(0) + invert(1) qui l'éclaircit complètement */
-.esi-marker-logo {
-  position: absolute;
-  z-index: 3;
-  top: 12px; left: 50%;
-  width: 44px; height: 44px;
-  object-fit: contain;
-  pointer-events: none;
-  transform: translateX(-50%);
-  /* Force le PNG (lignes blanches fines + fond transparent) en logo blanc plein */
-  filter: brightness(0) invert(1);
-  opacity: 0.98;
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.esi-marker:hover .esi-marker-svg { transform: translateY(-4px) scale(1.05); }
-.esi-marker:hover .esi-marker-logo { transform: translate(-50%, -4px) scale(1.05); }
-
-/* ===== POPUP ===== */
-.esi-map-popup { font-family: var(--font-body); min-width: 200px; }
-.esi-map-popup-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--navy);
-  margin-bottom: 6px;
-  line-height: 1.2;
-}
-.esi-map-popup-addr {
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--dark);
-  margin-bottom: 10px;
-}
-.esi-map-popup-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--electric);
-  text-decoration: none;
+  justify-content: center;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
 }
-.esi-map-popup-link:hover { color: var(--bright); }
-/* Override Leaflet popup pour rester cohérent avec la DA */
-.leaflet-popup-content-wrapper {
-  border-radius: 4px !important;
-  box-shadow: 0 6px 24px rgba(13,31,60,0.18) !important;
-  border: 1px solid var(--lightgrey) !important;
-  padding: 0 !important;
+.stade-logo-mark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,127,232,0.25) 0%, rgba(58,127,232,0.05) 50%, transparent 70%);
+  animation: stadePulse 4s ease-in-out infinite;
 }
-.leaflet-popup-content { margin: 16px 18px !important; line-height: 1.5 !important; }
-.leaflet-popup-tip { background: var(--white) !important; box-shadow: 0 3px 14px rgba(13,31,60,0.1) !important; }
-.leaflet-container a.leaflet-popup-close-button {
-  color: var(--draw) !important;
-  font-size: 18px !important;
-  padding: 6px 8px 0 0 !important;
+@keyframes stadePulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50%      { transform: scale(1.08); opacity: 1; }
 }
-/* Attribution discret */
-.leaflet-control-attribution {
-  background: rgba(255,255,255,0.85) !important;
-  font-family: var(--font-body) !important;
-  font-size: 10px !important;
-  padding: 2px 8px !important;
-  border-radius: 3px 0 0 0 !important;
+.stade-logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.18);
 }
-.leaflet-control-attribution a { color: var(--electric) !important; }
-/* Zoom controls plus discrets */
-.leaflet-bar a, .leaflet-bar a:hover {
-  background: var(--white) !important;
-  color: var(--navy) !important;
-  border-color: var(--lightgrey) !important;
-  width: 32px !important; height: 32px !important; line-height: 32px !important;
-  font-family: var(--font-display) !important;
-  font-weight: 700 !important;
+.stade-logo-mark img {
+  position: relative;
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  /* Force le PNG (lignes blanches fines) en blanc plein pour visibilité maximale */
+  filter: brightness(0) invert(1) drop-shadow(0 8px 30px rgba(58,127,232,0.4));
+  opacity: 0.96;
 }
-.leaflet-bar { box-shadow: 0 4px 14px rgba(13,31,60,0.12) !important; border: none !important; }
 
 @media (max-width: 900px) {
-  .map-section { padding: 56px 24px; }
-  .map-inner { grid-template-columns: 1fr; gap: 32px; }
-  .map-canvas { height: 320px; }
+  .stade-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 64px 24px;
+  }
+  .stade-meta { grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 18px 0; margin-bottom: 28px; }
+  .stade-logo-mark { max-width: 220px; order: -1; margin: 0; }
+}
+@media (max-width: 560px) {
+  .stade-meta { grid-template-columns: 1fr 1fr; }
+  .stade-meta-item:last-child { grid-column: 1 / -1; }
+  .stade-actions .stade-btn { flex: 1; justify-content: center; }
 }
 
 /* ===== FOOTER (3 colonnes légères) ===== */
@@ -7507,37 +7401,46 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   </div>
 </section>
 
-<!-- ===== MAP SECTION (Stade Municipal d'Isigny avec logo ESI sur la map) ===== -->
-<section class="map-section reveal" aria-label="Localisation du Stade Municipal d'Isigny">
-  <div class="map-inner">
-    <div class="map-text">
-      <div class="map-eyebrow"><span data-lang="fr">Nous trouver</span><span data-lang="en">Find us</span></div>
-      <h2 class="map-title">
+<!-- ===== STADE EDITORIAL (photo réelle + overlay navy + logo + CTA navigation) ===== -->
+<section class="stade-section reveal" aria-label="Stade Municipal d'Isigny">
+  <div class="stade-inner">
+    <div class="stade-content">
+      <div class="stade-eyebrow">
+        <span class="stade-eyebrow-line"></span>
+        <span data-lang="fr">Notre maison · Depuis 1925</span>
+        <span data-lang="en">Our home · Since 1925</span>
+      </div>
+      <h2 class="stade-title">
         <span data-lang="fr">Stade Municipal<br>d'Isigny-sur-Mer</span>
-        <span data-lang="en">Isigny-sur-Mer<br>Municipal Stadium</span>
+        <span data-lang="en">Isigny Municipal<br>Stadium</span>
       </h2>
-      <p class="map-address">
-        Impasse du Stade<br>
-        14230 Isigny-sur-Mer<br>
-        Bessin · District Manche
-      </p>
-      <div class="map-actions">
-        <a href="https://www.google.com/maps/dir/?api=1&destination=Stade+Municipal+Isigny-sur-Mer" target="_blank" rel="noopener" class="map-btn primary">
-          <span data-lang="fr">Itinéraire Google Maps</span><span data-lang="en">Google Maps directions</span>
-          <span class="map-btn-arrow" aria-hidden="true"></span>
+      <div class="stade-meta">
+        <div class="stade-meta-item">
+          <span class="stade-meta-label"><span data-lang="fr">Adresse</span><span data-lang="en">Address</span></span>
+          <span class="stade-meta-value">Impasse du Stade<br>14230 Isigny-sur-Mer</span>
+        </div>
+        <div class="stade-meta-item">
+          <span class="stade-meta-label"><span data-lang="fr">Coordonnées</span><span data-lang="en">Coordinates</span></span>
+          <span class="stade-meta-value">49.3187° N<br>1.1091° W</span>
+        </div>
+        <div class="stade-meta-item">
+          <span class="stade-meta-label"><span data-lang="fr">District</span><span data-lang="en">District</span></span>
+          <span class="stade-meta-value">Manche · Bessin<br>Normandie</span>
+        </div>
+      </div>
+      <div class="stade-actions">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Stade+Municipal+Isigny-sur-Mer" target="_blank" rel="noopener" class="stade-btn primary">
+          <span data-lang="fr">Itinéraire Google Maps</span><span data-lang="en">Get directions</span>
+          <span class="stade-btn-arrow" aria-hidden="true"></span>
         </a>
-        <a href="https://www.openstreetmap.org/?mlat=49.31869&mlon=-1.10909&zoom=17" target="_blank" rel="noopener" class="map-btn ghost">
-          <span data-lang="fr">Voir sur OSM</span><span data-lang="en">View on OSM</span>
+        <a href="https://www.openstreetmap.org/?mlat=49.31869&mlon=-1.10909&zoom=17" target="_blank" rel="noopener" class="stade-btn ghost">
+          <span data-lang="fr">Voir sur la carte</span><span data-lang="en">View on map</span>
         </a>
       </div>
     </div>
-    <div class="map-canvas-wrap">
-      <div id="esiMap" class="map-canvas" role="img" aria-label="Carte du Stade Municipal de l'ESI Isigny"></div>
-      <noscript>
-        <div style="padding:24px;background:var(--offwhite);text-align:center;">
-          <a href="https://www.openstreetmap.org/?mlat=49.31869&mlon=-1.10909" target="_blank" rel="noopener" style="color:var(--electric);">Voir le stade sur OpenStreetMap</a>
-        </div>
-      </noscript>
+    <!-- Logo ESI massif placé sur le côté, comme un blason gravé -->
+    <div class="stade-logo-mark" aria-hidden="true">
+      <img src="assets/logo-esi.png" alt="">
     </div>
   </div>
 </section>
@@ -8263,123 +8166,6 @@ const CAT_LABEL = {
       submit.innerHTML = '<span data-lang="fr">Publier mes photos</span><span data-lang="en">Publish my photos</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h12m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     }
   });
-})();
-
-// --- Map du Stade Municipal d'Isigny — Tile CartoDB Voyager + marker ESI custom SVG ---
-(function setupEsiMap() {
-  const container = document.getElementById('esiMap');
-  if (!container) return;
-
-  // Coordonnées du Stade Municipal d'Isigny-sur-Mer
-  const STADE_COORDS = [49.31869, -1.10909];
-
-  // Goutte navy massif (pas de cercle blanc) + halo electric + bordure blanche fine
-  // Logo PNG sera forcé en blanc plein via CSS filter (visible sur navy)
-  const MARKER_HTML = `
-    <div class="esi-marker">
-      <span class="esi-marker-pulse"></span>
-      <span class="esi-marker-pulse"></span>
-      <span class="esi-marker-pulse"></span>
-      <svg class="esi-marker-svg" viewBox="0 0 72 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <radialGradient id="esiGradient" cx="50%" cy="40%" r="60%">
-            <stop offset="0%" stop-color="#1E5FBE"/>
-            <stop offset="100%" stop-color="#0D1F3C"/>
-          </radialGradient>
-        </defs>
-        <!-- Goutte avec gradient navy radial + bordure blanche fine -->
-        <path d="M36 86 C 36 86, 10 56, 10 34 A 26 26 0 1 1 62 34 C 62 56, 36 86, 36 86 Z"
-              fill="url(#esiGradient)" stroke="#FFFFFF" stroke-width="2"/>
-        <!-- Petit point blanc en bas pour la pointe -->
-        <circle cx="36" cy="34" r="0" fill="transparent"/>
-      </svg>
-      <img class="esi-marker-logo" src="assets/logo-esi.png" alt="ESI">
-    </div>
-  `;
-
-  function init() {
-    if (typeof L === 'undefined') {
-      setTimeout(init, 200);
-      return;
-    }
-
-    const map = L.map(container, {
-      center: STADE_COORDS,
-      zoom: 16,
-      scrollWheelZoom: false,
-      attributionControl: true,
-      zoomControl: true,
-      preferCanvas: true,
-      fadeAnimation: true,
-    });
-
-    // ===== Tile layer luxe : CartoDB Dark Matter (cartographie noir/navy minimaliste) =====
-    // Match parfait avec la section navy de la DA, look éditorial premium
-    const tileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19,
-      subdomains: 'abcd',
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> · © <a href="https://carto.com/attributions">CARTO</a>',
-    });
-    tileLayer.addTo(map);
-
-    // Marque visuellement la map comme "chargée" dès que les premiers tiles arrivent
-    // → fait disparaître le placeholder navy avec dot pattern
-    const wrap = container.parentElement;
-    tileLayer.once('load', () => wrap?.classList.add('loaded'));
-    // Failsafe: si load ne déclenche pas en 3s, on enlève quand même le placeholder
-    setTimeout(() => wrap?.classList.add('loaded'), 3000);
-
-    // Custom icon ESI (pulse triple + goutte SVG navy + logo blanc forcé)
-    const esiIcon = L.divIcon({
-      className: 'esi-map-marker-wrapper',
-      html: MARKER_HTML,
-      iconSize: [72, 90],
-      iconAnchor: [36, 86],   // pointe pile sur le stade
-      popupAnchor: [0, -80],
-    });
-
-    const marker = L.marker(STADE_COORDS, {
-      icon: esiIcon,
-      title: 'Stade Municipal — ESI Isigny',
-      riseOnHover: true,
-    }).addTo(map);
-
-    marker.bindPopup(`
-      <div class="esi-map-popup">
-        <div class="esi-map-popup-title">Stade Municipal d'Isigny</div>
-        <div class="esi-map-popup-addr">
-          Impasse du Stade<br>
-          14230 Isigny-sur-Mer<br>
-          Bessin · District Manche
-        </div>
-        <a class="esi-map-popup-link" href="https://www.google.com/maps/dir/?api=1&destination=Stade+Municipal+Isigny-sur-Mer" target="_blank" rel="noopener">
-          Itinéraire →
-        </a>
-      </div>
-    `, { maxWidth: 260, autoPan: false });
-
-    // Ouvre le popup par défaut au chargement
-    setTimeout(() => marker.openPopup(), 700);
-
-    // Scroll-zoom : activé uniquement après click sur la map
-    let zoomEnabled = false;
-    map.on('click', () => {
-      if (!zoomEnabled) {
-        map.scrollWheelZoom.enable();
-        zoomEnabled = true;
-      }
-    });
-    container.addEventListener('mouseleave', () => {
-      map.scrollWheelZoom.disable();
-      zoomEnabled = false;
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
 })();
 
 // --- Hero slideshow : photos ESI en fond, crossfade Ken Burns ---
