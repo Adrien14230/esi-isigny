@@ -2626,11 +2626,12 @@ button.team-card { font-family: inherit; }
   width: 64px;
   height: 78px;
   pointer-events: none;
+  cursor: pointer;
 }
 /* Pulse ring (cercle pulsant qui rayonne pour signaler "vous êtes ici") */
 .esi-marker-pulse {
   position: absolute;
-  top: 36px; left: 50%;
+  top: 30px; left: 50%;
   width: 18px; height: 18px;
   margin: -9px 0 0 -9px;
   border-radius: 50%;
@@ -2643,7 +2644,7 @@ button.team-card { font-family: inherit; }
   0%   { transform: scale(0.4); opacity: 0.85; }
   100% { transform: scale(4);   opacity: 0; }
 }
-/* SVG: goutte de fond + cercle navy + monogramme */
+/* SVG goutte (background) */
 .esi-marker-svg {
   position: relative;
   z-index: 2;
@@ -2651,10 +2652,26 @@ button.team-card { font-family: inherit; }
   height: 78px;
   display: block;
   filter: drop-shadow(0 8px 16px rgba(13,31,60,0.4));
-  cursor: pointer;
   transition: transform 0.3s ease;
 }
-.esi-marker:hover .esi-marker-svg { transform: translateY(-3px) scale(1.05); }
+/* Vrai logo ESI positionné par-dessus la goutte, dans le cercle blanc */
+.esi-marker-logo {
+  position: absolute;
+  z-index: 3;
+  top: 9px; left: 50%;
+  transform: translateX(-50%);
+  width: 42px; height: 42px;
+  object-fit: contain;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+.esi-marker:hover .esi-marker-svg,
+.esi-marker:hover .esi-marker-logo {
+  transform: translateY(-3px) scale(1.05);
+}
+.esi-marker:hover .esi-marker-logo {
+  transform: translate(-50%, -3px) scale(1.05);
+}
 
 /* ===== POPUP ===== */
 .esi-map-popup { font-family: var(--font-body); min-width: 200px; }
@@ -8224,27 +8241,20 @@ const CAT_LABEL = {
   // Coordonnées du Stade Municipal d'Isigny-sur-Mer
   const STADE_COORDS = [49.31869, -1.10909];
 
-  // SVG du marker ESI : cercle navy bordé blanc avec monogramme + base goutte
-  // Tout en inline SVG → 100% fiable, pas de dépendance image
-  const MARKER_SVG = `
-    <svg class="esi-marker-svg" viewBox="0 0 64 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <!-- Goutte (drop shape) -->
-      <path d="M32 76 C 32 76, 8 50, 8 30 A 24 24 0 1 1 56 30 C 56 50, 32 76, 32 76 Z"
-            fill="#1A3A6B" stroke="#FFFFFF" stroke-width="3"/>
-      <!-- Cercle intérieur blanc -->
-      <circle cx="32" cy="30" r="17" fill="#FFFFFF"/>
-      <!-- Monogramme ESI : étoile + lettres -->
-      <g transform="translate(32 30)">
-        <!-- Petite étoile en haut -->
-        <path d="M 0 -11 L 1.6 -6.5 L 6.5 -6.5 L 2.5 -3.5 L 4 1 L 0 -1.8 L -4 1 L -2.5 -3.5 L -6.5 -6.5 L -1.6 -6.5 Z"
-              fill="#1E5FBE"/>
-        <!-- Texte ESI -->
-        <text x="0" y="9" text-anchor="middle"
-              font-family="'Barlow Condensed', sans-serif"
-              font-weight="800" font-size="10" letter-spacing="0.6"
-              fill="#1A3A6B">ESI</text>
-      </g>
-    </svg>
+  // SVG goutte (forme uniquement) + le vrai logo PNG ESI placé par-dessus en CSS absolute
+  const MARKER_HTML = `
+    <div class="esi-marker">
+      <span class="esi-marker-pulse"></span>
+      <span class="esi-marker-pulse"></span>
+      <svg class="esi-marker-svg" viewBox="0 0 64 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Goutte navy bordée blanc -->
+        <path d="M32 76 C 32 76, 8 50, 8 30 A 24 24 0 1 1 56 30 C 56 50, 32 76, 32 76 Z"
+              fill="#1A3A6B" stroke="#FFFFFF" stroke-width="3"/>
+        <!-- Cercle intérieur blanc qui accueille le logo -->
+        <circle cx="32" cy="30" r="22" fill="#FFFFFF"/>
+      </svg>
+      <img class="esi-marker-logo" src="assets/logo-esi.png" alt="ESI">
+    </div>
   `;
 
   function init() {
@@ -8269,14 +8279,10 @@ const CAT_LABEL = {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> · © <a href="https://carto.com/attributions">CARTO</a>',
     }).addTo(map);
 
-    // Custom icon ESI (pulse + SVG)
+    // Custom icon ESI (pulse + goutte SVG + vrai logo PNG par-dessus)
     const esiIcon = L.divIcon({
       className: 'esi-map-marker-wrapper',
-      html: `<div class="esi-marker">
-               <span class="esi-marker-pulse"></span>
-               <span class="esi-marker-pulse"></span>
-               ${MARKER_SVG}
-             </div>`,
+      html: MARKER_HTML,
       iconSize: [64, 78],
       iconAnchor: [32, 76],   // pointe pile sur le stade
       popupAnchor: [0, -70],
