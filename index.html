@@ -489,19 +489,24 @@ nav.scrolled .hamburger span { background: var(--navy); }
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.14);
   color: var(--white);
-  font-size: 20px;
-  font-weight: 200;
+  font-size: 22px;
+  font-weight: 300;
   line-height: 1;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: background 0.25s ease, transform 0.25s ease;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   margin-left: 12px;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+  padding: 0;
 }
 .burger-close:hover {
   background: rgba(255,255,255,0.18);
   transform: rotate(90deg);
 }
+.burger-close:active { background: rgba(255,255,255,0.25); }
 
 .burger-body {
   flex: 1;
@@ -3950,12 +3955,22 @@ a.partner-major-logo:hover img { transform: scale(1.04); }
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
   color: var(--white);
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.25s ease, transform 0.25s ease;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+  padding: 0;
 }
-.lightbox-close:hover { background: rgba(255,255,255,0.18); }
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.2);
+  transform: rotate(90deg);
+}
+.lightbox-close:active { background: rgba(255,255,255,0.3); }
 
 .lightbox-grid {
   flex: 1;
@@ -5166,6 +5181,120 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
   .chatbot-drawer { bottom: calc(80px + env(safe-area-inset-bottom)); }
 }
 
+/* ===========================================================
+   RESPONSIVE CONSOLIDATION — couverture exhaustive
+   - 320-375px : iPhone SE, Galaxy S8, vieux Android
+   - 376-480px : iPhone standard
+   - 481-640px : phablets, iPhone Pro Max
+   - 641-768px : grands phones, petites tablettes
+   - 769-1024px : tablettes (portrait)
+   - 1025-1280px : tablettes paysage / petits laptops
+   - 1281-1599px : desktops standards
+   - 1600px+ : grands écrans / 4K
+   ============================================================ */
+
+/* === 1. Touch targets : 44×44 min partout (WCAG AAA) === */
+@media (hover: none) and (pointer: coarse) {
+  .burger-close, .lightbox-close, .hero-cta, .btn-pill,
+  .nav-links a, .auth-badge, .lang-toggle,
+  .team-card-link-badge, .map-btn, .stade-btn,
+  .footer-social a, .hero-social-link {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* === 2. Très petits écrans (320-375px) iPhone SE etc. === */
+@media (max-width: 375px) {
+  body { font-size: 15px; }
+  /* Hero */
+  #hero { padding: 90px 16px 80px; }
+  .hero-title { font-size: clamp(36px, 14vw, 56px); line-height: 0.9; }
+  .hero-tagline { font-size: 13px; }
+  .hero-cta { font-size: 10px; padding: 12px 16px; gap: 8px; }
+  .hero-eyebrow { font-size: 9px; letter-spacing: 0.22em; }
+  /* Section globals */
+  .section-title { font-size: clamp(34px, 12vw, 52px); }
+  .section-eyebrow { font-size: 10px; letter-spacing: 0.2em; }
+  /* Cards plus compactes */
+  .match-card, .team-card, .partner-card { padding: 18px; }
+  /* Stade section */
+  .stade-inner { padding: 48px 16px; }
+  .stade-title { font-size: clamp(32px, 12vw, 48px); }
+  .stade-meta { gap: 12px; }
+  .stade-meta-label { font-size: 9px; letter-spacing: 0.18em; }
+  .stade-meta-value { font-size: 12px; }
+  .stade-btn { font-size: 10px; padding: 14px 18px; }
+  .stade-logo-mark { max-width: 180px; }
+  /* Burger */
+  .burger-panel { width: 100%; }
+  .burger-title { font-size: 16px; }
+  .burger-num { font-size: 9px; }
+  /* Footer */
+  footer { padding: 32px 16px 20px; }
+  .footer-grid { gap: 24px; }
+}
+
+/* === 3. Mobile standard (376-480px) === */
+@media (min-width: 376px) and (max-width: 480px) {
+  #hero { padding: 100px 18px 80px; }
+  .hero-title { font-size: clamp(42px, 13vw, 70px); }
+  .stade-title { font-size: clamp(36px, 11vw, 56px); }
+  .stade-meta { grid-template-columns: 1fr 1fr; }
+  .stade-meta-item:last-child { grid-column: 1 / -1; }
+}
+
+/* === 4. Phablets / iPhone Pro Max (481-640px) === */
+@media (min-width: 481px) and (max-width: 640px) {
+  .stade-meta { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .galerie-grid { grid-template-columns: 1fr; }
+}
+
+/* === 5. Landscape mobile (orientation paysage, petite hauteur) === */
+@media (orientation: landscape) and (max-height: 500px) {
+  #hero { min-height: auto; padding: 80px 32px 60px; }
+  .hero-title { font-size: clamp(36px, 7vh, 64px); }
+  .hero-content { gap: 12px; }
+  .stade-section { min-height: auto; }
+  .stade-inner { padding: 56px 32px; }
+  .map-canvas { height: 280px; }
+}
+
+/* === 6. Tablettes portrait (768-1024px) === */
+@media (min-width: 769px) and (max-width: 1024px) {
+  nav { padding: 0 28px; }
+  .nav-links { gap: 24px; }
+  .nav-links a { font-size: 12px; }
+  .partners-grid.compact { grid-template-columns: repeat(2, 1fr); }
+  .stade-inner { padding: 80px 40px; gap: 40px; }
+  .stade-title { font-size: clamp(40px, 5vw, 64px); }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* === 7. Petits laptops / tablettes paysage (1025-1280px) === */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  nav { padding: 0 36px; }
+  .partners-grid.compact { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* === 8. Grands écrans (1600px+) === */
+@media (min-width: 1600px) {
+  .hero-content { max-width: 720px; }
+  .map-inner, .stade-inner, .newsletter-inner { max-width: 1400px; }
+  section.team-section { max-width: 1400px; }
+}
+
+/* === 9. Empêcher le débordement horizontal sur tous les contextes === */
+html, body { overflow-x: hidden; max-width: 100vw; }
+img, video { max-width: 100%; height: auto; }
+table { max-width: 100%; }
+
+/* === 10. Toujours afficher les images en mode print === */
+@media print {
+  nav, .burger-overlay, .chatbot-fab, .map-section, .stade-section { display: none !important; }
+  #hero { background: var(--white) !important; color: var(--navy) !important; }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -5226,7 +5355,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
         <img src="assets/logo-esi.png" alt="Logo ESI">
         <div class="burger-logo-name">ÉTOILE SPORTIVE<span>D'ISIGNY · 1925</span></div>
       </a>
-      <button class="burger-close" id="burgerClose" aria-label="Fermer le menu">×</button>
+      <button type="button" class="burger-close" id="burgerClose" aria-label="Fermer le menu">×</button>
     </div>
 
     <div class="burger-body">
@@ -6230,7 +6359,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
       <h3 class="lightbox-title" id="lightboxTitle"></h3>
       <p class="lightbox-counter" id="lightboxCounter"></p>
     </div>
-    <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">×</button>
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Fermer">×</button>
   </div>
   <div class="lightbox-grid" id="lightboxGrid"></div>
 
