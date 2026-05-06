@@ -8400,7 +8400,8 @@ const CAT_LABEL = {
 // --- Marquee partenaires : bande défilante avec logos partenaires entre les sections ---
 (function setupPartnersMarquee() {
   // Sections où on insère la marquee EN AMONT
-  const targets = ['histoire', 'calendrier', 'resultats', 'galerie', 'convocations', 'staff', 'boutique'];
+  // Note: 'convocations' retiré car la section est auth-gated → sa marquee laissait 2 bandes collées quand non-connecté
+  const targets = ['histoire', 'calendrier', 'resultats', 'galerie', 'staff', 'boutique'];
 
   // Logos des partenaires (sponsor maillot, équipementier, institutions, locaux)
   // url = site officiel si connu (ouvre dans nouvel onglet) ; sinon scroll vers #partenaires
