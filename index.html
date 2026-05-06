@@ -7553,13 +7553,18 @@ langBtn.addEventListener('click', () => {
 });
 
 // --- Scroll reveal ---
+// Stagger uniquement entre frères immédiats (sinon les sections en bas se voient
+// attribuer un idx énorme et mettent plusieurs secondes à apparaître)
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
-      const idx = siblings.indexOf(entry.target);
-      setTimeout(() => entry.target.classList.add('visible'), idx * 80);
+      // Compte uniquement les .reveal qui sont DIRECTEMENT enfants du même parent
+      const directSiblings = [...entry.target.parentElement.children].filter(el => el.classList.contains('reveal'));
+      const idx = directSiblings.indexOf(entry.target);
+      // Cap à 240ms max pour ne jamais avoir de délai trop long
+      const delay = Math.min(idx * 60, 240);
+      setTimeout(() => entry.target.classList.add('visible'), delay);
       observer.unobserve(entry.target);
     }
   });
