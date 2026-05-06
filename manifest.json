@@ -12,35 +12,27 @@
   "dir": "ltr",
   "categories": ["sports", "lifestyle", "news"],
   "icons": [
-    {
-      "src": "assets/logo-esi.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "assets/logo-esi.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
     {
-      "name": "Calendrier",
+      "name": "Calendrier des matchs",
       "short_name": "Matchs",
       "url": "/#calendrier",
       "description": "Prochains matchs de toutes les équipes"
     },
     {
-      "name": "Résultats",
+      "name": "Résultats & classements",
       "short_name": "Résultats",
       "url": "/#resultats"
     },
     {
-      "name": "Convocations",
-      "short_name": "Convoq",
-      "url": "/#convocations"
+      "name": "Galerie photos",
+      "short_name": "Photos",
+      "url": "/#galerie"
     }
   ]
 }

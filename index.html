@@ -42,9 +42,13 @@
 <meta name="twitter:image" content="https://esi-isigny.fr/assets/team-bg.jpg">
 
 <!-- ===== PWA + ICONS ===== -->
-<link rel="icon" type="image/png" href="assets/logo-esi.png">
-<link rel="apple-touch-icon" href="assets/logo-esi.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icons/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ESI Isigny">
 
 <!-- ===== ALTERNATIVE LANGUAGES ===== -->
 <link rel="alternate" hreflang="fr" href="https://esi-isigny.fr/">
@@ -185,6 +189,44 @@ img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 button { font-family: inherit; cursor: pointer; }
+
+/* ===== PWA INSTALL BUTTON ===== */
+.pwa-install-btn {
+  position: fixed;
+  bottom: 92px;
+  right: 24px;
+  z-index: 95;
+  background: var(--navy);
+  color: var(--white);
+  border: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 12px 18px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(13,31,60,0.3);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.25s, transform 0.25s;
+  animation: pwaInstallPop 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.pwa-install-btn:hover { background: var(--electric); transform: translateY(-2px); }
+.pwa-install-btn[hidden] { display: none; }
+@keyframes pwaInstallPop {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@media (max-width: 600px) {
+  .pwa-install-btn { bottom: 80px; right: 12px; font-size: 10px; padding: 10px 14px; }
+}
+/* Cache le bouton si l'app est déjà en mode standalone (déjà installée) */
+@media (display-mode: standalone) {
+  .pwa-install-btn { display: none !important; }
+}
 
 /* ===== COOKIE CONSENT (RGPD/CNIL — Accept/Reject/Customize équiprobables) ===== */
 .cookie-banner {
@@ -9056,6 +9098,78 @@ document.addEventListener('keydown', e => {
   } else {
     applyConsent(stored);
   }
+})();
+</script>
+
+<!-- ===== PWA: Service Worker registration + bouton "Installer l'app" ===== -->
+<button type="button" class="pwa-install-btn" id="pwaInstallBtn" hidden aria-label="Installer l'application ESI">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+    <polyline points="7 10 12 15 17 10"/>
+    <line x1="12" y1="15" x2="12" y2="3"/>
+  </svg>
+  <span data-lang="fr">Installer l'app</span><span data-lang="en">Install app</span>
+</button>
+
+<script>
+// ===== PWA Install + Service Worker =====
+(function setupPWA() {
+  // 1. Enregistrement du Service Worker (cache offline + installation)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => {
+          console.info('[PWA] Service Worker enregistré, scope:', reg.scope);
+          // Si nouvelle version dispo → on l'active automatiquement
+          reg.addEventListener('updatefound', () => {
+            const newWorker = reg.installing;
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                console.info('[PWA] Nouvelle version dispo, activation...');
+                newWorker.postMessage({ type: 'SKIP_WAITING' });
+              }
+            });
+          });
+        })
+        .catch(err => console.warn('[PWA] SW registration failed:', err));
+    });
+    // Reload la page quand le nouveau SW prend le contrôle
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        refreshing = true;
+        window.location.reload();
+      }
+    });
+  }
+
+  // 2. Bouton "Installer l'app" custom
+  const installBtn = document.getElementById('pwaInstallBtn');
+  let deferredPrompt = null;
+
+  // Le browser nous donne un prompt d'install qu'on peut déclencher quand on veut
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (installBtn) installBtn.hidden = false;
+  });
+
+  if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.info('[PWA] User choice:', outcome);
+      deferredPrompt = null;
+      installBtn.hidden = true;
+    });
+  }
+
+  // Cache l'installation : si déjà installée, on cache le bouton
+  window.addEventListener('appinstalled', () => {
+    if (installBtn) installBtn.hidden = true;
+    console.info('[PWA] App installée 🎉');
+  });
 })();
 </script>
 
