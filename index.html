@@ -2602,25 +2602,49 @@ button.team-card { font-family: inherit; }
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  /* Fond placeholder navy qui s'affiche INSTANTANÉMENT pendant que les tiles chargent */
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(58,127,232,0.18), transparent 70%),
+    linear-gradient(135deg, #0a1428 0%, #0d1f3c 50%, #1a3a6b 100%);
 }
+/* Loader subtil pendant le chargement des tiles */
+.map-canvas-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(58,127,232,0.06) 1px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.4s ease 0.6s;
+}
+.map-canvas-wrap.loaded::before { opacity: 0; }
 .map-canvas {
   width: 100%;
   height: 460px;
-  background: #f5f7fa;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  /* Subtle warmth filter sur les tiles pour les harmoniser avec la DA */
+  filter: contrast(1.05) saturate(0.85);
 }
-/* Subtle gradient fade au-dessus de la map pour fondre avec la section navy */
+/* Vignette éditoriale */
 .map-canvas-wrap::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
   border-radius: 12px;
-  box-shadow: inset 0 0 80px rgba(13,31,60,0.15);
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 50%, transparent 50%, rgba(13,31,60,0.45) 100%);
+  z-index: 2;
+  mix-blend-mode: multiply;
 }
 
-/* ===== MARKER ESI : tout en SVG inline (pas d'image, pas de transform fragile) ===== */
+/* ===== MARKER ESI : navy circle + logo PNG forcé en blanc via filter ===== */
 .esi-map-marker-wrapper,
 .leaflet-div-icon.esi-map-marker-wrapper {
   background: transparent !important;
@@ -2629,55 +2653,57 @@ button.team-card { font-family: inherit; }
 }
 .esi-marker {
   position: relative;
-  width: 64px;
-  height: 78px;
+  width: 72px;
+  height: 90px;
   pointer-events: none;
   cursor: pointer;
 }
-/* Pulse ring (cercle pulsant qui rayonne pour signaler "vous êtes ici") */
+/* Triple pulse rings — éditorial, qui rayonnent en bleu electric */
 .esi-marker-pulse {
   position: absolute;
-  top: 30px; left: 50%;
-  width: 18px; height: 18px;
-  margin: -9px 0 0 -9px;
+  top: 32px; left: 50%;
+  width: 24px; height: 24px;
+  margin: -12px 0 0 -12px;
   border-radius: 50%;
-  background: rgba(58,127,232,0.4);
+  border: 2px solid rgba(58,127,232,0.5);
+  background: transparent;
   pointer-events: none;
-  animation: esiPulse 2.4s ease-out infinite;
+  animation: esiPulse 3s cubic-bezier(0.2, 0.6, 0.2, 1) infinite;
 }
-.esi-marker-pulse:nth-child(2) { animation-delay: 0.8s; }
+.esi-marker-pulse:nth-child(2) { animation-delay: 1s; }
+.esi-marker-pulse:nth-child(3) { animation-delay: 2s; }
 @keyframes esiPulse {
-  0%   { transform: scale(0.4); opacity: 0.85; }
-  100% { transform: scale(4);   opacity: 0; }
+  0%   { transform: scale(0.4); opacity: 1;   border-width: 2px; }
+  100% { transform: scale(3.2); opacity: 0;   border-width: 1px; }
 }
-/* SVG goutte (background) */
+/* La goutte SVG : navy massif + bordure blanche fine + halo */
 .esi-marker-svg {
   position: relative;
   z-index: 2;
-  width: 64px;
-  height: 78px;
+  width: 72px;
+  height: 90px;
   display: block;
-  filter: drop-shadow(0 8px 16px rgba(13,31,60,0.4));
-  transition: transform 0.3s ease;
+  filter:
+    drop-shadow(0 10px 24px rgba(0,0,0,0.5))
+    drop-shadow(0 0 12px rgba(58,127,232,0.4));
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-/* Vrai logo ESI positionné par-dessus la goutte, dans le cercle blanc */
+/* Logo ESI : forcé en blanc plein via brightness(0) + invert(1) qui l'éclaircit complètement */
 .esi-marker-logo {
   position: absolute;
   z-index: 3;
-  top: 9px; left: 50%;
-  transform: translateX(-50%);
-  width: 42px; height: 42px;
+  top: 12px; left: 50%;
+  width: 44px; height: 44px;
   object-fit: contain;
   pointer-events: none;
-  transition: transform 0.3s ease;
+  transform: translateX(-50%);
+  /* Force le PNG (lignes blanches fines + fond transparent) en logo blanc plein */
+  filter: brightness(0) invert(1);
+  opacity: 0.98;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.esi-marker:hover .esi-marker-svg,
-.esi-marker:hover .esi-marker-logo {
-  transform: translateY(-3px) scale(1.05);
-}
-.esi-marker:hover .esi-marker-logo {
-  transform: translate(-50%, -3px) scale(1.05);
-}
+.esi-marker:hover .esi-marker-svg { transform: translateY(-4px) scale(1.05); }
+.esi-marker:hover .esi-marker-logo { transform: translate(-50%, -4px) scale(1.05); }
 
 /* ===== POPUP ===== */
 .esi-map-popup { font-family: var(--font-body); min-width: 200px; }
@@ -8247,17 +8273,25 @@ const CAT_LABEL = {
   // Coordonnées du Stade Municipal d'Isigny-sur-Mer
   const STADE_COORDS = [49.31869, -1.10909];
 
-  // SVG goutte (forme uniquement) + le vrai logo PNG ESI placé par-dessus en CSS absolute
+  // Goutte navy massif (pas de cercle blanc) + halo electric + bordure blanche fine
+  // Logo PNG sera forcé en blanc plein via CSS filter (visible sur navy)
   const MARKER_HTML = `
     <div class="esi-marker">
       <span class="esi-marker-pulse"></span>
       <span class="esi-marker-pulse"></span>
-      <svg class="esi-marker-svg" viewBox="0 0 64 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <!-- Goutte navy bordée blanc -->
-        <path d="M32 76 C 32 76, 8 50, 8 30 A 24 24 0 1 1 56 30 C 56 50, 32 76, 32 76 Z"
-              fill="#1A3A6B" stroke="#FFFFFF" stroke-width="3"/>
-        <!-- Cercle intérieur blanc qui accueille le logo -->
-        <circle cx="32" cy="30" r="22" fill="#FFFFFF"/>
+      <span class="esi-marker-pulse"></span>
+      <svg class="esi-marker-svg" viewBox="0 0 72 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="esiGradient" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#1E5FBE"/>
+            <stop offset="100%" stop-color="#0D1F3C"/>
+          </radialGradient>
+        </defs>
+        <!-- Goutte avec gradient navy radial + bordure blanche fine -->
+        <path d="M36 86 C 36 86, 10 56, 10 34 A 26 26 0 1 1 62 34 C 62 56, 36 86, 36 86 Z"
+              fill="url(#esiGradient)" stroke="#FFFFFF" stroke-width="2"/>
+        <!-- Petit point blanc en bas pour la pointe -->
+        <circle cx="36" cy="34" r="0" fill="transparent"/>
       </svg>
       <img class="esi-marker-logo" src="assets/logo-esi.png" alt="ESI">
     </div>
@@ -8275,23 +8309,33 @@ const CAT_LABEL = {
       scrollWheelZoom: false,
       attributionControl: true,
       zoomControl: true,
+      preferCanvas: true,
+      fadeAnimation: true,
     });
 
-    // ===== Tile layer pro : CartoDB Voyager (gratuit, pas de clé, look minimaliste) =====
-    // Voyager = cartographie chic, gris/blanc cassé, parfait avec une DA navy/blanc
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    // ===== Tile layer luxe : CartoDB Dark Matter (cartographie noir/navy minimaliste) =====
+    // Match parfait avec la section navy de la DA, look éditorial premium
+    const tileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       maxZoom: 19,
       subdomains: 'abcd',
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> · © <a href="https://carto.com/attributions">CARTO</a>',
-    }).addTo(map);
+    });
+    tileLayer.addTo(map);
 
-    // Custom icon ESI (pulse + goutte SVG + vrai logo PNG par-dessus)
+    // Marque visuellement la map comme "chargée" dès que les premiers tiles arrivent
+    // → fait disparaître le placeholder navy avec dot pattern
+    const wrap = container.parentElement;
+    tileLayer.once('load', () => wrap?.classList.add('loaded'));
+    // Failsafe: si load ne déclenche pas en 3s, on enlève quand même le placeholder
+    setTimeout(() => wrap?.classList.add('loaded'), 3000);
+
+    // Custom icon ESI (pulse triple + goutte SVG navy + logo blanc forcé)
     const esiIcon = L.divIcon({
       className: 'esi-map-marker-wrapper',
       html: MARKER_HTML,
-      iconSize: [64, 78],
-      iconAnchor: [32, 76],   // pointe pile sur le stade
-      popupAnchor: [0, -70],
+      iconSize: [72, 90],
+      iconAnchor: [36, 86],   // pointe pile sur le stade
+      popupAnchor: [0, -80],
     });
 
     const marker = L.marker(STADE_COORDS, {
