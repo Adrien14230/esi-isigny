@@ -190,6 +190,12 @@ a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 button { font-family: inherit; cursor: pointer; }
 
+/* ===== AUTH-GATED ELEMENTS (visibles uniquement si licencié connecté) ===== */
+.nav-auth-only { display: none !important; }
+body.is-logged-in .nav-auth-only { display: inline-flex !important; }
+body.is-logged-in .nav-links .nav-auth-only { display: inline !important; }
+body:not(.is-logged-in) #convocations { display: none !important; }
+
 /* ===== ACCESSIBILITÉ ===== */
 /* Skip link : invisible jusqu'au focus clavier (Tab) */
 .skip-link {
@@ -5270,7 +5276,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
     <a href="#calendrier"><span data-lang="fr">Calendrier</span><span data-lang="en">Schedule</span></a>
     <a href="#resultats"><span data-lang="fr">Résultats</span><span data-lang="en">Results</span></a>
     <a href="#galerie"><span data-lang="fr">Galerie</span><span data-lang="en">Gallery</span></a>
-    <a href="#convocations"><span data-lang="fr">Convocations</span><span data-lang="en">Convocations</span></a>
+    <a href="#convocations" class="nav-auth-only"><span data-lang="fr">Convocations</span><span data-lang="en">Convocations</span></a>
     <a href="#staff"><span data-lang="fr">Dirigeants</span><span data-lang="en">Staff</span></a>
     <a href="#partenaires"><span data-lang="fr">Partenaires</span><span data-lang="en">Partners</span></a>
     <a href="#boutique"><span data-lang="fr">Boutique</span><span data-lang="en">Shop</span></a>
@@ -5325,7 +5331,7 @@ nav.scrolled .auth-badge-name { color: var(--navy); }
           <span class="burger-title"><span data-lang="fr">Résultats</span><span data-lang="en">Results</span></span>
           <span class="burger-arrow"><svg viewBox="0 0 16 16"><path d="M3 8h10m-3-3l3 3-3 3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </a>
-        <a href="#convocations" class="burger-nav-item" data-burger-link>
+        <a href="#convocations" class="burger-nav-item nav-auth-only" data-burger-link>
           <span class="burger-num">05</span>
           <span class="burger-title"><span data-lang="fr">Convocations</span><span data-lang="en">Call-ups</span></span>
           <span class="burger-arrow"><svg viewBox="0 0 16 16"><path d="M3 8h10m-3-3l3 3-3 3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -8663,6 +8669,8 @@ function renderAuth() {
   document.querySelectorAll('[data-lock]').forEach(lock => {
     lock.style.display = isLicencie ? 'none' : '';
   });
+  // Toggle auth-gated elements (menu Convocations + section #convocations) via classe body
+  document.body.classList.toggle('is-logged-in', !!isLicencie);
   // Toggle convoc banner
   const banner = document.getElementById('convocBanner');
   if (banner) {
