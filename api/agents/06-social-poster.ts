@@ -28,7 +28,7 @@ export default async function handler() {
         : (m.esi_home === (m.recevant_buts > m.visiteur_buts) ? '✅ VICTOIRE' : '❌ DÉFAITE');
 
       const caption = await ask(
-        `Génère un caption Instagram court (max 80 mots) pour le match ESI ${m.team_label} ${verdict} ${score} contre ${opp}. Style chaleureux, amateur, hashtags #ESIIsigny #FootAmateur #DistrictManche #Calvados.`,
+        `Génère un caption Instagram court (max 80 mots) pour le match ESI ${m.team_label} ${verdict} ${score} contre ${opp}. Style chaleureux, amateur, hashtags #ESIIsigny #FootAmateur #DistrictManche #Manche.`,
         { maxTokens: 220 }
       );
 

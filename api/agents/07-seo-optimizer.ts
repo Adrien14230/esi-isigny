@@ -16,7 +16,7 @@ export default async function handler() {
 
     // Generate refreshed meta description
     const metaDesc = await ask(
-      `Réécris la meta description (155 chars max) du site esi-isigny.fr en intégrant le dernier résultat (${lastResult?.team_label} ${lastResult?.recevant_buts}-${lastResult?.visiteur_buts} ${lastResult?.visiteur_nom}). Garde "Étoile Sportive d'Isigny", "1925", "District Manche", "Calvados".`,
+      `Réécris la meta description (155 chars max) du site esi-isigny.fr en intégrant le dernier résultat (${lastResult?.team_label} ${lastResult?.recevant_buts}-${lastResult?.visiteur_buts} ${lastResult?.visiteur_nom}). Garde "Étoile Sportive d'Isigny", "1925", "District Manche", "District Manche".`,
       { maxTokens: 200 }
     );
 
