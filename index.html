@@ -5355,7 +5355,7 @@ table { max-width: 100%; }
         <img src="assets/logo-esi.png" alt="Logo ESI">
         <div class="burger-logo-name">ÉTOILE SPORTIVE<span>D'ISIGNY · 1925</span></div>
       </a>
-      <button type="button" class="burger-close" id="burgerClose" aria-label="Fermer le menu">×</button>
+      <button type="button" class="burger-close" id="burgerClose" aria-label="Fermer le menu" onclick="closeBurger()">×</button>
     </div>
 
     <div class="burger-body">
@@ -6359,7 +6359,7 @@ table { max-width: 100%; }
       <h3 class="lightbox-title" id="lightboxTitle"></h3>
       <p class="lightbox-counter" id="lightboxCounter"></p>
     </div>
-    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Fermer">×</button>
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Fermer" onclick="closeLightbox()">×</button>
   </div>
   <div class="lightbox-grid" id="lightboxGrid"></div>
 
@@ -7971,6 +7971,9 @@ function closeBurger() {
   hamburger.focus();
 }
 function closeMobileMenu() { closeBurger(); }  // Backwards-compat alias
+// Expose globalement pour que les onclick="closeBurger()" inline fonctionnent quoi qu'il arrive
+window.closeBurger = closeBurger;
+window.openBurger = openBurger;
 
 hamburger.addEventListener('click', () => {
   if (burgerOverlay.classList.contains('open')) closeBurger();
@@ -9265,6 +9268,8 @@ function closeLightbox() {
   document.body.style.overflow = '';
   currentAlbum = null;
 }
+// Expose globalement pour les onclick inline
+window.closeLightbox = closeLightbox;
 function openViewer(index) {
   if (!currentAlbum) return;
   const alb = ALBUMS[currentAlbum];
