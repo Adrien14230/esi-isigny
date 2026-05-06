@@ -2597,67 +2597,129 @@ button.team-card { font-family: inherit; }
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
 }
 .map-canvas {
   width: 100%;
-  height: 420px;
-  background: var(--offwhite);
+  height: 460px;
+  background: #f5f7fa;
 }
-/* Override Leaflet's default divIcon style (background blanc + border qui écrasaient le custom) */
+/* Subtle gradient fade au-dessus de la map pour fondre avec la section navy */
+.map-canvas-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 12px;
+  box-shadow: inset 0 0 80px rgba(13,31,60,0.15);
+}
+
+/* ===== MARKER ESI : tout en SVG inline (pas d'image, pas de transform fragile) ===== */
 .esi-map-marker-wrapper,
 .leaflet-div-icon.esi-map-marker-wrapper {
   background: transparent !important;
   border: none !important;
+  box-shadow: none !important;
 }
-/* Custom marker ESI : cercle blanc bordé navy en forme goutte avec logo dedans */
-.esi-map-marker {
-  width: 56px;
-  height: 56px;
-  background: var(--white);
-  border: 3px solid var(--navy);
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.25s ease;
+.esi-marker {
+  position: relative;
+  width: 64px;
+  height: 78px;
+  pointer-events: none;
 }
-.esi-map-marker:hover { transform: rotate(-45deg) scale(1.12); }
-.esi-map-marker img {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  transform: rotate(45deg);
+/* Pulse ring (cercle pulsant qui rayonne pour signaler "vous êtes ici") */
+.esi-marker-pulse {
+  position: absolute;
+  top: 36px; left: 50%;
+  width: 18px; height: 18px;
+  margin: -9px 0 0 -9px;
+  border-radius: 50%;
+  background: rgba(58,127,232,0.4);
+  pointer-events: none;
+  animation: esiPulse 2.4s ease-out infinite;
+}
+.esi-marker-pulse:nth-child(2) { animation-delay: 0.8s; }
+@keyframes esiPulse {
+  0%   { transform: scale(0.4); opacity: 0.85; }
+  100% { transform: scale(4);   opacity: 0; }
+}
+/* SVG: goutte de fond + cercle navy + monogramme */
+.esi-marker-svg {
+  position: relative;
+  z-index: 2;
+  width: 64px;
+  height: 78px;
   display: block;
+  filter: drop-shadow(0 8px 16px rgba(13,31,60,0.4));
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
-.esi-map-popup {
-  font-family: var(--font-body);
-}
-.esi-map-popup strong {
+.esi-marker:hover .esi-marker-svg { transform: translateY(-3px) scale(1.05); }
+
+/* ===== POPUP ===== */
+.esi-map-popup { font-family: var(--font-body); min-width: 200px; }
+.esi-map-popup-title {
   font-family: var(--font-display);
-  font-size: 14px;
-  letter-spacing: 0.04em;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--navy);
-  display: block;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  line-height: 1.2;
 }
-.esi-map-popup a {
+.esi-map-popup-addr {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.esi-map-popup-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--electric);
-  font-size: 12px;
   text-decoration: none;
 }
-.esi-map-popup a:hover { text-decoration: underline; }
-/* Override Leaflet popup pour rester cohérent */
+.esi-map-popup-link:hover { color: var(--bright); }
+/* Override Leaflet popup pour rester cohérent avec la DA */
 .leaflet-popup-content-wrapper {
-  border-radius: 6px !important;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 6px 24px rgba(13,31,60,0.18) !important;
+  border: 1px solid var(--lightgrey) !important;
+  padding: 0 !important;
 }
-.leaflet-popup-content { margin: 12px 14px !important; line-height: 1.5 !important; }
-.leaflet-container a.leaflet-popup-close-button { color: var(--draw) !important; }
+.leaflet-popup-content { margin: 16px 18px !important; line-height: 1.5 !important; }
+.leaflet-popup-tip { background: var(--white) !important; box-shadow: 0 3px 14px rgba(13,31,60,0.1) !important; }
+.leaflet-container a.leaflet-popup-close-button {
+  color: var(--draw) !important;
+  font-size: 18px !important;
+  padding: 6px 8px 0 0 !important;
+}
+/* Attribution discret */
+.leaflet-control-attribution {
+  background: rgba(255,255,255,0.85) !important;
+  font-family: var(--font-body) !important;
+  font-size: 10px !important;
+  padding: 2px 8px !important;
+  border-radius: 3px 0 0 0 !important;
+}
+.leaflet-control-attribution a { color: var(--electric) !important; }
+/* Zoom controls plus discrets */
+.leaflet-bar a, .leaflet-bar a:hover {
+  background: var(--white) !important;
+  color: var(--navy) !important;
+  border-color: var(--lightgrey) !important;
+  width: 32px !important; height: 32px !important; line-height: 32px !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+}
+.leaflet-bar { box-shadow: 0 4px 14px rgba(13,31,60,0.12) !important; border: none !important; }
 
 @media (max-width: 900px) {
   .map-section { padding: 56px 24px; }
@@ -8154,7 +8216,7 @@ const CAT_LABEL = {
   });
 })();
 
-// --- Map du Stade Municipal d'Isigny avec marker logo ESI ---
+// --- Map du Stade Municipal d'Isigny — Tile CartoDB Voyager + marker ESI custom SVG ---
 (function setupEsiMap() {
   const container = document.getElementById('esiMap');
   if (!container) return;
@@ -8162,9 +8224,31 @@ const CAT_LABEL = {
   // Coordonnées du Stade Municipal d'Isigny-sur-Mer
   const STADE_COORDS = [49.31869, -1.10909];
 
+  // SVG du marker ESI : cercle navy bordé blanc avec monogramme + base goutte
+  // Tout en inline SVG → 100% fiable, pas de dépendance image
+  const MARKER_SVG = `
+    <svg class="esi-marker-svg" viewBox="0 0 64 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Goutte (drop shape) -->
+      <path d="M32 76 C 32 76, 8 50, 8 30 A 24 24 0 1 1 56 30 C 56 50, 32 76, 32 76 Z"
+            fill="#1A3A6B" stroke="#FFFFFF" stroke-width="3"/>
+      <!-- Cercle intérieur blanc -->
+      <circle cx="32" cy="30" r="17" fill="#FFFFFF"/>
+      <!-- Monogramme ESI : étoile + lettres -->
+      <g transform="translate(32 30)">
+        <!-- Petite étoile en haut -->
+        <path d="M 0 -11 L 1.6 -6.5 L 6.5 -6.5 L 2.5 -3.5 L 4 1 L 0 -1.8 L -4 1 L -2.5 -3.5 L -6.5 -6.5 L -1.6 -6.5 Z"
+              fill="#1E5FBE"/>
+        <!-- Texte ESI -->
+        <text x="0" y="9" text-anchor="middle"
+              font-family="'Barlow Condensed', sans-serif"
+              font-weight="800" font-size="10" letter-spacing="0.6"
+              fill="#1A3A6B">ESI</text>
+      </g>
+    </svg>
+  `;
+
   function init() {
     if (typeof L === 'undefined') {
-      // Leaflet pas encore chargé : on retente
       setTimeout(init, 200);
       return;
     }
@@ -8172,45 +8256,69 @@ const CAT_LABEL = {
     const map = L.map(container, {
       center: STADE_COORDS,
       zoom: 16,
-      scrollWheelZoom: false,        // pas de zoom au scroll (sinon ça bloque la nav verticale)
+      scrollWheelZoom: false,
       attributionControl: true,
+      zoomControl: true,
     });
 
-    // Tile layer : OpenStreetMap (gratuit, pas de clé)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // ===== Tile layer pro : CartoDB Voyager (gratuit, pas de clé, look minimaliste) =====
+    // Voyager = cartographie chic, gris/blanc cassé, parfait avec une DA navy/blanc
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       maxZoom: 19,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: 'abcd',
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> · © <a href="https://carto.com/attributions">CARTO</a>',
     }).addTo(map);
 
-    // Custom icon : div HTML qui contient le logo ESI dans un cercle navy
+    // Custom icon ESI (pulse + SVG)
     const esiIcon = L.divIcon({
       className: 'esi-map-marker-wrapper',
-      html: '<div class="esi-map-marker"><img src="assets/logo-esi.png" alt="ESI"></div>',
-      iconSize: [56, 56],
-      iconAnchor: [28, 56],   // pointe du marker pile sur le centre du stade
-      popupAnchor: [0, -54],
+      html: `<div class="esi-marker">
+               <span class="esi-marker-pulse"></span>
+               <span class="esi-marker-pulse"></span>
+               ${MARKER_SVG}
+             </div>`,
+      iconSize: [64, 78],
+      iconAnchor: [32, 76],   // pointe pile sur le stade
+      popupAnchor: [0, -70],
     });
 
-    const marker = L.marker(STADE_COORDS, { icon: esiIcon, title: 'Stade Municipal — ESI Isigny' }).addTo(map);
+    const marker = L.marker(STADE_COORDS, {
+      icon: esiIcon,
+      title: 'Stade Municipal — ESI Isigny',
+      riseOnHover: true,
+    }).addTo(map);
 
     marker.bindPopup(`
       <div class="esi-map-popup">
-        <strong>Étoile Sportive d'Isigny</strong>
-        Stade Municipal · Impasse du Stade<br>
-        14230 Isigny-sur-Mer<br>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=Stade+Municipal+Isigny-sur-Mer" target="_blank" rel="noopener">Itinéraire →</a>
+        <div class="esi-map-popup-title">Stade Municipal d'Isigny</div>
+        <div class="esi-map-popup-addr">
+          Impasse du Stade<br>
+          14230 Isigny-sur-Mer<br>
+          Bessin · District Manche
+        </div>
+        <a class="esi-map-popup-link" href="https://www.google.com/maps/dir/?api=1&destination=Stade+Municipal+Isigny-sur-Mer" target="_blank" rel="noopener">
+          Itinéraire →
+        </a>
       </div>
-    `);
+    `, { maxWidth: 260, autoPan: false });
 
-    // Ouvre le popup par défaut après 600 ms (le marker se voit, puis le popup apparaît)
-    setTimeout(() => marker.openPopup(), 600);
+    // Ouvre le popup par défaut au chargement
+    setTimeout(() => marker.openPopup(), 700);
 
-    // Re-active le scroll-zoom uniquement quand on click sur la map (UX)
-    map.on('click', () => map.scrollWheelZoom.enable());
-    map.on('mouseout', () => map.scrollWheelZoom.disable());
+    // Scroll-zoom : activé uniquement après click sur la map
+    let zoomEnabled = false;
+    map.on('click', () => {
+      if (!zoomEnabled) {
+        map.scrollWheelZoom.enable();
+        zoomEnabled = true;
+      }
+    });
+    container.addEventListener('mouseleave', () => {
+      map.scrollWheelZoom.disable();
+      zoomEnabled = false;
+    });
   }
 
-  // On lance l'init quand le DOM est prêt + Leaflet chargé en defer
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
