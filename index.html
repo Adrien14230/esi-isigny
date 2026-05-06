@@ -2491,42 +2491,37 @@ button.team-card { font-family: inherit; }
   .divider-marquee-logo { width: 100px; height: 70px; }
 }
 
-/* ===== STADE EDITORIAL (photo de fond + overlay navy + logo + meta + CTA) ===== */
+/* ===== STADE BAND (encart compact navy minimaliste) ===== */
 .stade-section {
   position: relative;
-  min-height: 540px;
-  background: var(--dark);
+  background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
   overflow: hidden;
   isolation: isolate;
 }
-/* Photo du stade en background */
+/* Pattern grain subtil + halo bleu electric côté droit (cohérent avec les autres sections navy) */
 .stade-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('assets/team-bg.jpg');
-  background-size: cover;
-  background-position: center 35%;
-  filter: contrast(1.05);
-  z-index: -2;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+  background-size: 32px 32px;
+  pointer-events: none;
 }
-/* Overlay navy fort (dégradé pour lisibilité du texte) + grain subtil */
 .stade-section::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(105deg, rgba(6,14,30,0.94) 0%, rgba(6,14,30,0.82) 45%, rgba(13,31,60,0.55) 100%),
-    radial-gradient(ellipse 70% 50% at 80% 40%, rgba(58,127,232,0.18), transparent 70%);
-  z-index: -1;
+  top: 0; right: 0;
+  width: 50%; height: 100%;
+  background: radial-gradient(ellipse 80% 60% at 80% 50%, rgba(58,127,232,0.16), transparent 70%);
+  pointer-events: none;
 }
 .stade-inner {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 56px;
+  padding: 56px 48px;
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -2536,17 +2531,17 @@ button.team-card { font-family: inherit; }
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 11px;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--bright);
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 .stade-eyebrow-line {
   display: inline-block;
-  width: 32px;
+  width: 24px;
   height: 1px;
   background: currentColor;
 }
@@ -2554,124 +2549,123 @@ button.team-card { font-family: inherit; }
 .stade-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(44px, 5.8vw, 84px);
-  line-height: 0.92;
-  letter-spacing: -0.026em;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
   text-transform: uppercase;
   color: var(--white);
-  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
-  margin-bottom: 36px;
+  margin-bottom: 22px;
 }
-/* Méta : 3 colonnes éditoriales, comme une fiche magazine */
+.stade-title br { display: none; }  /* Plus de break — titre sur une ligne pour rester compact */
+/* Méta : ligne horizontale fine, pas de bloc bordé */
 .stade-meta {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  padding: 24px 0;
-  margin-bottom: 36px;
-  border-top: 1px solid rgba(255,255,255,0.18);
-  border-bottom: 1px solid rgba(255,255,255,0.18);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  padding: 14px 0 0;
+  margin-bottom: 24px;
 }
-.stade-meta-item { display: flex; flex-direction: column; gap: 6px; }
+.stade-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-left: 2px solid rgba(58,127,232,0.5);
+  padding-left: 12px;
+}
 .stade-meta-label {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 0.22em;
+  font-size: 9px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.45);
 }
 .stade-meta-value {
   font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.4;
   color: var(--white);
   font-weight: 500;
 }
-.stade-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.stade-meta-value br { display: inline; }
+.stade-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .stade-btn {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 16px 28px;
+  padding: 12px 22px;
   border-radius: 2px;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
   transition: background 0.25s, color 0.25s, border-color 0.25s;
   border: 1px solid transparent;
 }
 .stade-btn.primary { background: var(--white); color: var(--navy); }
 .stade-btn.primary:hover { background: var(--bright); color: var(--white); }
-.stade-btn.ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.35); }
+.stade-btn.ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.3); }
 .stade-btn.ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--white); }
-.stade-btn-arrow { width: 18px; height: 1px; background: currentColor; position: relative; transition: width 0.25s; }
+.stade-btn-arrow { width: 16px; height: 1px; background: currentColor; position: relative; transition: width 0.25s; }
 .stade-btn-arrow::after {
   content: '';
   position: absolute;
   right: 0; top: 50%;
-  width: 6px; height: 6px;
+  width: 5px; height: 5px;
   border-top: 1px solid currentColor;
   border-right: 1px solid currentColor;
   transform: translateY(-50%) rotate(45deg);
 }
-.stade-btn:hover .stade-btn-arrow { width: 24px; }
+.stade-btn:hover .stade-btn-arrow { width: 22px; }
 
-/* Logo en blason massif sur le côté droit — gravé dans le navy avec halo */
+/* Logo : compact sur le côté, plus discret */
 .stade-logo-mark {
   position: relative;
+  width: 140px;
+  height: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1;
-  width: 100%;
-  max-width: 380px;
-  margin: 0 auto;
+  flex-shrink: 0;
 }
 .stade-logo-mark::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -8px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(58,127,232,0.25) 0%, rgba(58,127,232,0.05) 50%, transparent 70%);
-  animation: stadePulse 4s ease-in-out infinite;
-}
-@keyframes stadePulse {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50%      { transform: scale(1.08); opacity: 1; }
+  background: radial-gradient(circle, rgba(58,127,232,0.2) 0%, transparent 60%);
 }
 .stade-logo-mark::after {
   content: '';
   position: absolute;
-  inset: 22%;
+  inset: 10%;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.14);
 }
 .stade-logo-mark img {
   position: relative;
-  width: 70%;
-  height: 70%;
+  width: 78%;
+  height: 78%;
   object-fit: contain;
-  /* Force le PNG (lignes blanches fines) en blanc plein pour visibilité maximale */
-  filter: brightness(0) invert(1) drop-shadow(0 8px 30px rgba(58,127,232,0.4));
-  opacity: 0.96;
+  filter: brightness(0) invert(1) drop-shadow(0 4px 14px rgba(58,127,232,0.35));
+  opacity: 0.95;
 }
 
 @media (max-width: 900px) {
   .stade-inner {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 64px 24px;
+    gap: 28px;
+    padding: 44px 24px;
+    text-align: left;
   }
-  .stade-meta { grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 18px 0; margin-bottom: 28px; }
-  .stade-logo-mark { max-width: 220px; order: -1; margin: 0; }
+  .stade-logo-mark { width: 96px; height: 96px; }
+  .stade-meta { gap: 18px; }
+  .stade-section::after { display: none; }
 }
 @media (max-width: 560px) {
-  .stade-meta { grid-template-columns: 1fr 1fr; }
-  .stade-meta-item:last-child { grid-column: 1 / -1; }
+  .stade-meta { flex-direction: column; gap: 10px; }
   .stade-actions .stade-btn { flex: 1; justify-content: center; }
 }
 
