@@ -1,11 +1,12 @@
 // GET /api/photos/list-approved?category=<key>
 // Public endpoint. Lists approved photos for a category, with signed URLs.
 
-import { db } from '../../lib/db.js';
+import { createClient } from '@supabase/supabase-js';
 
-export const config = { runtime: 'edge' };
+export const runtime = 'edge';
 
 export default async function handler(req: Request) {
+  const db = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_SERVICE_KEY || '');
   const url = new URL(req.url);
   const category = url.searchParams.get('category');
 

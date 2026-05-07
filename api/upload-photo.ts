@@ -3,9 +3,9 @@
 // Photos are published immediately (no moderation step — confiance aux parents).
 // Stores originals in Supabase Storage and writes to gallery_approved.
 
-import { db, logRun } from '../lib/db.js';
+import { createClient } from '@supabase/supabase-js';
 
-export const config = { runtime: 'edge' };
+export const runtime = 'edge';
 
 const ALLOWED_CATEGORIES = [
   'seniors-a', 'seniors-b', 'seniors-f', 'veterans',
@@ -19,6 +19,8 @@ export default async function handler(req: Request) {
   if (req.method !== 'POST') {
     return Response.json({ error: 'Method not allowed' }, { status: 405 });
   }
+
+  const db = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_SERVICE_KEY || '');
 
   try {
     const form = await req.formData();
@@ -73,10 +75,14 @@ export default async function handler(req: Request) {
       }).catch(() => {/* non-blocking */});
     }
 
-    await logRun('upload-photo', 'success', { count: inserted.length, category });
+    await db.from('agent_runs').insert({
+      agent_id: 'upload-photo',
+      status: 'success',
+      meta: { count: inserted.length, category },
+      ran_at: new Date().toISOString(),
+    });
     return Response.json({ ok: true, ids: inserted });
   } catch (err: any) {
-    await logRun('upload-photo', 'error', { error: err.message });
     return Response.json({ ok: false, error: err.message }, { status: 500 });
   }
 }

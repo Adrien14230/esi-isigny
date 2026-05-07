@@ -1,18 +1,19 @@
 // AGENT 01 — FFF Results Sync
 // Runs every Monday at 02:00 (after weekend matches).
 // Scrapes all played matches of the past week from FFF and writes them to DB.
-// The site reads from DB at build/runtime → fresh data without manual edits.
 
+import { createClient } from '@supabase/supabase-js';
 import { fetchClubPage, parseMatches } from '../../lib/fff.js';
-import { db, logRun } from '../../lib/db.js';
 
-export const config = { runtime: 'edge' };
+export const runtime = 'edge';
 
-export default async function handler(req: Request) {
+export default async function handler() {
+  const db = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_SERVICE_KEY || '');
+
   try {
     const data = await fetchClubPage();
     const now = new Date();
-    const monthKey = now.toISOString().slice(0, 7); // 2026-05
+    const monthKey = now.toISOString().slice(0, 7);
     const matches = parseMatches(data, monthKey);
     const played = matches.filter(m => m.status === 'joué');
 
@@ -33,11 +34,15 @@ export default async function handler(req: Request) {
       }, { onConflict: 'id' });
     }
 
-    await logRun('01-fff-results-sync', 'success', { played_count: played.length });
+    await db.from('agent_runs').insert({
+      agent_id: '01-fff-results-sync',
+      status: 'success',
+      meta: { played_count: played.length },
+      ran_at: new Date().toISOString(),
+    });
+
     return Response.json({ ok: true, played: played.length });
   } catch (err: any) {
-    await logRun('01-fff-results-sync', 'error', { error: err.message });
     return Response.json({ ok: false, error: err.message }, { status: 500 });
   }
 }
-
