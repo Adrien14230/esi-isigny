@@ -5,6 +5,8 @@
 import { db, logRun } from '../../lib/db.js';
 import { Resend } from 'resend';
 
+export const config = { runtime: 'edge' };
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler() {
@@ -49,4 +51,3 @@ export default async function handler() {
   }
 }
 
-export const config = { schedule: '0 18 * * *' };

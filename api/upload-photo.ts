@@ -5,6 +5,8 @@
 
 import { db, logRun } from '../lib/db.js';
 
+export const config = { runtime: 'edge' };
+
 const ALLOWED_CATEGORIES = [
   'seniors-a', 'seniors-b', 'seniors-f', 'veterans',
   'u15-1', 'u15-2', 'u13', 'u11', 'u9', 'club',
@@ -79,4 +81,3 @@ export default async function handler(req: Request) {
   }
 }
 
-export const config = { api: { bodyParser: false } };

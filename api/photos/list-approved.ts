@@ -3,6 +3,8 @@
 
 import { db } from '../../lib/db.js';
 
+export const config = { runtime: 'edge' };
+
 export default async function handler(req: Request) {
   const url = new URL(req.url);
   const category = url.searchParams.get('category');

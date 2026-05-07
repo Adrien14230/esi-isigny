@@ -6,6 +6,8 @@
 import { fetchClubPage, parseMatches } from '../../lib/fff.js';
 import { db, logRun } from '../../lib/db.js';
 
+export const config = { runtime: 'edge' };
+
 export default async function handler(req: Request) {
   try {
     const data = await fetchClubPage();
@@ -39,4 +41,3 @@ export default async function handler(req: Request) {
   }
 }
 
-export const config = { schedule: '0 2 * * 1' }; // Mondays 02:00 UTC
