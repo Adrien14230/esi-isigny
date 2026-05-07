@@ -155,8 +155,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="assets/team-bg.jpg" fetchpriority="high">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/team-bg.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/logo-esi-128.png" fetchpriority="high">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 
 <style>
 /* ===== VARIABLES ===== */
@@ -1073,13 +1075,15 @@ nav.scrolled .hamburger span { background: var(--navy); }
   background: var(--white);
   color: var(--navy);
 }
-.hero-cta.primary:hover { background: var(--bright); color: var(--white); }
+.hero-cta.primary:hover { background: var(--bright); color: var(--white); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(58,127,232,0.45); }
 .hero-cta.ghost {
   background: transparent;
   color: var(--white);
   border-color: rgba(255,255,255,0.35);
 }
-.hero-cta.ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--white); }
+.hero-cta.ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--white); transform: translateY(-2px); }
+.hero-cta:active { transform: translateY(0) scale(0.98); transition-duration: 0.08s; }
+.hero-cta { transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
 .hero-cta-arrow {
   width: 18px; height: 1px;
   background: currentColor;
@@ -1160,9 +1164,11 @@ nav.scrolled .hamburger span { background: var(--navy); }
   cursor: pointer;
 }
 .fix-pill:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(0,0,0,0.28);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(58,127,232,0.35), 0 0 0 1px rgba(58,127,232,0.4);
+  border-color: rgba(58,127,232,0.6);
 }
+.fix-pill:active { transform: translateY(-1px) scale(0.99); transition-duration: 0.08s; }
 
 .fix-pill.featured {
   background: var(--dark);
@@ -5312,7 +5318,7 @@ table { max-width: 100%; }
 <section id="hero">
   <!-- Background slideshow : photos réelles ESI -->
   <div class="hero-bg" id="heroBg" aria-hidden="true">
-    <div class="hero-bg-slide active" style="background-image:url('assets/team-bg.jpg');"></div>
+    <div class="hero-bg-slide active" style="background-image:url('assets/team-bg.webp');"></div>
   </div>
 
   <!-- Title block (left) -->
@@ -9170,6 +9176,90 @@ document.addEventListener('keydown', e => {
     if (installBtn) installBtn.hidden = true;
     console.info('[PWA] App installée 🎉');
   });
+})();
+</script>
+
+<!-- ===== POLISH JS — Count-up + parallax hero (lightweight, no deps) ===== -->
+<script>
+(function() {
+  // Skip if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // 1) Count-up sur les chiffres de l'info band
+  const animateCount = (el, target, duration = 1400) => {
+    const start = performance.now();
+    const easeOut = t => 1 - Math.pow(1 - t, 3);
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      el.textContent = Math.round(target * easeOut(t));
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = String(target);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const infoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const txt = el.textContent.trim();
+        const num = parseInt(txt, 10);
+        if (!Number.isNaN(num) && /^\d+$/.test(txt)) {
+          animateCount(el, num);
+        }
+        infoObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('#info-band .info-value').forEach(el => infoObserver.observe(el));
+
+  // 2) Parallax léger sur le fond hero (translate au scroll)
+  const heroBg = document.getElementById('heroBg');
+  if (heroBg) {
+    let ticking = false;
+    const updateParallax = () => {
+      const y = window.scrollY;
+      // Pas de parallax au-delà du hero (économie CPU)
+      if (y < window.innerHeight) {
+        heroBg.style.transform = `translate3d(0, ${y * 0.18}px, 0)`;
+      }
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  // 3) Hero title — révélation lettre par lettre (split + cascade fade-up)
+  const heroTitle = document.querySelector('.hero-title');
+  if (heroTitle && !heroTitle.dataset.split) {
+    heroTitle.dataset.split = '1';
+    heroTitle.querySelectorAll('span').forEach((line, lineIdx) => {
+      const text = line.textContent;
+      line.textContent = '';
+      [...text].forEach((char, charIdx) => {
+        const s = document.createElement('span');
+        s.textContent = char === ' ' ? ' ' : char;
+        s.style.display = 'inline-block';
+        s.style.opacity = '0';
+        s.style.transform = 'translateY(0.4em)';
+        s.style.transition = `opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) ${0.2 + lineIdx * 0.08 + charIdx * 0.025}s, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) ${0.2 + lineIdx * 0.08 + charIdx * 0.025}s`;
+        line.appendChild(s);
+      });
+    });
+    requestAnimationFrame(() => {
+      heroTitle.querySelectorAll('span span').forEach(s => {
+        s.style.opacity = '1';
+        s.style.transform = 'translateY(0)';
+      });
+    });
+    // Désactive l'anim CSS d'origine pour ne pas qu'elle se cumule
+    heroTitle.style.animation = 'none';
+  }
 })();
 </script>
 
