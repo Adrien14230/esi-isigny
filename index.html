@@ -157,7 +157,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="assets/team-bg-mobile.jpg" type="image/jpeg" fetchpriority="high" media="(max-width: 768px)">
 <link rel="preload" as="image" href="assets/team-bg.webp" type="image/webp" fetchpriority="high" media="(min-width: 769px)">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Google Fonts non-blocking: chargé en media=print puis swap en media=all → render immédiat avec fallback system fonts, swap après paint -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap"></noscript>
 
 <style>
 /* ===== VARIABLES ===== */
@@ -172,8 +174,8 @@
   --win: #22C55E;
   --draw: #94A3B8;
   --loss: #EF4444;
-  --font-display: 'Barlow Condensed', sans-serif;
-  --font-body: 'Barlow', sans-serif;
+  --font-display: 'Barlow Condensed', 'Helvetica Neue Condensed', 'Arial Narrow', system-ui, -apple-system, sans-serif;
+  --font-body: 'Barlow', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
   --hero-name-size: 120px;
   --jersey-num-opacity: 0.07;
   --card-radius: 12px;
@@ -5206,7 +5208,7 @@ table { max-width: 100%; }
 <!-- ===== NAVIGATION ===== -->
 <nav id="main-nav">
   <a href="#hero" class="nav-logo" aria-label="Accueil ESI">
-    <img src="assets/logo-esi.png" alt="Logo ESI" width="44" height="44" style="object-fit:contain;" />
+    <img src="assets/logo-esi-128.png" alt="Logo ESI" width="44" height="44" decoding="async" fetchpriority="high" style="object-fit:contain;" />
     <div class="nav-logo-name">ÉTOILE SPORTIVE<span>D'ISIGNY</span></div>
   </a>
 
@@ -5242,7 +5244,7 @@ table { max-width: 100%; }
   <aside class="burger-panel">
     <div class="burger-head">
       <a href="#hero" class="burger-logo" data-burger-link>
-        <img src="assets/logo-esi.png" alt="Logo ESI">
+        <img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async">
         <div class="burger-logo-name">ÉTOILE SPORTIVE<span>D'ISIGNY · 1925</span></div>
       </a>
       <button type="button" class="burger-close" id="burgerClose" aria-label="Fermer le menu" onclick="closeBurger()">×</button>
@@ -5465,7 +5467,7 @@ table { max-width: 100%; }
     <div class="histoire-carousel reveal" id="histoireCarousel">
       <!-- Slide de fallback affichée pendant le chargement du manifest -->
       <div class="histoire-slide active">
-        <img src="assets/team-bg.jpg" alt="ESI — Équipe Seniors B" loading="eager">
+        <img src="assets/team-bg.webp" alt="ESI — Équipe Seniors B" loading="lazy" decoding="async">
       </div>
       <div class="histoire-carousel-dots" id="histoireDots"></div>
     </div>
@@ -5523,7 +5525,7 @@ table { max-width: 100%; }
       </article>
 
       <article class="timeline-slide">
-        <img src="assets/team-bg.jpg" alt="Équipe Seniors B 2025" class="timeline-slide-img">
+        <img src="assets/team-bg.webp" alt="Équipe Seniors B 2025" class="timeline-slide-img" loading="lazy" decoding="async">
         <span class="timeline-slide-year">2024</span>
         <div class="timeline-slide-overlay"></div>
         <div class="timeline-slide-content">
@@ -6724,7 +6726,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/maillot-power-mc.jpg" alt="Maillot Power MC ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Manches courtes · Officiel</span><span data-lang="en">Short sleeves · Official</span></span>
@@ -6749,7 +6751,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/veste-capuche-power.jpg" alt="Veste à capuche Power ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Veste à capuche · Power</span><span data-lang="en">Hooded jacket</span></span>
@@ -6774,7 +6776,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/polo-power.jpg" alt="Polo Power ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Polo cérémonie</span><span data-lang="en">Polo</span></span>
@@ -6799,7 +6801,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/pantalon-power.jpg" alt="Pantalon polyester Power ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Polyester · Survêtement</span><span data-lang="en">Polyester · Tracksuit</span></span>
@@ -6824,7 +6826,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/ziptop-power.jpg" alt="Ziptop Power ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Veste zippée</span><span data-lang="en">Zip-up</span></span>
@@ -6849,7 +6851,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/sweat-power.jpg" alt="Sweat Power ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Pull col rond</span><span data-lang="en">Crew sweater</span></span>
@@ -6874,7 +6876,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/veste-pluie-power.jpg" alt="Veste de pluie Power ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Imperméable</span><span data-lang="en">Waterproof</span></span>
@@ -6899,7 +6901,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/veste-matelassee.jpg" alt="Veste matelassée ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Hiver</span><span data-lang="en">Winter</span></span>
@@ -6924,7 +6926,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/tshirt-classico.jpg" alt="T-shirt Classico ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Coton · Classico</span><span data-lang="en">Cotton · Classico</span></span>
@@ -6949,7 +6951,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/veste-capuche-classico.jpg" alt="Veste à capuche Classico ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Hoodie casual</span><span data-lang="en">Casual hoodie</span></span>
@@ -6974,7 +6976,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/debardeur-classico.jpg" alt="Débardeur Classico ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Été · Sans manches</span><span data-lang="en">Summer · Sleeveless</span></span>
@@ -6999,7 +7001,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/tanktop-challenge.jpg" alt="Tank top Challenge ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Entraînement</span><span data-lang="en">Training</span></span>
@@ -7024,7 +7026,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/pantalon-challenge.jpg" alt="Pantalon Challenge ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Polyester · Challenge</span><span data-lang="en">Polyester · Challenge</span></span>
@@ -7049,7 +7051,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/short-active.jpg" alt="Short d'entraînement Active ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Entraînement</span><span data-lang="en">Training</span></span>
@@ -7073,7 +7075,7 @@ table { max-width: 100%; }
         <span class="boutique-card-tag"><span data-lang="fr">Bidon</span><span data-lang="en">Bottle</span></span>
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/bidon.jpg" alt="Bidon ESI" class="boutique-card-photo" loading="lazy">
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Accessoire · Hydratation</span><span data-lang="en">Accessory · Hydration</span></span>
@@ -7098,7 +7100,7 @@ table { max-width: 100%; }
         <span class="boutique-card-brand">JAKO</span>
         <img src="assets/jako/sac-a-dos.jpg" alt="Sac à dos ESI" class="boutique-card-photo" loading="lazy">
         <span class="boutique-card-personalized"><span data-lang="fr">Aux couleurs ESI</span><span data-lang="en">ESI colours</span></span>
-        <div class="boutique-card-esi-badge"><img src="assets/logo-esi.png" alt="Logo ESI"></div>
+        <div class="boutique-card-esi-badge"><img src="assets/logo-esi-128.png" alt="Logo ESI" loading="lazy" decoding="async"></div>
       </a>
       <div class="boutique-card-body">
         <span class="boutique-card-cat"><span data-lang="fr">Accessoire · Compartiment chaussures</span><span data-lang="en">Accessory · Shoe compartment</span></span>
