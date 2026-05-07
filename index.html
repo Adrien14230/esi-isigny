@@ -155,10 +155,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="assets/team-bg.webp" type="image/webp" fetchpriority="high">
-<link rel="preload" as="image" href="assets/logo-esi-128.png" fetchpriority="high">
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="image" href="assets/team-bg-mobile.jpg" type="image/jpeg" fetchpriority="high" media="(max-width: 768px)">
+<link rel="preload" as="image" href="assets/team-bg.webp" type="image/webp" fetchpriority="high" media="(min-width: 769px)">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 /* ===== VARIABLES ===== */
@@ -952,12 +951,17 @@ nav.scrolled .hamburger span { background: var(--navy); }
 .hero-bg-slide {
   position: absolute;
   inset: 0;
+  background-image: url('assets/team-bg.webp');
   background-size: cover;
   background-position: center 35%;
   opacity: 0;
   transition: opacity 1.6s ease;
   transform: scale(1.04);
   animation: heroKenBurns 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@media (max-width: 768px) {
+  .hero-bg-slide { background-image: url('assets/team-bg-mobile.jpg'); }
 }
 .hero-bg-slide.active { opacity: 1; }
 @keyframes heroKenBurns {
@@ -5318,7 +5322,7 @@ table { max-width: 100%; }
 <section id="hero">
   <!-- Background slideshow : photos réelles ESI -->
   <div class="hero-bg" id="heroBg" aria-hidden="true">
-    <div class="hero-bg-slide active" style="background-image:url('assets/team-bg.webp');"></div>
+    <div class="hero-bg-slide active"></div>
   </div>
 
   <!-- Title block (left) -->
@@ -9182,9 +9186,12 @@ document.addEventListener('keydown', e => {
 <!-- ===== POLISH JS — Count-up + parallax hero (lightweight, no deps) ===== -->
 <script>
 (function() {
-  // Skip if user prefers reduced motion
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // Defer all polish work until the browser is idle (post-LCP)
+  const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 300));
+  idle(() => runPolish());
 
+  function runPolish() {
   // 1) Count-up sur les chiffres de l'info band
   const animateCount = (el, target, duration = 1400) => {
     const start = performance.now();
@@ -9234,8 +9241,8 @@ document.addEventListener('keydown', e => {
     }, { passive: true });
   }
 
-  // 3) Hero title — révélation lettre par lettre (split + cascade fade-up)
-  const heroTitle = document.querySelector('.hero-title');
+  // 3) Letter-by-letter — DESKTOP ONLY (skip mobile pour perf)
+  const heroTitle = window.innerWidth > 768 ? document.querySelector('.hero-title') : null;
   if (heroTitle && !heroTitle.dataset.split) {
     heroTitle.dataset.split = '1';
     heroTitle.querySelectorAll('span').forEach((line, lineIdx) => {
@@ -9260,6 +9267,7 @@ document.addEventListener('keydown', e => {
     // Désactive l'anim CSS d'origine pour ne pas qu'elle se cumule
     heroTitle.style.animation = 'none';
   }
+  } // end runPolish
 })();
 </script>
 
