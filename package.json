@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Étoile Sportive d'Isigny — site officiel + 10 agents IA d'auto-update",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vercel dev --listen 8765",
     "deploy": "vercel --prod",

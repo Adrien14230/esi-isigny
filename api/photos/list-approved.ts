@@ -1,7 +1,7 @@
 // GET /api/photos/list-approved?category=<key>
 // Public endpoint. Lists approved photos for a category, with signed URLs.
 
-import { db } from '../../lib/db';
+import { db } from '../../lib/db.js';
 
 export default async function handler(req: Request) {
   const url = new URL(req.url);

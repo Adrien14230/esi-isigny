@@ -2,7 +2,7 @@
 // Runs every day at 18:00. Sends an email/push to each licencié convoked
 // for a match in the next 24-48h (so Friday for Saturday, Saturday for Sunday).
 
-import { db, logRun } from '../../lib/db';
+import { db, logRun } from '../../lib/db.js';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);

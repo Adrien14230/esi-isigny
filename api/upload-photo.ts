@@ -3,7 +3,7 @@
 // Photos are published immediately (no moderation step — confiance aux parents).
 // Stores originals in Supabase Storage and writes to gallery_approved.
 
-import { db, logRun } from '../lib/db';
+import { db, logRun } from '../lib/db.js';
 
 const ALLOWED_CATEGORIES = [
   'seniors-a', 'seniors-b', 'seniors-f', 'veterans',
