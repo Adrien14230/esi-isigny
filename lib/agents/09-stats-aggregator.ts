@@ -1,17 +1,15 @@
 // AGENT 09 — Club Stats Aggregator
-// Runs Monday 05:00. Crunches all results to produce weekly + season stats
-// per team and at the club level. Used by the hero info-band and chatbot.
+// Lundi 5h. Crunche tous les résultats pour produire les stats hebdo + saison
+// par équipe et au niveau club. Utilisé par le hero info-band et le chatbot.
+import { sbSelect, sbUpsert, logRun } from '../supabase.js';
 
-import { db, logRun } from '../../lib/db';
-
-export default async function handler() {
+export async function run() {
   try {
     const since = new Date('2025-08-01').toISOString();
-    const { data: matches } = await db.from('matches').select('*').gte('date', since);
+    const matches = await sbSelect<any>('matches', `select=*&date=gte.${encodeURIComponent(since)}`);
 
-    // Per-team aggregation
     const byTeam: Record<string, any> = {};
-    for (const m of matches || []) {
+    for (const m of matches) {
       const t = m.team_label;
       const esiButs = m.esi_home ? m.recevant_buts : m.visiteur_buts;
       const oppButs = m.esi_home ? m.visiteur_buts : m.recevant_buts;
@@ -24,7 +22,6 @@ export default async function handler() {
       else byTeam[t].losses++;
     }
 
-    // Club-level totals
     const clubTotals = Object.values(byTeam).reduce((acc: any, t: any) => ({
       played: acc.played + t.played,
       wins: acc.wins + t.wins,
@@ -34,20 +31,18 @@ export default async function handler() {
       ga: acc.ga + t.ga,
     }), { played: 0, wins: 0, draws: 0, losses: 0, gf: 0, ga: 0 });
 
-    await db.from('club_stats').upsert({
+    await sbUpsert('club_stats', {
       id: 1,
       season: '2025-26',
       per_team: byTeam,
       club_totals: clubTotals,
       updated_at: new Date().toISOString(),
-    });
+    }, 'id');
 
     await logRun('09-stats-aggregator', 'success', { teams: Object.keys(byTeam).length });
-    return Response.json({ ok: true, teams: Object.keys(byTeam).length });
+    return { ok: true, teams: Object.keys(byTeam).length };
   } catch (err: any) {
     await logRun('09-stats-aggregator', 'error', { error: err.message });
-    return Response.json({ ok: false, error: err.message }, { status: 500 });
+    return { ok: false, error: err.message };
   }
 }
-
-export const config = { schedule: '0 5 * * 1' };

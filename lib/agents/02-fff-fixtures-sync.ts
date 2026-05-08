@@ -1,11 +1,9 @@
 // AGENT 02 — FFF Fixtures Sync
-// Runs every Monday at 02:30. Pulls upcoming fixtures (next 30 days)
-// for all 9 ESI teams from FFF, writes to DB. Powers the calendar section.
+// Lundi 2h30. Scrape le calendrier futur (30 jours) → table fixtures.
+import { fetchClubPage, parseMatches } from '../fff.js';
+import { sbUpsert, logRun } from '../supabase.js';
 
-import { fetchClubPage, parseMatches } from '../../lib/fff';
-import { db, logRun } from '../../lib/db';
-
-export default async function handler() {
+export async function run() {
   try {
     const data = await fetchClubPage();
     const now = new Date();
@@ -17,22 +15,24 @@ export default async function handler() {
     const upcoming = all.filter(m => m.status === 'à venir');
 
     for (const m of upcoming) {
-      await db.from('fixtures').upsert({
-        id: m.id, date: m.date, competition: m.competition,
-        category: m.category, pool: m.pool, team_label: m.esiTeamLabel,
+      await sbUpsert('fixtures', {
+        id: m.id,
+        date: m.date,
+        competition: m.competition,
+        category: m.category,
+        pool: m.pool,
+        team_label: m.esiTeamLabel,
         opponent: m.esiHome ? m.visiteur.nom : m.recevant.nom,
         opponent_logo: m.esiHome ? m.visiteur.logo : m.recevant.logo,
         venue: m.esiHome ? 'home' : 'away',
         synced_at: new Date().toISOString(),
-      }, { onConflict: 'id' });
+      }, 'id');
     }
 
     await logRun('02-fff-fixtures-sync', 'success', { upcoming_count: upcoming.length });
-    return Response.json({ ok: true, fixtures: upcoming.length });
+    return { ok: true, fixtures: upcoming.length };
   } catch (err: any) {
     await logRun('02-fff-fixtures-sync', 'error', { error: err.message });
-    return Response.json({ ok: false, error: err.message }, { status: 500 });
+    return { ok: false, error: err.message };
   }
 }
-
-export const config = { schedule: '30 2 * * 1' };

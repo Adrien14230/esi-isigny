@@ -11,12 +11,7 @@
     "agent:run": "node --experimental-strip-types --no-warnings",
     "type-check": "tsc --noEmit"
   },
-  "dependencies": {
-    "@anthropic-ai/sdk": "^0.30.0",
-    "@supabase/supabase-js": "^2.45.4",
-    "resend": "^4.0.0",
-    "sharp": "^0.33.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^22.7.0",
     "typescript": "^5.6.0",

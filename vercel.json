@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
-    { "path": "/api/agents/01-fff-results-sync", "schedule": "0 2 * * 1" },
-    { "path": "/api/agents/05-convoc-reminder",  "schedule": "0 18 * * *" }
+    { "path": "/api/agents/run?id=01", "schedule": "0 2 * * 1" },
+    { "path": "/api/agents/run?id=05", "schedule": "0 18 * * *" }
   ],
   "headers": [
     {
