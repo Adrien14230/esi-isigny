@@ -9,7 +9,7 @@
  * - API / dynamique : network-only (pas de cache des données fraiches)
  */
 
-const CACHE_VERSION = 'esi-v6-data-bypass';
+const CACHE_VERSION = 'esi-v7-modal-fix';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 

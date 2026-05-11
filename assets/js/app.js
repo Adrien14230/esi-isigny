@@ -920,9 +920,9 @@ uploadBtn?.addEventListener('click', () => {
 });
 
 // =================================================================
-// CLASSEMENTS (full FFF data, scraped)
+// CLASSEMENTS (full FFF data, scraped — overridable via window.CLASSEMENTS par dynamic-data.js)
 // =================================================================
-const CLASSEMENTS = {
+window.CLASSEMENTS = {
   'seniors-a': {
     title: 'Classement Seniors A',
     subtitle: 'D4 · Poule C · JBS Prorété · Mis à jour 3 mai 2026',
@@ -1114,7 +1114,7 @@ function renderRecapCards(c) {
 }
 
 function openClassement(key) {
-  const c = CLASSEMENTS[key];
+  const c = window.CLASSEMENTS[key];
   if (!c) return;
   classementTitle.textContent = c.title;
   classementSubtitle.textContent = c.subtitle;

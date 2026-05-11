@@ -51,7 +51,7 @@
         const dateShort = formatDateShort(m.date);
         const where = m.esiHome ? 'Domicile' : 'Extérieur';
         return `
-          <div class="result-row ${verdict} reveal">
+          <div class="result-row ${verdict} reveal visible">
             <div class="result-indicator">${letter}</div>
             <div class="result-teams">${teamsLine}
               <span class="result-competition">${dateShort} · ${m.competition} · ${where}</span>
@@ -97,7 +97,7 @@
         const timeLabel = formatTime(m.date);
 
         return `
-          <div class="fixture${featured}">
+          <div class="fixture${featured} visible">
             <div class="fixture-head">
               <span class="fixture-comp">${m.teamLabel} · ${m.competition}</span>
               <span class="fixture-loc ${where}">${whereLabel}</span>
@@ -113,6 +113,37 @@
 
       fixturesStrip.innerHTML = html;
       console.log(`[ESI] ✓ ${upcoming.length} matchs à venir chargés`);
+    }
+
+    // ============================================================
+    // MODAL CLASSEMENT — patch window.CLASSEMENTS pour que la modal
+    // affiche les vraies données quand l'utilisateur clique sur une équipe
+    // ============================================================
+    if (classements && classements.pools && window.CLASSEMENTS) {
+      for (const [key, pool] of Object.entries(classements.pools)) {
+        if (window.CLASSEMENTS[key]) {
+          window.CLASSEMENTS[key].rows = pool.rows.map(r => ({
+            pos: r.position,
+            team: r.team,
+            pts: r.pts,
+            j: r.j,
+            g: r.g,
+            n: r.n,
+            p: r.p,
+            bp: r.bp,
+            bc: r.bc,
+            diff: r.diff,
+            esi: r.clCod === '501416',
+          }));
+          // Update subtitle date
+          if (classements.generated_at) {
+            const d = new Date(classements.generated_at);
+            const dateStr = `${d.getDate()} ${['janv','févr','mars','avr','mai','juin','juil','août','sept','oct','nov','déc'][d.getMonth()]}. ${d.getFullYear()}`;
+            window.CLASSEMENTS[key].subtitle = window.CLASSEMENTS[key].subtitle.replace(/Mis à jour [^·]*$/, `Mis à jour ${dateStr}`);
+          }
+        }
+      }
+      console.log(`[ESI] ✓ window.CLASSEMENTS patché avec ${Object.keys(classements.pools).length} poules`);
     }
 
     // ============================================================
