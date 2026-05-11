@@ -3370,6 +3370,18 @@ footer { background: var(--dark); padding: 56px 48px 28px; }
   position: relative;
   z-index: 2;
 }
+@media (max-width: 900px) {
+  .upload-section { padding: 28px 20px; margin-top: 40px; border-radius: 18px; }
+  .upload-section::before { width: 240px; height: 240px; top: -60px; right: -60px; }
+  .upload-grid { grid-template-columns: 1fr; gap: 24px; }
+  .upload-form { padding: 22px 18px; }
+  .upload-intro h3 { font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .upload-section { padding: 22px 14px; border-radius: 14px; }
+  .upload-form { padding: 18px 14px; gap: 14px; }
+  .upload-intro h3 { font-size: 24px; line-height: 1.1; }
+}
 .upload-intro h3 {
   font-family: var(--font-display);
   font-weight: 900;
