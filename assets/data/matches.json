@@ -1,0 +1,407 @@
+{
+  "generated_at": "2026-05-11T15:43:31.603Z",
+  "played": [
+    {
+      "id": 55272702,
+      "date": "2026-05-02T13:15:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT U13 NIVEAU 4",
+      "category": "U13 - U12",
+      "pool": "POULE B",
+      "teamLabel": "U13",
+      "recevant": {
+        "nom": "AS BERIGNY CERISY",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC527693.jpg",
+        "buts": 6
+      },
+      "visiteur": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "esiHome": false
+    },
+    {
+      "id": 55475120,
+      "date": "2026-05-02T15:00:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT U15 D3",
+      "category": "U15 - U14",
+      "pool": "POULE B",
+      "teamLabel": "U15 (1)",
+      "recevant": {
+        "nom": "AS VALOGNES F. 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC500140.jpg",
+        "buts": 3
+      },
+      "visiteur": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 4
+      },
+      "esiHome": false
+    },
+    {
+      "id": 55475203,
+      "date": "2026-05-02T15:00:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT U15 D3",
+      "category": "U15 - U14",
+      "pool": "POULE C",
+      "teamLabel": "U15 (2)",
+      "recevant": {
+        "nom": "ENT.ISIGNY-CARENT.2 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 10
+      },
+      "visiteur": {
+        "nom": "ES DE L'AY 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC565165.jpg",
+        "buts": 1
+      },
+      "esiHome": true
+    },
+    {
+      "id": 54020670,
+      "date": "2026-05-02T19:00:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT SENIORS D4 JBS PRORETE",
+      "category": "Senior",
+      "pool": "POULE D",
+      "teamLabel": "Seniors B",
+      "recevant": {
+        "nom": "AS THEREVAL 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC531034.jpg",
+        "buts": 1
+      },
+      "visiteur": {
+        "nom": "ES ISIGNY SUR MER 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 2
+      },
+      "esiHome": false
+    },
+    {
+      "id": 54469082,
+      "date": "2026-05-03T10:30:00+02:00",
+      "status": "joué",
+      "competition": "SENIORS F A 8 SPORT 200 LEQUERTIER",
+      "category": "Senior F",
+      "pool": "D2 NORD",
+      "teamLabel": "Seniors F",
+      "recevant": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 1
+      },
+      "visiteur": {
+        "nom": "AS POINTE COTENTIN",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC547673.jpg",
+        "buts": 0
+      },
+      "esiHome": true
+    },
+    {
+      "id": 54469142,
+      "date": "2026-05-08T20:30:00+02:00",
+      "status": "joué",
+      "competition": "SENIORS F A 8 SPORT 200 LEQUERTIER",
+      "category": "Senior F",
+      "pool": "D2 NORD",
+      "teamLabel": "Seniors F",
+      "recevant": {
+        "nom": "AS POINTE COTENTIN",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC547673.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 1
+      },
+      "esiHome": false
+    },
+    {
+      "id": 55272706,
+      "date": "2026-05-09T13:15:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT U13 NIVEAU 4",
+      "category": "U13 - U12",
+      "pool": "POULE B",
+      "teamLabel": "U13",
+      "recevant": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 3
+      },
+      "visiteur": {
+        "nom": "US RONCEY CERISY 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC581301.jpg",
+        "buts": 8
+      },
+      "esiHome": true
+    },
+    {
+      "id": 55475121,
+      "date": "2026-05-09T15:00:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT U15 D3",
+      "category": "U15 - U14",
+      "pool": "POULE B",
+      "teamLabel": "U15 (1)",
+      "recevant": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 2
+      },
+      "visiteur": {
+        "nom": "SM HAYTILLON",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC510449.jpg",
+        "buts": 8
+      },
+      "esiHome": true
+    },
+    {
+      "id": 55475205,
+      "date": "2026-05-09T15:00:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT U15 D3",
+      "category": "U15 - U14",
+      "pool": "POULE C",
+      "teamLabel": "U15 (2)",
+      "recevant": {
+        "nom": "ENT. FC3R/ CONDÉ ",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC581303.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "ENT.ISIGNY-CARENT.2 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 3
+      },
+      "esiHome": false
+    },
+    {
+      "id": 54098695,
+      "date": "2026-05-10T15:00:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT SENIORS D4 JBS PRORETE",
+      "category": "Senior",
+      "pool": "POULE C",
+      "teamLabel": "Seniors A",
+      "recevant": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 3
+      },
+      "visiteur": {
+        "nom": "AS MONTMARTIN GRAIG.",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC549413.jpg",
+        "buts": 0
+      },
+      "esiHome": true
+    }
+  ],
+  "upcoming": [
+    {
+      "id": 54020729,
+      "date": "2026-05-10T15:00:00+02:00",
+      "status": "à venir",
+      "competition": "CHAMPIONNAT SENIORS D4 JBS PRORETE",
+      "category": "Senior",
+      "pool": "POULE D",
+      "teamLabel": "Seniors B",
+      "recevant": {
+        "nom": "ENT.STJORES.AUVERS 3",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC521699.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "ES ISIGNY SUR MER 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "esiHome": false
+    },
+    {
+      "id": 54749441,
+      "date": "2026-05-15T21:00:00+02:00",
+      "status": "à venir",
+      "competition": "CHAMPIONNAT VETERANS",
+      "category": "Senior",
+      "pool": "POULE B",
+      "teamLabel": "Vétérans",
+      "recevant": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "FC ST LO MANCHE",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC500088.jpg",
+        "buts": 0
+      },
+      "esiHome": true
+    },
+    {
+      "id": 55475207,
+      "date": "2026-05-16T15:00:00+02:00",
+      "status": "à venir",
+      "competition": "CHAMPIONNAT U15 D3",
+      "category": "U15 - U14",
+      "pool": "POULE C",
+      "teamLabel": "U15 (2)",
+      "recevant": {
+        "nom": "ENT.ISIGNY-CARENT.2 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "ES MARIGNY LOZON M.V",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501524.jpg",
+        "buts": 0
+      },
+      "esiHome": true
+    },
+    {
+      "id": 54469145,
+      "date": "2026-05-17T10:30:00+02:00",
+      "status": "à venir",
+      "competition": "SENIORS F A 8 SPORT 200 LEQUERTIER",
+      "category": "Senior F",
+      "pool": "D2 NORD",
+      "teamLabel": "Seniors F",
+      "recevant": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "AS MONTEBOURG",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501467.jpg",
+        "buts": 0
+      },
+      "esiHome": true
+    },
+    {
+      "id": 54020730,
+      "date": "2026-05-17T15:00:00+02:00",
+      "status": "à venir",
+      "competition": "CHAMPIONNAT SENIORS D4 JBS PRORETE",
+      "category": "Senior",
+      "pool": "POULE D",
+      "teamLabel": "Seniors B",
+      "recevant": {
+        "nom": "ES ISIGNY SUR MER 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "AS THEREVAL 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC531034.jpg",
+        "buts": 0
+      },
+      "esiHome": true
+    },
+    {
+      "id": 54098703,
+      "date": "2026-05-17T15:00:00+02:00",
+      "status": "à venir",
+      "competition": "CHAMPIONNAT SENIORS D4 JBS PRORETE",
+      "category": "Senior",
+      "pool": "POULE C",
+      "teamLabel": "Seniors A",
+      "recevant": {
+        "nom": "PERIERS S. 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501717.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "esiHome": false
+    },
+    {
+      "id": 54749467,
+      "date": "2026-05-22T21:00:00+02:00",
+      "status": "à venir",
+      "competition": "CHAMPIONNAT VETERANS",
+      "category": "Senior",
+      "pool": "POULE B",
+      "teamLabel": "Vétérans",
+      "recevant": {
+        "nom": "CA PONTOIS",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501399.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "esiHome": false
+    },
+    {
+      "id": 55272711,
+      "date": "2026-05-23T00:00:00+02:00",
+      "status": "à venir",
+      "competition": "CHAMPIONNAT U13 NIVEAU 4",
+      "category": "U13 - U12",
+      "pool": "POULE B",
+      "teamLabel": "U13",
+      "recevant": {
+        "nom": "",
+        "logo": "",
+        "buts": null
+      },
+      "visiteur": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "esiHome": false
+    },
+    {
+      "id": 55475123,
+      "date": "2026-05-23T00:00:00+02:00",
+      "status": "à venir",
+      "competition": "CHAMPIONNAT U15 D3",
+      "category": "U15 - U14",
+      "pool": "POULE B",
+      "teamLabel": "U15 (1)",
+      "recevant": {
+        "nom": "",
+        "logo": "",
+        "buts": null
+      },
+      "visiteur": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "esiHome": false
+    },
+    {
+      "id": 54749471,
+      "date": "2026-05-29T10:30:00+02:00",
+      "status": "à venir",
+      "competition": "CHAMPIONNAT VETERANS",
+      "category": "Senior",
+      "pool": "POULE B",
+      "teamLabel": "Vétérans",
+      "recevant": {
+        "nom": "ES ISIGNY SUR MER 31",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "US STE CROIX ST LO 31",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC515675.jpg",
+        "buts": 0
+      },
+      "esiHome": true
+    }
+  ]
+}

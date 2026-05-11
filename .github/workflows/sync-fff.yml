@@ -1,0 +1,39 @@
+name: Sync FFF Data
+
+on:
+  schedule:
+    # Tous les lundis à 2h00 UTC (4h Paris)
+    - cron: '0 2 * * 1'
+    # Aussi chaque jour à 18h UTC (20h Paris) pour les résultats du soir
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+    # Permet de lancer manuellement depuis l'onglet Actions
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run FFF scraper
+        run: node scripts/sync-fff.mjs
+
+      - name: Commit and push updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/data/
+          if git diff --cached --quiet; then
+            echo "No data changes to commit"
+          else
+            git commit -m "🤖 Auto-sync FFF data ($(date -u +%Y-%m-%d_%H:%M_UTC))"
+            git push
+          fi
