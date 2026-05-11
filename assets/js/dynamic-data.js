@@ -130,15 +130,33 @@
 
         // Update position + meta
         const posEl = card.querySelector('.team-card-rank-pos');
+        const rankEl = card.querySelector('.team-card-rank');
         const metaEl = card.querySelector('.team-card-rank-meta');
         if (posEl) {
           posEl.innerHTML = ordinal(esi.position);
           // Couleur selon la position
-          const win = esi.position <= 3 ? 'var(--win)' : esi.position <= Math.ceil(pool.rows.length / 2) ? 'var(--draw)' : 'var(--loss)';
-          posEl.style.color = win;
+          const total = pool.rows.length;
+          const isTop = esi.position <= 3;
+          const isMid = esi.position <= Math.ceil(total / 2);
+          const color = isTop ? 'var(--win)' : isMid ? 'var(--draw)' : 'var(--loss)';
+          posEl.style.color = color;
+          // Background subtil sur l'encadré rank
+          if (rankEl) {
+            const bgColor = isTop ? 'rgba(34,197,94,0.10)' : isMid ? 'rgba(148,163,184,0.10)' : 'rgba(239,68,68,0.08)';
+            rankEl.style.background = bgColor;
+          }
         }
         if (metaEl) {
           metaEl.textContent = `/ ${pool.rows.length} · ${esi.pts} pts`;
+        }
+        // Reset les styles inline de fond du bouton (cas U15 ex-or)
+        card.style.background = '';
+        card.style.borderColor = '';
+        // Reset le label "1er du classement" si pas 1er
+        const catEl = card.querySelector('.team-card-cat');
+        if (catEl) {
+          catEl.style.color = '';
+          catEl.style.fontWeight = '';
         }
 
         // Update les W/D/L stats
@@ -164,6 +182,93 @@
         }
       });
       console.log(`[ESI] ✓ Classements injectés pour ${Object.keys(classements.pools).length} poules`);
+    }
+
+    // ============================================================
+    // PAGE ÉQUIPE — si on est sur seniors-a.html, seniors-b.html, etc.
+    // ============================================================
+    const pathname = window.location.pathname;
+    const teamPageMatch = pathname.match(/\/(seniors-a|seniors-b|seniors-f|veterans|u15-1|u15-2|u13|u11|u9)\.html$/);
+    if (teamPageMatch && classements && classements.pools) {
+      const poolKey = teamPageMatch[1];
+      const pool = classements.pools[poolKey];
+      if (pool && pool.rows) {
+        const esi = pool.rows.find(r => r.clCod === '501416' || r.team.toUpperCase().includes('ISIGNY'));
+        if (esi) {
+          const ordinal = (n) => n === 1 ? '1<sup>er</sup>' : `${n}<sup>e</sup>`;
+          // .team-page-rank
+          const rankBox = document.querySelector('.team-page-rank');
+          const posEl = document.querySelector('.team-page-rank-pos');
+          const metaEl = document.querySelector('.team-page-rank-meta');
+          if (posEl) {
+            posEl.innerHTML = ordinal(esi.position);
+            const isTop = esi.position <= 3;
+            const isMid = esi.position <= Math.ceil(pool.rows.length / 2);
+            const color = isTop ? 'var(--win)' : isMid ? 'var(--draw)' : 'var(--loss)';
+            posEl.style.color = color;
+            if (rankBox) {
+              rankBox.style.background = isTop ? 'rgba(34,197,94,0.10)' : isMid ? 'rgba(148,163,184,0.10)' : 'rgba(239,68,68,0.08)';
+            }
+          }
+          if (metaEl) metaEl.textContent = `/ ${pool.rows.length} · ${esi.pts} pts`;
+
+          // .team-page-stats — J, G, N, P, BP, BC, Diff
+          const cells = document.querySelectorAll('.team-page-stats .stat-cell strong');
+          if (cells.length >= 7) {
+            cells[0].textContent = esi.j;
+            cells[1].textContent = esi.g;
+            cells[2].textContent = esi.n;
+            cells[3].textContent = esi.p;
+            cells[4].textContent = esi.bp;
+            cells[5].textContent = esi.bc;
+            cells[6].textContent = `${esi.diff >= 0 ? '+' : ''}${esi.diff}`;
+          }
+
+          // Forme récente — last 5 results
+          if (esi.forme && esi.forme.length) {
+            const dotsContainer = document.querySelector('.team-info-card .dot-mini')?.parentElement;
+            if (dotsContainer) {
+              const last5 = esi.forme.slice(-5);
+              const dotsHtml = last5.map(r => {
+                const bg = r === 'V' ? '#22C55E' : r === 'D' ? '#EF4444' : '#94A3B8';
+                const letter = r === 'V' ? 'V' : r === 'D' ? 'D' : 'N';
+                return `<span class="dot-mini" style="background:${bg};color:#fff;">${letter}</span>`;
+              }).join('');
+              const ancientNote = dotsContainer.querySelector('span:not(.dot-mini)');
+              dotsContainer.innerHTML = dotsHtml + (ancientNote ? ancientNote.outerHTML : '<span style="color:var(--draw);font-size:13px;margin-left:12px;">Du plus ancien au plus récent</span>');
+            }
+          }
+
+          console.log(`[ESI] ✓ Page ${poolKey} mise à jour : ${esi.position}e, ${esi.pts} pts`);
+        }
+      }
+
+      // Mettre aussi à jour le prochain match sur la page équipe
+      if (matches.upcoming) {
+        const next = matches.upcoming
+          .filter(m => poolKey === 'seniors-a' ? m.teamLabel === 'Seniors A'
+                     : poolKey === 'seniors-b' ? m.teamLabel === 'Seniors B'
+                     : poolKey === 'seniors-f' ? m.teamLabel === 'Seniors F'
+                     : poolKey === 'veterans' ? m.teamLabel === 'Vétérans'
+                     : poolKey === 'u15-1' ? m.teamLabel === 'U15 (1)'
+                     : poolKey === 'u15-2' ? m.teamLabel === 'U15 (2)'
+                     : poolKey === 'u13' ? m.teamLabel === 'U13'
+                     : false)
+          .sort((a, b) => new Date(a.date) - new Date(b.date))[0];
+
+        if (next) {
+          const nextMatchCard = Array.from(document.querySelectorAll('.team-info-card h3'))
+            .find(h => h.textContent.trim() === 'Match prévu')?.parentElement;
+          if (nextMatchCard) {
+            const oppName = next.esiHome ? next.visiteur.nom : next.recevant.nom;
+            const dateStr = formatDateShort(next.date);
+            const timeStr = formatTime(next.date);
+            const venue = next.esiHome ? 'Domicile' : 'Extérieur';
+            const p = nextMatchCard.querySelector('p');
+            if (p) p.innerHTML = `<strong>${dateStr} ${timeStr} vs ${oppName} (${venue})</strong>`;
+          }
+        }
+      }
     }
 
     // ============================================================
