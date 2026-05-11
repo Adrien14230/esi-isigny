@@ -120,31 +120,114 @@
     // MODAL CLASSEMENT — patch window.CLASSEMENTS pour que la modal
     // affiche les vraies données quand l'utilisateur clique sur une équipe
     // ============================================================
+    const POOL_TO_TEAM = {
+      'seniors-a': 'Seniors A',
+      'seniors-b': 'Seniors B',
+      'seniors-f': 'Seniors F',
+      'veterans': 'Vétérans',
+      'u15-1': 'U15 (1)',
+      'u15-2': 'U15 (2)',
+      'u13': 'U13',
+    };
+
+    // Extrait le clCod d'une URL logo FFF type ".../phlogos/BC501416.jpg" ou ".../BC527693.jpg"
+    const extractClCod = (logoUrl) => {
+      const m = (logoUrl || '').match(/\/BC?(\d{6})\.jpg/i) || (logoUrl || '').match(/(\d{6})/);
+      return m ? m[1] : '';
+    };
+
+    // Format date court pour DERNIER MATCH (ex: "10 mai")
+    const formatDateLast = (iso) => {
+      const d = new Date(iso);
+      const months = ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'];
+      return `${d.getDate()} ${months[d.getMonth()]}`;
+    };
+    // Format date pour PROCHAIN MATCH (ex: "Sam. 17 mai · 15h00")
+    const formatDateNext = (iso) => {
+      const d = new Date(iso);
+      const days = ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'];
+      const months = ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'];
+      const time = `${String(d.getHours()).padStart(2, '0')}h${String(d.getMinutes()).padStart(2, '0')}`;
+      return `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]} · ${time}`;
+    };
+
+    // Capitalize team names (FFF renvoie tout en MAJ)
+    const tcase = (s) => (s || '').toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
     if (classements && classements.pools && window.CLASSEMENTS) {
       for (const [key, pool] of Object.entries(classements.pools)) {
-        if (window.CLASSEMENTS[key]) {
-          window.CLASSEMENTS[key].rows = pool.rows.map(r => ({
-            pos: r.position,
-            team: r.team,
-            pts: r.pts,
-            j: r.j,
-            g: r.g,
-            n: r.n,
-            p: r.p,
-            bp: r.bp,
-            bc: r.bc,
-            diff: r.diff,
-            esi: r.clCod === '501416',
-          }));
-          // Update subtitle date
-          if (classements.generated_at) {
-            const d = new Date(classements.generated_at);
-            const dateStr = `${d.getDate()} ${['janv','févr','mars','avr','mai','juin','juil','août','sept','oct','nov','déc'][d.getMonth()]}. ${d.getFullYear()}`;
-            window.CLASSEMENTS[key].subtitle = window.CLASSEMENTS[key].subtitle.replace(/Mis à jour [^·]*$/, `Mis à jour ${dateStr}`);
+        if (!window.CLASSEMENTS[key]) continue;
+
+        // Update rows
+        window.CLASSEMENTS[key].rows = pool.rows.map(r => ({
+          pos: r.position,
+          team: r.team,
+          pts: r.pts,
+          j: r.j,
+          g: r.g,
+          n: r.n,
+          p: r.p,
+          bp: r.bp,
+          bc: r.bc,
+          diff: r.diff,
+          esi: r.clCod === '501416',
+        }));
+
+        // Update subtitle date
+        if (classements.generated_at) {
+          const d = new Date(classements.generated_at);
+          const dateStr = `${d.getDate()} ${['janv','févr','mars','avr','mai','juin','juil','août','sept','oct','nov','déc'][d.getMonth()]}. ${d.getFullYear()}`;
+          window.CLASSEMENTS[key].subtitle = window.CLASSEMENTS[key].subtitle.replace(/Mis à jour [^·]*$/, `Mis à jour ${dateStr}`);
+        }
+
+        // Patch lastMatch + nextMatch depuis matches.json
+        const teamLabel = POOL_TO_TEAM[key];
+        if (teamLabel && matches) {
+          // DERNIER MATCH
+          const last = matches.played
+            .filter(m => m.teamLabel === teamLabel)
+            .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+          if (last) {
+            const esiButs = last.esiHome ? last.recevant.buts : last.visiteur.buts;
+            const oppButs = last.esiHome ? last.visiteur.buts : last.recevant.buts;
+            const result = esiButs > oppButs ? 'win' : esiButs < oppButs ? 'loss' : 'draw';
+            const homeName = last.esiHome ? `ESI ${teamLabel}` : tcase(last.recevant.nom);
+            const awayName = last.esiHome ? tcase(last.visiteur.nom) : `ESI ${teamLabel}`;
+            const homeClCod = last.esiHome ? '501416' : extractClCod(last.recevant.logo);
+            const awayClCod = last.esiHome ? extractClCod(last.visiteur.logo) : '501416';
+            window.CLASSEMENTS[key].lastMatch = {
+              date: formatDateLast(last.date),
+              home: homeName,
+              away: awayName,
+              score: `${last.recevant.buts}-${last.visiteur.buts}`,
+              result,
+              venue: last.esiHome ? 'home' : 'away',
+              logoHome: homeClCod,
+              logoAway: awayClCod,
+            };
+          }
+
+          // PROCHAIN MATCH
+          const next = matches.upcoming
+            .filter(m => m.teamLabel === teamLabel)
+            .sort((a, b) => new Date(a.date) - new Date(b.date))[0];
+          if (next) {
+            const homeName = next.esiHome ? `ESI ${teamLabel}` : tcase(next.recevant.nom);
+            const awayName = next.esiHome ? tcase(next.visiteur.nom) : `ESI ${teamLabel}`;
+            const homeClCod = next.esiHome ? '501416' : extractClCod(next.recevant.logo);
+            const awayClCod = next.esiHome ? extractClCod(next.visiteur.logo) : '501416';
+            window.CLASSEMENTS[key].nextMatch = {
+              date: formatDateNext(next.date),
+              home: homeName,
+              away: awayName,
+              venue: next.esiHome ? 'home' : 'away',
+              logoHome: homeClCod,
+              logoAway: awayClCod,
+            };
           }
         }
       }
-      console.log(`[ESI] ✓ window.CLASSEMENTS patché avec ${Object.keys(classements.pools).length} poules`);
+      console.log(`[ESI] ✓ window.CLASSEMENTS patché (rows + lastMatch + nextMatch) pour ${Object.keys(classements.pools).length} poules`);
     }
 
     // ============================================================
