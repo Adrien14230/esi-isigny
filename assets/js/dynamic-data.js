@@ -51,7 +51,7 @@
         const dateShort = formatDateShort(m.date);
         const where = m.esiHome ? 'Domicile' : 'Extérieur';
         return `
-          <div class="result-row ${verdict} reveal visible">
+          <div class="result-row ${verdict}" style="opacity:1!important;transform:none!important;display:flex;">
             <div class="result-indicator">${letter}</div>
             <div class="result-teams">${teamsLine}
               <span class="result-competition">${dateShort} · ${m.competition} · ${where}</span>
@@ -59,6 +59,7 @@
             <div class="result-score">${score}</div>
           </div>`;
       }).join('');
+      console.log('[ESI DEBUG] played:', played.length, 'html length:', html.length, 'first 200 chars:', html.slice(0, 200));
 
       resultsList.innerHTML = html;
       console.log(`[ESI] ✓ ${played.length} résultats chargés depuis FFF`);
@@ -97,7 +98,7 @@
         const timeLabel = formatTime(m.date);
 
         return `
-          <div class="fixture${featured} visible">
+          <div class="fixture${featured}" style="opacity:1!important;transform:none!important;">
             <div class="fixture-head">
               <span class="fixture-comp">${m.teamLabel} · ${m.competition}</span>
               <span class="fixture-loc ${where}">${whereLabel}</span>
