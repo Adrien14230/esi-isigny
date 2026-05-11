@@ -2,7 +2,9 @@
 // Edge Runtime sur Vercel a des soucis avec les imports relatifs entre TS files.
 // Ce fichier contient les 10 agents directement, sans lib/ ni dépendances npm.
 
-export const runtime = 'edge';
+// Node.js runtime (par défaut sur Vercel) — pas de export const runtime nécessaire.
+// maxDuration 60s pour les scrapers FFF (peuvent être lents).
+export const config = { maxDuration: 60 };
 
 // ============================================================
 // SUPABASE REST API (inline)
