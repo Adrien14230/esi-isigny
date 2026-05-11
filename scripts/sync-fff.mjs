@@ -63,6 +63,52 @@ async function write(path, data) {
   console.log(`✓ Wrote ${path} (${JSON.stringify(data).length} bytes)`);
 }
 
+const POOLS = [
+  { key: 'seniors-a',  label: 'Seniors A',  path: '/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/3/accueil' },
+  { key: 'seniors-b',  label: 'Seniors B',  path: '/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/4/accueil' },
+  { key: 'seniors-f',  label: 'Seniors F',  path: '/competition/engagement/440195-seniors-f-a-8-sport-200-lequertier/phase/1/2/accueil' },
+  { key: 'veterans',   label: 'Vétérans',   path: '/competition/engagement/441428-championnat-veterans/phase/1/2/accueil' },
+  { key: 'u15-1',      label: 'U15 (1)',    path: '/competition/engagement/445255-championnat-u15-d3/phase/2/2/accueil' },
+  { key: 'u15-2',      label: 'U15 (2)',    path: '/competition/engagement/445255-championnat-u15-d3/phase/2/3/accueil' },
+  { key: 'u13',        label: 'U13',        path: '/competition/engagement/445894-championnat-u13-niveau-4/phase/2/2/accueil' },
+];
+
+async function fetchClassement(pool) {
+  try {
+    const url = `${FFF_BASE}${pool.path}`;
+    const res = await fetch(url, { headers: { 'User-Agent': 'ESI-Bot/1.0' } });
+    if (!res.ok) return null;
+    const html = await res.text();
+    // Le site FFF est en Angular avec ng-state — pas __NEXT_DATA__
+    const m = html.match(/<script id="ng-state" type="application\/json">([\s\S]*?)<\/script>/);
+    if (!m) return null;
+    const json = JSON.parse(m[1]);
+    // Cherche la clé api/data/classement_journees → body.hydra:member[0].donneesFormatees
+    const key = Object.keys(json).find(k => k.includes('classement_journees'));
+    if (!key) return null;
+    const rows = json[key]?.body?.['hydra:member']?.[0]?.donneesFormatees;
+    if (!Array.isArray(rows)) return null;
+    return rows.map(r => ({
+      position: parseInt(r.classement, 10) || 0,
+      team: r.nomEquipe || '',
+      teamShort: r.nomEquipeAbr || '',
+      clCod: r.clCod || '',
+      pts: parseInt(r.points, 10) || 0,
+      j: parseInt(r.nbMatch, 10) || 0,
+      g: parseInt(r.nbMatchGagne, 10) || 0,
+      n: parseInt(r.nbMatchNul, 10) || 0,
+      p: parseInt(r.nbMatchPe, 10) || 0,
+      bp: parseInt(r.nbButPour, 10) || 0,
+      bc: parseInt(r.nbButContre, 10) || 0,
+      diff: parseInt(r.diffBut, 10) || 0,
+      forme: r.serieEnCours || [],
+    }));
+  } catch (err) {
+    console.warn(`  ⚠️ Classement ${pool.key} fetch failed:`, err.message);
+    return null;
+  }
+}
+
 async function main() {
   console.log('🏈 ESI FFF Sync started');
   const data = await fetchClubPage();
@@ -102,6 +148,24 @@ async function main() {
     generated_at: new Date().toISOString(),
     season: '2025-26',
     per_team: byTeam,
+  });
+
+  // Classements (7 poules)
+  console.log('📋 Fetching classements...');
+  const classements = {};
+  for (const pool of POOLS) {
+    const rows = await fetchClassement(pool);
+    if (rows && rows.length) {
+      classements[pool.key] = { label: pool.label, rows };
+      console.log(`  ✓ ${pool.label}: ${rows.length} équipes`);
+    } else {
+      console.log(`  ⚠️ ${pool.label}: pas de classement trouvé`);
+    }
+  }
+
+  await write('assets/data/classements.json', {
+    generated_at: new Date().toISOString(),
+    pools: classements,
   });
 
   console.log('✅ Sync done');

@@ -9,7 +9,7 @@
  * - API / dynamique : network-only (pas de cache des données fraiches)
  */
 
-const CACHE_VERSION = 'esi-v4-perf';
+const CACHE_VERSION = 'esi-v5-data';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 

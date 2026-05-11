@@ -3,9 +3,10 @@
 
 (async function loadDynamicData() {
   try {
-    const [matchesRes, statsRes] = await Promise.all([
+    const [matchesRes, statsRes, classRes] = await Promise.all([
       fetch('/assets/data/matches.json', { cache: 'no-store' }),
       fetch('/assets/data/stats.json', { cache: 'no-store' }),
+      fetch('/assets/data/classements.json', { cache: 'no-store' }),
     ]);
     if (!matchesRes.ok) {
       console.warn('[ESI] matches.json indisponible, garde le contenu statique');
@@ -13,6 +14,7 @@
     }
     const matches = await matchesRes.json();
     const stats = statsRes.ok ? await statsRes.json() : null;
+    const classements = classRes.ok ? await classRes.json() : null;
 
     // Format une date FR : "Dim. 10 mai"
     const formatDateShort = (iso) => {
@@ -111,6 +113,57 @@
 
       fixturesStrip.innerHTML = html;
       console.log(`[ESI] ✓ ${upcoming.length} matchs à venir chargés`);
+    }
+
+    // ============================================================
+    // CLASSEMENTS — Met à jour chaque team-card[data-classement]
+    // ============================================================
+    if (classements && classements.pools) {
+      const ordinal = (n) => n === 1 ? '1<sup>er</sup>' : `${n}<sup>e</sup>`;
+      document.querySelectorAll('[data-classement]').forEach(card => {
+        const poolKey = card.getAttribute('data-classement');
+        const pool = classements.pools[poolKey];
+        if (!pool || !pool.rows) return;
+        // Trouver l'entrée ESI dans le classement
+        const esi = pool.rows.find(r => r.clCod === '501416' || r.team.toUpperCase().includes('ISIGNY'));
+        if (!esi) return;
+
+        // Update position + meta
+        const posEl = card.querySelector('.team-card-rank-pos');
+        const metaEl = card.querySelector('.team-card-rank-meta');
+        if (posEl) {
+          posEl.innerHTML = ordinal(esi.position);
+          // Couleur selon la position
+          const win = esi.position <= 3 ? 'var(--win)' : esi.position <= Math.ceil(pool.rows.length / 2) ? 'var(--draw)' : 'var(--loss)';
+          posEl.style.color = win;
+        }
+        if (metaEl) {
+          metaEl.textContent = `/ ${pool.rows.length} · ${esi.pts} pts`;
+        }
+
+        // Update les W/D/L stats
+        const compEl = card.querySelector('.team-card-comp');
+        if (compEl) {
+          const fr = compEl.querySelector('[data-lang="fr"]');
+          const en = compEl.querySelector('[data-lang="en"]');
+          if (fr) fr.textContent = `${esi.j} J · ${esi.g} G · ${esi.n} N · ${esi.p} P · ${esi.diff >= 0 ? '+' : ''}${esi.diff} diff.`;
+          if (en) en.textContent = `${esi.j} P · ${esi.g} W · ${esi.n} D · ${esi.p} L · ${esi.diff >= 0 ? '+' : ''}${esi.diff} diff.`;
+        }
+
+        // Update les 3-5 derniers résultats (forme)
+        if (esi.forme && esi.forme.length) {
+          const dots = card.querySelectorAll('.dot-mini');
+          const last3 = esi.forme.slice(-3);
+          dots.forEach((dot, idx) => {
+            const r = last3[idx];
+            if (r) {
+              dot.textContent = r === 'V' ? 'V' : r === 'D' ? 'D' : r === 'N' ? 'N' : r;
+              dot.className = `dot-mini ${r === 'V' ? 'W' : r === 'D' ? 'L' : 'D'}`;
+            }
+          });
+        }
+      });
+      console.log(`[ESI] ✓ Classements injectés pour ${Object.keys(classements.pools).length} poules`);
     }
 
     // ============================================================

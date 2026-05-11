@@ -1,0 +1,1446 @@
+{
+  "generated_at": "2026-05-11T16:01:45.781Z",
+  "pools": {
+    "seniors-a": {
+      "label": "Seniors A",
+      "rows": [
+        {
+          "position": 1,
+          "team": "PERIERS S. 2",
+          "teamShort": "PERIERS S.",
+          "clCod": "501717",
+          "pts": 38,
+          "j": 14,
+          "g": 12,
+          "n": 2,
+          "p": 0,
+          "bp": 64,
+          "bc": 12,
+          "diff": 52,
+          "forme": [
+            "V",
+            "V",
+            "N",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 2,
+          "team": "ES ISIGNY SUR MER",
+          "teamShort": "ES ISIGNY SUR MER",
+          "clCod": "501416",
+          "pts": 34,
+          "j": 15,
+          "g": 11,
+          "n": 1,
+          "p": 3,
+          "bp": 49,
+          "bc": 14,
+          "diff": 35,
+          "forme": [
+            "D",
+            "V",
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 3,
+          "team": "ES DES MARAIS 2",
+          "teamShort": "ES DES MARAIS",
+          "clCod": "549587",
+          "pts": 32,
+          "j": 14,
+          "g": 10,
+          "n": 2,
+          "p": 2,
+          "bp": 42,
+          "bc": 17,
+          "diff": 25,
+          "forme": [
+            "N",
+            "V",
+            "V",
+            "N",
+            "V"
+          ]
+        },
+        {
+          "position": 4,
+          "team": "ES DE L'AY 2",
+          "teamShort": "ES DE L'AY",
+          "clCod": "565165",
+          "pts": 31,
+          "j": 14,
+          "g": 10,
+          "n": 1,
+          "p": 3,
+          "bp": 33,
+          "bc": 9,
+          "diff": 24,
+          "forme": [
+            "V",
+            "V",
+            "N",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 5,
+          "team": "AS MONTMARTIN GRAIG.",
+          "teamShort": "AS MONTMARTIN GRAIG.",
+          "clCod": "549413",
+          "pts": 16,
+          "j": 14,
+          "g": 5,
+          "n": 2,
+          "p": 6,
+          "bp": 16,
+          "bc": 30,
+          "diff": -14,
+          "forme": [
+            "V",
+            "D",
+            "V",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 6,
+          "team": "AUBIGNY SC",
+          "teamShort": "AUBIGNY SC",
+          "clCod": "518791",
+          "pts": 10,
+          "j": 14,
+          "g": 3,
+          "n": 2,
+          "p": 8,
+          "bp": 18,
+          "bc": 44,
+          "diff": -26,
+          "forme": [
+            "N",
+            "D",
+            "V",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 7,
+          "team": "ES MUNEVILLAISE 2",
+          "teamShort": "ES MUNEVILLAISE",
+          "clCod": "532109",
+          "pts": 9,
+          "j": 15,
+          "g": 3,
+          "n": 2,
+          "p": 8,
+          "bp": 22,
+          "bc": 49,
+          "diff": -27,
+          "forme": [
+            "V",
+            "N",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 8,
+          "team": "AS ST JORES 2",
+          "teamShort": "AS ST JORES",
+          "clCod": "521699",
+          "pts": 6,
+          "j": 13,
+          "g": 1,
+          "n": 3,
+          "p": 9,
+          "bp": 21,
+          "bc": 47,
+          "diff": -26,
+          "forme": [
+            "D",
+            "D",
+            "V",
+            "N",
+            "D"
+          ]
+        },
+        {
+          "position": 9,
+          "team": "US VESLY LAULNE 2",
+          "teamShort": "US VESLY LAULNE",
+          "clCod": "514558",
+          "pts": 3,
+          "j": 15,
+          "g": 0,
+          "n": 3,
+          "p": 12,
+          "bp": 14,
+          "bc": 57,
+          "diff": -43,
+          "forme": [
+            "D",
+            "N",
+            "N",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 10,
+          "team": "ENT. CSC MONTEBOURG 4",
+          "teamShort": "ENT. CSC MONTEBOURG",
+          "clCod": "501438",
+          "pts": 0,
+          "j": 0,
+          "g": 0,
+          "n": 0,
+          "p": 0,
+          "bp": 0,
+          "bc": 0,
+          "diff": 0,
+          "forme": [
+            "D",
+            "V"
+          ]
+        },
+        {
+          "position": 11,
+          "team": "AJ ST HILAIRE PV 3",
+          "teamShort": "AJ ST HILAIRE PV",
+          "clCod": "525042",
+          "pts": 0,
+          "j": 0,
+          "g": 0,
+          "n": 0,
+          "p": 0,
+          "bp": 0,
+          "bc": 0,
+          "diff": 0,
+          "forme": [
+            "V",
+            "D",
+            "N",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 12,
+          "team": "CREANCES S. 2",
+          "teamShort": "CREANCES S.",
+          "clCod": "501711",
+          "pts": 0,
+          "j": 0,
+          "g": 0,
+          "n": 0,
+          "p": 0,
+          "bp": 0,
+          "bc": 0,
+          "diff": 0,
+          "forme": [
+            "D"
+          ]
+        }
+      ]
+    },
+    "seniors-b": {
+      "label": "Seniors B",
+      "rows": [
+        {
+          "position": 1,
+          "team": "FC DE L'ELLE 2",
+          "teamShort": "FC DE L'ELLE",
+          "clCod": "546320",
+          "pts": 40,
+          "j": 17,
+          "g": 13,
+          "n": 1,
+          "p": 3,
+          "bp": 54,
+          "bc": 21,
+          "diff": 33,
+          "forme": [
+            "V",
+            "V",
+            "V",
+            "V",
+            "D"
+          ]
+        },
+        {
+          "position": 2,
+          "team": "ES MARIGNY LOZON M.V",
+          "teamShort": "ES MARIGNY LOZON M.V",
+          "clCod": "501524",
+          "pts": 39,
+          "j": 15,
+          "g": 13,
+          "n": 0,
+          "p": 2,
+          "bp": 47,
+          "bc": 19,
+          "diff": 28,
+          "forme": [
+            "V",
+            "V",
+            "V",
+            "V",
+            "D"
+          ]
+        },
+        {
+          "position": 3,
+          "team": "CA PONTOIS 3",
+          "teamShort": "CA PONTOIS",
+          "clCod": "501399",
+          "pts": 36,
+          "j": 17,
+          "g": 11,
+          "n": 3,
+          "p": 3,
+          "bp": 47,
+          "bc": 18,
+          "diff": 29,
+          "forme": [
+            "V",
+            "D",
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 4,
+          "team": "US AIRELOISE",
+          "teamShort": "US AIRELOISE",
+          "clCod": "516360",
+          "pts": 32,
+          "j": 16,
+          "g": 10,
+          "n": 2,
+          "p": 4,
+          "bp": 32,
+          "bc": 25,
+          "diff": 7,
+          "forme": [
+            "V",
+            "N",
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 5,
+          "team": "US SEMILLY ST ANDRE 2",
+          "teamShort": "US SEMILLY ST ANDRE",
+          "clCod": "525369",
+          "pts": 18,
+          "j": 16,
+          "g": 5,
+          "n": 3,
+          "p": 8,
+          "bp": 23,
+          "bc": 32,
+          "diff": -9,
+          "forme": [
+            "D",
+            "D",
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 6,
+          "team": "AS BERIGNY CERISY 3",
+          "teamShort": "AS BERIGNY CERISY",
+          "clCod": "527693",
+          "pts": 14,
+          "j": 15,
+          "g": 5,
+          "n": 2,
+          "p": 6,
+          "bp": 27,
+          "bc": 28,
+          "diff": -1,
+          "forme": [
+            "N",
+            "V",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 7,
+          "team": "FC 3 RIVIERES 3",
+          "teamShort": "FC 3 RIVIERES",
+          "clCod": "581303",
+          "pts": 14,
+          "j": 16,
+          "g": 5,
+          "n": 2,
+          "p": 6,
+          "bp": 30,
+          "bc": 40,
+          "diff": -10,
+          "forme": [
+            "N",
+            "V",
+            "D",
+            "D",
+            "V"
+          ]
+        },
+        {
+          "position": 8,
+          "team": "AS THEREVAL 2",
+          "teamShort": "AS THEREVAL",
+          "clCod": "531034",
+          "pts": 11,
+          "j": 17,
+          "g": 3,
+          "n": 3,
+          "p": 10,
+          "bp": 25,
+          "bc": 39,
+          "diff": -14,
+          "forme": [
+            "D",
+            "N",
+            "V",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 9,
+          "team": "US STE CROIX ST LO 3",
+          "teamShort": "US STE CROIX ST LO",
+          "clCod": "515675",
+          "pts": 10,
+          "j": 17,
+          "g": 4,
+          "n": 1,
+          "p": 10,
+          "bp": 19,
+          "bc": 46,
+          "diff": -27,
+          "forme": [
+            "V",
+            "D",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 10,
+          "team": "ES ISIGNY SUR MER 2",
+          "teamShort": "ES ISIGNY SUR MER",
+          "clCod": "501416",
+          "pts": 2,
+          "j": 16,
+          "g": 1,
+          "n": 1,
+          "p": 13,
+          "bp": 10,
+          "bc": 46,
+          "diff": -36,
+          "forme": [
+            "D",
+            "D",
+            "D",
+            "D",
+            "V"
+          ]
+        },
+        {
+          "position": 11,
+          "team": "ENT. DOMJEAN ST JEAN",
+          "teamShort": "ENT. DOMJEAN ST JEAN",
+          "clCod": "563668",
+          "pts": 0,
+          "j": 0,
+          "g": 0,
+          "n": 0,
+          "p": 0,
+          "bp": 0,
+          "bc": 0,
+          "diff": 0,
+          "forme": [
+            "D",
+            "D",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 12,
+          "team": "ENT.STJORES.AUVERS 3",
+          "teamShort": "ENT.STJORES.AUVERS",
+          "clCod": "521699",
+          "pts": 0,
+          "j": 0,
+          "g": 0,
+          "n": 0,
+          "p": 0,
+          "bp": 0,
+          "bc": 0,
+          "diff": 0,
+          "forme": [
+            "D",
+            "D",
+            "D",
+            "D",
+            "D"
+          ]
+        }
+      ]
+    },
+    "seniors-f": {
+      "label": "Seniors F",
+      "rows": [
+        {
+          "position": 1,
+          "team": "ENT. USCI / USPSG",
+          "teamShort": "ENT. USCI / USPSG",
+          "clCod": "548912",
+          "pts": 37,
+          "j": 17,
+          "g": 11,
+          "n": 4,
+          "p": 2,
+          "bp": 62,
+          "bc": 24,
+          "diff": 38,
+          "forme": [
+            "N",
+            "N",
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 2,
+          "team": "CA PONTOIS",
+          "teamShort": "CA PONTOIS",
+          "clCod": "501399",
+          "pts": 34,
+          "j": 16,
+          "g": 10,
+          "n": 4,
+          "p": 2,
+          "bp": 59,
+          "bc": 36,
+          "diff": 23,
+          "forme": [
+            "N",
+            "V",
+            "V",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 3,
+          "team": "ES ISIGNY SUR MER",
+          "teamShort": "ES ISIGNY SUR MER",
+          "clCod": "501416",
+          "pts": 30,
+          "j": 16,
+          "g": 10,
+          "n": 0,
+          "p": 6,
+          "bp": 29,
+          "bc": 26,
+          "diff": 3,
+          "forme": [
+            "V",
+            "V",
+            "D",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 4,
+          "team": "US AUVERSOISE",
+          "teamShort": "US AUVERSOISE",
+          "clCod": "519759",
+          "pts": 29,
+          "j": 17,
+          "g": 8,
+          "n": 5,
+          "p": 4,
+          "bp": 44,
+          "bc": 31,
+          "diff": 13,
+          "forme": [
+            "V",
+            "V",
+            "N",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 5,
+          "team": "AS MONTEBOURG",
+          "teamShort": "AS MONTEBOURG",
+          "clCod": "501467",
+          "pts": 25,
+          "j": 15,
+          "g": 8,
+          "n": 1,
+          "p": 6,
+          "bp": 40,
+          "bc": 27,
+          "diff": 13,
+          "forme": [
+            "N",
+            "V",
+            "D",
+            "D",
+            "V"
+          ]
+        },
+        {
+          "position": 6,
+          "team": "ES DES MARAIS",
+          "teamShort": "ES DES MARAIS",
+          "clCod": "549587",
+          "pts": 22,
+          "j": 16,
+          "g": 7,
+          "n": 1,
+          "p": 8,
+          "bp": 34,
+          "bc": 46,
+          "diff": -12,
+          "forme": [
+            "N",
+            "V",
+            "V",
+            "V",
+            "D"
+          ]
+        },
+        {
+          "position": 7,
+          "team": "ENT. PLAIN HAYTILLON",
+          "teamShort": "ENT. PLAIN HAYTILLON",
+          "clCod": "563667",
+          "pts": 18,
+          "j": 16,
+          "g": 6,
+          "n": 2,
+          "p": 6,
+          "bp": 22,
+          "bc": 30,
+          "diff": -8,
+          "forme": [
+            "D",
+            "V",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 8,
+          "team": "AS POINTE COTENTIN",
+          "teamShort": "AS POINTE COTENTIN",
+          "clCod": "547673",
+          "pts": 16,
+          "j": 16,
+          "g": 5,
+          "n": 2,
+          "p": 8,
+          "bp": 20,
+          "bc": 29,
+          "diff": -9,
+          "forme": [
+            "V",
+            "N",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 9,
+          "team": "ES HEAUVILLE SIOUVIL",
+          "teamShort": "ES HEAUVILLE SIOUVIL",
+          "clCod": "519269",
+          "pts": 6,
+          "j": 16,
+          "g": 2,
+          "n": 1,
+          "p": 12,
+          "bp": 19,
+          "bc": 48,
+          "diff": -29,
+          "forme": [
+            "D",
+            "D",
+            "V",
+            "V",
+            "N"
+          ]
+        },
+        {
+          "position": 10,
+          "team": "ENT.USSJ/RAUVILLE",
+          "teamShort": "ENT.USSJ/RAUVILLE",
+          "clCod": "530215",
+          "pts": 6,
+          "j": 15,
+          "g": 2,
+          "n": 2,
+          "p": 9,
+          "bp": 18,
+          "bc": 50,
+          "diff": -32,
+          "forme": [
+            "N",
+            "D",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 11,
+          "team": "ENT.ASSUN/FCEH À 8 2",
+          "teamShort": "ENT.ASSUN/FCEH À 8",
+          "clCod": "528412",
+          "pts": 0,
+          "j": 0,
+          "g": 0,
+          "n": 0,
+          "p": 0,
+          "bp": 0,
+          "bc": 0,
+          "diff": 0,
+          "forme": []
+        },
+        {
+          "position": 12,
+          "team": "EL. DE TOCQUEVILLE",
+          "teamShort": "EL. DE TOCQUEVILLE",
+          "clCod": "524301",
+          "pts": 0,
+          "j": 0,
+          "g": 0,
+          "n": 0,
+          "p": 0,
+          "bp": 0,
+          "bc": 0,
+          "diff": 0,
+          "forme": [
+            "D",
+            "D",
+            "D",
+            "V",
+            "D"
+          ]
+        }
+      ]
+    },
+    "veterans": {
+      "label": "Vétérans",
+      "rows": [
+        {
+          "position": 1,
+          "team": "AGNEAUX FC",
+          "teamShort": "AGNEAUX FC",
+          "clCod": "535796",
+          "pts": 25,
+          "j": 9,
+          "g": 8,
+          "n": 1,
+          "p": 0,
+          "bp": 35,
+          "bc": 9,
+          "diff": 26,
+          "forme": [
+            "N",
+            "V",
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 2,
+          "team": "FC ST LO MANCHE",
+          "teamShort": "FC ST LO MANCHE",
+          "clCod": "500088",
+          "pts": 23,
+          "j": 9,
+          "g": 7,
+          "n": 2,
+          "p": 0,
+          "bp": 32,
+          "bc": 7,
+          "diff": 25,
+          "forme": [
+            "N",
+            "V",
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 3,
+          "team": "US AUVERSOISE",
+          "teamShort": "US AUVERSOISE",
+          "clCod": "519759",
+          "pts": 18,
+          "j": 11,
+          "g": 6,
+          "n": 1,
+          "p": 3,
+          "bp": 35,
+          "bc": 24,
+          "diff": 11,
+          "forme": [
+            "V",
+            "D",
+            "V",
+            "N",
+            "V"
+          ]
+        },
+        {
+          "position": 4,
+          "team": "FC 3 RIVIERES",
+          "teamShort": "FC 3 RIVIERES",
+          "clCod": "581303",
+          "pts": 13,
+          "j": 11,
+          "g": 4,
+          "n": 1,
+          "p": 6,
+          "bp": 22,
+          "bc": 21,
+          "diff": 1,
+          "forme": [
+            "D",
+            "V",
+            "D",
+            "V",
+            "D"
+          ]
+        },
+        {
+          "position": 5,
+          "team": "AS CAHAGNAISE",
+          "teamShort": "AS CAHAGNAISE",
+          "clCod": "523991",
+          "pts": 11,
+          "j": 10,
+          "g": 3,
+          "n": 2,
+          "p": 5,
+          "bp": 18,
+          "bc": 26,
+          "diff": -8,
+          "forme": [
+            "D",
+            "N",
+            "D",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 6,
+          "team": "ES ISIGNY SUR MER",
+          "teamShort": "ES ISIGNY SUR MER",
+          "clCod": "501416",
+          "pts": 5,
+          "j": 8,
+          "g": 1,
+          "n": 3,
+          "p": 3,
+          "bp": 14,
+          "bc": 19,
+          "diff": -5,
+          "forme": [
+            "D",
+            "D",
+            "N",
+            "V",
+            "N"
+          ]
+        },
+        {
+          "position": 7,
+          "team": "CA PONTOIS",
+          "teamShort": "CA PONTOIS",
+          "clCod": "501399",
+          "pts": -1,
+          "j": 10,
+          "g": 0,
+          "n": 0,
+          "p": 9,
+          "bp": 12,
+          "bc": 62,
+          "diff": -50,
+          "forme": [
+            "D",
+            "D",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 8,
+          "team": "EDA",
+          "teamShort": "EDA",
+          "clCod": "865335",
+          "pts": 0,
+          "j": 0,
+          "g": 0,
+          "n": 0,
+          "p": 0,
+          "bp": 0,
+          "bc": 0,
+          "diff": 0,
+          "forme": []
+        },
+        {
+          "position": 9,
+          "team": "US STE CROIX ST LO",
+          "teamShort": "US STE CROIX ST LO",
+          "clCod": "515675",
+          "pts": 0,
+          "j": 0,
+          "g": 0,
+          "n": 0,
+          "p": 0,
+          "bp": 0,
+          "bc": 0,
+          "diff": 0,
+          "forme": []
+        }
+      ]
+    },
+    "u15-1": {
+      "label": "U15 (1)",
+      "rows": [
+        {
+          "position": 1,
+          "team": "SM HAYTILLON",
+          "teamShort": "SM HAYTILLON",
+          "clCod": "510449",
+          "pts": 12,
+          "j": 5,
+          "g": 4,
+          "n": 0,
+          "p": 1,
+          "bp": 31,
+          "bc": 9,
+          "diff": 22,
+          "forme": [
+            "V",
+            "V",
+            "D",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 2,
+          "team": "ES ISIGNY SUR MER",
+          "teamShort": "ES ISIGNY SUR MER",
+          "clCod": "501416",
+          "pts": 12,
+          "j": 6,
+          "g": 4,
+          "n": 0,
+          "p": 2,
+          "bp": 41,
+          "bc": 22,
+          "diff": 19,
+          "forme": [
+            "D",
+            "V",
+            "V",
+            "V",
+            "D"
+          ]
+        },
+        {
+          "position": 3,
+          "team": "CS CARENTANAIS 2",
+          "teamShort": "CS CARENTANAIS",
+          "clCod": "501438",
+          "pts": 11,
+          "j": 6,
+          "g": 4,
+          "n": 0,
+          "p": 1,
+          "bp": 29,
+          "bc": 10,
+          "diff": 19,
+          "forme": [
+            "V",
+            "V",
+            "V",
+            "V",
+            "D"
+          ]
+        },
+        {
+          "position": 4,
+          "team": "AS VALOGNES F. 2",
+          "teamShort": "AS VALOGNES F.",
+          "clCod": "500140",
+          "pts": 9,
+          "j": 6,
+          "g": 3,
+          "n": 0,
+          "p": 3,
+          "bp": 35,
+          "bc": 13,
+          "diff": 22,
+          "forme": [
+            "V",
+            "D",
+            "V",
+            "D",
+            "V"
+          ]
+        },
+        {
+          "position": 5,
+          "team": "PL OCTEVILLE",
+          "teamShort": "PL OCTEVILLE",
+          "clCod": "501844",
+          "pts": 8,
+          "j": 5,
+          "g": 3,
+          "n": 0,
+          "p": 1,
+          "bp": 20,
+          "bc": 10,
+          "diff": 10,
+          "forme": [
+            "V",
+            "V",
+            "V",
+            "D"
+          ]
+        },
+        {
+          "position": 6,
+          "team": "AS MONTEBOURG",
+          "teamShort": "AS MONTEBOURG",
+          "clCod": "501467",
+          "pts": 4,
+          "j": 6,
+          "g": 1,
+          "n": 1,
+          "p": 4,
+          "bp": 6,
+          "bc": 19,
+          "diff": -13,
+          "forme": [
+            "D",
+            "D",
+            "N",
+            "V",
+            "D"
+          ]
+        },
+        {
+          "position": 7,
+          "team": "ENT. USCI 2 - RSSV 2",
+          "teamShort": "ENT. USCI 2 - RSSV",
+          "clCod": "548912",
+          "pts": 4,
+          "j": 5,
+          "g": 1,
+          "n": 1,
+          "p": 3,
+          "bp": 7,
+          "bc": 25,
+          "diff": -18,
+          "forme": [
+            "D",
+            "D",
+            "N",
+            "V"
+          ]
+        },
+        {
+          "position": 8,
+          "team": "ENT.UCB B2S 2",
+          "teamShort": "ENT.UCB B2S",
+          "clCod": "501397",
+          "pts": -1,
+          "j": 5,
+          "g": 0,
+          "n": 0,
+          "p": 4,
+          "bp": 0,
+          "bc": 67,
+          "diff": -67,
+          "forme": [
+            "D",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 9,
+          "team": "ENT.ASQ-FCEH",
+          "teamShort": "ENT.ASQ-FCEH",
+          "clCod": "517212",
+          "pts": 0,
+          "j": 0,
+          "g": 0,
+          "n": 0,
+          "p": 0,
+          "bp": 0,
+          "bc": 0,
+          "diff": 0,
+          "forme": []
+        }
+      ]
+    },
+    "u15-2": {
+      "label": "U15 (2)",
+      "rows": [
+        {
+          "position": 1,
+          "team": "ES MARIGNY LOZON M.V",
+          "teamShort": "ES MARIGNY LOZON M.V",
+          "clCod": "501524",
+          "pts": 18,
+          "j": 6,
+          "g": 6,
+          "n": 0,
+          "p": 0,
+          "bp": 30,
+          "bc": 8,
+          "diff": 22,
+          "forme": [
+            "V",
+            "V",
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 2,
+          "team": "ES ST SAUVEUR ROND.",
+          "teamShort": "ES ST SAUVEUR ROND.",
+          "clCod": "508859",
+          "pts": 15,
+          "j": 6,
+          "g": 5,
+          "n": 0,
+          "p": 1,
+          "bp": 40,
+          "bc": 10,
+          "diff": 30,
+          "forme": [
+            "V",
+            "V",
+            "D",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 3,
+          "team": "AGNEAUX FC 2",
+          "teamShort": "AGNEAUX FC",
+          "clCod": "535796",
+          "pts": 15,
+          "j": 6,
+          "g": 5,
+          "n": 0,
+          "p": 1,
+          "bp": 58,
+          "bc": 9,
+          "diff": 49,
+          "forme": [
+            "V",
+            "V",
+            "V",
+            "D",
+            "V"
+          ]
+        },
+        {
+          "position": 4,
+          "team": "ENT.AJSHP/ES PLAIN",
+          "teamShort": "ENT.AJSHP/ES PLAIN",
+          "clCod": "525042",
+          "pts": 10,
+          "j": 6,
+          "g": 3,
+          "n": 1,
+          "p": 2,
+          "bp": 16,
+          "bc": 32,
+          "diff": -16,
+          "forme": [
+            "D",
+            "D",
+            "N",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 5,
+          "team": "ENT. FCE/CAP",
+          "teamShort": "ENT. FCE/CAP",
+          "clCod": "546320",
+          "pts": 6,
+          "j": 6,
+          "g": 2,
+          "n": 0,
+          "p": 4,
+          "bp": 14,
+          "bc": 26,
+          "diff": -12,
+          "forme": [
+            "D",
+            "V",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 6,
+          "team": "ENT.ISIGNY-CARENT.2 2",
+          "teamShort": "ENT.ISIGNY-CARENT.2",
+          "clCod": "501416",
+          "pts": 4,
+          "j": 7,
+          "g": 2,
+          "n": 0,
+          "p": 3,
+          "bp": 18,
+          "bc": 25,
+          "diff": -7,
+          "forme": [
+            "D",
+            "D",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 7,
+          "team": "ES DE L'AY 2",
+          "teamShort": "ES DE L'AY",
+          "clCod": "565165",
+          "pts": 3,
+          "j": 6,
+          "g": 1,
+          "n": 0,
+          "p": 5,
+          "bp": 10,
+          "bc": 39,
+          "diff": -29,
+          "forme": [
+            "V",
+            "D",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 8,
+          "team": "ENT. AGON VSM 2 2",
+          "teamShort": "ENT. AGON VSM 2",
+          "clCod": "501508",
+          "pts": 3,
+          "j": 6,
+          "g": 1,
+          "n": 1,
+          "p": 3,
+          "bp": 8,
+          "bc": 40,
+          "diff": -32,
+          "forme": [
+            "D",
+            "N",
+            "V",
+            "D"
+          ]
+        },
+        {
+          "position": 9,
+          "team": "ENT. FC3R/ CONDÉ ",
+          "teamShort": "ENT. FC3R/ CONDÉ ",
+          "clCod": "581303",
+          "pts": 2,
+          "j": 7,
+          "g": 1,
+          "n": 0,
+          "p": 5,
+          "bp": 9,
+          "bc": 20,
+          "diff": -11,
+          "forme": [
+            "D",
+            "D",
+            "V",
+            "D",
+            "D"
+          ]
+        }
+      ]
+    },
+    "u13": {
+      "label": "U13",
+      "rows": [
+        {
+          "position": 1,
+          "team": "ES COUTANCAISE 4",
+          "teamShort": "ES COUTANCAISE",
+          "clCod": "500476",
+          "pts": 12,
+          "j": 4,
+          "g": 4,
+          "n": 0,
+          "p": 0,
+          "bp": 34,
+          "bc": 6,
+          "diff": 28,
+          "forme": [
+            "V",
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 2,
+          "team": "AS BERIGNY CERISY",
+          "teamShort": "AS BERIGNY CERISY",
+          "clCod": "527693",
+          "pts": 9,
+          "j": 3,
+          "g": 3,
+          "n": 0,
+          "p": 0,
+          "bp": 10,
+          "bc": 1,
+          "diff": 9,
+          "forme": [
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 3,
+          "team": "US RONCEY CERISY 2",
+          "teamShort": "US RONCEY CERISY",
+          "clCod": "581301",
+          "pts": 6,
+          "j": 4,
+          "g": 2,
+          "n": 0,
+          "p": 2,
+          "bp": 15,
+          "bc": 13,
+          "diff": 2,
+          "forme": [
+            "D",
+            "D",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 4,
+          "team": "FC DES ETANGS 3",
+          "teamShort": "FC DES ETANGS",
+          "clCod": "550823",
+          "pts": 3,
+          "j": 5,
+          "g": 1,
+          "n": 0,
+          "p": 4,
+          "bp": 14,
+          "bc": 23,
+          "diff": -9,
+          "forme": [
+            "D",
+            "V",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 5,
+          "team": "ENT. CONDE / ST JEAN 3",
+          "teamShort": "ENT. CONDE / ST JEAN",
+          "clCod": "513040",
+          "pts": 3,
+          "j": 3,
+          "g": 1,
+          "n": 0,
+          "p": 2,
+          "bp": 9,
+          "bc": 14,
+          "diff": -5,
+          "forme": [
+            "D",
+            "V",
+            "D"
+          ]
+        },
+        {
+          "position": 6,
+          "team": "ES ISIGNY SUR MER",
+          "teamShort": "ES ISIGNY SUR MER",
+          "clCod": "501416",
+          "pts": 3,
+          "j": 5,
+          "g": 1,
+          "n": 0,
+          "p": 4,
+          "bp": 9,
+          "bc": 34,
+          "diff": -25,
+          "forme": [
+            "V",
+            "D",
+            "D",
+            "D",
+            "D"
+          ]
+        }
+      ]
+    }
+  }
+}
