@@ -1,7 +1,7 @@
 // AGENT 04 — Match Report Writer (LLM)
 // Lundi 4h. Pour chaque match joué cette semaine, génère un compte-rendu via Claude.
 // Skip si ANTHROPIC_API_KEY manque.
-import { sbSelect, sbInsert, sbUpdate, logRun } from '../supabase.js';
+import { sbSelect, sbInsert, sbUpdate, logRun } from '../supabase';
 
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || '';
 

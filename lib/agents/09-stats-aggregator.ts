@@ -1,7 +1,7 @@
 // AGENT 09 — Club Stats Aggregator
 // Lundi 5h. Crunche tous les résultats pour produire les stats hebdo + saison
 // par équipe et au niveau club. Utilisé par le hero info-band et le chatbot.
-import { sbSelect, sbUpsert, logRun } from '../supabase.js';
+import { sbSelect, sbUpsert, logRun } from '../supabase';
 
 export async function run() {
   try {

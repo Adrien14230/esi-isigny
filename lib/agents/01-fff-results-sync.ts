@@ -1,7 +1,7 @@
 // AGENT 01 — FFF Results Sync
 // Lundi 2h. Scrape les résultats des matchs joués → table matches.
-import { fetchClubPage, parseMatches } from '../fff.js';
-import { sbUpsert, logRun } from '../supabase.js';
+import { fetchClubPage, parseMatches } from '../fff';
+import { sbUpsert, logRun } from '../supabase';
 
 export async function run() {
   try {

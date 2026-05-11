@@ -2,7 +2,7 @@
 // Public endpoint. Lists approved photos for a category, with signed URLs.
 // Uses direct Supabase REST API (no SDK) for Edge Runtime compatibility.
 
-import { sbSelect } from '../../lib/supabase.js';
+import { sbSelect } from '../../lib/supabase';
 
 export const runtime = 'edge';
 

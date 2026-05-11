@@ -1,7 +1,7 @@
 // AGENT 06 — Social Media Poster
 // Lundi 9h. Poste les résultats du weekend sur Instagram + Facebook via Meta Graph API.
 // Skip si META tokens ou ANTHROPIC_API_KEY manquent.
-import { sbSelect, sbUpdate, logRun } from '../supabase.js';
+import { sbSelect, sbUpdate, logRun } from '../supabase';
 
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || '';
 const META_PAGE_ID = process.env.META_PAGE_ID || '';

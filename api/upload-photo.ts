@@ -4,7 +4,7 @@
 // Stores originals in Supabase Storage and writes to gallery_approved.
 // Uses direct Supabase REST + Storage API (no SDK) for Edge Runtime compatibility.
 
-import { sbInsert, sbStorageUpload, logRun } from '../lib/supabase.js';
+import { sbInsert, sbStorageUpload, logRun } from '../lib/supabase';
 
 export const runtime = 'edge';
 

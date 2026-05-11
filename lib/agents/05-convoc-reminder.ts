@@ -1,7 +1,7 @@
 // AGENT 05 — Convocation Reminder
 // Tous les soirs 18h. Envoie un email à chaque licencié convoqué pour un match dans 24-48h.
 // Skip si RESEND_API_KEY manque.
-import { sbSelect, sbInsert, logRun } from '../supabase.js';
+import { sbSelect, sbInsert, logRun } from '../supabase';
 
 const RESEND_KEY = process.env.RESEND_API_KEY || '';
 

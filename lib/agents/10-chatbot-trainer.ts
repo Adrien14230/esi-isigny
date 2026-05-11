@@ -2,7 +2,7 @@
 // Dimanche 22h. Compile les dernières données (matches, classements, fixtures, news, stats)
 // dans une knowledge base JSON. Sur Edge Runtime, pas de filesystem — on stocke dans
 // Supabase Storage (bucket 'public/chatbot') que le frontend peut fetcher.
-import { sbSelect, sbStorageUpload, logRun } from '../supabase.js';
+import { sbSelect, sbStorageUpload, logRun } from '../supabase';
 
 export async function run() {
   try {

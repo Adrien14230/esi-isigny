@@ -3,7 +3,7 @@
 // directement le pipeline natif Vercel Image Optimization (URL /_vercel/image?...)
 // qui sert WebP + thumbnails à la volée sans nécessiter de pré-traitement.
 // Cet agent reste donc minimal — il enregistre juste la photo dans la table.
-import { sbInsert, logRun } from '../supabase.js';
+import { sbInsert, logRun } from '../supabase';
 
 interface ImageJob { source_path: string; album_key: string; }
 

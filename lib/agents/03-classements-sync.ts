@@ -1,7 +1,7 @@
 // AGENT 03 — Classements Sync
 // Lundi 3h. Scrape les classements des 7 poules ESI → table classements.
-import { fetchClassement } from '../fff.js';
-import { sbUpsert, logRun } from '../supabase.js';
+import { fetchClassement } from '../fff';
+import { sbUpsert, logRun } from '../supabase';
 
 const POOLS = [
   { key: 'seniors-a',  path: '/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/3/accueil' },

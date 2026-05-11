@@ -3,7 +3,7 @@
 // Le sitemap.xml est statique sur Vercel — la lastmod date est mise à jour ici via DB,
 // le sitemap dynamique sera servi par /api/sitemap si on l'ajoute plus tard.
 // Skip si ANTHROPIC_API_KEY manque.
-import { sbSelect, sbUpsert, logRun } from '../supabase.js';
+import { sbSelect, sbUpsert, logRun } from '../supabase';
 
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || '';
 

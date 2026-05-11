@@ -1,7 +1,7 @@
 // AGENT 02 — FFF Fixtures Sync
 // Lundi 2h30. Scrape le calendrier futur (30 jours) → table fixtures.
-import { fetchClubPage, parseMatches } from '../fff.js';
-import { sbUpsert, logRun } from '../supabase.js';
+import { fetchClubPage, parseMatches } from '../fff';
+import { sbUpsert, logRun } from '../supabase';
 
 export async function run() {
   try {
