@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
-    { "path": "/api/run?id=01", "schedule": "0 2 * * 1" },
-    { "path": "/api/run?id=05", "schedule": "0 18 * * *" }
+    { "path": "/api/agents-go?id=01", "schedule": "0 2 * * 1" },
+    { "path": "/api/agents-go?id=05", "schedule": "0 18 * * *" }
   ],
   "headers": [
     {
