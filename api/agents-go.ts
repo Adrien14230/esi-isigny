@@ -1,10 +1,10 @@
-// Minimal test endpoint to verify /api/run is reachable at all.
+// Test endpoint matching health.ts pattern exactly
 export const runtime = 'edge';
 
-export default async function handler(req: Request) {
-  const url = new URL(req.url);
-  const id = url.searchParams.get('id') || 'none';
-  return new Response(JSON.stringify({ ok: true, id, ts: Date.now() }), {
-    headers: { 'content-type': 'application/json' },
-  });
+export default function handler() {
+  return Response.json({
+    ok: true,
+    where: 'agents-go',
+    timestamp: new Date().toISOString(),
+  }, { headers: { 'Cache-Control': 'no-store' } });
 }
