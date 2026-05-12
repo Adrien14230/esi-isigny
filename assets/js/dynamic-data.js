@@ -74,11 +74,73 @@
     }
 
     // ============================================================
+    // HERO PILLS — remplace les 3 fix-pill du hero (top droite)
+    // ============================================================
+    const heroFixtures = document.querySelector('.hero-fixtures');
+    if (heroFixtures && matches.upcoming && matches.upcoming.length) {
+      const now = Date.now();
+      const futureMatches = matches.upcoming
+        .filter(m => new Date(m.date).getTime() > now)
+        .sort((a, b) => new Date(a.date) - new Date(b.date))
+        .slice(0, 3);
+
+      if (futureMatches.length) {
+        const POOL_PATHS = {
+          'Seniors A': '/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/3/accueil',
+          'Seniors B': '/competition/engagement/439819-championnat-seniors-d4-jbs-prorete/phase/1/4/accueil',
+          'Seniors F': '/competition/engagement/440195-seniors-f-a-8-sport-200-lequertier/phase/1/2/accueil',
+          'Vétérans': '/competition/engagement/441428-championnat-veterans/phase/1/2/accueil',
+          'U15 (1)': '/competition/engagement/445255-championnat-u15-d3/phase/2/2/accueil',
+          'U15 (2)': '/competition/engagement/445255-championnat-u15-d3/phase/2/3/accueil',
+          'U13': '/competition/engagement/445894-championnat-u13-niveau-4/phase/2/2/accueil',
+        };
+
+        const tcase = (s) => (s || '').toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        const extractClCod = (logoUrl) => {
+          const m = (logoUrl || '').match(/\/BC?(\d{6})\.jpg/i) || (logoUrl || '').match(/(\d{6})/);
+          return m ? m[1] : '501416';
+        };
+
+        const html = futureMatches.map((m, idx) => {
+          const featured = idx === 0 ? ' featured' : '';
+          const oppName = m.esiHome ? tcase(m.visiteur.nom) : tcase(m.recevant.nom);
+          const oppClCod = extractClCod(m.esiHome ? m.visiteur.logo : m.recevant.logo);
+          const compPath = POOL_PATHS[m.teamLabel] || '/';
+          const teamLabelShort = m.teamLabel.replace('Seniors ', 'Seniors ');
+          const ariaLabel = idx === 0 ? `Prochain match ${m.teamLabel}` : `Match ${m.teamLabel}`;
+          const labelPrefix = idx === 0 ? `Prochain · ${teamLabelShort}` : teamLabelShort;
+          return `
+            <a href="https://epreuves.fff.fr${compPath}" target="_blank" rel="noopener" class="fix-pill${featured}" aria-label="${ariaLabel}" style="opacity:1!important;transform:none!important;">
+              <div class="fix-pill-date">
+                <span class="fix-pill-date-label">${labelPrefix}</span>
+                <span class="fix-pill-date-value">${formatDateShort(m.date)}</span>
+              </div>
+              <div class="fix-pill-vs">
+                <img src="assets/logos/501416.jpg" alt="ESI" class="fix-pill-logo" loading="lazy"/>
+                <span class="fix-pill-vs-label">VS</span>
+                <img src="assets/logos/${oppClCod}.jpg" alt="${oppName}" class="fix-pill-logo" loading="lazy" onerror="this.src='assets/logos/501416.jpg';this.style.opacity='0.3';"/>
+              </div>
+              <span class="fix-pill-arrow" aria-hidden="true">
+                <svg viewBox="0 0 12 12"><path d="M3 6h6m-2.5-2.5L9 6 6.5 8.5" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>`;
+        }).join('');
+
+        heroFixtures.innerHTML = html;
+        console.log(`[ESI] ✓ ${futureMatches.length} hero pills mis à jour (futurs uniquement)`);
+      }
+    }
+
+    // ============================================================
     // CALENDRIER — remplace .fixtures-strip dans #calendrier
     // ============================================================
     const fixturesStrip = document.querySelector('#calendrier .fixtures-strip');
-    if (fixturesStrip && matches.upcoming && matches.upcoming.length) {
-      const upcoming = [...matches.upcoming].sort((a, b) => new Date(a.date) - new Date(b.date));
+    const nowMs = Date.now();
+    const upcomingFiltered = matches.upcoming
+      ? matches.upcoming.filter(m => new Date(m.date).getTime() > nowMs).sort((a, b) => new Date(a.date) - new Date(b.date))
+      : [];
+    if (fixturesStrip && upcomingFiltered.length) {
+      const upcoming = upcomingFiltered;
       const featuredTeams = ['Seniors A', 'Seniors F'];
 
       const html = upcoming.slice(0, 8).map(m => {
