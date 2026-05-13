@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-12T21:58:18.481Z",
+  "generated_at": "2026-05-13T22:43:10.501Z",
   "pools": {
     "seniors-a": {
       "label": "Seniors A",
@@ -516,17 +516,17 @@
           "team": "ENT. USCI / USPSG",
           "teamShort": "ENT. USCI / USPSG",
           "clCod": "548912",
-          "pts": 37,
-          "j": 17,
-          "g": 11,
+          "pts": 40,
+          "j": 18,
+          "g": 12,
           "n": 4,
           "p": 2,
-          "bp": 62,
+          "bp": 65,
           "bc": 24,
-          "diff": 38,
+          "diff": 41,
           "forme": [
             "N",
-            "N",
+            "V",
             "V",
             "V",
             "V"
@@ -681,27 +681,6 @@
         },
         {
           "position": 9,
-          "team": "ES HEAUVILLE SIOUVIL",
-          "teamShort": "ES HEAUVILLE SIOUVIL",
-          "clCod": "519269",
-          "pts": 6,
-          "j": 16,
-          "g": 2,
-          "n": 1,
-          "p": 12,
-          "bp": 19,
-          "bc": 48,
-          "diff": -29,
-          "forme": [
-            "D",
-            "D",
-            "V",
-            "V",
-            "N"
-          ]
-        },
-        {
-          "position": 10,
           "team": "ENT.USSJ/RAUVILLE",
           "teamShort": "ENT.USSJ/RAUVILLE",
           "clCod": "530215",
@@ -718,6 +697,27 @@
             "D",
             "D",
             "D",
+            "D"
+          ]
+        },
+        {
+          "position": 10,
+          "team": "ES HEAUVILLE SIOUVIL",
+          "teamShort": "ES HEAUVILLE SIOUVIL",
+          "clCod": "519269",
+          "pts": 5,
+          "j": 17,
+          "g": 2,
+          "n": 1,
+          "p": 12,
+          "bp": 19,
+          "bc": 51,
+          "diff": -32,
+          "forme": [
+            "D",
+            "V",
+            "V",
+            "N",
             "D"
           ]
         },
@@ -1361,66 +1361,47 @@
         },
         {
           "position": 3,
-          "team": "US RONCEY CERISY 2",
-          "teamShort": "US RONCEY CERISY",
-          "clCod": "581301",
+          "team": "ENT. CONDE / ST JEAN 3",
+          "teamShort": "ENT. CONDE / ST JEAN",
+          "clCod": "513040",
           "pts": 6,
           "j": 4,
           "g": 2,
           "n": 0,
           "p": 2,
-          "bp": 15,
-          "bc": 13,
-          "diff": 2,
+          "bp": 12,
+          "bc": 14,
+          "diff": -2,
           "forme": [
             "D",
-            "D",
             "V",
+            "D",
             "V"
           ]
         },
         {
           "position": 4,
-          "team": "FC DES ETANGS 3",
-          "teamShort": "FC DES ETANGS",
-          "clCod": "550823",
-          "pts": 3,
+          "team": "US RONCEY CERISY 2",
+          "teamShort": "US RONCEY CERISY",
+          "clCod": "581301",
+          "pts": 5,
           "j": 5,
-          "g": 1,
+          "g": 2,
           "n": 0,
-          "p": 4,
-          "bp": 14,
-          "bc": 23,
-          "diff": -9,
+          "p": 2,
+          "bp": 15,
+          "bc": 16,
+          "diff": -1,
           "forme": [
             "D",
+            "D",
             "V",
-            "D",
-            "D",
+            "V",
             "D"
           ]
         },
         {
           "position": 5,
-          "team": "ENT. CONDE / ST JEAN 3",
-          "teamShort": "ENT. CONDE / ST JEAN",
-          "clCod": "513040",
-          "pts": 3,
-          "j": 3,
-          "g": 1,
-          "n": 0,
-          "p": 2,
-          "bp": 9,
-          "bc": 14,
-          "diff": -5,
-          "forme": [
-            "D",
-            "V",
-            "D"
-          ]
-        },
-        {
-          "position": 6,
           "team": "ES ISIGNY SUR MER",
           "teamShort": "ES ISIGNY SUR MER",
           "clCod": "501416",
@@ -1435,6 +1416,27 @@
           "forme": [
             "V",
             "D",
+            "D",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 6,
+          "team": "FC DES ETANGS 3",
+          "teamShort": "FC DES ETANGS",
+          "clCod": "550823",
+          "pts": 3,
+          "j": 5,
+          "g": 1,
+          "n": 0,
+          "p": 4,
+          "bp": 14,
+          "bc": 23,
+          "diff": -9,
+          "forme": [
+            "D",
+            "V",
             "D",
             "D",
             "D"
