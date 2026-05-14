@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-13T22:43:10.501Z",
+  "generated_at": "2026-05-14T21:55:51.386Z",
   "pools": {
     "seniors-a": {
       "label": "Seniors A",
@@ -27,6 +27,27 @@
         },
         {
           "position": 2,
+          "team": "ES DES MARAIS 2",
+          "teamShort": "ES DES MARAIS",
+          "clCod": "549587",
+          "pts": 35,
+          "j": 15,
+          "g": 11,
+          "n": 2,
+          "p": 2,
+          "bp": 46,
+          "bc": 19,
+          "diff": 27,
+          "forme": [
+            "N",
+            "V",
+            "V",
+            "N",
+            "V"
+          ]
+        },
+        {
+          "position": 3,
           "team": "ES ISIGNY SUR MER",
           "teamShort": "ES ISIGNY SUR MER",
           "clCod": "501416",
@@ -43,27 +64,6 @@
             "V",
             "V",
             "V",
-            "V"
-          ]
-        },
-        {
-          "position": 3,
-          "team": "ES DES MARAIS 2",
-          "teamShort": "ES DES MARAIS",
-          "clCod": "549587",
-          "pts": 32,
-          "j": 14,
-          "g": 10,
-          "n": 2,
-          "p": 2,
-          "bp": 42,
-          "bc": 17,
-          "diff": 25,
-          "forme": [
-            "N",
-            "V",
-            "V",
-            "N",
             "V"
           ]
         },
@@ -157,18 +157,18 @@
           "teamShort": "AS ST JORES",
           "clCod": "521699",
           "pts": 6,
-          "j": 13,
+          "j": 14,
           "g": 1,
           "n": 3,
-          "p": 9,
-          "bp": 21,
-          "bc": 47,
-          "diff": -26,
+          "p": 10,
+          "bp": 23,
+          "bc": 51,
+          "diff": -28,
           "forme": [
-            "D",
             "D",
             "V",
             "N",
+            "V",
             "D"
           ]
         },
@@ -281,13 +281,13 @@
           "teamShort": "ES MARIGNY LOZON M.V",
           "clCod": "501524",
           "pts": 39,
-          "j": 15,
+          "j": 16,
           "g": 13,
           "n": 0,
-          "p": 2,
-          "bp": 47,
-          "bc": 19,
-          "diff": 28,
+          "p": 3,
+          "bp": 48,
+          "bc": 21,
+          "diff": 27,
           "forme": [
             "V",
             "V",
@@ -364,20 +364,20 @@
           "team": "AS BERIGNY CERISY 3",
           "teamShort": "AS BERIGNY CERISY",
           "clCod": "527693",
-          "pts": 14,
-          "j": 15,
-          "g": 5,
+          "pts": 17,
+          "j": 16,
+          "g": 6,
           "n": 2,
           "p": 6,
-          "bp": 27,
-          "bc": 28,
-          "diff": -1,
+          "bp": 29,
+          "bc": 29,
+          "diff": 0,
           "forme": [
             "N",
             "V",
             "D",
             "D",
-            "D"
+            "V"
           ]
         },
         {
@@ -601,19 +601,19 @@
           "teamShort": "AS MONTEBOURG",
           "clCod": "501467",
           "pts": 25,
-          "j": 15,
+          "j": 16,
           "g": 8,
           "n": 1,
-          "p": 6,
-          "bp": 40,
-          "bc": 27,
-          "diff": 13,
+          "p": 7,
+          "bp": 41,
+          "bc": 29,
+          "diff": 12,
           "forme": [
-            "N",
             "V",
             "D",
             "D",
-            "V"
+            "V",
+            "D"
           ]
         },
         {
@@ -684,20 +684,20 @@
           "team": "ENT.USSJ/RAUVILLE",
           "teamShort": "ENT.USSJ/RAUVILLE",
           "clCod": "530215",
-          "pts": 6,
-          "j": 15,
-          "g": 2,
+          "pts": 9,
+          "j": 16,
+          "g": 3,
           "n": 2,
           "p": 9,
-          "bp": 18,
-          "bc": 50,
-          "diff": -32,
+          "bp": 20,
+          "bc": 51,
+          "diff": -31,
           "forme": [
-            "N",
             "D",
             "D",
             "D",
-            "D"
+            "D",
+            "V"
           ]
         },
         {
