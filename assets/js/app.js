@@ -1207,7 +1207,7 @@ function addMsg(text, sender) {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-const CHAT_RULES = [
+window.CHAT_RULES = [
   { kw: ['prochain match', 'next match', 'prochain', 'demain', 'samedi', 'dimanche', 'sam 9', 'dim 10'],
     a: 'Le <strong>prochain match Seniors A</strong> est <strong>Dim. 10 mai à 15h00</strong> — ESI vs AS Montmartin Graig. (Domicile, D4 Poule C, J20). Avant ça : <strong>Sam. 9 mai 13h15</strong> ESI U13 vs Roncey, et <strong>15h00</strong> ESI U15 (1er du classement !) vs SM Haytillon. <a href="#calendrier">Voir le calendrier</a>' },
   { kw: ['seniors a', 'seniors 1', 'séniors a', 'équipe première'],
@@ -1247,7 +1247,7 @@ const CHAT_RULES = [
 function answer(input) {
   const q = input.toLowerCase().trim();
   if (!q) return null;
-  for (const r of CHAT_RULES) {
+  for (const r of (window.CHAT_RULES || [])) {
     if (r.kw.some(k => q.includes(k))) return r.a;
   }
   return `Désolé, je ne sais pas répondre à "<em>${input.slice(0, 40)}</em>". Essaie : <strong>prochain match</strong>, <strong>classement</strong>, <strong>convocation</strong>, <strong>stade</strong>, <strong>rejoindre</strong>, ou clique sur un raccourci ci-dessous.`;

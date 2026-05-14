@@ -459,6 +459,140 @@
       }
       console.log(`[ESI] Stats club: ${totalPlayed} matchs joués, ${totalWins} victoires`);
     }
+
+    // ============================================================
+    // CHATBOT — Régénère window.CHAT_RULES depuis les données live
+    // (sinon le chatbot répond avec des classements/dates obsolètes)
+    // ============================================================
+    if (classements && classements.pools && matches) {
+      const sup = (n) => n === 1 ? '1ᵉʳ' : `${n}ᵉ`;
+      const fmtNextLine = (iso) => {
+        const d = new Date(iso);
+        const days = ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'];
+        const months = ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'];
+        const hh = String(d.getHours()).padStart(2, '0');
+        const mm = String(d.getMinutes()).padStart(2, '0');
+        return `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]} ${hh}h${mm}`;
+      };
+      const formeStr = (forme) => {
+        if (!forme || !forme.length) return '';
+        const last3 = forme.slice(-3).join(' ');
+        return ` Forme : ${last3}.`;
+      };
+      const oppName = (m) => (m.esiHome ? (m.visiteur && m.visiteur.nom) : (m.recevant && m.recevant.nom)) || '';
+      const venueStr = (m) => m.esiHome ? 'Dom' : 'Ext';
+
+      const now = Date.now();
+      const futureByTeam = {};
+      const allFuture = [];
+      for (const m of matches.upcoming || []) {
+        if (new Date(m.date).getTime() <= now) continue;
+        allFuture.push(m);
+        const k = m.teamLabel;
+        if (!futureByTeam[k] || new Date(m.date) < new Date(futureByTeam[k].date)) {
+          futureByTeam[k] = m;
+        }
+      }
+      allFuture.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      const get = (poolKey) => {
+        const pool = classements.pools[poolKey];
+        if (!pool || !pool.rows) return null;
+        const esi = pool.rows.find(r => r.clCod === '501416' || r.team.toUpperCase().includes('ISIGNY'));
+        if (!esi) return null;
+        return { esi, total: pool.rows.length };
+      };
+      const teamAnswer = (poolKey, teamLabel, displayName) => {
+        const info = get(poolKey);
+        if (!info) return null;
+        const { esi, total } = info;
+        const next = futureByTeam[teamLabel];
+        const nextStr = next
+          ? ` Prochain : <strong>${fmtNextLine(next.date)} vs ${oppName(next)}</strong> (${venueStr(next)}).`
+          : '';
+        return `<strong>${displayName} : ${sup(esi.position)}/${total} · ${esi.pts} pts</strong> · ${esi.j}J · ${esi.g}G/${esi.n}N/${esi.p}P · ${esi.diff >= 0 ? '+' : ''}${esi.diff} diff.${formeStr(esi.forme)}${nextStr}`;
+      };
+
+      const rules = [];
+
+      // Prochain match (top 3 futurs)
+      if (allFuture.length) {
+        const lines = allFuture.slice(0, 3).map(m => {
+          return `<strong>${fmtNextLine(m.date)}</strong> · ${m.teamLabel} vs ${oppName(m)} (${venueStr(m)})`;
+        }).join('<br>');
+        rules.push({
+          kw: ['prochain match', 'next match', 'prochain', 'demain', 'samedi', 'dimanche', 'match qui vient', 'agenda'],
+          a: `Les <strong>prochains matchs ESI</strong> :<br>${lines}<br><a href="#calendrier">Voir le calendrier complet</a>`,
+        });
+      }
+
+      // Une règle par équipe
+      const teamA = teamAnswer('seniors-a', 'Seniors A', 'Seniors A');
+      if (teamA) rules.push({ kw: ['seniors a', 'seniors 1', 'séniors a', 'équipe première', 'equipe premiere'], a: teamA });
+      const teamB = teamAnswer('seniors-b', 'Seniors B', 'Seniors B');
+      if (teamB) rules.push({ kw: ['seniors b', 'seniors 2', 'séniors b', 'réserve', 'reserve'], a: teamB });
+      const teamF = teamAnswer('seniors-f', 'Seniors F', 'Seniors F');
+      if (teamF) rules.push({ kw: ['seniors f', 'féminin', 'feminine', 'feminin', 'femme', 'women'], a: teamF });
+      const teamV = teamAnswer('veterans', 'Vétérans', 'Vétérans');
+      if (teamV) rules.push({ kw: ['vétéran', 'veteran', 'vétérans'], a: teamV });
+      const teamU15a = teamAnswer('u15-1', 'U15 (1)', 'U15 (1)');
+      if (teamU15a) rules.push({ kw: ['u15 (1)', 'u15 1', 'u15-1'], a: teamU15a });
+      const teamU15b = teamAnswer('u15-2', 'U15 (2)', 'U15 (2) Ent. Isigny–Carentan');
+      if (teamU15b) rules.push({ kw: ['u15 (2)', 'u15 2', 'u15-2', 'entente', 'carentan'], a: teamU15b });
+      // U15 générique
+      if (teamU15a || teamU15b) {
+        const lines = [];
+        if (teamU15a) lines.push(`• ${teamU15a}`);
+        if (teamU15b) lines.push(`• ${teamU15b}`);
+        rules.push({ kw: ['u15', 'u14', 'jeunes 15'], a: `Deux équipes U15 à l'ESI :<br>${lines.join('<br>')}<br>Demande "u15 1" ou "u15 2" pour le détail.` });
+      }
+      const teamU13 = teamAnswer('u13', 'U13', 'U13');
+      if (teamU13) rules.push({ kw: ['u13', 'u12', 'jeunes 13'], a: teamU13 });
+
+      // Classement global (toutes les poules)
+      const genDate = classements.generated_at ? new Date(classements.generated_at) : new Date();
+      const months = ['janv','févr','mars','avr','mai','juin','juil','août','sept','oct','nov','déc'];
+      const dateStr = `${genDate.getDate()} ${months[genDate.getMonth()]}. ${genDate.getFullYear()}`;
+      const summaryRows = [];
+      const allPools = [
+        ['seniors-a', 'Seniors A'],
+        ['seniors-b', 'Seniors B'],
+        ['seniors-f', 'Seniors F'],
+        ['veterans', 'Vétérans'],
+        ['u15-1', 'U15 (1)'],
+        ['u15-2', 'U15 (2) Ent.'],
+        ['u13', 'U13'],
+      ];
+      for (const [k, label] of allPools) {
+        const info = get(k);
+        if (info) summaryRows.push(`• ${label} — ${sup(info.esi.position)}/${info.total} (${info.esi.pts} pts)`);
+      }
+      if (summaryRows.length) {
+        rules.push({
+          kw: ['classement', 'rank', 'standing', 'position', 'catégorie', 'categorie'],
+          a: `<strong>Classements au ${dateStr} :</strong><br>${summaryRows.join('<br>')}<br>Clique sur une équipe dans la section "Toutes nos équipes" pour voir le classement complet.`,
+        });
+      }
+
+      // Règles statiques (non dépendantes du classement)
+      rules.push({ kw: ['rejoindre', 'inscription', 'inscrire', 'comment faire', 'club', 'jouer'],
+        a: 'Pour <strong>rejoindre l\'ESI</strong>, contacte-nous à <a href="mailto:etoilesportiveisigny@gmail.com">etoilesportiveisigny@gmail.com</a> ou viens directement au stade. Toutes catégories de U7 à Vétérans, hommes et femmes.' });
+      rules.push({ kw: ['stade', 'adresse', 'où', 'venir', 'lieu', 'plan'],
+        a: '<strong>Stade Municipal d\'Isigny</strong> · Impasse du Stade · 14230 Isigny-sur-Mer · Bessin, Normandie. <a href="https://www.google.com/maps?q=Stade+Municipal+Isigny-sur-Mer" target="_blank">Voir sur Maps</a>' });
+      rules.push({ kw: ['entraîneur', 'entraineur', 'coach', 'staff', 'dirigeant', 'qui'],
+        a: '<strong>Encadrement :</strong><br>• Seniors A : Thomas Pottier<br>• Seniors B : Adrien Goubert / Alain Piazza / Jessy Thomine<br>• U15 : Théo Castel · U13 : Evann Lecourt · U11 : Pierre Goubert · U9 : Jessy Thomine / Lionnel Lepainteur. <a href="#staff">Voir tous les dirigeants</a>' });
+      rules.push({ kw: ['convocation', 'convoq', 'sélection', 'liste'],
+        a: 'Les <strong>convocations</strong> sont dans la <a href="#convocations">section Convocations</a>. Liste complète des joueurs réservée aux licenciés (compte ESI requis).' });
+      rules.push({ kw: ['fondé', 'histoire', 'créé', 'cree', 'année', 'ans', '1925', 'depuis quand'],
+        a: 'L\'<strong>Étoile Sportive d\'Isigny</strong> a été fondée en <strong>1925</strong>. Le club a fêté ses <strong>100 ans</strong> en 2025-26. Un siècle de football amateur en Manche.' });
+      rules.push({ kw: ['merci', 'thanks', 'thank you', 'super', 'cool'],
+        a: 'Avec plaisir. Allez ESI.' });
+      rules.push({ kw: ['bonjour', 'salut', 'hello', 'hi', 'hey', 'coucou'],
+        a: 'Bonjour. Je peux te renseigner sur les matchs, classements, convocations, le club. Pose ta question.' });
+
+      window.CHAT_RULES = rules;
+      console.log(`[ESI] ✓ Chatbot : ${rules.length} règles régénérées depuis les données live`);
+    }
   } catch (err) {
     console.error('[ESI] Erreur chargement données dynamiques:', err);
   }
