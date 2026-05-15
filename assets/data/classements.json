@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-14T21:55:51.386Z",
+  "generated_at": "2026-05-15T21:39:18.052Z",
   "pools": {
     "seniors-a": {
       "label": "Seniors A",
@@ -406,20 +406,20 @@
           "team": "AS THEREVAL 2",
           "teamShort": "AS THEREVAL",
           "clCod": "531034",
-          "pts": 11,
-          "j": 17,
-          "g": 3,
+          "pts": 14,
+          "j": 18,
+          "g": 4,
           "n": 3,
           "p": 10,
-          "bp": 25,
+          "bp": 28,
           "bc": 39,
-          "diff": -14,
+          "diff": -11,
           "forme": [
-            "D",
             "N",
             "V",
             "D",
-            "D"
+            "D",
+            "V"
           ]
         },
         {
@@ -448,20 +448,20 @@
           "team": "ES ISIGNY SUR MER 2",
           "teamShort": "ES ISIGNY SUR MER",
           "clCod": "501416",
-          "pts": 2,
-          "j": 16,
+          "pts": 1,
+          "j": 17,
           "g": 1,
           "n": 1,
           "p": 13,
           "bp": 10,
-          "bc": 46,
-          "diff": -36,
+          "bc": 49,
+          "diff": -39,
           "forme": [
             "D",
             "D",
             "D",
-            "D",
-            "V"
+            "V",
+            "D"
           ]
         },
         {
@@ -764,6 +764,27 @@
       "rows": [
         {
           "position": 1,
+          "team": "FC ST LO MANCHE",
+          "teamShort": "FC ST LO MANCHE",
+          "clCod": "500088",
+          "pts": 26,
+          "j": 10,
+          "g": 8,
+          "n": 2,
+          "p": 0,
+          "bp": 35,
+          "bc": 7,
+          "diff": 28,
+          "forme": [
+            "N",
+            "V",
+            "V",
+            "V",
+            "V"
+          ]
+        },
+        {
+          "position": 2,
           "team": "AGNEAUX FC",
           "teamShort": "AGNEAUX FC",
           "clCod": "535796",
@@ -775,27 +796,6 @@
           "bp": 35,
           "bc": 9,
           "diff": 26,
-          "forme": [
-            "N",
-            "V",
-            "V",
-            "V",
-            "V"
-          ]
-        },
-        {
-          "position": 2,
-          "team": "FC ST LO MANCHE",
-          "teamShort": "FC ST LO MANCHE",
-          "clCod": "500088",
-          "pts": 23,
-          "j": 9,
-          "g": 7,
-          "n": 2,
-          "p": 0,
-          "bp": 32,
-          "bc": 7,
-          "diff": 25,
           "forme": [
             "N",
             "V",
@@ -873,19 +873,19 @@
           "teamShort": "ES ISIGNY SUR MER",
           "clCod": "501416",
           "pts": 5,
-          "j": 8,
+          "j": 9,
           "g": 1,
           "n": 3,
-          "p": 3,
+          "p": 4,
           "bp": 14,
-          "bc": 19,
-          "diff": -5,
+          "bc": 22,
+          "diff": -8,
           "forme": [
-            "D",
             "D",
             "N",
             "V",
-            "N"
+            "N",
+            "D"
           ]
         },
         {
@@ -1173,27 +1173,48 @@
         },
         {
           "position": 3,
-          "team": "AGNEAUX FC 2",
-          "teamShort": "AGNEAUX FC",
-          "clCod": "535796",
-          "pts": 15,
-          "j": 6,
-          "g": 5,
+          "team": "ENT. FCE/CAP",
+          "teamShort": "ENT. FCE/CAP",
+          "clCod": "546320",
+          "pts": 12,
+          "j": 7,
+          "g": 4,
           "n": 0,
-          "p": 1,
-          "bp": 58,
-          "bc": 9,
-          "diff": 49,
+          "p": 3,
+          "bp": 19,
+          "bc": 20,
+          "diff": -1,
           "forme": [
-            "V",
-            "V",
+            "D",
             "V",
             "D",
+            "V",
             "V"
           ]
         },
         {
           "position": 4,
+          "team": "AGNEAUX FC 2",
+          "teamShort": "AGNEAUX FC",
+          "clCod": "535796",
+          "pts": 11,
+          "j": 6,
+          "g": 4,
+          "n": 0,
+          "p": 2,
+          "bp": 52,
+          "bc": 11,
+          "diff": 41,
+          "forme": [
+            "V",
+            "V",
+            "V",
+            "D",
+            "D"
+          ]
+        },
+        {
+          "position": 5,
           "team": "ENT.AJSHP/ES PLAIN",
           "teamShort": "ENT.AJSHP/ES PLAIN",
           "clCod": "525042",
@@ -1211,26 +1232,6 @@
             "N",
             "V",
             "V"
-          ]
-        },
-        {
-          "position": 5,
-          "team": "ENT. FCE/CAP",
-          "teamShort": "ENT. FCE/CAP",
-          "clCod": "546320",
-          "pts": 6,
-          "j": 6,
-          "g": 2,
-          "n": 0,
-          "p": 4,
-          "bp": 14,
-          "bc": 26,
-          "diff": -12,
-          "forme": [
-            "D",
-            "V",
-            "D",
-            "D"
           ]
         },
         {
@@ -1279,18 +1280,19 @@
           "team": "ENT. AGON VSM 2 2",
           "teamShort": "ENT. AGON VSM 2",
           "clCod": "501508",
-          "pts": 3,
-          "j": 6,
+          "pts": 2,
+          "j": 7,
           "g": 1,
           "n": 1,
           "p": 3,
           "bp": 8,
-          "bc": 40,
-          "diff": -32,
+          "bc": 43,
+          "diff": -35,
           "forme": [
             "D",
             "N",
             "V",
+            "D",
             "D"
           ]
         },

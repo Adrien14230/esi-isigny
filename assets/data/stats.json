@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-14T21:55:44.986Z",
+  "generated_at": "2026-05-15T21:39:11.546Z",
   "season": "2025-26",
   "per_team": {
     "U13": {
@@ -27,12 +27,12 @@
       "ga": 1
     },
     "Seniors B": {
-      "played": 1,
+      "played": 2,
       "wins": 1,
       "draws": 0,
-      "losses": 0,
+      "losses": 1,
       "gf": 2,
-      "ga": 1
+      "ga": 4
     },
     "Seniors F": {
       "played": 2,
@@ -49,6 +49,14 @@
       "losses": 0,
       "gf": 3,
       "ga": 0
+    },
+    "Vétérans": {
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "gf": 0,
+      "ga": 3
     }
   }
 }

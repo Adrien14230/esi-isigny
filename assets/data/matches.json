@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-14T21:55:44.984Z",
+  "generated_at": "2026-05-15T21:39:11.545Z",
   "played": [
     {
       "id": 55272702,
@@ -200,6 +200,46 @@
         "buts": 0
       },
       "esiHome": true
+    },
+    {
+      "id": 54749441,
+      "date": "2026-05-15T21:00:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT VETERANS",
+      "category": "Senior",
+      "pool": "POULE B",
+      "teamLabel": "Vétérans",
+      "recevant": {
+        "nom": "ES ISIGNY SUR MER",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "FC ST LO MANCHE",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC500088.jpg",
+        "buts": 3
+      },
+      "esiHome": true
+    },
+    {
+      "id": 54020730,
+      "date": "2026-05-17T15:00:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT SENIORS D4 JBS PRORETE",
+      "category": "Senior",
+      "pool": "POULE D",
+      "teamLabel": "Seniors B",
+      "recevant": {
+        "nom": "ES ISIGNY SUR MER 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "AS THEREVAL 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC531034.jpg",
+        "buts": 3
+      },
+      "esiHome": true
     }
   ],
   "upcoming": [
@@ -222,26 +262,6 @@
         "buts": 0
       },
       "esiHome": false
-    },
-    {
-      "id": 54749441,
-      "date": "2026-05-15T21:00:00+02:00",
-      "status": "à venir",
-      "competition": "CHAMPIONNAT VETERANS",
-      "category": "Senior",
-      "pool": "POULE B",
-      "teamLabel": "Vétérans",
-      "recevant": {
-        "nom": "ES ISIGNY SUR MER",
-        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
-        "buts": 0
-      },
-      "visiteur": {
-        "nom": "FC ST LO MANCHE",
-        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC500088.jpg",
-        "buts": 0
-      },
-      "esiHome": true
     },
     {
       "id": 55475207,
@@ -279,26 +299,6 @@
       "visiteur": {
         "nom": "AS MONTEBOURG",
         "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501467.jpg",
-        "buts": 0
-      },
-      "esiHome": true
-    },
-    {
-      "id": 54020730,
-      "date": "2026-05-17T15:00:00+02:00",
-      "status": "à venir",
-      "competition": "CHAMPIONNAT SENIORS D4 JBS PRORETE",
-      "category": "Senior",
-      "pool": "POULE D",
-      "teamLabel": "Seniors B",
-      "recevant": {
-        "nom": "ES ISIGNY SUR MER 2",
-        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
-        "buts": 0
-      },
-      "visiteur": {
-        "nom": "AS THEREVAL 2",
-        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC531034.jpg",
         "buts": 0
       },
       "esiHome": true
