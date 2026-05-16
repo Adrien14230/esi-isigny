@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-15T21:39:11.545Z",
+  "generated_at": "2026-05-16T20:32:42.871Z",
   "played": [
     {
       "id": 55272702,
@@ -222,6 +222,26 @@
       "esiHome": true
     },
     {
+      "id": 55475207,
+      "date": "2026-05-16T15:00:00+02:00",
+      "status": "joué",
+      "competition": "CHAMPIONNAT U15 D3",
+      "category": "U15 - U14",
+      "pool": "POULE C",
+      "teamLabel": "U15 (2)",
+      "recevant": {
+        "nom": "ENT.ISIGNY-CARENT.2 2",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
+        "buts": 0
+      },
+      "visiteur": {
+        "nom": "ES MARIGNY LOZON M.V",
+        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501524.jpg",
+        "buts": 3
+      },
+      "esiHome": true
+    },
+    {
       "id": 54020730,
       "date": "2026-05-17T15:00:00+02:00",
       "status": "joué",
@@ -262,26 +282,6 @@
         "buts": 0
       },
       "esiHome": false
-    },
-    {
-      "id": 55475207,
-      "date": "2026-05-16T15:00:00+02:00",
-      "status": "à venir",
-      "competition": "CHAMPIONNAT U15 D3",
-      "category": "U15 - U14",
-      "pool": "POULE C",
-      "teamLabel": "U15 (2)",
-      "recevant": {
-        "nom": "ENT.ISIGNY-CARENT.2 2",
-        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501416.jpg",
-        "buts": 0
-      },
-      "visiteur": {
-        "nom": "ES MARIGNY LOZON M.V",
-        "logo": "https://cdn-transverse.azureedge.net/phlogos/BC501524.jpg",
-        "buts": 0
-      },
-      "esiHome": true
     },
     {
       "id": 54469145,
